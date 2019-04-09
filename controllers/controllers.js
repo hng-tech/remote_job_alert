@@ -86,21 +86,4 @@ const Jobs = {
     }
 }
 
-const Agent = {
-    async create_agent(req, res){
-        const queryText = {
-            first_name: req.body.first_name,
-            last_name: req.body.last_name,
-            email: req.body.email,
-            job_role: req.body.job_role
-        }
-        try {
-            let createdAgent = await db.create(queryText);
-            return res.status(200).send("This is to post the Agent Details to the database");
-        } catch(error){
-            return res.status(400).send(error);
-        }
-    }
-}
-
 module.exports = Jobs;
