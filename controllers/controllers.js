@@ -1,4 +1,4 @@
-const db = require("./promise");
+const db = require("./promise").Db;
 
 const Jobs = {
     async create(req, res){
