@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
   <title>{{title}}</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -20,4 +21,33 @@
     crossorigin="anonymous"></script>
 </body>
 
+</html>
+  <head>
+    <title>{{title}}</title>
+        <!-- PWA SETTINGS -->
+    <link rel='manifest'   href='./manifest.json' />
+    <meta name="theme-color" content="#6c63ff">
+  	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    {{{body}}}
+    <!-- scripts -->
+     <script>
+        if ('serviceWorker' in navigator) {
+          console.log("Will the service worker register?");
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(function(reg){
+              console.log("Yes, it did.");
+            }).catch(function(err) {
+              console.log("No it didn't. This happened: ", err)
+            });
+        }
+    </script>
+    <!--SERVICE WORKER-->
+    <script src='/service-worker.js' type='text/javascript'></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
 </html>
