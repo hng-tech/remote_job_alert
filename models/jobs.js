@@ -22,6 +22,21 @@ const jobSchema = new Schema({
         type: String,
         required: true
     },
+    job_pay_range: {
+        currency: { type: String },
+        range: {
+            min: { type:Number, min: 0},
+            max: { type: Number, min: 0}
+        }
+    },
+    employer_email: {
+        type: String,
+        required: true
+    },
+    career_level: {
+        type: String,
+        required: true
+    },
     job_category: {
         type: String,
         required: true
