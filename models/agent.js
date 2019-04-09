@@ -14,14 +14,14 @@ const agentSchema = new Schema({
         type: String,
         required: true
     },
-    phone_number: {
-        type: Number,
-        required: true
-    },
+    // phone_number: {
+    //     type: Number,
+    //     required: true
+    // },
     job_role: {
         type: String,
         required: true
-    },
+    }
 });
 
 
