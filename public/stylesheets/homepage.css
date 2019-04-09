@@ -2,6 +2,10 @@
   color: #11144c;
 }
 
+.navbar-toggler-icon {
+  color: #11144c;
+}
+
 .btn-custom,
 .btn-outline-custom:hover {
   color: #fff !important;
@@ -19,7 +23,7 @@
   width: 46px;
 }
 #body_top h1 {
-  font-size: 42px;
+  font-size: 36px;
 }
 .borderless {
   border: 0;
@@ -32,7 +36,7 @@
   height: 429px;
 }
 #job_listings {
-  background: url(images/bg.svg) 95% 0% no-repeat;
+  background: url("images/bg.svg") 95% 0% no-repeat;
 }
 #job_listings .card {
   border: 1px solid rgba(17, 20, 76, 0.25);
@@ -48,6 +52,30 @@ footer {
   background: #0b0d38;
 }
 
-.modal form .label {
-  margin: 0;
+.modal #job-details p {
+  font-size: 14px;
+  margin: 3px 0px;
+}
+.modal #job-details a {
+  width: 40%;
+}
+/* MOBILE VIEW */
+
+@media (max-width: 576px) {
+  #job_listings select {
+    width: 70%;
+  }
+
+  footer .row div {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  #body_top h1 {
+    font-size: 28px;
+  }
+  #body_top .work-img img {
+    display: none !important;
+  }
 }
