@@ -1,8 +1,76 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+		margin: 0;
+		padding: 0;
+		overflow-x: hidden;
+		background-color: #ced0f1;
+		color: #11144C;
+		font-family: 'Work Sans';
+	}
+	main {
+		margin: 30px 0;
+	}
+	nav a {
+		color: #121b4c;
+	}
+	.card {
+		padding-left: 0;
+		padding-right: 0;
+		box-shadow: #555 0 0 5px;
+	}
+	.float {
+		margin-top: -3rem;
+	}
+	.btn {
+		border: 1px solid #121b4c;
+		margin: 0 10px;
+		border-radius: 10px;
+	}
+	.section1 {
+		background: #fff;
+	}
+	#input {
+		border: 0.5px solid #12144C;
+		border-radius: 5px;
+		box-shadow: #333 0 1px 3px;
+	}
 
-a {
-  color: #00B7FF;
-}
+	#pay-agent {
+		background: #eeeff2;
+	}
+	#pay-agent p {
+		color: #77777D;
+	}
+	#latest-remote-jobs .card {
+		margin: 5%;
+		padding: 3%;
+		height: auto;
+	}
+	.primary-btn {
+		background: #121b4c;
+		color: #fff;
+	}
+	.logotag,
+	section .text-right {
+		color: #77777d;
+	}
+	input[type="email"] {
+		border: none;
+	}
+	footer {
+	/*			position: fixed;
+	  	left: 0;
+	  	bottom: 0;
+	  	width: 100%;*/
+		background: #121b4c;
+		padding: 0 10%;
+	}
+	footer * {
+		color: #fff;
+	}
+	footer ul {
+		list-style-type: none;
+	}
+	.copy {
+		background: #0c1138;
+		color: #fff;
+	}
