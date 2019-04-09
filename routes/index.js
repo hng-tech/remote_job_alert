@@ -13,6 +13,11 @@ router.get('/about', Home.aboutUs);
 // GET Contact us page
 router.get('/contact', Home.contactUs);
 
+// GET JOBS DETAILS PAGE
+router.get('/job_details', (req, res,next)=> {
+	res.render('job_details', {title:'Jobs Details Page'});
+});
+
 /* THERE IS A PROBLEM WITH THE BELOW ROUTES, THEY ARE BREAKING THE SITE*/
 
 // GET Job list page
