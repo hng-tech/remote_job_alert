@@ -28,9 +28,5 @@ router.get('/jobs/:job_id', Jobs.cancel_job);
 //Agent Routes
 router.get('/agents', Agents.get_all_agents);
 router.post('/agents', Agents.create_agent);
-router.get('/agents/:agent_id', Agents.get_one_agent);
-router.get('/agents/:agent_id/edit', Agents.edit_agent);
-router.put('/agents/:agent_id', Agents.update_agent);
-router.delete('/agents/:agent_id', Agents.delete_agent);
 
 module.exports = router;
