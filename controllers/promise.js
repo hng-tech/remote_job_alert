@@ -6,7 +6,7 @@ class Db {
      * @param {string} text
      * @returns {object} Return all 
      */
-    find(param){
+    static find(param){
         return new Promise((resolve, reject) => {
             Jobs.find(param)
             .then((res) => {
