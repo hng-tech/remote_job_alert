@@ -1,0 +1,158 @@
+.jobDetails h3 {
+  text-align: center;
+}
+
+.fullStackDev h3,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.fullStackDev p {
+  font-size: 0.72rem;
+}
+
+.links {
+  display: grid;
+  grid-gap: 50px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.hngTech {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.hngTech img {
+  width: 30px;
+  height: 17px;
+}
+
+.hngTech p {
+  font-size: 0.7rem;
+}
+
+.hngYaba {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  float: inline-end;
+  text-align: end;
+  align-content: flex-end;
+  align-items: flex-end;
+  align-self: flex-end;
+  padding-right: 0;
+  margin-right: 0;
+}
+
+.hngYaba img {
+  width: 10px;
+  height: 12px;
+  float: right;
+}
+
+.hngYaba p {
+  font-size: 0.7rem;
+}
+
+.hireAgent {
+  text-align: center;
+}
+
+.hireAgent a {
+  background: #3f3d56;
+  text-decoration: none;
+  color: white;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  padding-right: 3rem;
+  padding-left: 3rem;
+  border-radius: 3px;
+}
+
+.seenIt h3 {
+  font-size: 2rem;
+  padding-left: 3rem;
+}
+
+footer h1 {
+  text-align: center;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #ced0f1;
+  color: #11144c;
+  font-family: "Work Sans";
+}
+main {
+  margin: 30px 0;
+}
+nav a {
+  color: #121b4c;
+}
+.card {
+  padding-left: 0;
+  padding-right: 0;
+  box-shadow: #555 0 0 5px;
+}
+.float {
+  margin-top: -3rem;
+}
+.btn {
+  border: 1px solid #121b4c;
+  margin: 0 10px;
+  border-radius: 10px;
+}
+.section1 {
+  background: #fff;
+}
+#input {
+  border: 0.5px solid #12144c;
+  border-radius: 5px;
+  box-shadow: #333 0 1px 3px;
+}
+
+#pay-agent {
+  background: #eeeff2;
+}
+#pay-agent p {
+  color: #77777d;
+}
+#latest-remote-jobs .card {
+  margin: 5%;
+  padding: 3%;
+  height: auto;
+}
+.primary-btn {
+  background: #121b4c;
+  color: #fff;
+}
+.logotag,
+section .text-right {
+  color: #77777d;
+}
+input[type="email"] {
+  border: none;
+}
+footer {
+  /*			position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;*/
+  background: #121b4c;
+  padding: 0 10%;
+}
+footer * {
+  color: #fff;
+}
+footer ul {
+  list-style-type: none;
+}
+.copy {
+  background: #0c1138;
+  color: #fff;
+}
