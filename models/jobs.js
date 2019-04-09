@@ -1,51 +1,40 @@
-const  mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const jobSchema = new Schema({
-    header: {
+    advert_header: {
         type: String,
-        required: "Advert header is required"
+        required: true
     },
-    company: {
+    company_name: {
         type: String,
-        required: 'Company name is required',
-        trim: true
+        required: true
     },
-    title: {
+    job_title: {
         type: String,
-        required: 'Job title is required',
-        trim: true
+        required: true
     },
-    url: {
+    job_link: {
         type: String,
-        required: 'Job url is required',
-        trim: true
+        required: true
     },
-    description: {
+    job_description: {
         type: String,
-        required: 'Job description is required',
-        trim: true
+        required: true
     },
-    category: {
+    job_category: {
         type: String,
-        required: 'Job category is required',
-        trim: true
-    },
-    level: {
-        type: String,
-        required: 'career level is required',
-        trim: true
+        required: true
     },
     location: {
         type: String,
-        required: 'Location is required',
-        trim: true
+        required: true
     },
-    created: {
-      type: Date,
-      default: Date.now
-    },
-})
-const Job = mongoose.model('Job', jobSchema);
+    date_added: {
+        type: Date,
+        default: Date.now
+    }
+});
 
-module.exports = Job;
+
+module.exports = mongoose.model('Job', jobSchema);

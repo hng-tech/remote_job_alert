@@ -1,5 +1,5 @@
-const schema = require("../models/models");
-const Jobs = schema.Job;
+const Jobs = require("../models/jobs");
+const Users = require("../models/user");
 
 class Db {
     /**
