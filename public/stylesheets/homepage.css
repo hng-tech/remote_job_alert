@@ -1,0 +1,53 @@
+.navbar a {
+  color: #11144c;
+}
+
+.btn-custom,
+.btn-outline-custom:hover {
+  color: #fff !important;
+  background-color: #11144c;
+  border-color: #11144c;
+}
+
+.btn-outline-custom {
+  color: #fff;
+  border-color: #11144c;
+}
+
+.btn-html {
+  height: 46px;
+  width: 46px;
+}
+#body_top h1 {
+  font-size: 42px;
+}
+.borderless {
+  border: 0;
+  border-color: transparent;
+  outline: none;
+}
+
+#pay {
+  background: rgba(17, 20, 76, 0.07);
+  height: 429px;
+}
+#job_listings {
+  background: url(images/bg.svg) 95% 0% no-repeat;
+}
+#job_listings .card {
+  border: 1px solid rgba(17, 20, 76, 0.25);
+  box-shadow: 0px 18px 24px rgba(17, 20, 76, 0.1);
+}
+
+footer {
+  background-color: #11144c;
+  color: #fff;
+}
+
+.footer_end {
+  background: #0b0d38;
+}
+
+.modal form .label {
+  margin: 0;
+}
