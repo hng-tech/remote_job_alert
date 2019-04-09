@@ -1,6 +1,7 @@
 /* Styling For JOBS_DETAILS */
 
 @import url("homepage.css");
+@import url("sign_manage.css");
 
 body {
   margin: 0;
