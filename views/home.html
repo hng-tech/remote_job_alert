@@ -33,10 +33,11 @@
 		}
 		.section1 {
 			background: #fff;
-			height: 35rem;
 		}
 		#input {
-			border-radius: 1px solid #11144C;
+			border: 0.5px solid #12144C;
+			border-radius: 5px;
+			box-shadow: #333 0 1px 3px;
 		}
 
 		#pay-agent {
@@ -48,13 +49,18 @@
 		#latest-remote-jobs .card {
 			margin: 5%;
 			padding: 3%;
+			height: auto;
 		}
 		.primary-btn {
 			background: #121b4c;
 			color: #fff;
 		}
-		.logotag {
+		.logotag,
+		section .text-right {
 			color: #77777d;
+		}
+		input[type="email"] {
+			border: none;
 		}
 		footer {
 /*			position: fixed;
@@ -69,6 +75,10 @@
 		}
 		footer ul {
 			list-style-type: none;
+		}
+		.copy {
+			background: #0c1138;
+			color: #fff;
 		}
 	</style>
 </head>
@@ -86,14 +96,8 @@
 				            <li class="nav-item active">
 				                <a class="nav-link" href="#">Register</a>
 				            </li>
-				            <li class="nav-item active">
-				                <a class="nav-link" href="#">Remote jobs</a>
-				            </li>
 				            <li>
 				            	<a class="nav-link btn" href="#">Become Agent</a>
-				            </li>
-				            <li>
-				            	<a class="nav-link btn primary-btn" href="#">Post Job</a>
 				            </li>
 				        </ul>
 				    </div>
@@ -109,7 +113,7 @@
 						<h1>Subscribe to receive remote developer jobs</h1>
 						<p>Built by africa and for africa. Let us help you get that dream remote job you're perfect for</p>
 						<div id="input" class="row p-2 mt-5">
-							<input class="form-control col-md-8" type="email" name="email" placeholder="Enter email address">
+							<input class="form-control col-md-9" type="email" name="email" placeholder="Enter email address">
 							<input class="form-control col-md-3 primary-btn" type="button" value="Get Started">
 						</div>
 					</div>
@@ -129,7 +133,78 @@
 				</div>
 			</section>
 			<section class="section1 p-5" id="latest-remote-jobs">
-				<h2 class="text-center">Latest remote jobs</h2>
+				<h2 class="text-center">Job postings</h2>
+				<div class="row container ml-2 mt-5 mb-3">
+					<h3>Filter&nbsp;&nbsp;</h3>
+					<select class="col-md-4 form-control"><option class="pl-3">Select job role</option></select>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="card">
+							<div>
+								<img class="pb-1" src="https://res.cloudinary.com/sastech/image/upload/c_scale,w_15/v1554755392/ms_io4pnd.jpg">
+								<span class="logotag">Microsoft</span>
+								<span class="pl-5">Senior Backend Developer</span>
+								<span class="float-right"><a class="text-right" href="">view &rarr;</a></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="card">
+							<div>
+								<img class="pb-1" src="https://res.cloudinary.com/sastech/image/upload/c_scale,w_15/v1554755392/ms_io4pnd.jpg">
+								<span class="logotag">Microsoft</span>
+								<span class="pl-5">Frontend Developer</span>
+								<span class="float-right"><a class="text-right" href="">view &rarr;</a></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="card">
+							<div>
+								<img class="pb-1" src="https://res.cloudinary.com/sastech/image/upload/c_scale,w_15/v1554755433/fb_ljukgr.png">
+								<span class="logotag">Facebook</span>
+								<span class="pl-5">Senior Backend Developer</span>
+								<span class="float-right"><a class="text-right" href="">view &rarr;</a></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="card">
+							<div>
+								<img class="pb-1" src="https://res.cloudinary.com/sastech/image/upload/c_scale,w_15/v1554755392/ms_io4pnd.jpg">
+								<span class="logotag">Microsoft</span>
+								<span class="pl-5">Dev ops Engineer</span>
+								<span class="float-right"><a class="text-right" href="">view &rarr;</a></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="card">
+							<div>
+								<img class="pb-1" src="https://res.cloudinary.com/sastech/image/upload/c_scale,h_20,w_25/v1554801099/Lyft_xzqtfe.png">
+								<span class="logotag">Lyft</span>
+								<span class="pl-5">Senior Backend Developer</span>
+								<span class="float-right"><a class="text-right" href="">view &rarr;</a></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="card">
+							<div>
+								<img class="pb-1" src="https://res.cloudinary.com/sastech/image/upload/c_scale,w_15/v1554755392/ms_io4pnd.jpg">
+								<span class="logotag">Microsoft</span>
+								<span class="pl-5">Frontend Developer</span>
+								<span class="float-right"><a class="text-right" href="">view &rarr;</a></span>
+							</div>
+						</div>
+					</div>
+				</div>
+
 				<div class="row">
 					<div class="col-md-6">
 						<div class="card">
@@ -196,6 +271,50 @@
 						</div>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="card">
+							<div>
+								<img class="pb-1" src="https://res.cloudinary.com/sastech/image/upload/c_scale,w_15/v1554755433/fb_ljukgr.png">
+								<span class="logotag">Facebook</span>
+								<span class="pl-5">Senior Backend Developer</span>
+								<span class="float-right"><a class="text-right" href="">view &rarr;</a></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="card">
+							<div>
+								<img class="pb-1" src="https://res.cloudinary.com/sastech/image/upload/c_scale,w_15/v1554755392/ms_io4pnd.jpg">
+								<span class="logotag">Microsoft</span>
+								<span class="pl-5">Dev ops Engineer</span>
+								<span class="float-right"><a class="text-right" href="">view &rarr;</a></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="card">
+							<div>
+								<img class="pb-1" src="https://res.cloudinary.com/sastech/image/upload/c_scale,w_15/v1554755392/ms_io4pnd.jpg">
+								<span class="logotag">Microsoft</span>
+								<span class="pl-5">Senior Backend Developer</span>
+								<span class="float-right"><a class="text-right" href="">view &rarr;</a></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="card">
+							<div>
+								<img class="pb-1" src="https://res.cloudinary.com/sastech/image/upload/c_scale,w_15/v1554755392/ms_io4pnd.jpg">
+								<span class="logotag">Microsoft</span>
+								<span class="pl-5">Frontend Developer</span>
+								<span class="float-right"><a class="text-right" href="">view &rarr;</a></span>
+							</div>
+						</div>
+					</div>
+				</div>				
 				<div class="text-center mt-2">Load more listings <i class="fa fa-angle-down"></i></div>
 			</section>
 
@@ -226,10 +345,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="copy mt-3">
-				<p class="text-center">Copyright 2019. All rights reserved</p>
-			</div>
 		</footer>
+		<div class="copy pt-2">
+			<p class="text-center">Copyright 2019. All rights reserved</p>
+		</div>
 
 		</div>
 

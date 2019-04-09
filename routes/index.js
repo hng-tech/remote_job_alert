@@ -6,9 +6,4 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Remote Job Alert' });
 });
 
-// Get main page
-router.get('/home', (req, res, next) => {
-	res.render('home');
-})
-
 module.exports = router;
