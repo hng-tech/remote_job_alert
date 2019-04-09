@@ -17,6 +17,7 @@ router.get('/contact', Home.contactUs);
 // GET JOBS DETAILS PAGE
 router.get('/job_details', Home.job_details);
 
+<<<<<<< HEAD
 //Job Routes
 router.get('/jobs', Jobs.get_all);
 router.post('/jobs', Jobs.create);
@@ -28,5 +29,33 @@ router.get('/jobs/:job_id', Jobs.cancel_job);
 //Agent Routes
 router.get('/agents', Agents.get_all_agents);
 router.post('/agents', Agents.create_agent);
+=======
+router.get('/managejobs', (req, res, next) => {
+	res.render('manage-job', {title: 'Manage Jobs'});
+});
+
+router.get('/agent_signup', (req, res, next) => {
+	res.render('signup', {title: "Signup DevAlert"});
+});
+
+router.get('/dashboard', (req, res, next)=> {
+	res.render('dashboard', {title: 'Admin Dashboard'});
+})
+
+/* THERE IS A PROBLEM WITH THE BELOW ROUTES, THEY ARE BREAKING THE SITE*/
+
+// GET Job list page
+// router.get('/jobs', Jobs.index);
+
+// // POST Job alerts subscription
+// router.post('/subscribe', Jobs.jobAlertSubscription);
+
+// router.get('/remote-jobs', Jobs.get_all)
+// router.post('/remote-jobs', Jobs.create);
+// router.get('/remote-jobs/:job_id', Jobs.get_one);
+// router.get('/remote-jobs/:job_id', Jobs.edit);
+// router.get('/remote-jobs/:job_id', Jobs.update_job);
+// router.get('/remote-jobs/:job_id', Jobs.cancel_job);
+>>>>>>> upstream/master
 
 module.exports = router;
