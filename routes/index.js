@@ -14,9 +14,7 @@ router.get('/about', Home.aboutUs);
 router.get('/contact', Home.contactUs);
 
 // GET JOBS DETAILS PAGE
-router.get('/job_details', (req, res,next)=> {
-	res.render('job_details', {title:'Jobs Details Page'});
-});
+router.get('/job_details', Home.job_details);
 
 /* THERE IS A PROBLEM WITH THE BELOW ROUTES, THEY ARE BREAKING THE SITE*/
 
