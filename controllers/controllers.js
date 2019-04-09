@@ -13,7 +13,6 @@ const Jobs = {
         };
         try {
             let createdJob = await db.create(queryText);
-            console.log(createdJob);
             return res.status(201).redirect('/');
         } catch(error) {
             return res.status(400).send(error);
@@ -48,7 +47,6 @@ const Jobs = {
         };
         try {
             let foundJob = await db.default.findOne(queryText);
-            console.log(foundParcel);
             return res.status(200).json(foundJob);
         } catch(error){
             return res.status(400).send(error);
@@ -79,8 +77,7 @@ const Jobs = {
             _id: req.params.job_id
         };
         try {
-            let foundParcel = await db.default.findOneAndDelete(queryText);
-            console.log(deletedParcel);
+            let foundJob = await db.default.findOneAndDelete(queryText);
             return res.status(200).redirect("/");
         } catch(error){
             return res.status(400).send(error);
