@@ -12,3 +12,27 @@ Remote job alert is a service used to serve curated job listings outside of Afri
 5. Go to your browser `localhost:3000` to view the project.
 6. When you make your changes to the repo, push to master and create a pull request, make sure there are no merge conflicts.
 7. Do not merge, the mentor would.
+ Getting Started
+
+Fork the repository and clone it
+```
+git clone CLONE_URL
+```
+
+Change into cloned repo and install dependencies
+```
+npm install
+```
+
+Start the project
+```
+npm start
+```
+
+Visit `http://localhost:3000` to view the project.
+
+**NOTES:**
+
+&mdash; After making changes to the repo, push to master and create pull request, make sure there are no merge conflicts.
+
+&mdash; Do not merge pull request, a mentor will.

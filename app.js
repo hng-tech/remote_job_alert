@@ -1,8 +1,28 @@
+var mongoose = require('mongoose');
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
+// The database setup
+// we should probable store the url in .env for security reasons.
+var databaseUrl = "mongodb://job_alert_admin:#developerHNG1@ds135456.mlab.com:35456/job_alert_db";
+
+// connect to database
+mongoose.connect(databaseUrl, { useNewUrlParser: true },
+  function(err, client) {
+    if (err) console.log(err);
+    console.log('Connection passed');
+  });
+
+let db = mongoose.connection;
+
+db.once("open", () => console.log("Connected to database"));
+
+// checks if connection to db is a success
+db.on("error", console.error.bind(console, "Database connection error:"));
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
