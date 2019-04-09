@@ -36,7 +36,7 @@ const jobSchema = new Schema({
     }
 });
 
-const Job = mongoose.models("Job", jobSchema);
+const Job = mongoose.model("Job", jobSchema);
 
 const UserSchema = new Schema({
     first_name: {
@@ -57,7 +57,7 @@ const UserSchema = new Schema({
     }
 });
 
-const User = mongoose.models("User", UserSchema);
+const User = mongoose.model("User", UserSchema);
 
 module.exports = {
     Job,
