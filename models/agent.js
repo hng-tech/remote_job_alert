@@ -1,4 +1,4 @@
-var mongoose = require('mongooose');
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 const agentSchema = new Schema({

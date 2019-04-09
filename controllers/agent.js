@@ -1,4 +1,4 @@
-const db = require("./promise");
+const db = require("./promise").DbAgent;
 
 const Agent = {
     async create_agent(req, res){
