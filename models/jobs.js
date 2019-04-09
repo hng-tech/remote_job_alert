@@ -31,7 +31,7 @@ const jobSchema = new Schema({
     },
     employer_email: {
         type: String,
-        required: true
+        required: false
     },
     career_level: {
         type: String,
