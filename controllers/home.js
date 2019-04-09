@@ -18,6 +18,10 @@ class Home {
     static job_details(req, res, next){
         res.render('job_details', {title : 'Job Details'});
     }
+
+    static managejobs(req, res, next){
+        res.render('manage-job', {title : 'Manage Jobs'});
+    }
 }
 
 module.exports = Home;

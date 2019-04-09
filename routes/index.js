@@ -16,6 +16,18 @@ router.get('/contact', Home.contactUs);
 // GET JOBS DETAILS PAGE
 router.get('/job_details', Home.job_details);
 
+router.get('/managejobs', (req, res, next) => {
+	res.render('manage-job', {title: 'Manage Jobs'});
+});
+
+router.get('/agent_signup', (req, res, next) => {
+	res.render('signup', {title: "Signup DevAlert"});
+});
+
+router.get('/dashboard', (req, res, next)=> {
+	res.render('dashboard', {title: 'Admin Dashboard'});
+})
+
 /* THERE IS A PROBLEM WITH THE BELOW ROUTES, THEY ARE BREAKING THE SITE*/
 
 // GET Job list page
