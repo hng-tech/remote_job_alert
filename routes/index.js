@@ -17,7 +17,6 @@ router.get('/contact', Home.contactUs);
 // GET JOBS DETAILS PAGE
 router.get('/job_details', Home.job_details);
 
-<<<<<<< HEAD
 //Job Routes
 router.get('/jobs', Jobs.get_all);
 router.post('/jobs', Jobs.create);
@@ -29,7 +28,7 @@ router.get('/jobs/:job_id', Jobs.cancel_job);
 //Agent Routes
 router.get('/agents', Agents.get_all_agents);
 router.post('/agents', Agents.create_agent);
-=======
+
 router.get('/managejobs', (req, res, next) => {
 	res.render('manage-job', {title: 'Manage Jobs'});
 });
@@ -56,6 +55,5 @@ router.get('/dashboard', (req, res, next)=> {
 // router.get('/remote-jobs/:job_id', Jobs.edit);
 // router.get('/remote-jobs/:job_id', Jobs.update_job);
 // router.get('/remote-jobs/:job_id', Jobs.cancel_job);
->>>>>>> upstream/master
 
 module.exports = router;
