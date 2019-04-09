@@ -2,6 +2,7 @@ var Home = require('../controllers/home');
 
 var express = require('express');
 var Jobs = require("../controllers/controllers");
+var Agents = require("../controllers/agent");
 var router = express.Router();
 
 /* GET home page. */
@@ -16,17 +17,20 @@ router.get('/contact', Home.contactUs);
 // GET JOBS DETAILS PAGE
 router.get('/job_details', Home.job_details);
 
-//Gets the Job list page
-router.get('/jobs', Jobs.get_all)
-//create a new job
+//Job Routes
+router.get('/jobs', Jobs.get_all);
 router.post('/jobs', Jobs.create);
-//get details of one of the jobs
 router.get('/jobs/:job_id', Jobs.get_one);
-//edit job page
-router.get('/jobs/:job_id', Jobs.edit);
-//update edited job route
+router.get('/jobs/:job_id/edit', Jobs.edit);
 router.get('/jobs/:job_id', Jobs.update_job);
-//delete job
 router.get('/jobs/:job_id', Jobs.cancel_job);
+
+//Agent Routes
+router.get('/agents', Agents.get_all_agents);
+router.post('/agents', Agents.create_agent);
+router.get('/agents/:agent_id', Agents.get_one_agent);
+router.get('/agents/:agent_id/edit', Agents.edit_agent);
+router.put('/agents/:agent_id', Agents.update_agent);
+router.delete('/agents/:agent_id', Agents.delete_agent);
 
 module.exports = router;
