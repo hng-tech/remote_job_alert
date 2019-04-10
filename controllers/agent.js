@@ -1,6 +1,27 @@
 const db = require("./promise").DbAgent;
+const { body } = require('express-validator/check');
 
 const Agent = {
+
+    validate(method) {
+        switch (method) {
+            case 'create_agent': {
+             return [
+                body('email', 'Invalid email').isEmail()
+                .normalizeEmail(),
+                body('first_name').not().isEmpty()
+                .trim()
+                .escape(),
+                body('last_name').not().isEmpty()
+                .trim()
+                .escape(),
+                body('job_role').not().isEmpty()
+                .trim()
+                .escape()
+               ]   
+            }
+          }
+    },
     async create_agent(req, res){
         const queryText = {
             first_name: req.body.first_name,

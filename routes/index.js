@@ -19,7 +19,7 @@ router.get("/job_details", Home.job_details);
 
 //Job Routes
 router.get('/jobs', Jobs.get_all);
-router.post('/jobs', Jobs.create);
+router.post('/jobs', Jobs.validate('create'),Jobs.create);
 router.get('/jobs/:job_id', Jobs.get_one);
 router.get('/jobs/:job_id/edit', Jobs.edit);
 router.get('/jobs/:job_id', Jobs.update_job);
@@ -27,7 +27,7 @@ router.get('/jobs/:job_id', Jobs.cancel_job);
 
 //Agent Routes
 router.get('/agents', Agents.get_all_agents);
-router.post('/agents', Agents.create_agent);
+router.post('/agents', Agents.validate('create_agent'), Agents.create_agent);
 
 router.get('/managejobs', (req, res, next) => {
 	res.render('manage_jobs', {title: 'Manage Jobs'});
