@@ -30,7 +30,7 @@ router.get('/agents', Agents.get_all_agents);
 router.post('/agents', Agents.create_agent);
 
 router.get('/managejobs', (req, res, next) => {
-	res.render('manage-job', {title: 'Manage Jobs'});
+	res.render('manage_jobs', {title: 'Manage Jobs'});
 });
 
 router.get("/agent_signup", (req, res, next) => {
