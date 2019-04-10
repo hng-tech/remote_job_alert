@@ -1,4 +1,10 @@
 const db = require("./promise").DbAgent;
+
+const validateAgentQueryText = require('../validation/agent');
+
+
+const Agent = {
+    
 const { body } = require('express-validator/check');
 
 const Agent = {
@@ -22,7 +28,16 @@ const Agent = {
             }
           }
     },
+  
     async create_agent(req, res){
+
+        const { errors, isValid } = validateAgentQueryText(req.body);
+
+		// Check Validation
+		if (!isValid) {
+			return res.status(400).json(errors);
+		}
+
         const queryText = {
             first_name: req.body.first_name,
             last_name: req.body.last_name,
