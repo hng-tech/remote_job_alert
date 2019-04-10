@@ -23,7 +23,7 @@ const Jobs = {
         const queryText = {};
         try {
             let foundJobs = await db.find(queryText);
-            return res.status(200).render("job_details");;
+            return res.status(200).json(foundJobs);;
         } catch(error){
             return res.status(400).send(error);
         }
