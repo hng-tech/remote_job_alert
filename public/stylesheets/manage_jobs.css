@@ -1,0 +1,101 @@
+body{
+  
+}
+h1 {
+  text-align: center;
+  color: #11144C;
+  font-family: Monteserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size:36px;
+  line-height: normal;
+}
+
+/* The sidebar menu */
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 160px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #11144C;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #FFFFFF;
+  display: block;
+  font-family: Roboto;
+ font-style: normal;
+ font-weight: normal;
+ font-size: 18px;
+ line-height: normal;
+ text-align: center;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  background-color: #858AF4;
+  border: 2px solid #858AF4;
+  border-radius: 100px;
+  text-decoration: none;
+}
+
+/* Style page content */
+.main {
+  margin-left: 160px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.container{
+  align-items: space-around;
+  justify-content: center;
+  
+}
+ .text{
+  display: inline-block;
+} 
+.button
+{   
+   width: 200px;
+   height: 20px;
+   left: 433px;
+   top: 226px;
+    background-color: white;
+    border: 1px solid #77777C;
+    box-sizing: border-box;
+    border-radius: 5px;    
+}
+
+.headings {
+   display: flex;
+   align-items: space-around;
+   justify-content: center;
+   padding-top: 20px;
+}
+
+.row-space{
+  color: #11144C;
+  font-family: Montserrat;
+ font-style: normal;
+ font-weight: 500;
+ font-size: 16px;
+ line-height: normal;
+  height: 200px;
+  width: 500px;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  padding-top: 20px;
+}

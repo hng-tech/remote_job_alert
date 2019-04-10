@@ -2,9 +2,11 @@
 
 @import url("homepage.css");
 @import url("sign_manage.css");
+@import url("manage_jobs.css");
 @import url("dashboard.css");
 @import url("sign_manage.css");
 @import url("creat-job-post.css");
+
 
 body {
   margin: 0;
