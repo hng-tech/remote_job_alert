@@ -4,6 +4,7 @@ var Jobs = require("../controllers/controllers");
 var Agents = require("../controllers/agent");
 var router = express.Router();
 const UserController = require("../controllers/user");
+const Validation = require("../validation/email");
 
 /* GET home page. */
 router.get("/", Home.index);
@@ -52,7 +53,13 @@ router.get("/create-job", (req, res, next) => {
   res.render("creat-job-post", { title: "Add New Job Posting" });
 });
 
-router.post("/email-subscription", UserController.sendMail);
+//check if email is valid, then sends welcome email and saves email to db
+router.post(
+  "/email-subscription",
+  Validation.validateEmail(),
+  Validation.returnErrors,
+  UserController.sendMail
+);
 
 /* THERE IS A PROBLEM WITH THE BELOW ROUTES, THEY ARE BREAKING THE SITE*/
 

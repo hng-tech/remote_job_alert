@@ -5,17 +5,17 @@ async function sendMail(req, res, next) {
   try {
     const user = new User({ email: req.body.email });
     await user.save();
-    console.log(user);
     const transporter = await nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.mailtrap.io",
+      port: 2525,
       auth: {
-        user: "devalerthng@gmail.com",
-        pass: "devalert1234"
+        user: "f4988ca3d96604",
+        pass: "3a2c5a6e813d0d"
       }
     });
 
     const mailOptions = {
-      from: "ezechinnaemeka@gmail.com",
+      from: "DevAlert Team <noreply@devalert.com>",
       to: user.email,
       subject: "DevAlert Subscription",
       html:
@@ -23,7 +23,8 @@ async function sendMail(req, res, next) {
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log("Message sent: %s", info.messageId);
+
+    req.flash("success", "Email subscription was successful");
     res.redirect("/");
   } catch (err) {
     console.error(err);
