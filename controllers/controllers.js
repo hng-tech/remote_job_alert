@@ -1,4 +1,4 @@
-const db = require("./promise");
+const db = require("./promise").Db;
 
 const Jobs = {
     async create(req, res){
@@ -13,7 +13,6 @@ const Jobs = {
         };
         try {
             let createdJob = await db.create(queryText);
-            console.log(createdJob);
             return res.status(201).redirect('/');
         } catch(error) {
             return res.status(400).send(error);
@@ -23,8 +22,8 @@ const Jobs = {
     async get_all(req, res){
         const queryText = {};
         try {
-            let foundJobs = await db.default.find(queryText);
-            return res.status(200).send(foundJobs);;
+            let foundJobs = await db.find(queryText);
+            return res.status(200).json(foundJobs);;
         } catch(error){
             return res.status(400).send(error);
         }
@@ -35,7 +34,7 @@ const Jobs = {
             _id: req.params.job_id
         }
         try {
-            let foundJob = await db.default.findOne(queryText);
+            let foundJob = await db.findOne(queryText);
             return res.status(200).json(foundJob);;
         } catch(error){
             return res.status(400).send(error);
@@ -47,8 +46,7 @@ const Jobs = {
             _id: req.params.job_id
         };
         try {
-            let foundJob = await db.default.findOne(queryText);
-            console.log(foundParcel);
+            let foundJob = await db.findOne(queryText);
             return res.status(200).json(foundJob);
         } catch(error){
             return res.status(400).send(error);
@@ -68,7 +66,7 @@ const Jobs = {
             location: req.body.location,
         }
         try {
-            let updatedJob = await db.default.findOneAndUpdate(queryText, updateText);
+            let updatedJob = await db.findOneAndUpdate(queryText, updateText);
             return res.status(200).json(updatedJob);
         } catch(error){
             return res.status(400).send(error);
@@ -79,8 +77,8 @@ const Jobs = {
             _id: req.params.job_id
         };
         try {
-            let foundParcel = await db.default.findOneAndDelete(queryText);
-            console.log(deletedParcel);
+            let foundJob = await db.findOneAndDelete(queryText);
+            console.log(foundJob);
             return res.status(200).redirect("/");
         } catch(error){
             return res.status(400).send(error);
