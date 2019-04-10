@@ -1,11 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+<div id="homepage">
+	<main class="container">
+		{{#if success}}
+		<div class="alert alert-success alert-dismissible fade show">
+			<strong>{{success}}</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		{{/if}} {{#each errors}}
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<strong>{{msg}}</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		{{/each}}
+		<section id="intro">
+			<div class="code">
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<title>Home page - DevAlert</title>
+				<img src="images/code2.png" />
 
 </head>
 
@@ -24,7 +37,7 @@
 			<div class="col-md-5">
 				<p>The remote life</p>
 				<h1>Subscribe to receive remote developers job</h1>
-				<p class="text-muted ">Built for africa and for africa. Let us help you get that dream remote job you’re perfect for.</p>
+				<p class="text-muted ">Built for africa and by africa. Let us help you get that dream remote job you’re perfect for.</p>
 				<div class="card mt-5 ">
 					<div class="card-body p-2 ">
 						<form action=" " class="form-inline ">
@@ -34,178 +47,342 @@
 					</div>
 				</div>
 			</div>
-			<div class="offset-md-1 col-md-6 d-flex justify-content-center work-img">
-				<img src="/images/draw.jpg " alt=" " class="">
-			</div>
-		</div>
-	</section>
-
-	<!-- PAY TO AGENT -->
-	<section id="pay" class="my-5 d-flex justify-content-center align-items-center ">
-		<div class="d-flex align-items-center flex-column ">
-			<h2>Pay an agent to apply</h2>
-			<p class="text-muted my-3 w-75 text-center ">Secure the job faster and easier. Let an agent help you apply to get more probability of sucess</p>
-			<a href=" " class="btn btn-custom px-3 ">Contact agent</a>
-		</div>
-	</section>
-
-	<!-- JOB LISTINGS -->
-	<section id="job_listings" class="my-5 ">
-		<div class="container ">
-			<h2 class="text-center mb-4">Job Postings</h2>
-			<form action=" " class="form-inline ">
-				<span class="font-weight-bold mr-3 ">Filter</span>
-				<select name=" " id="" class="form-control w-50 ">
-					<option selected>Select job role</option>
-				</select>
-			</form>
-			<div class="mt-4 ">
-				<div class="row ">
-					<div class="col-md-6 my-3 ">
-						<div class="card p-3 ">
-							<div class="d-flex justify-content-between" data-toggle="modal" data-target="#jobModal">
-								<img src="/images/microsoft.svg " alt=" ">
-								<span class="font-weight-bold ">Senior Backend developer</span>
-								<a hre="/job_details" class="text-muted ">view &#x2192;</a>
+			<div class="row">
+				<div class="col-sm-12 col-md-6 intro-text">
+					<h4>The remote life</h4>
+					<h1>Subscribe to recieve remote developer jobs</h1>
+					<p>Built for africa and for africa. Let us help you get that dream remote job you’re perfect for
+					</p>
+					<form action="/email-subscription" method="POST">
+						<div class="input-group">
+							<input type="email" class="form-control" placeholder="Email" name="email">
+							<div class="input-group-append">
+								<button class="btn" type="submit">Subscribe</button>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-6 my-3 ">
-						<div class="card p-3 ">
-							<div class="d-flex justify-content-between" data-toggle="modal" data-target="#jobModal">
-								<img src="/images/microsoft.svg " alt=" ">
-								<span class="font-weight-bold ">Senior Backend developer</span>
-								<a hre="/job_details" class="text-muted ">view &#x2192;</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 my-3 ">
-						<div class="card p-3 ">
-							<div class="d-flex justify-content-between" data-toggle="modal" data-target="#jobModal">
-								<p class="d-flex my-0 align-items-center ">
-									<img src="/images/facebook.svg " alt=" " height="30 " width="30 ">
-									<span class="text-muted ml-2 ">Facebook</span>
-								</p>
-								<span class="font-weight-bold ">Senior Backend developer</span>
-								<a hre="/job_details" class="text-muted ">view &#x2192;</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6 my-3 ">
-						<div class="card p-3 ">
-							<div class="d-flex justify-content-between" data-toggle="modal" data-target="#jobModal">
-								<img src="/images/microsoft.svg " alt=" ">
-								<span class="font-weight-bold ">Senior Backend developer</span>
-								<a hre="/job_details" class="text-muted ">view &#x2192;</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 my-3 ">
-						<div class="card p-3 ">
-							<div class="d-flex justify-content-between" data-toggle="modal" data-target="#jobModal">
-								<p class="d-flex my-0 align-items-center">
-									<img src="/images/lyft.svg " alt=" " height="30 " width="30 ">
-									<span class="text-muted ml-2 ">lyft</span>
-								</p>
-								<span class="font-weight-bold ">Senior Backend developer</span>
-								<a hre="/job_details" class="text-muted ">view &#x2192;</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 my-3 ">
-						<div class="card p-3 ">
-							<div class="d-flex justify-content-between" data-toggle="modal" data-target="#jobModal">
-								<img src="/images/microsoft.svg " alt=" ">
-								<span class="font-weight-bold ">Senior Backend developer</span>
-								<a hre="/job_details" class="text-muted ">view &#x2192;</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 my-3 ">
-						<div class="card p-3 ">
-							<div class="d-flex justify-content-between" data-toggle="modal" data-target="#jobModal">
-								<p class="d-flex my-0 align-items-center ">
-									<img src="/images/facebook.svg " alt=" " height="30 " width="30 ">
-									<span class="text-muted ml-2 ">Facebook</span>
-								</p>
-								<span class="font-weight-bold ">Senior Backend developer</span>
-								<a hre="/job_details" class="text-muted ">view &#x2192;</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 my-3 ">
-						<div class="card p-3 ">
-							<div class="d-flex justify-content-between" data-toggle="modal" data-target="#jobModal">
-								<img src="/images/microsoft.svg " alt=" ">
-								<span class="font-weight-bold ">Senior Backend developer</span>
-								<a hre="/job_details" class="text-muted ">view &#x2192;</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 my-3 ">
-						<div class="card p-3 ">
-							<div class="d-flex justify-content-between" data-toggle="modal" data-target="#jobModal">
-								<img src="/images/microsoft.svg " alt=" ">
-								<span class="font-weight-bold ">Senior Backend developer</span>
-								<a hre="/job_details" class="text-muted ">view &#x2192;</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 my-3 ">
-						<div class="card p-3 ">
-							<div class="d-flex justify-content-between" data-toggle="modal" data-target="#jobModal">
-								<img src="/images/microsoft.svg " alt=" ">
-								<span class="font-weight-bold ">Senior Backend developer</span>
-								<a hre="/job_details" class="text-muted ">view &#x2192;</a>
-							</div>
-						</div>
-					</div>
-
+					</form>
 				</div>
+				<div class="col-sm-12 col-md-6 intro-img">
+					<img src="images/introimg.jpg" />
+				</div>
+			</div>
 
-				<p class=" d-flex justify-content-center mt-4 ">
-					<a class="mr-4 ">load more listings</a>
-					<img src="/images/arrowdown.svg " alt=" ">
+		</section>
+	</main>
+	<section id="pay-agent">
+		<div class="container">
+			<div class="pay-header">
+				<h1>Pay an agent to apply</h1>
+				<p>Secure the job faster and easier.
+					<br />Let an agent help you apply to get more probability of sucess
 				</p>
+				<button class="btn">Contact Agent</button>
 			</div>
 		</div>
 	</section>
-
-	<!--- JOB LISTING MODAL -->
-	<div class="modal fade" id="jobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-body" id="job-details">
-					<button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h3 class="mt-4" class="font-weight-bold">Job Details</h3>
-					<div class="row mt-4">
-						<div class="col-md-6">
-							<p class="text-muted">Job Title</p>
-							<h6 class="font-weight-bold">Fullstack developer</h6>
-						</div>
-						<div class="col-md-6">
-							<p class="text-muted">Company</p>
-							<h6 class="font-weight-bold">Microsoft Technologies</h6>
+	<section id="job-posting">
+		<div class="container-fluid">
+			<div class="job-header">
+				<h1>Job Postings</h1>
+				<form>
+					<div class="dropdown">
+						<h4>Filter</h4>
+						<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+							Select a job role
+						</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="#">Link 1</a>
+							<a class="dropdown-item" href="#">Link 2</a>
+							<a class="dropdown-item" href="#">Link 3</a>
 						</div>
 					</div>
-					<div class="mt-4">
-						<h6 class="font-weight-bold">Requirements</h6>
-						<p class="font-weight-light text-muted">3 years experience</p>
-						<p class="font-weight-light text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-							aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-						<p class="font-weight-light text-muted">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-							occaecat cupidatat </p>
+					<!-- <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Enter email address">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button">Subscribe</button>
+                        </div>
+                    </div> -->
+				</form>
+				<div class="container">
+					<div class="row">
+						<ul class="job col-sm-5">
+							<li>
+								<img src="images/ms.png" />
+							</li>
+							<li>
+								<p>Senior Backend Developer</p>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#jobModal">
+									<p>view
+										<img src="images/Arrow.png" />
+									</p>
+								</a>
+							</li>
+						</ul>
+						<ul class="job col-sm-5">
+							<li>
+								<img src="images/FB.jpg" /> </li>
+							<li>
+								<p>Junior Backend Developer</p>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#jobModal">
+									<p>view
+										<img src="images/Arrow.png" />
+									</p>
+								</a>
+							</li>
+						</ul>
+						<ul class="job col-sm-5">
+							<li>
+								<img src="images/Lyft_logo.png" /> </li>
+							<li>
+								<p>Senior Web Developer</p>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#jobModal">
+									<p>view
+										<img src="images/Arrow.png" />
+									</p>
+								</a>
+							</li>
+						</ul>
+						<ul class="job col-sm-5">
+							<li>
+								<img src="images/ms.png" />
+							</li>
+							<li>
+								<p>Senior Backend Developer</p>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#jobModal">
+									<p>view
+										<img src="images/Arrow.png" />
+									</p>
+								</a>
+							</li>
+						</ul>
+						<ul class="job col-sm-5">
+							<li>
+								<img src="images/FB.jpg" /> </li>
+							<li>
+								<p>Junior Backend Developer</p>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#jobModal">
+									<p>view
+										<img src="images/Arrow.png" />
+									</p>
+								</a>
+							</li>
+						</ul>
+						<ul class="job col-sm-5">
+							<li>
+								<img src="images/Lyft_logo.png" /> </li>
+							<li>
+								<p>Senior Web Developer</p>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#jobModal">
+									<p>view
+										<img src="images/Arrow.png" />
+									</p>
+								</a>
+							</li>
+						</ul>
+						<ul class="job col-sm-5">
+							<li>
+								<img src="images/ms.png" />
+							</li>
+							<li>
+								<p>Senior Backend Developer</p>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#jobModal">
+									<p>view
+										<img src="images/Arrow.png" />
+									</p>
+								</a>
+							</li>
+						</ul>
+						<ul class="job col-sm-5">
+							<li>
+								<img src="images/ms.png" />
+							</li>
+							<li>
+								<p>Senior Backend Developer</p>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#jobModal">
+									<p>view
+										<img src="images/Arrow.png" />
+									</p>
+								</a>
+							</li>
+						</ul>
+						<ul class="job col-sm-5">
+							<li>
+								<img src="images/FB.jpg" /> </li>
+							<li>
+								<p>Junior Backend Developer</p>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#jobModal">
+									<p>view
+										<img src="images/Arrow.png" />
+									</p>
+								</a>
+							</li>
+						</ul>
+						<ul class="job col-sm-5">
+							<li>
+								<img src="images/Lyft_logo.png" /> </li>
+							<li>
+								<p>Senior Web Developer</p>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#jobModal">
+									<p>view
+										<img src="images/Arrow.png" />
+									</p>
+								</a>
+							</li>
+						</ul>
+						<ul class="job col-sm-5">
+							<li>
+								<img src="images/ms.png" />
+							</li>
+							<li>
+								<p>Senior Backend Developer</p>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#jobModal">
+									<p>view
+										<img src="images/Arrow.png" />
+									</p>
+								</a>
+							</li>
+						</ul>
+						<ul class="job col-sm-5">
+							<li>
+								<img src="images/FB.jpg" /> </li>
+							<li>
+								<p>Junior Backend Developer</p>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#jobModal">
+									<p>view
+										<img src="images/Arrow.png" />
+									</p>
+								</a>
+							</li>
+						</ul>
+						<ul class="job col-sm-5">
+							<li>
+								<img src="images/Lyft_logo.png" /> </li>
+							<li>
+								<p>Senior Web Developer</p>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#jobModal">
+									<p>view
+										<img src="images/Arrow.png" />
+									</p>
+								</a>
+							</li>
+						</ul>
+						<ul class="job col-sm-5">
+							<li>
+								<img src="images/ms.png" />
+							</li>
+							<li>
+								<p>Senior Backend Developer</p>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#jobModal">
+									<p>view
+										<img src="images/Arrow.png" />
+									</p>
+								</a>
+							</li>
+						</ul>
+						<ul class="job col-sm-5">
+							<li>
+								<img src="images/FB.jpg" /> </li>
+							<li>
+								<p>Junior Backend Developer</p>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#jobModal">
+									<p>view
+										<img src="images/Arrow.png" />
+									</p>
+								</a>
+							</li>
+						</ul>
+						<ul class="job col-sm-5">
+							<li>
+								<img src="images/Lyft_logo.png" /> </li>
+							<li>
+								<p>Senior Web Developer</p>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#jobModal">
+									<p>view
+										<img src="images/Arrow.png" />
+									</p>
+								</a>
+							</li>
+						</ul>
 					</div>
-					<a href="#" class="btn btn-custom mt-4 px-4">Hire agent</a>
-
+					<div>
+						<br />
+						<h5>
+							<button class="listings btn btn-outline btn-sm" href="#">Load more listings
+								<img src="images/arrowdown.svg" />
+							</button>
+						</h5>
+					</div>
 				</div>
 
 			</div>
+		</div>
+	</section>
+</div>
+
+<!--- JOB LISTING MODAL -->
+<div style="width: 100%;" class="modal fade" id="jobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+ aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-body" id="job-details">
+				<button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h3 class="mt-4" class="font-weight-bold">Job Details</h3>
+				<div class="row mt-4">
+					<div class="col-md-6">
+						<p class="text-muted">Job Title</p>
+						<h6 class="font-weight-bold">Fullstack developer</h6>
+					</div>
+					<div class="col-md-6">
+						<p class="text-muted">Company</p>
+						<h6 class="font-weight-bold">Microsoft Technologies</h6>
+					</div>
+				</div>
+				<div class="mt-4">
+					<h6 class="font-weight-bold">Requirements</h6>
+					<p class="font-weight-light text-muted">3 years experience</p>
+					<p class="font-weight-light text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+						aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					<p class="font-weight-light text-muted">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+						occaecat cupidatat </p>
+				</div>
+				<a href="#" class="btn btn-custom mt-4 px-4">Hire agent</a>
+
+			</div>
+
 		</div>
 	</div>
-</body>
-
-</html>
+</div>
