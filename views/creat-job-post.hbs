@@ -1,116 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="./assets/bootstrap/dist/css/bootstrap.min.css"
-    />
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <main class="s-layout">
+            <div class="s-layout__sidebar ">
+                    <a class="s-sidebar__trigger" href="#0">
+                       <i class="fa fa-bars"></i>
+                    </a>
+                    <nav class="s-sidebar__nav">
+                       <ul>
+                          <li>
+                             <a class="s-sidebar__nav-link logo" href="#0">
+                                <em>DevAlert</em>
+                             </a>
+                          </li>
+                          <li>
+                             <a class="s-sidebar__nav-link btn" href="#0">
+                               <em>New Job Post</em>
+                             </a>
+                          </li>
+                          <li>
+                             <a class="s-sidebar__nav-link" href="#0">
+                                <em>Manage Jobs</em>
+                             </a>
+                          </li>
+                          <li>
+                            <a class="s-sidebar__nav-link" href="#0">
+                                <em>Subscribers</em>
+                            </a>
+                            </li>
+                       </ul>
+                    </nav>
+                  </div>
 
-    <title>Create Job</title>
-  </head>
-  <body>
-    <div class="main">
-      <div class="nav_area">
-        <div class="nav_area-logo">
-          <p>Logo</p>
+        <section class="main-body s-layout__content">
+            <div class="form">
+                <h1>Create Job Post</h1>
+                <form action="">
+                    <div>
+                        <div class="form-group">
+                            <label for="advertHeader">Advert Header</label>
+                            <input type="text" class="form-control" id="advertHeader" placeholder="Microsoft Technologies">
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="companyName"> Company Name</label>
+                                <input type="text" class="form-control" placeholder="Microsoft Technologies">
+                            </div>
+                            <div class="col">
+                                <label for="jobTitle"> Job Title</label>
+                                <input type="text" class="form-control" placeholder="Backend Developer">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobPostLink">Job Post Link</label>
+                            <input type="text" class="form-control" id="jobPostLink" placeholder="https://something.com/jobs/post_200">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" rows="3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, alias.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobCategory">Job Category</label>
+                            <input type="text" class="form-control" id="jobCategory" placeholder="eg Designer, Developer, etc">
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="companyName"> Job Range(min)</label>
+                                <input type="text" class="form-control" placeholder="Min">
+                            </div>
+                            <div class="col">
+                                <label for="companyName">Job range(max)</label>
+                                <input type="text" class="form-control" placeholder="Max">
+                            </div>
+                        </div>
+                        <div class="boxes ">
+                            <ul class="first col">
+                                <li>Career Level</li>
+                                <input type="checkbox" value="Entry level">   Entry Level<br>
+                                <input type="checkbox" value="Intermediate">   Intermediate<br>
+                                <input type="checkbox" value="Experienced">  Experienced<br>
+                            </ul>
+    
+                            <ul class="second col">
+                                <li>Location</li>
+                                <input type="radio" value="Entry level">   Nigeria only<br>
+                                <input type="radio" value="Intermediate">   Anywhere <br>
+                            </ul>
+                        </div>
+                        <button>Post Job</button>
+                    </div>                
+                </form>
         </div>
-        <div class="nav_area-links">
-          <button class="active">
-            Post New Job
-          </button>
-          <button class="disabled">
-            Manage Jobs
-          </button>
-          <button class="disabled">
-            Subscribers
-          </button>
-        </div>
-      </div>
-      <div class="content_area">
-        <div class="content_area-content-block">
-          <h1 class="content-block-title">Create Job Post</h1>
-          <form action="#" method="post">
-            <div class="group-wide ">
-              <label for="advert-header">Advert Header</label>
-              <input class="input-field" id="advert-header" type="text" name="advert header" />
-            </div>
-            <div class="group-narrow ">
-              <label for="company-name">Company Name</label>
-              <input class="input-field" id="company-name" type="text" name="company name" />
-            </div>
-            <div class="group-narrow ">
-              <label for="job-title">Job Title</label>
-              <input class="input-field" id="job-title" type="text" name="job title" />
-            </div>
-            <div class="group-wide ">
-              <label for="job-post-link">Job Post Link</label>
-              <input class="input-field" id="job-post-link" type="text" name="job post link" />
-            </div>
-            <div class="group-wide ">
-              <label for="description-of-job">Description Of Job</label>
-              <textarea name="description of job" id="description-of-job" cols="30" rows="10"></textarea>
-            </div>
-            <div class="group-wide ">
-              <label for="job-category">Job Category</label>
-              <input class="input-field" id="job-category" type="text" name="job category" />
-            </div>
-            <div class="group-narrow ">
-              <label for="job-pay-range">Job Pay Range</label>
-              <input class="input-field" id="job-pay-range" type="text" name="job pay range" />
-            </div>
-            <div class="group-narrow ">
-              <label for="job-pay-range">Job Pay Range</label>
-              <input class="input-field" id="job-pay-range" type="text" name="job pay range" />
-            </div>
-            <div class="group-wide ">
-              <label for="employer-email">Employer Email</label>
-              <input class="input-field" id="employer-email" type="text" name="employer email" />
-            </div>
-            <div class="group-wide ">
-              <fieldset class="narrow-alert-header">
-                <legend>Choose your interests</legend>
-                <div>
-                  <input class="input-checkbox" type="checkbox" id="entry-level" name="entry level" value="entry level">
-                  <label for="entry-level">Entry Level</label>
-                </div>
-                <div>
-                  <input class="input-checkbox" type="checkbox" id="intermediate" name="intermediate" value="intermediate">
-                  <label for="intermediate">Intermediate</label>
-                </div>
-                <div>
-                  <input class="input-checkbox" type="checkbox" id="experienced" name="experienced" value="experienced">
-                  <label for="experienced">Experienced</label>
-                </div>
-                
-
-              </fieldset>
-              <fieldset class="narrow-alert-header">
-                  <legend>Location</legend>
-                <div>
-                  <input class="input-radio" type="radio" id="nigeria-only" name="nigeria only" value="nigeria only" checked>
-                  <label for="nigeria-only">Nigeria Only</label>
-                </div>
-                <div>
-                  <input class="input-radio" type="radio" id="Anywhere" name="Anywhere" value="Anywhere">
-                  <label for="anywhere">Anywhere</label>
-                </div>
-              
-              </fieldset>
-              
-            </div>
-            <div class="group-wide ">
-              <input class="input-button" type="button" value="Post Job">
-            </div>
             
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <script src="./assets/bootstrap/dist/js/bootstrap.min.js"></script>
-  </body>
+        </section>
+    </main>
+</body>
 </html>
