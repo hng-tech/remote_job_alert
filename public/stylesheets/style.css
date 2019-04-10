@@ -1,12 +1,7 @@
 /* Styling For JOBS_DETAILS */
 
 @import url("homepage.css");
-@import url("sign_manage.css");
 @import url("manage_jobs.css");
-@import url("dashboard.css");
-@import url("sign_manage.css");
-@import url("creat-job-post.css");
-@import url("edit-job-post.css");
 
 html {
   scroll-behavior: smooth;
@@ -20,6 +15,15 @@ body {
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+.btn-custom {
+  background: #11144c;
+  color: #fff;
+  padding: 10px 10px;
+}
+.btn-custom:hover {
+  background: #11144c;
+  color: #fff;
+}
 /************************************* HEADER STYLES  **********************************/
 
 header nav {
@@ -98,20 +102,6 @@ header nav ul li a {
   text-decoration: none !important;
   font-size: 16px;
   color: #11144c;
-}
-
-header nav ul li:nth-child(2) {
-  border: 1px solid #11144c;
-  border-radius: 5px;
-}
-
-header nav ul li:nth-child(2):hover {
-  background: #11144c;
-}
-
-header nav ul li:nth-child(2):hover a {
-  color: white;
-  text-decoration: none;
 }
 
 /************************************* HEADER STYLES END  **********************************/
