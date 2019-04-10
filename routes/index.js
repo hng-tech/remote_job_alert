@@ -1,5 +1,4 @@
 var Home = require("../controllers/home");
-
 var express = require("express");
 var Jobs = require("../controllers/controllers");
 var Agents = require("../controllers/agent");
@@ -30,8 +29,13 @@ router.get("/jobs/:job_id", Jobs.update_job);
 router.get("/jobs/:job_id", Jobs.cancel_job);
 
 //Agent Routes
+<<<<<<< HEAD
 router.get("/agents", Agents.get_all_agents);
 router.post("/agents", Agents.validate("create_agent"), Agents.create_agent);
+=======
+router.get('/agents', Agents.get_all_agents);
+router.post('/agents', Agents.create_agent);
+>>>>>>> 34bf2d6cfd031df04cd29556640607666474a8fc
 
 router.get("/managejobs", (req, res, next) => {
   res.render("manage_jobs", { title: "Manage Jobs" });
