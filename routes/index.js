@@ -28,6 +28,10 @@ router.get("/dashboard", (req, res, next) => {
   res.render("dashboard", { title: "Admin Dashboard" });
 });
 
+router.get('/create-job', (req, res, next) => {
+	res.render("creat-job-post", {title: "Add New Job Posting"});
+});
+
 /* THERE IS A PROBLEM WITH THE BELOW ROUTES, THEY ARE BREAKING THE SITE*/
 
 // GET Job list page
