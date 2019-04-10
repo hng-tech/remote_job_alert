@@ -110,12 +110,3 @@ body#signup {
   }
 }
 
-/* ================ Styling the manage Job Post Here ================= */
-
-#manage-job nav {
-  background: red;
-  width: 100px;
-  height: 100px;
-}
-
-/* ================ End Of styling the manage Job Post ================ */
