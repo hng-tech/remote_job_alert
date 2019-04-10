@@ -1,0 +1,115 @@
+div.main {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: hidden;
+
+  background: #ffffff;
+}
+
+div.nav_area {
+  position: absolute;
+  width: 19.85vw;
+  height: 100vh;
+  left: 0px;
+  top: 0px;
+
+  background: #11144c;
+}
+div.nav_area-logo {
+  position: absolute;
+  width: 74px;
+  height: 42px;
+  left: 106px;
+  top: 88px;
+
+  color: #ffffff;
+}
+div.nav_area-links {
+  position: absolute;
+  top: 274px;
+  left: 0;
+  height: 162px;
+  width: auto;
+}
+div.nav_area-links button {
+  width: 230px;
+  height: 56px;
+  margin: 15px 28px;
+  float: left;
+  background: transparent;
+
+  color: #ffffff;
+}
+div.nav_area-links button.active {
+  left: 28px;
+  top: 295px;
+
+  background: #858af4;
+  border-radius: 100px;
+}
+div.nav_area-links button.disabled {
+  border: none;
+  left: 83px;
+  top: 398px;
+  text-align: center;
+}
+
+div.content_area {
+  position: absolute;
+  width: 80.15vw;
+  height: 100vh;
+  right: 0px;
+  top: 0px;
+  overflow-y: scroll;
+
+  background: #ffffff;
+}
+div.content_area-content-block {
+  width: auto;
+  margin: 2.25em 15.438em 5.25em 15.438em;
+}
+div.content_area-content-block h1.content-block-title {
+  text-align: center;
+}
+div.content_area-content-block div.group-wide,
+div.content_area-content-block div.group-wide label,
+div.content_area-content-block div.group-narrow label {
+  width: 90%;
+}
+div.content_area-content-block div.group-wide label,
+div.content_area-content-block div.group-wide input.input-radio,
+div.content_area-content-block div.group-wide input.input-checkbox {
+  margin: 0.938em 0;
+}
+div.content_area-content-block div.group-narrow,
+div.content_area-content-block fieldset.narrow-alert-header {
+  width: 40%;
+  float: left;
+}
+
+div.content_area-content-block div.group-wide input.input-field,
+div.content_area-content-block div.group-narrow input.input-field,
+div.content_area-content-block div.group-wide textarea,
+div.content_area-content-block div.group-wide input.input-button {
+  height: 3.75em;
+  width: 100%;
+  border: 1px solid #6c63ff;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 1em;
+}
+div.content_area-content-block div.group-wide textarea {
+  height: 10.188em;
+}
+div.content_area-content-block div.group-wide,
+div.content_area-content-block div.group-narrow,
+div.content_area-content-block fieldset.narrow-alert-header {
+  margin: 0 5%;
+}
+div.content_area-content-block div.group-wide input.input-button {
+  color: #ffffff;
+  background-color: #11144c;
+}
+
+/* 43.375em */

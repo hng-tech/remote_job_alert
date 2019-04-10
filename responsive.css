@@ -1,0 +1,22 @@
+@media screen and (max-width: 670px) {
+    
+    .my-5 h5{
+    
+     text-align: center;
+     text-transform: capitalize;
+    }
+
+    .my-5 p{
+    
+        text-align: center;
+        text-transform: capitalize;
+        
+       }
+
+       .my-5 h6{
+    
+        text-align: center;
+        text-transform: capitalize;
+        
+       }
+  }

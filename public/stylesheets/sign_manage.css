@@ -1,0 +1,112 @@
+body#signup {
+  padding: 0;
+  margin: 0;
+}
+#signup nav {
+  width: 100%;
+  min-height: 50px;
+  border: none;
+  border-bottom: 1px solid #eee;
+  padding: 15px 85px 17px 85px;
+}
+#signup nav .left-nav,
+.right-nav {
+  display: inline-block;
+}
+#signup nav .left-nav hr {
+  display: none;
+}
+#signup nav .right-nav {
+  float: right;
+}
+#signup nav a {
+  color: black;
+  margin-left: 25px;
+  font-family: worksans;
+}
+#signup nav a:hover {
+  text-decoration: none !important;
+  color: black;
+}
+#signup .container {
+  display: flex;
+  height: 80vh;
+  padding: 20px;
+}
+#signup .container .form {
+  margin: auto;
+  /* background: red; */
+  width: 45%;
+}
+#signup .container .form > .form-text {
+  margin-bottom: 35px;
+}
+#signup .container form > input {
+  display: block;
+  width: 100%;
+  border: none;
+  height: 46px;
+  padding-left: 13px;
+  color: black;
+  margin-bottom: 20px;
+  transition: all ease-in-out 200ms;
+  box-shadow: 0px -1px 3px 1px #999999;
+}
+#signup .container form > input:focus {
+  box-shadow: 0px 0px 0px 0px #421029 !important;
+  border: 1px solid #421029;
+  padding-left: 20px;
+}
+#signup .container form > button {
+  width: 100%;
+  background: #11144c !important;
+  border: #11144c !important;
+  height: 40px;
+}
+#signup .container form > button:focus {
+  box-shadow: 0px 0px 0px 0px #421029 !important;
+}
+/* Adding custom responsiveness for the signup page */
+#signup .container .form {
+  margin: auto;
+  /* background: red; */
+  width: 45%;
+}
+@media screen and (max-width: 800px) {
+  #signup .container .form {
+    margin: auto;
+    /* background: red; */
+    width: 100%;
+  }
+}
+@media screen and (max-width: 990px) {
+  #signup .container .form {
+    margin: auto;
+    /* background: red; */
+    width: 60%;
+  }
+}
+@media screen and (max-width: 670px) {
+  #signup nav {
+    min-height: 100px;
+    padding: 0;
+  }
+  #signup nav .left-nav,
+  .right-nav {
+    display: inline-block;
+    text-align: center;
+    height: auto !important;
+    padding: 5px;
+  }
+
+  #signup nav .left-nav {
+    width: 100%;
+  }
+  #signup nav .left-nav hr {
+    display: inline-block;
+  }
+  #signup nav .right-nav {
+    width: 100%;
+  }
+}
+
