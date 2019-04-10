@@ -19,7 +19,10 @@ router.get("/job_details", Home.job_details);
 
 //Job Routes
 router.get('/jobs', Jobs.get_all);
-router.post('/jobs', Jobs.create);
+/* There is an Error in this route, it is crashing the server */
+// router.post('/jobs', Jobs.validate('create'),Jobs.create);
+
+/////////////////////////////////////////////////
 router.get('/jobs/:job_id', Jobs.get_one);
 router.get('/jobs/:job_id/edit', Jobs.edit);
 router.get('/jobs/:job_id', Jobs.update_job);
@@ -32,6 +35,10 @@ router.post('/agents', Agents.validate('create_agent'), Agents.create_agent);
 router.get('/managejobs', (req, res, next) => {
 	res.render('manage_jobs', {title: 'Manage Jobs'});
 });
+
+router.get('/edit-job', (req, res, next)=> {
+	res.render('edit-job-post', {title : 'Edit Jobs'});
+})
 
 router.get("/agent_signup", (req, res, next) => {
   res.render("signup", { title: "Signup DevAlert" });
