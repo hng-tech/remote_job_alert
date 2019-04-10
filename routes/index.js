@@ -18,6 +18,9 @@ router.get("/contact", Home.contactUs);
 router.get("/job_details", Home.job_details);
 
 //Job Routes
+router.get('/jobs/new', (req, res, next) => {
+	res.status(200).render("creat-job-post");
+});
 router.get('/jobs', Jobs.get_all);
 router.post('/jobs', Jobs.create);
 router.get('/jobs/:job_id', Jobs.get_one);
