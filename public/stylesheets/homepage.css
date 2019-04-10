@@ -43,6 +43,10 @@
   box-shadow: 0px 18px 24px rgba(17, 20, 76, 0.1);
 }
 
+#job_listings a {
+  cursor: pointer;
+}
+
 footer {
   background-color: #11144c;
   color: #fff;
