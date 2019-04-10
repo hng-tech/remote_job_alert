@@ -1,101 +1,203 @@
-body{
-  
+body#signup{
+  padding: 0;
+  margin: 0;
 }
-h1 {
-  text-align: center;
-  color: #11144C;
-  font-family: Monteserrat;
-  font-style: normal;
-  font-weight: 600;
-  font-size:36px;
-  line-height: normal;
+#signup nav{
+  width: 100%;
+  min-height: 50px;
+  border: none;
+  border-bottom: 1px solid #eee;
+  padding: 15px 85px 17px 85px;
 }
-
-/* The sidebar menu */
-.sidenav {
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: 160px; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  background-color: #11144C;
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
-}
-
-/* The navigation menu links */
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #FFFFFF;
-  display: block;
-  font-family: Roboto;
- font-style: normal;
- font-weight: normal;
- font-size: 18px;
- line-height: normal;
- text-align: center;
-}
-
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-  background-color: #858AF4;
-  border: 2px solid #858AF4;
-  border-radius: 100px;
-  text-decoration: none;
-}
-
-/* Style page content */
-.main {
-  margin-left: 160px; /* Same as the width of the sidebar */
-  padding: 0px 10px;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-.container{
-  align-items: space-around;
-  justify-content: center;
-  
-}
- .text{
+#signup nav .left-nav,.right-nav{
   display: inline-block;
+}
+#signup nav .left-nav hr{
+  display: none;
+}
+#signup nav .right-nav{
+  float: right;
+}
+#signup nav a{
+  color: black;
+  margin-left: 25px;
+  font-family: worksans;
+}
+#signup nav a:hover{
+  text-decoration: none !important;
+  color: black;
+}
+#signup .container{
+  display: flex;
+  height: 80vh;
+  padding: 20px;
+
+}
+#signup .container .form{
+  margin: auto;
+  /* background: red; */
+  width: 45%;
+}
+#signup .container .form>.form-text{
+  margin-bottom: 35px;
+}
+#signup .container form>input{
+  display: block;
+  width: 100%;
+  border: none;
+  height: 46px;
+  padding-left: 13px;
+  color: black;
+  margin-bottom: 20px;
+  transition: all ease-in-out 200ms;
+  box-shadow: 0px -1px 3px 1px #999999;
+}
+#signup .container form>input:focus{
+  box-shadow: 0px 0px 0px 0px #421029 !important;
+  border: 1px solid #421029;
+  padding-left: 20px;
+}
+#signup .container form>button{
+  width: 100%;
+  background: #11144c !important;
+  border: #11144c !important;
+  height: 40px;
+}
+#signup .container form>button:focus{
+  box-shadow: 0px 0px 0px 0px #421029 !important;
+}
+/* Adding custom responsiveness for the signup page */
+#signup .container .form{
+  margin: auto;
+  /* background: red; */
+  width: 45%;
+}
+@media screen and (max-width:800px){
+  #signup .container .form{
+      margin: auto;
+      /* background: red; */
+      width: 100%;
+  }
+
+}
+@media screen and (max-width:990px){
+  #signup .container .form{
+      margin: auto;
+      /* background: red; */
+      width: 60%;
+      
+  }
+}
+@media screen and (max-width:670px){
+  #signup nav{
+      min-height: 100px;
+      padding: 0;
+  }
+  #signup nav .left-nav,.right-nav{
+      display: inline-block;
+      text-align: center;
+      height: auto !important;
+      padding: 5px;
+
+  }
+
+  #signup nav .left-nav{
+      width: 100%;
+
+  }
+  #signup nav .left-nav hr{
+      display: inline-block;
+      
+  }
+  #signup nav .right-nav{
+      width: 100%;
+  }
+}
+
+/* ================ Styling the manage Job Post Here ================= */
+
+body#manage-job .container-fluid{
+  padding: 0px !important;
+}
+@media screen and (max-width:767px){
+ body#manage-job .container-fluid{
+  padding: 20px !important;
 } 
-.button
-{   
-   width: 200px;
-   height: 20px;
-   left: 433px;
-   top: 226px;
-    background-color: white;
-    border: 1px solid #77777C;
-    box-sizing: border-box;
-    border-radius: 5px;    
+}
+#manage-job .left-section{
+  background: #11144c;
+  min-height: 700px;
+  color: white;
+}
+#manage-job .left-section .logo{
+  padding-top: 60px;
+}
+#manage-job .left-section a{
+  display: block;
+  color: #e6e6e6;
+  margin-top: 35px;
+}
+#manage-job .left-section .btn-primary{
+  background: #7277d2 !important;
+  border: none !important;
+  display: inline-block;
+  margin: auto;
+  border-radius: 30px;
+  padding: 10px 30px 10px 30px;
+  margin-top: 100px;
+
+}
+#manage-job .right-section{
+  min-height: 700px;
+}
+#manage-job .right-section h1.section-header{
+  text-align: center;
+  padding-top: 40px;
+}
+#manage-job .right-section .section-form{
+  padding: 20px;
+  margin: auto;
+}
+#manage-job .right-section .section-form .container .job-position{
+  background: white;
+  min-height: 50px;
+}
+#manage-job .right-section .section-form input{
+  width: 300px;
+}
+#manage-job .right-section .section-form select{
+      width: 300px;
+      display: inline-block;
+}
+#manage-job .right-section .management table tr#no-border{
+  border: none !important;
+}
+#manage-job .right-section .management table tr{
+  border: 1px solid #eee !important;
+}
+#manage-job .right-section .management table .btn-primary{
+  background: #11144c;
+  border: #11144c;
+}
+#manage-job .right-section .management table .btn-primary:focus{
+  box-shadow: 0px 0px 0px 0px #11144c !important;
+}
+#manage-job .right-section .management table .btn-outline-primary{
+  color: #11144c;
+  border: 1px solid #11144c !important;
+}
+#manage-job .right-section .management table .btn-outline-primary:focus{
+  box-shadow: 0px 0px 0px 0px #11144c;
+  background-color: #11144c !important;
+  color: white;
+}
+#manage-job .right-section .management table .btn-outline-primary:hover{
+   box-shadow: 0px 0px 0px 0px #11144c;
+  background-color: #11144c !important;
+  color: white;
 }
 
-.headings {
-   display: flex;
-   align-items: space-around;
-   justify-content: center;
-   padding-top: 20px;
-}
 
-.row-space{
-  color: #11144C;
-  font-family: Montserrat;
- font-style: normal;
- font-weight: 500;
- font-size: 16px;
- line-height: normal;
-  height: 200px;
-  width: 500px;
-  display: flex; 
-  flex-direction: column; 
-  align-items: center;
-  padding-top: 20px;
-}
+/* ================ End Of styling the manage Job Post ================ */
+
+
