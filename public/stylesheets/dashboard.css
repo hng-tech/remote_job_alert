@@ -4,7 +4,7 @@
   grid-template-columns: 1fr 5fr;
 }
 
-a {
+.dashboard_top a {
   text-decoration: none;
   color: #ffffff;
   background: #6c63ff;
@@ -27,7 +27,7 @@ a {
   font-size: 1.7rem;
 }
 
-.list {
+.dashboard_top .list {
   margin-left: 30px;
   margin-right: 30px;
   margin-top: 10px;
