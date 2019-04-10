@@ -1,6 +1,36 @@
 const db = require("./promise").Db;
 
 const Jobs = {
+
+            validate(method) {
+                switch(method) {
+                    case 'create' : {
+                        return [
+                            body('advert_header').not().isEmpty()
+                            .trim()
+                            .escape(),
+                            body('company_name').not().isEmpty()
+                            .trim()
+                            .escape(),
+                            body('job_title').not().isEmpty()
+                            .trim()
+                            .escape(),
+                            body('job_link').not().isEmpty()
+                            .trim()
+                            .escape(),
+                            body('job_description').not().isEmpty()
+                            .trim()
+                            .escape(),
+                            body('job_category').not().isEmpty()
+                            .trim()
+                            .escape(),
+                            body('location').not().isEmpty()
+                            .trim()
+                            .escape()
+                        ]
+                    }
+                }
+            },
     async create(req, res){
         const queryText = {
             advert_header: req.body.advert_header,
@@ -50,6 +80,35 @@ const Jobs = {
             return res.status(200).json(foundJob);
         } catch(error){
             return res.status(400).send(error);
+        }
+    },
+    validate(method) {
+        switch(method) {
+            case 'update_job' : {
+                return [
+                    body('advert_header').not().isEmpty()
+                    .trim()
+                    .escape(),
+                    body('company_name').not().isEmpty()
+                    .trim()
+                    .escape(),
+                    body('job_title').not().isEmpty()
+                    .trim()
+                    .escape(),
+                    body('job_link').not().isEmpty()
+                    .trim()
+                    .escape(),
+                    body('job_description').not().isEmpty()
+                    .trim()
+                    .escape(),
+                    body('job_category').not().isEmpty()
+                    .trim()
+                    .escape(),
+                    body('location').not().isEmpty()
+                    .trim()
+                    .escape()
+                ]
+            }
         }
     },
     async update_job(req, res){
