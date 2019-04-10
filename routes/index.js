@@ -33,6 +33,10 @@ router.get('/managejobs', (req, res, next) => {
 	res.render('manage_jobs', {title: 'Manage Jobs'});
 });
 
+router.get('/edit-job', (req, res, next)=> {
+	res.render('edit-job-post', {title : 'Edit Jobs'});
+})
+
 router.get("/agent_signup", (req, res, next) => {
   res.render("signup", { title: "Signup DevAlert" });
 });
