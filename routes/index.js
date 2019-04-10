@@ -4,6 +4,7 @@ var express = require("express");
 var Jobs = require("../controllers/controllers");
 var Agents = require("../controllers/agent");
 var router = express.Router();
+const UserController = require("../controllers/user");
 
 /* GET home page. */
 router.get("/", Home.index);
@@ -18,27 +19,27 @@ router.get("/contact", Home.contactUs);
 router.get("/job_details", Home.job_details);
 
 //Job Routes
-router.get('/jobs', Jobs.get_all);
+router.get("/jobs", Jobs.get_all);
 /* There is an Error in this route, it is crashing the server */
 // router.post('/jobs', Jobs.validate('create'),Jobs.create);
 
 /////////////////////////////////////////////////
-router.get('/jobs/:job_id', Jobs.get_one);
-router.get('/jobs/:job_id/edit', Jobs.edit);
-router.get('/jobs/:job_id', Jobs.update_job);
-router.get('/jobs/:job_id', Jobs.cancel_job);
+router.get("/jobs/:job_id", Jobs.get_one);
+router.get("/jobs/:job_id/edit", Jobs.edit);
+router.get("/jobs/:job_id", Jobs.update_job);
+router.get("/jobs/:job_id", Jobs.cancel_job);
 
 //Agent Routes
-router.get('/agents', Agents.get_all_agents);
-router.post('/agents', Agents.validate('create_agent'), Agents.create_agent);
+router.get("/agents", Agents.get_all_agents);
+router.post("/agents", Agents.validate("create_agent"), Agents.create_agent);
 
-router.get('/managejobs', (req, res, next) => {
-	res.render('manage_jobs', {title: 'Manage Jobs'});
+router.get("/managejobs", (req, res, next) => {
+  res.render("manage_jobs", { title: "Manage Jobs" });
 });
 
-router.get('/edit-job', (req, res, next)=> {
-	res.render('edit-job-post', {title : 'Edit Jobs'});
-})
+router.get("/edit-job", (req, res, next) => {
+  res.render("edit-job-post", { title: "Edit Jobs" });
+});
 
 router.get("/agent_signup", (req, res, next) => {
   res.render("signup", { title: "Signup DevAlert" });
@@ -48,9 +49,11 @@ router.get("/dashboard", (req, res, next) => {
   res.render("dashboard", { title: "Admin Dashboard" });
 });
 
-router.get('/create-job', (req, res, next) => {
-	res.render("creat-job-post", {title: "Add New Job Posting"});
+router.get("/create-job", (req, res, next) => {
+  res.render("creat-job-post", { title: "Add New Job Posting" });
 });
+
+router.post("/email-subscription", UserController.sendMail);
 
 /* THERE IS A PROBLEM WITH THE BELOW ROUTES, THEY ARE BREAKING THE SITE*/
 
