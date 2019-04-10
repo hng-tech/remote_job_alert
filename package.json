@@ -1,23 +1,28 @@
 {
-  "name": "remote-job-alert",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.16.0",
-    "express-handlebars": "^3.0.2",
-    "express-session": "^1.15.6",
-    "express-validator": "^5.3.1",
-    "flash": "^1.1.0",
-    "hbs": "~4.0.1",
-    "http-errors": "~1.6.2",
-    "mongoose": "^5.5.0",
-    "morgan": "~1.9.0",
-    "nodemailer": "^6.1.0"
-  }
+	"name": "remote-job-alert",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"start": "node ./bin/www",
+		"dev": "nodemon ./bin/www"
+	},
+	"devDependencies": {
+		"nodemon": "^1.18.10"
+	},
+	"dependencies": {
+		"body-parser": "^1.18.3",
+		"cookie-parser": "~1.4.3",
+		"debug": "~2.6.9",
+		"express": "~4.16.0",
+		"express-handlebars": "^3.0.2",
+		"express-session": "^1.15.6",
+		"express-validator": "^5.3.1",
+		"flash": "^1.1.0",
+		"hbs": "~4.0.1",
+		"http-errors": "~1.6.2",
+		"mongoose": "^5.5.0",
+		"morgan": "~1.9.0",
+		"nodemailer": "^6.1.0",
+		"validator": "^10.11.0"
+	}
 }
