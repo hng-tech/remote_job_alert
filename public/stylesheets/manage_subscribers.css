@@ -1,0 +1,122 @@
+
+body{
+	margin: 0;
+	color: #11144C;
+}
+
+.remove{
+	color:red;
+}
+
+.unsubscribe{
+	color: blue;
+}
+
+.contain{
+	width: 100vw;
+	overflow: hidden;
+	margin: auto;
+}
+
+#main .left{
+	background-color: #11144C;
+	color: #ffffff;
+	min-height: 100vh;
+}
+
+#main .right{
+	color: #11144C;
+	background-color: #ffffff;
+	min-height: 100vh;
+}
+
+#main h1{
+	text-align: center;
+	margin-top: 10vh;
+	font-size: 25px;
+	padding-bottom: 0;
+}
+
+#main .text-sm{
+	margin-top: 140px;
+	text-align: center;
+	color: #ffffff;
+}
+
+#main .text-muted{
+	color: #ffffff!important;
+	border: 1px solid #66000000;
+	padding: 1rem 2rem;
+	text-decoration: none;
+	margin-right: 5px;
+	text-transform: uppercase;
+	border-radius: 80px;
+}
+
+#main .btn-three{
+
+	background-color: purple;
+	
+}
+
+
+#main .btn-one:hover{
+	background-color: purple;
+	
+	transition: all 0.5s ease-in;
+}
+
+#main .btn-two:hover{
+	background-color: purple;
+	
+	transition: all 0.5s ease-in;
+}
+
+#main .btn-three:hover{
+	background-color: purple;
+	
+	transition: all 0.5s ease-in;
+}
+
+ .table > thead > tr{
+	border: 5px solid #66000000!important;
+}
+
+ .table > tbody > tr > td{
+	color: #11144C!important;
+	font-weight: bold;
+}
+
+
+#main .cont{
+	width: 70%;
+	margin-left: 180px;
+	margin-top: -20px;
+}
+
+
+.page-link{
+	border:none!important;
+	font-weight: bold;
+}
+
+.active{
+	color: red;
+}
+
+
+
+@media (max-width: 867px) {
+
+	#main .left{
+	background-color: #11144C;
+	color: #ffffff;
+	min-height: 50vh;
+}
+
+#main .cont{
+	width: 60%;
+	margin-left: -1px;
+}
+
+}

@@ -1,28 +1,26 @@
-<section id="navbar" class="container mb-4 py-2">
-	<nav class="navbar navbar-expand-lg navbar-light">
-		<a class="navbar-brand font-weight-bolder" href="#">DevAlert</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-		 aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active">
-					<a class="nav-link " href="#" data-toggle="modal" data-target="#registerModal">Register</a>
-					</a>
-				</li>
-				<li class="nav-item  mx-2">
-					<a class="nav-link btn btn-outline-custom px-3" href="/agent_signup" tabindex="-1" aria-disabled="true" href="/agent_signup">Become Agent</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
-	<hr class="w-100 mx-0 mt-3">
-</section>
+<header id="header" class="container">
+	<div class="container-fluid">
+		<nav>
+			<div class="logo">
+				<a href="/">DEV/ALERT</a>
+			</div>
+			<div class="nav-items">
+				<ul>
+					<li>
+						<a href="#" data-toggle="modal" data-target="#registerModal">Register</a>
+					</li>
+					<li>
+						<a href="/agent_signup">Become an Agent</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</header>
 
 {{!-- REGISTER MODAL--}}
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+	aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-body">
@@ -41,7 +39,7 @@
 							<option value="">Choose a position</option>
 						</select>
 					</div>
-					<button type="submit" class="btn btn-custom my-4">Register</button>
+					<button style="border: 1px solid #11144C" type="submit" class="btn btn-custom">Register</button>
 				</form>
 			</div>
 
