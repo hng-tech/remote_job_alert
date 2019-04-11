@@ -40,9 +40,18 @@ const Jobs = {
 			return res.status(400).send(error);
 		}
 	},
+	async get_all_json(req, res) {
+		const queryText = {};
+		try {
+			let foundJobs_Json = await db.find(queryText);
+			return res.status(200).json(foundJobs_Json);
+		} catch (error) {
+			return res.status(400).send(error);
+		}
+	},
 	async get_one(req, res) {
 		const queryText = {
-			job_id: req.params._id,
+			_id: req.params.job_id,
 		};
 		try {
 			let foundJob = await db.findOne(queryText);
@@ -51,22 +60,10 @@ const Jobs = {
 			return res.status(400).send(error);
 		}
 	},
-	async edit(req, res) {
-		const queryText = {
-			job_id: req.params._id,
-		};
-		try {
-			let foundJob = await db.findOne(queryText);
-			return res.status(200).render("manage_jobs", {editcontent: foundJob});
-		} catch (error) {
-			return res.status(400).send(error);
-		}
-	},
 	
-
     async update_job(req, res){
         const queryText = {
-            job_id: req.params._id
+            _id: req.params.job_id
         };
 
         const { errors, isValid } = validateQueryText(req.body);
@@ -94,12 +91,12 @@ const Jobs = {
     },
     async cancel_job(req, res){
         const queryText = {
-            job_id: req.params._id
+            _id: req.params.job_id
         };
         try {
             let foundJob = await db.findOneAndDelete(queryText);
             console.log(foundJob);
-            return res.status(200).redirect("/");
+            return res.status(200).redirect("manage_jobs");
         } catch(error){
             return res.status(400).send(error);
         }
