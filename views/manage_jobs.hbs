@@ -4,7 +4,6 @@
 <head>
   <title>DevAlert Admin Dashboard</title>
 </head>
-
 <body class="admin_body">
   <div id="sidebar">
     <div class="sidebar-wrapper">
@@ -90,18 +89,19 @@
                   </tr>
                 </thead>
                 <tbody class="t-13 xc_table">
+                  {{# each content}}
                   <tr>
                     <td>1</td>
-                    <td>test@gmail.com</td>
-                    <td>Hotels.ng</td>
-                    <td>Backend Developer</td>
-                    <td>12th July 2019</td>
+                    <td>{{this.employer_email}}</td>
+                    <td>{{this.company_name}}</td>
+                    <td>{{this.career_level}}</td>
+                    <td>{{this.created_date}}</td>
                     <td>
-                      <button class="btn br-0 btn-primary btn-sm t-11" data-toggle="modal" data-target="#editJobModal">
+                      <button class="btn br-0 btn-primary btn-sm t-11" data-toggle="modal" data-target="#a{{this.id}}">
                         <i class="fa fa-pen"></i> Edit</button>
                     </td>
                     <td>
-                      <button class="btn br-0 btn-dark btn-sm t-11" data-toggle="modal" data-target="#viewJobModal">
+                      <button class="btn br-0 btn-dark btn-sm t-11" data-toggle="modal" data-target="#b{{this.id}}">
                         <i class="fa fa-eye"></i> View</button>
                     </td>
                     <td>
@@ -109,44 +109,7 @@
                         <i class="fa fa-trash"></i> Delete</button>
                     </td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>dummyemail@gmail.com</td>
-                    <td>Devalert Tech</td>
-                    <td>Andriod Developer</td>
-                    <td>12th July 2019</td>
-                    <td>
-                      <button class="btn br-0 btn-primary btn-sm t-11" data-toggle="modal" data-target="#editJobModal">
-                        <i class="fa fa-pen"></i> Edit</button>
-                    </td>
-                    <td>
-                      <button class="btn br-0 btn-dark btn-sm t-11" data-toggle="modal" data-target="#viewJobModal">
-                        <i class="fa fa-eye"></i> View</button>
-                    </td>
-                    <td>
-                      <button class="btn br-0 btn-danger btn-sm t-11">
-                        <i class="fa fa-trash"></i> Delete</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>test@gmail.com</td>
-                    <td>Hotels.ng</td>
-                    <td>UI Designer</td>
-                    <td>12th July 2019</td>
-                    <td>
-                      <button class="btn br-0 btn-primary btn-sm t-11" data-toggle="modal" data-target="#editJobModal">
-                        <i class="fa fa-pen"></i> Edit</button>
-                    </td>
-                    <td>
-                      <button class="btn br-0 btn-dark btn-sm t-11" data-toggle="modal" data-target="#viewJobModal">
-                        <i class="fa fa-eye"></i> View</button>
-                    </td>
-                    <td>
-                      <button class="btn br-0 btn-danger btn-sm t-11">
-                        <i class="fa fa-trash"></i> Delete</button>
-                    </td>
-                  </tr>
+                   {{/each}}
                 </tbody>
               </table>
             </div>
@@ -157,6 +120,7 @@
   </div>
 
   <!-- Create Job Modal-->
+  <form action="/jobs" method="POST">
   <div class="modal fade" id="createJobModal" tabindex="-1" role="dialog" aria-labelledby="createJobModalLabel" aria-hidden="true">
     <div class="modal-dialog " role="document">
       <div class="modal-content">
@@ -169,50 +133,54 @@
         <div class="modal-body">
           <div class="nrm-wrapper">
             <div class="form-group">
-              <input type="text" class="form-control br-0" placeholder="Company's Name">
+              <input type="text" class="form-control br-0" name="company_name" placeholder="Company's Name">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control br-0" placeholder="Job Title">
+              <input type="text" class="form-control br-0" name="job_title" placeholder="Job Title">
             </div>
             <div class="form-group">
-              <input type="email" class="form-control br-0" placeholder="Email Address">
+              <input type="email" class="form-control br-0" name="email" placeholder="Email Address">
             </div>
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
-                  <input type="email" class="form-control br-0" placeholder="Minimum Salary">
+                  <input type="number" class="form-control br-0" name="minimum_salary" placeholder="Minimum Salary">
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
-                  <input type="email" class="form-control br-0" placeholder="Maximum Salary">
+                  <input type="number" class="form-control br-0" name="maximum_salary" placeholder="Maximum Salary">
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
-                  <select name="" id="" class="form-control br-0">
-                    <option value="">Select State</option>
+                  <select name="location" id="" class="form-control br-0">
+                    <option selected>Select State</option>
+                    <option>Abuja</option>
+                    <option>Lagos</option>
+                    <option>Port Harcourt</option>
+                    <option>Ghana</option>
                   </select>
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
-                  <select name="" id="" class="form-control br-0">
-                    <option value="">Choose Experience</option>
-                    <option value="">Junior</option>
-                    <option value="">Intermidiate</option>
-                    <option value="">Expert</option>
+                  <select name="career_level" id="" class="form-control br-0">
+                    <option>Choose Experience</option>
+                    <option>Junior</option>
+                    <option>Intermidiate</option>
+                    <option>Expert</option>
                   </select>
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <textarea name="" id="" cols="30" rows="4" placeholder="Job Description" class="form-control br-0"></textarea>
+              <textarea id="" cols="30" rows="4" name="job_description" placeholder="Job Description" class="form-control br-0"></textarea>
             </div>
             <div class="form-group">
-              <input type="file" class="form-control br-0">
+              <input type="text" name="image_link" class="form-control br-0" placeholder="Enter Image link">
             </div>
             <div class="row">
               <div class="col-12">
@@ -224,9 +192,12 @@
       </div>
     </div>
   </div>
+  </form>
 
   <!-- Edit Job Modal-->
-  <div class="modal fade" id="editJobModal" tabindex="-1" role="dialog" aria-labelledby="editJobModalLabel" aria-hidden="true">
+  {{# each content}}
+  <form action="">
+  <div class="modal fade" id="a{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="editJobModalLabel" aria-hidden="true">
     <div class="modal-dialog " role="document">
       <div class="modal-content">
         <div class="modal-header bg-light">
@@ -239,23 +210,23 @@
         <div class="modal-body">
           <div class="nrm-wrapper">
             <div class="form-group">
-              <input type="text" class="form-control br-0" placeholder="Company's Name">
+              <input type="text" class="form-control br-0" value="{{this.company_name}}" placeholder="Company's Name">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control br-0" placeholder="Job Title">
+              <input type="text" class="form-control br-0" value="{{this.job_title}}" placeholder="Job Title">
             </div>
             <div class="form-group">
-              <input type="email" class="form-control br-0" placeholder="Email Address">
+              <input type="email" class="form-control br-0" value="{{this.employer_email}}" placeholder="Email Address">
             </div>
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
-                  <input type="email" class="form-control br-0" placeholder="Minimum Salary">
+                  <input type="email" class="form-control br-0" value="{{this.job_pay_min}}" placeholder="Minimum Salary">
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
-                  <input type="email" class="form-control br-0" placeholder="Maximum Salary">
+                  <input type="email" class="form-control br-0" value="{{this.job_pay_max}}" placeholder="Maximum Salary">
                 </div>
               </div>
             </div>
@@ -263,26 +234,24 @@
               <div class="col-lg-6">
                 <div class="form-group">
                   <select name="" id="" class="form-control br-0">
-                    <option value="">Select State</option>
+                    <option>Select State</option>
+                    <option value="{{this.location}}">
                   </select>
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
                   <select name="" id="" class="form-control br-0">
-                    <option value="">Choose Experience</option>
-                    <option value="">Junior</option>
-                    <option value="">Intermidiate</option>
-                    <option value="">Expert</option>
+                    <option value="{{this.career_level}}">Choose Experience</option>
                   </select>
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <textarea name="" id="" cols="30" rows="4" placeholder="Job Description" class="form-control br-0"></textarea>
+              <textarea name="" id="" cols="30" rows="4" placeholder="Job Description" class="form-control br-0">{{this.job_description}}</textarea>
             </div>
             <div class="form-group">
-              <input type="file" class="form-control br-0">
+              <input type="text" value="{{this.image_link}}" class="form-control br-0">
             </div>
             <div class="row">
               <div class="col-12">
@@ -294,9 +263,12 @@
       </div>
     </div>
   </div>
+  </form>
+  {{/each}}
 
   <!-- View Job Modal-->
-  <div class="modal fade" id="viewJobModal" tabindex="-1" role="dialog" aria-labelledby="viewJobModalLabel" aria-hidden="true">
+  {{# each content}}
+  <div class="modal fade" id="b{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="viewJobModalLabel" aria-hidden="true">
     <div class="modal-dialog " role="document">
       <div class="modal-content">
         <div class="modal-header ">
@@ -311,31 +283,31 @@
             <div class="row">
               <div class="col-6">
                 <h6 class="text-muted t-12">Job Title</h6>
-                <h5 class="job_text_color t-15">Fullstck Developer</h5>
+                <h5 class="job_text_color t-15">{{this.job_title}}</h5>
               </div>
               <div class="col-6">
                 <h6 class="text-muted t-12">Company</h6>
-                <h5 class="job_text_color t-15">Facebook Nigeria</h5>
+                <h5 class="job_text_color t-15">{{this.company_name}}</h5>
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-6">
                 <h6 class="text-muted t-12">Salary</h6>
-                <h5 class="job_text_color t-15">&#8358; 120,000 - &#8358;300,000</h5>
+                <h5 class="job_text_color t-15">&#8358; {{this.pay_min}} - &#8358;{{this.pay_max}}</h5>
               </div>
               <div class="col-6">
                 <h6 class="text-muted t-12">Email Address</h6>
-                <h5 class="job_text_color t-15">hahha@gmail.com</h5>
+                <h5 class="job_text_color t-15">{{this.employer_email}}</h5>
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-6">
                 <h6 class="text-muted t-12">State</h6>
-                <h5 class="job_text_color t-15">Abuja</h5>
+                <h5 class="job_text_color t-15">{{this.location}}</h5>
               </div>
               <div class="col-6">
                 <h6 class="text-muted t-12">Experience</h6>
-                <h5 class="job_text_color t-15">Expert</h5>
+                <h5 class="job_text_color t-15">{{this.career_level}}</h5>
               </div>
             </div>
             <div class="row mt-4">
@@ -343,8 +315,7 @@
                 <div class="bg-light p-2">
                   <h6 class="text-muted t-12 b-7">Description</h6>
                   <p class="job_textcolor t-14 l-27">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex, odit. Quibusdam, facere reprehenderit? Quod fugiat nesciunt
-                    doloribus, aliquam veniam, autem sequi suscipit temporibus aperiam ipsa alias dignissimos velit ad hic?
+                    {{this.job_description}}
                   </p>
                 </div>
               </div>
@@ -354,6 +325,7 @@
       </div>
     </div>
   </div>
+  {{/each}}
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
   <script>
