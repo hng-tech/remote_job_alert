@@ -105,8 +105,8 @@
                         <i class="fa fa-eye"></i> View</button>
                     </td>
                     <td>
-                      <button class="btn br-0 btn-danger btn-sm t-11">
-                        <i class="fa fa-trash"></i> Delete</button>
+                      <a href="jobs/{{this.id}}/delete" class="btn br-0 btn-danger btn-sm t-11">
+                        <i class="fa fa-trash"></i> Delete</a>
                     </td>
                   </tr>
                    {{/each}}
@@ -196,7 +196,7 @@
 
   <!-- Edit Job Modal-->
   {{# each content}}
-  <form action="">
+  <form action="/jobs/{{this.id}}" method="post">
   <div class="modal fade" id="a{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="editJobModalLabel" aria-hidden="true">
     <div class="modal-dialog " role="document">
       <div class="modal-content">
@@ -234,15 +234,23 @@
               <div class="col-lg-6">
                 <div class="form-group">
                   <select name="" id="" class="form-control br-0">
-                    <option>Select State</option>
-                    <option value="{{this.location}}">
+                    <option selected>Select State</option>
+                    <option>Abuja</option>
+                    <option>Lagos</option>
+                    <option>Port Harcourt</option>
+                    <option>Ghana</option>
+                  </select>
                   </select>
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
                   <select name="" id="" class="form-control br-0">
-                    <option value="{{this.career_level}}">Choose Experience</option>
+                    <option selected>Choose Experience</option>
+                    <option>Choose Experience</option>
+                    <option>Junior</option>
+                    <option>Intermidiate</option>
+                    <option>Expert</option>
                   </select>
                 </div>
               </div>
