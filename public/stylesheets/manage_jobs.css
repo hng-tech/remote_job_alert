@@ -1,203 +1,182 @@
-body#signup{
-  padding: 0;
+.admin_body {
+  background: #f3f3f3;
+}
+
+.admin_body ul {
+  list-style: none;
   margin: 0;
+  padding: 0;
 }
-#signup nav{
-  width: 100%;
-  min-height: 50px;
-  border: none;
-  border-bottom: 1px solid #eee;
-  padding: 15px 85px 17px 85px;
+.admin_body .login-container {
+  background: #0e2847;
+  height: 100vh;
 }
-#signup nav .left-nav,.right-nav{
-  display: inline-block;
+.admin_body .t-11 {
+  font-size: 11px;
 }
-#signup nav .left-nav hr{
-  display: none;
+.admin_body .t-12 {
+  font-size: 12px;
 }
-#signup nav .right-nav{
-  float: right;
+.admin_body .t-13 {
+  font-size: 13px;
 }
-#signup nav a{
-  color: black;
-  margin-left: 25px;
-  font-family: worksans;
+.admin_body .t-14 {
+  font-size: 14px;
 }
-#signup nav a:hover{
-  text-decoration: none !important;
-  color: black;
+.admin_body .t-15 {
+  font-size: 15px;
 }
-#signup .container{
-  display: flex;
-  height: 80vh;
-  padding: 20px;
+.admin_body .b-6 {
+  font-weight: 600 !important;
+}
+.admin_body .b-7 {
+  font-weight: 700 !important;
+}
+.admin_body .b-8 {
+  font-weight: 800 !important;
+}
+.admin_body .login-wrapper {
+  margin-top: 10%;
+}
+.admin_body .bg-white {
+  background: #ffffff;
+}
+.admin_body .br-0 {
+  border-radius: 0%;
+}
+.admin_body .has-search .form-control {
+  padding-left: 3.4rem;
+}
 
-}
-#signup .container .form{
-  margin: auto;
-  /* background: red; */
-  width: 45%;
-}
-#signup .container .form>.form-text{
-  margin-bottom: 35px;
-}
-#signup .container form>input{
+.admin_body .has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
   display: block;
-  width: 100%;
-  border: none;
-  height: 46px;
-  padding-left: 13px;
-  color: black;
-  margin-bottom: 20px;
-  transition: all ease-in-out 200ms;
-  box-shadow: 0px -1px 3px 1px #999999;
-}
-#signup .container form>input:focus{
-  box-shadow: 0px 0px 0px 0px #421029 !important;
-  border: 1px solid #421029;
-  padding-left: 20px;
-}
-#signup .container form>button{
-  width: 100%;
-  background: #11144c !important;
-  border: #11144c !important;
-  height: 40px;
-}
-#signup .container form>button:focus{
-  box-shadow: 0px 0px 0px 0px #421029 !important;
-}
-/* Adding custom responsiveness for the signup page */
-#signup .container .form{
-  margin: auto;
-  /* background: red; */
-  width: 45%;
-}
-@media screen and (max-width:800px){
-  #signup .container .form{
-      margin: auto;
-      /* background: red; */
-      width: 100%;
-  }
-
-}
-@media screen and (max-width:990px){
-  #signup .container .form{
-      margin: auto;
-      /* background: red; */
-      width: 60%;
-      
-  }
-}
-@media screen and (max-width:670px){
-  #signup nav{
-      min-height: 100px;
-      padding: 0;
-  }
-  #signup nav .left-nav,.right-nav{
-      display: inline-block;
-      text-align: center;
-      height: auto !important;
-      padding: 5px;
-
-  }
-
-  #signup nav .left-nav{
-      width: 100%;
-
-  }
-  #signup nav .left-nav hr{
-      display: inline-block;
-      
-  }
-  #signup nav .right-nav{
-      width: 100%;
-  }
-}
-
-/* ================ Styling the manage Job Post Here ================= */
-
-body#manage-job .container-fluid{
-  padding: 0px !important;
-}
-@media screen and (max-width:767px){
- body#manage-job .container-fluid{
-  padding: 20px !important;
-} 
-}
-#manage-job .left-section{
-  background: #11144c;
-  min-height: 700px;
-  color: white;
-}
-#manage-job .left-section .logo{
-  padding-top: 60px;
-}
-#manage-job .left-section a{
-  display: block;
-  color: #e6e6e6;
-  margin-top: 35px;
-}
-#manage-job .left-section .btn-primary{
-  background: #7277d2 !important;
-  border: none !important;
-  display: inline-block;
-  margin: auto;
-  border-radius: 30px;
-  padding: 10px 30px 10px 30px;
-  margin-top: 100px;
-
-}
-#manage-job .right-section{
-  min-height: 700px;
-}
-#manage-job .right-section h1.section-header{
+  width: 3.375rem;
+  height: 3.6rem;
+  line-height: 3em;
   text-align: center;
-  padding-top: 40px;
+  pointer-events: none;
+  color: #6b6b6b;
+  font-size: 20px;
+  /* background: #f7f7f7; */
 }
-#manage-job .right-section .section-form{
-  padding: 20px;
-  margin: auto;
-}
-#manage-job .right-section .section-form .container .job-position{
-  background: white;
-  min-height: 50px;
-}
-#manage-job .right-section .section-form input{
-  width: 300px;
-}
-#manage-job .right-section .section-form select{
-      width: 300px;
-      display: inline-block;
-}
-#manage-job .right-section .management table tr#no-border{
-  border: none !important;
-}
-#manage-job .right-section .management table tr{
-  border: 1px solid #eee !important;
-}
-#manage-job .right-section .management table .btn-primary{
+
+/* Dashboard */
+.admin_body #sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
   background: #11144c;
-  border: #11144c;
+  width: 17%;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
 }
-#manage-job .right-section .management table .btn-primary:focus{
-  box-shadow: 0px 0px 0px 0px #11144c !important;
+.admin_body .sidebar-wrapper {
+  padding: 20px 0;
 }
-#manage-job .right-section .management table .btn-outline-primary{
+.admin_body .page-content {
+  margin-left: 17%;
+  width: 83%;
+}
+.admin_body .fixed-header {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 17%;
+  background: #ffffff;
+  z-index: 100;
+  box-shadow: 2px 0px 10px #cbc7c7;
+  transition: 0.3s all ease;
+  -webkit-transition: 0.3s all ease;
+  -moz-transition: 0.3s all ease;
+}
+.admin_body .content-wrapper {
+  top: 15%;
+  position: absolute;
+  right: 0;
+  left: 17%;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+}
+.admin_body .dash_check_in {
+  background: #ffffff;
+}
+
+.admin_body .menu ul li a {
+  display: block;
+  color: #cfcbcb;
+  padding: 0.5em 0.7em;
+  transition: 0.3s all ease;
+  -webkit-transition: 0.3s all ease;
+  -moz-transition: 0.3s all ease;
+}
+.admin_body .menu ul li a:hover {
+  background: #081a2f;
+  color: #ffffff;
+  text-decoration: none;
+}
+.admin_body .menu ul li a i {
+  width: 20px;
+}
+
+.admin_body .dash_bar {
+  font-size: 20px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.admin_body.xc_table td {
+  padding: 0.4em 0.75rem !important;
+}
+
+.admin_body .job_text_color {
   color: #11144c;
-  border: 1px solid #11144c !important;
-}
-#manage-job .right-section .management table .btn-outline-primary:focus{
-  box-shadow: 0px 0px 0px 0px #11144c;
-  background-color: #11144c !important;
-  color: white;
-}
-#manage-job .right-section .management table .btn-outline-primary:hover{
-   box-shadow: 0px 0px 0px 0px #11144c;
-  background-color: #11144c !important;
-  color: white;
 }
 
+.admin_body .l-27 {
+  line-height: 27px;
+}
 
-/* ================ End Of styling the manage Job Post ================ */
+.admin_body .sidebar-collapse {
+  left: -17% !important;
+}
+.admin_body .content-wrapper-collapse,
+.fixed-header-collapse {
+  left: 0% !important;
+}
 
-
+@media (max-width: 900px) {
+  .admin_body #sidebar {
+    left: -30%;
+    width: 30%;
+  }
+  .admin_body .content-wrapper,
+  .admin_body .fixed-header {
+    left: 0% !important;
+  }
+  .admin_body .sidebar-collapse {
+    left: 0% !important;
+  }
+  .admin_body .content-wrapper-collapse,
+  .admin_body .fixed-header-collapse {
+    left: 30% !important;
+  }
+  .admin_body .page-content {
+    margin-left: 30%;
+    width: 70%;
+  }
+  .admin_body .content-wrapper {
+    left: 30%;
+  }
+  .admin_body .fixed-header {
+    left: 30%;
+  }
+}
