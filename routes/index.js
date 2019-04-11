@@ -5,9 +5,14 @@ var Agents = require("../controllers/agent");
 var router = express.Router();
 const UserController = require("../controllers/user");
 const Validation = require("../validation/email");
-
+var JobModel = require("../models/jobs");
 /* GET home page. */
-router.get("/", Home.index);
+//router.get("/", Home.index);
+router.get('/', function(req, res, next) {
+        JobModel.find(function(err, jobs) {
+          res.render('index', { title: 'Remote Job Alert', contents: jobs });
+      });
+ });
 
 // GET About us page
 router.get("/about", Home.aboutUs);
@@ -20,12 +25,15 @@ router.get("/job_details", Home.job_details);
 
 //Job Routes
 router.get("/jobs", Jobs.get_all);
+
 /* There is an Error in this route, it is crashing the server */
-// router.post('/jobs', Jobs.validate('create'),Jobs.create);
+//router.post('/jobs', Jobs.validate('create'), Jobs.create);
+router.post('/jobs', Jobs.create);
 
 /////////////////////////////////////////////////
 router.get("/jobs/:job_id", Jobs.get_one);
-router.get("/jobs/:job_id/edit", Jobs.edit);
+router.get("/manage_jobs/", Jobs.edit);
+
 router.get("/jobs/:job_id", Jobs.update_job);
 router.get("/jobs/:job_id", Jobs.cancel_job);
 
@@ -33,9 +41,13 @@ router.get("/jobs/:job_id", Jobs.cancel_job);
 router.get("/agents", Agents.get_all_agents);
 router.post("/agents", Agents.create_agent);
 
+<<<<<<< HEAD
 router.get("/managejobs", (req, res, next) => {
   res.render("manage_jobs", { title: "Manage Jobs" });
 });
+=======
+router.get("/managejobs", Jobs.get_all);
+>>>>>>> eae473adb512f69df80ac58352df4a44a5142a02
 
 //check if email is valid, then sends welcome email and saves email to db
 router.post(
