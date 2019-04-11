@@ -101,7 +101,7 @@
                         <i class="fa fa-pen"></i> Edit</button>
                     </td>
                     <td>
-                      <button class="btn br-0 btn-dark btn-sm t-11" data-toggle="modal" data-target="#a{{this.id}}">
+                      <button class="btn br-0 btn-dark btn-sm t-11" data-toggle="modal" data-target="#b{{this.id}}">
                         <i class="fa fa-eye"></i> View</button>
                     </td>
                     <td>
@@ -197,7 +197,7 @@
   <!-- Edit Job Modal-->
   {{# each content}}
   <form action="">
-  <div class="modal fade" id="{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="editJobModalLabel" aria-hidden="true">
+  <div class="modal fade" id="a{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="editJobModalLabel" aria-hidden="true">
     <div class="modal-dialog " role="document">
       <div class="modal-content">
         <div class="modal-header bg-light">
@@ -268,7 +268,7 @@
 
   <!-- View Job Modal-->
   {{# each content}}
-  <div class="modal fade" id="{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="viewJobModalLabel" aria-hidden="true">
+  <div class="modal fade" id="b{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="viewJobModalLabel" aria-hidden="true">
     <div class="modal-dialog " role="document">
       <div class="modal-content">
         <div class="modal-header ">
