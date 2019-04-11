@@ -22,6 +22,9 @@ router.get("/about", Home.aboutUs);
 // GET Contact us page
 router.get("/contact", Home.contactUs);
 
+// GET FAQS us page
+router.get("/faqs", Home.faqs);
+
 // GET JOBS DETAILS PAGE
 router.get("/job_details", Home.job_details);
 
