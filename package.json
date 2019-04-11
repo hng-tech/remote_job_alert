@@ -21,9 +21,12 @@
 		"flash": "^1.1.0",
 		"hbs": "~4.0.1",
 		"http-errors": "~1.6.2",
+		"lodash": "^4.17.11",
 		"mongoose": "^5.5.0",
 		"morgan": "~1.9.0",
+		"node-paystack": "^1.0.3",
 		"nodemailer": "^6.1.0",
+		"paystack": "^2.0.1",
 		"validator": "^10.11.0"
 	}
 }
