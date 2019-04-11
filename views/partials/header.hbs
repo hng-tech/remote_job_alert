@@ -1,16 +1,17 @@
 <header id="header" class="container">
 	<div class="container-fluid">
 		<nav>
-			<div class="logo">
+			<div class="logo font-weight-bold">
 				<a href="/">DEV/ALERT</a>
 			</div>
 			<div class="nav-items">
 				<ul>
 					<li>
-						<a href="#" data-toggle="modal" data-target="#registerModal">Register</a>
+						<a href="#job-posting">Jobs</a>
 					</li>
 					<li>
-						<a href="/agent_signup">Become an Agent</a>
+						<button data-toggle="modal" class="btn btn-custom" data-target="#registerModal">
+							</a>Pay an Agent</button>
 					</li>
 				</ul>
 			</div>
@@ -19,27 +20,35 @@
 </header>
 
 {{!-- REGISTER MODAL--}}
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-	aria-hidden="true">
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-body">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h5 class="mt-5 font-weight-bold">Register to get remote jobs</h5>
-				<form action=" " class="mt-3">
+				<h5 class="mt-5 font-weight-bold">Pay to an agent</h5>
+				<form action="/pay" method="post" class="mt-3">
+					<div class="form-group">
+						<label for="" class="my-0">Phone number</label>
+						<input type="text" name="email" class="form-control my-0" placeholder="johndoe@example.com">
+					</div>
+					{{!--
+					<div class="form-group">
+						<label for="Email" class="my-0">Last name</label>
+						<input type="text" class="form-control my-0" placeholder="run">
+					</div>
 					<div class="form-group">
 						<label for="Email" class="my-0">Email</label>
-						<input type="text" class="form-control my-0" placeholder="testrun01@gmail.com">
+						<input type="email" class="form-control my-0" placeholder="testrun01@gmail.com">
 					</div>
 					<div class="form-group">
 						<label for="" class="my-0">Job role</label>
 						<select name="" id="" class="form-control my-0">
 							<option value="">Choose a position</option>
 						</select>
-					</div>
-					<button style="border: 1px solid #11144C" type="submit" class="btn btn-custom">Register</button>
+					</div> --}}
+					<input value="Pay" type="submit" name="phone" class="btn btn-custom px-5 mt-4"></input>
 				</form>
 			</div>
 

@@ -5,6 +5,8 @@ var exphbs = require("express-handlebars");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var session = require("express-session");
+var flash = require("connect-flash");
 
 // The database setup
 // we should probable store the url in .env for security reasons.
@@ -41,6 +43,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(
+  session({
+    secret: "dfgdhhahg15sdff",
+    saveUninitialized: false,
+    resave: false
+  })
+);
+app.use(flash());
+
+//locals
+app.use(function(req, res, next) {
+  res.locals.success = req.flash("success");
+  res.locals.errors = req.flash("errors");
+  next();
+});
 
 app.use("/", indexRouter);
 // app.use('/users', usersRouter);
