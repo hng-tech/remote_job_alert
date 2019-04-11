@@ -37,22 +37,6 @@ router.get("/managejobs", (req, res, next) => {
   res.render("manage_jobs", { title: "Manage Jobs" });
 });
 
-router.get("/edit-job", (req, res, next) => {
-  res.render("edit-job-post", { title: "Edit Jobs" });
-});
-
-router.get("/agent_signup", (req, res, next) => {
-  res.render("signup", { title: "Signup DevAlert" });
-});
-
-router.get("/dashboard", (req, res, next) => {
-  res.render("dashboard", { title: "Admin Dashboard" });
-});
-
-router.get("/create-job", (req, res, next) => {
-  res.render("creat-job-post", { title: "Add New Job Posting" });
-});
-
 //check if email is valid, then sends welcome email and saves email to db
 router.post(
   "/email-subscription",

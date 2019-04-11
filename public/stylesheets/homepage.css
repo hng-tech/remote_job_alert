@@ -34,10 +34,6 @@
     margin: 0 auto !important;
   }
 
-  #intro-text h1 {
-    text-align: center;
-  }
-
   #homepage main div.intro-img img {
     width: 80% !important;
   }
@@ -75,8 +71,6 @@
 
 #homepage main #intro .intro-text h1 {
   font-weight: bolder;
-  text-align: center;
-  padding: 20px 0 10;
 }
 
 #homepage main #intro .intro-text p {

@@ -1,12 +1,7 @@
 /* Styling For JOBS_DETAILS */
 
 @import url("homepage.css");
-@import url("sign_manage.css");
 @import url("manage_jobs.css");
-@import url("dashboard.css");
-@import url("sign_manage.css");
-@import url("creat-job-post.css");
-@import url("edit-job-post.css");
 
 html {
   scroll-behavior: smooth;
@@ -20,6 +15,15 @@ body {
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+.btn-custom {
+  background: #11144c;
+  color: #fff;
+  padding: 10px 10px;
+}
+.btn-custom:hover {
+  background: #11144c;
+  color: #fff;
+}
 /************************************* HEADER STYLES  **********************************/
 
 header nav {
@@ -100,20 +104,6 @@ header nav ul li a {
   color: #11144c;
 }
 
-header nav ul li:nth-child(2) {
-  border: 1px solid #11144c;
-  border-radius: 5px;
-}
-
-header nav ul li:nth-child(2):hover {
-  background: #11144c;
-}
-
-header nav ul li:nth-child(2):hover a {
-  color: white;
-  text-decoration: none;
-}
-
 /************************************* HEADER STYLES END  **********************************/
 
 /************************************* FOOTER STYLES  **********************************/
@@ -128,9 +118,16 @@ footer .links {
 
 footer .links .link-subgroup {
   color: white;
-  font-family: "Work Sans", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-    sans-serif;
-  margin: 20px;
+}
+
+footer .links .link-subgroup a {
+  color: #dedada;
+  font-size: 15px;
+  font-weight: 200;
+  text-decoration: none;
+}
+footer .links .link-subgroup a:hover {
+  color: #fff;
 }
 
 @media screen and (max-width: 322px) {
@@ -153,7 +150,7 @@ footer .links .link-subgroup .social {
 footer .links .link-subgroup .social a {
   display: inline-block;
   font-size: 100%;
-  padding: 10px;
+  margin-right: 16px;
 }
 
 footer .links .link-subgroup h3 {
@@ -173,14 +170,6 @@ footer .links .link-subgroup ul li {
   padding: 5px;
 }
 
-footer .links .link-subgroup ul li a {
-  font-weight: bold;
-  text-decoration: none;
-  color: white;
-  font-size: 14px;
-  line-height: 16px;
-}
-
 footer .copyright {
   background: #0b0d38;
   text-align: center;
@@ -188,10 +177,10 @@ footer .copyright {
 }
 
 footer .copyright p {
-  font-size: 14px;
+  font-size: 12px;
   padding: 20px;
   margin-bottom: 0;
-  color: white;
+  color: #dedada;
 }
 
 /************************************* FOOTER STYLES END  **********************************/
