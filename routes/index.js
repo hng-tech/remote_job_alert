@@ -21,7 +21,8 @@ router.get("/job_details", Home.job_details);
 //Job Routes
 router.get("/jobs", Jobs.get_all);
 /* There is an Error in this route, it is crashing the server */
-// router.post('/jobs', Jobs.validate('create'),Jobs.create);
+//router.post('/jobs', Jobs.validate('create'), Jobs.create);
+router.post('/jobs', Jobs.create);
 
 /////////////////////////////////////////////////
 router.get("/jobs/:job_id", Jobs.get_one);
@@ -33,9 +34,7 @@ router.get("/jobs/:job_id", Jobs.cancel_job);
 router.get("/agents", Agents.get_all_agents);
 router.post("/agents", Agents.create_agent);
 
-router.get("/managejobs", (req, res, next) => {
-  res.render("manage_jobs", { title: "Manage Jobs" });
-});
+router.get("/managejobs", Jobs.get_all);
 
 //check if email is valid, then sends welcome email and saves email to db
 router.post(
