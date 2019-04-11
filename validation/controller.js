@@ -22,16 +22,19 @@ const validateQueryText = data => {
 	if (Validator.isEmpty(data.job_title)) {
 		errors.job_title = 'The job title is required';
 	}
-
+/*
 	if (Validator.isEmpty(data.job_link)) {
 		errors.job_link = 'Job link is required';
 	}
+	*/
 	if (Validator.isEmpty(data.job_description)) {
 		errors.job_description = 'Job Description is required';
 	}
+	/*
 	if (Validator.isEmpty(data.job_category)) {
 		errors.job_category = 'Job Category is required';
 	}
+	*/
 	if (Validator.isEmpty(data.location)) {
 		errors.location = 'Job Location is required';
 	}
