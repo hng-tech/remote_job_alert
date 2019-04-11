@@ -97,11 +97,19 @@
                     <td>{{this.career_level}}</td>
                     <td>{{this.created_date}}</td>
                     <td>
+<<<<<<< HEAD
                       <button class="btn br-0 btn-primary btn-sm t-11" data-toggle="modal" data-target="#editJobModal">
                         <i class="fa fa-pen"></i> Edit</button>
                     </td>
                     <td>
                       <button class="btn br-0 btn-dark btn-sm t-11" data-toggle="modal" data-target="#viewJobModal">
+=======
+                      <button class="btn br-0 btn-primary btn-sm t-11" data-toggle="modal" data-target="#a{{this.id}}">
+                        <i class="fa fa-pen"></i> Edit</button>
+                    </td>
+                    <td>
+                      <button class="btn br-0 btn-dark btn-sm t-11" data-toggle="modal" data-target="#b{{this.id}}">
+>>>>>>> upstream/master
                         <i class="fa fa-eye"></i> View</button>
                     </td>
                     <td>
@@ -197,7 +205,11 @@
   <!-- Edit Job Modal-->
   {{# each content}}
   <form action="">
+<<<<<<< HEAD
   <div class="modal fade" id="editJobModal" tabindex="-1" role="dialog" aria-labelledby="editJobModalLabel" aria-hidden="true">
+=======
+  <div class="modal fade" id="a{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="editJobModalLabel" aria-hidden="true">
+>>>>>>> upstream/master
     <div class="modal-dialog " role="document">
       <div class="modal-content">
         <div class="modal-header bg-light">
@@ -235,16 +247,17 @@
                 <div class="form-group">
                   <select name="" id="" class="form-control br-0">
                     <option>Select State</option>
+<<<<<<< HEAD
+=======
+                    <option value="{{this.location}}">
+>>>>>>> upstream/master
                   </select>
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
                   <select name="" id="" class="form-control br-0">
-                    <option value="">Choose Experience</option>
-                    <option value="">Junior</option>
-                    <option value="">Intermidiate</option>
-                    <option value="">Expert</option>
+                    <option value="{{this.career_level}}">Choose Experience</option>
                   </select>
                 </div>
               </div>
@@ -269,7 +282,8 @@
   {{/each}}
 
   <!-- View Job Modal-->
-  <div class="modal fade" id="viewJobModal" tabindex="-1" role="dialog" aria-labelledby="viewJobModalLabel" aria-hidden="true">
+  {{# each content}}
+  <div class="modal fade" id="b{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="viewJobModalLabel" aria-hidden="true">
     <div class="modal-dialog " role="document">
       <div class="modal-content">
         <div class="modal-header ">
@@ -284,31 +298,31 @@
             <div class="row">
               <div class="col-6">
                 <h6 class="text-muted t-12">Job Title</h6>
-                <h5 class="job_text_color t-15">Fullstck Developer</h5>
+                <h5 class="job_text_color t-15">{{this.job_title}}</h5>
               </div>
               <div class="col-6">
                 <h6 class="text-muted t-12">Company</h6>
-                <h5 class="job_text_color t-15">Facebook Nigeria</h5>
+                <h5 class="job_text_color t-15">{{this.company_name}}</h5>
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-6">
                 <h6 class="text-muted t-12">Salary</h6>
-                <h5 class="job_text_color t-15">&#8358; 120,000 - &#8358;300,000</h5>
+                <h5 class="job_text_color t-15">&#8358; {{this.pay_min}} - &#8358;{{this.pay_max}}</h5>
               </div>
               <div class="col-6">
                 <h6 class="text-muted t-12">Email Address</h6>
-                <h5 class="job_text_color t-15">hahha@gmail.com</h5>
+                <h5 class="job_text_color t-15">{{this.employer_email}}</h5>
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-6">
                 <h6 class="text-muted t-12">State</h6>
-                <h5 class="job_text_color t-15">Abuja</h5>
+                <h5 class="job_text_color t-15">{{this.location}}</h5>
               </div>
               <div class="col-6">
                 <h6 class="text-muted t-12">Experience</h6>
-                <h5 class="job_text_color t-15">Expert</h5>
+                <h5 class="job_text_color t-15">{{this.career_level}}</h5>
               </div>
             </div>
             <div class="row mt-4">
@@ -316,8 +330,7 @@
                 <div class="bg-light p-2">
                   <h6 class="text-muted t-12 b-7">Description</h6>
                   <p class="job_textcolor t-14 l-27">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex, odit. Quibusdam, facere reprehenderit? Quod fugiat nesciunt
-                    doloribus, aliquam veniam, autem sequi suscipit temporibus aperiam ipsa alias dignissimos velit ad hic?
+                    {{this.job_description}}
                   </p>
                 </div>
               </div>
@@ -327,6 +340,7 @@
       </div>
     </div>
   </div>
+  {{/each}}
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
   <script>

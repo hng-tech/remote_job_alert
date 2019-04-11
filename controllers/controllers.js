@@ -42,7 +42,7 @@ const Jobs = {
 	},
 	async get_one(req, res) {
 		const queryText = {
-			_id: req.params.job_id,
+			job_id: req.params._id,
 		};
 		try {
 			let foundJob = await db.findOne(queryText);
@@ -53,38 +53,20 @@ const Jobs = {
 	},
 	async edit(req, res) {
 		const queryText = {
-			_id: req.params.job_id,
+			job_id: req.params._id,
 		};
 		try {
 			let foundJob = await db.findOne(queryText);
-			return res.status(200).json(foundJob);
+			return res.status(200).render("manage_jobs", {editcontent: foundJob});
 		} catch (error) {
 			return res.status(400).send(error);
 		}
 	},
-	async update_job(req, res) {
-		const queryText = {
-			_id: req.params.job_id,
-		};
-
-		const { errors, isValid } = validateQueryText(req.body);
-
-    },
-    async edit(req, res){
-        const queryText = {
-            _id: req.params.job_id
-        };
-        try {
-            let foundJob = await db.findOne(queryText);
-            return res.status(200).json(foundJob);
-        } catch(error){
-            return res.status(400).send(error);
-        }
-    },
+	
 
     async update_job(req, res){
         const queryText = {
-            _id: req.params.job_id
+            job_id: req.params._id
         };
 
         const { errors, isValid } = validateQueryText(req.body);
@@ -105,14 +87,14 @@ const Jobs = {
         }
         try {
             let updatedJob = await db.findOneAndUpdate(queryText, updateText);
-            return res.status(200).json(updatedJob);
+            return res.status(200).render("manage_jobs", {updatecontent: foundJob});
         } catch(error){
             return res.status(400).send(error);
         }
     },
     async cancel_job(req, res){
         const queryText = {
-            _id: req.params.job_id
+            job_id: req.params._id
         };
         try {
             let foundJob = await db.findOneAndDelete(queryText);
@@ -123,18 +105,7 @@ const Jobs = {
         }
     },
 
-	async cancel_job(req, res) {
-		const queryText = {
-			_id: req.params.job_id,
-		};
-		try {
-			let foundJob = await db.findOneAndDelete(queryText);
-			console.log(foundJob);
-			return res.status(200).redirect('/');
-		} catch (error) {
-			return res.status(400).send(error);
-		}
-	},
+	
 };
 
 module.exports = Jobs;
