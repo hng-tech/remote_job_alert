@@ -5,6 +5,8 @@ var Agents = require("../controllers/agent");
 var router = express.Router();
 const UserController = require("../controllers/user");
 const Validation = require("../validation/email");
+const Paystack = require('../controllers/paystack');
+
 var JobModel = require("../models/jobs");
 /* GET home page. */
 //router.get("/", Home.index);
@@ -32,14 +34,14 @@ router.post('/jobs', Jobs.create);
 
 /////////////////////////////////////////////////
 router.get("/jobs/:job_id", Jobs.get_one);
-router.get("/manage_jobs/", Jobs.edit);
-
+router.get("/jobs/:job_id/edit", Jobs.edit);
 router.get("/jobs/:job_id", Jobs.update_job);
 router.get("/jobs/:job_id", Jobs.cancel_job);
 
 //Agent Routes
 router.get("/agents", Agents.get_all_agents);
 router.post("/agents", Agents.create_agent);
+router.post('/pay', Paystack.pay);
 
 router.get("/managejobs", Jobs.get_all);
 
