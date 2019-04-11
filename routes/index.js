@@ -37,8 +37,8 @@ router.post('/jobs', Jobs.create);
 /////////////////////////////////////////////////
 router.get("/jobs/:job_id", Jobs.get_one);
 //router.get("/jobs/:job_id/edit", Jobs.edit);
-router.get("/jobs/job_id", Jobs.update_job);
-router.get("/jobs/job_id/delete", Jobs.cancel_job);
+router.get("/jobs/:job_id", Jobs.update_job);
+router.get("/jobs/:job_id/delete", Jobs.cancel_job);
 
 //Agent Routes
 router.get("/agents", Agents.get_all_agents);

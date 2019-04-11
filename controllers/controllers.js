@@ -51,7 +51,7 @@ const Jobs = {
 	},
 	async get_one(req, res) {
 		const queryText = {
-			job_id: req.params._id,
+			_id: req.params.job_id,
 		};
 		try {
 			let foundJob = await db.findOne(queryText);
@@ -63,7 +63,7 @@ const Jobs = {
 	
     async update_job(req, res){
         const queryText = {
-            job_id: req.params._id
+            _id: req.params.job_id
         };
 
         const { errors, isValid } = validateQueryText(req.body);
@@ -91,12 +91,12 @@ const Jobs = {
     },
     async cancel_job(req, res){
         const queryText = {
-            job_id: req.params._id
+            _id: req.params.job_id
         };
         try {
             let foundJob = await db.findOneAndDelete(queryText);
             console.log(foundJob);
-            return res.status(200).redirect("/");
+            return res.status(200).redirect("manage_jobs");
         } catch(error){
             return res.status(400).send(error);
         }
