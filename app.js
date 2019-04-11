@@ -8,6 +8,8 @@ var logger = require("morgan");
 var session = require("express-session");
 var flash = require("connect-flash");
 
+require("dotenv").config();
+
 // The database setup
 // we should probable store the url in .env for security reasons.
 var databaseUrl =
@@ -56,6 +58,7 @@ app.use(flash());
 //locals
 app.use(function(req, res, next) {
   res.locals.success = req.flash("success");
+  res.locals.emailError = req.flash("emailError");
   res.locals.errors = req.flash("errors");
   next();
 });
