@@ -3,12 +3,12 @@
     background-color: #11144C;
     color: #FFFFFF;
     text-align: center;
-    height: 1284px;
-    font-family: Montserrat;
+    font-family: Work Sans;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
     line-height: normal;
+    width: 100%;
 }
 
 .logo{
@@ -20,11 +20,11 @@
     text-align: center;
     color: #FFFFFF;
     padding-top: 65px;
-    padding-bottom: 205px;
+    padding-bottom: 155px;
 }
 
 #side p{
-    padding-bottom: 46px;
+    padding-bottom: 25px;
 }
 .btnSubscribers{
     background: #858AF4;
@@ -34,6 +34,7 @@
     width: 200px;
     height: 56px;
     text-align: center;
+    margin-bottom: 20px;
 }
 .table{
     padding-left: 137px;
@@ -50,7 +51,7 @@
 
 
 .head{
-    font-family: Montserrat;
+    font-family: Work Sans;
     font-style: normal;
     font-weight: 600;
     font-size: 36px;
@@ -69,7 +70,10 @@
     margin-left: 137px;
 }
 .paging a{
-    font-family: Montserrat;
+    font-family: Work Sans;
     color: #11144C;
     padding-left: 15px;
 }
+
+
+
