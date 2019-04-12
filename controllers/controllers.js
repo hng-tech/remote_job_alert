@@ -76,6 +76,71 @@ const Jobs = {
     const queryText = {
       _id: req.params.job_id
     };
+    const queryText = {
+      company_name: req.body.company_name,
+      job_title: req.body.job_title,
+      employer_email: req.body.email,
+      job_pay_min: req.body.minimum_salary,
+      job_pay_max: req.body.maximum_salary,
+      career_level: req.body.career_level,
+      location: req.body.location,
+      job_description: req.body.job_description,
+      image_link: req.body.image_link
+    };
+    try {
+      let createdJob = await db.create(queryText);
+      console.log(createdJob);
+      return res.status(201).redirect("/managejobs");
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+  async get_all(req, res) {
+    const queryText = {};
+    try {
+      let foundJobs = await db.find(queryText);
+      return res.status(200).render("manage_jobs", { content: foundJobs });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+  async get_all_json(req, res) {
+    const queryText = {};
+    try {
+      let foundJobs_Json = await db.find(queryText);
+      return res.status(200).json(foundJobs_Json);
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+  async get_one(req, res) {
+    const queryText = {
+      _id: req.params.job_id
+    };
+    try {
+      let foundJob = await db.findOne(queryText);
+      return res.status(200).render("/", { content: foundJob });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+
+  async get_one_json(req, res) {
+    const queryText = {
+      _id: req.params.job_id
+    };
+    try {
+      let foundJob = await db.findOne(queryText);
+      return res.status(200).json(foundJob);
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+
+  async update_job(req, res) {
+    const queryText = {
+      _id: req.params.job_id
+    };
 
     const { errors, isValid } = validateQueryText(req.body);
 

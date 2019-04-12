@@ -31,7 +31,7 @@ router.get("/job_details", Home.job_details);
 //Job Routes
 router.get("/jobs", Jobs.get_all);
 router.get("/jobs_json", Jobs.get_all_json);
-router.get("/jobs_json:param", Jobs.get_all_json);
+router.get("/jobs_json/:job_id", Jobs.get_one_json);
 router.get("/jobs_api", Jobs.fetchData);
 
 /* There is an Error in this route, it is crashing the server */
