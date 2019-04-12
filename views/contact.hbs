@@ -17,6 +17,40 @@
             margin: 15px 0 30px;
             padding: 5px 0;
         }
+        #contact .row .contact-text i,h3{
+            display: inline-flex;
+        }
+        #contact .row .contact-text i{
+            font-size: 30px;
+        }
+        .contact-input input{
+            margin-bottom: 40px;
+            height: 60px;
+        }
+        .contact-input input:focus{
+            box-shadow: 0px 0px 4px 0px #11144C !important;
+            border: none;
+        }
+        .contact-message textarea:focus{
+            box-shadow: 0px 0px 4px 0px #11144C !important;
+            border: none;
+        }
+        
+        .btn-primary{
+            background: #11144C !important;
+            border: none;
+            margin-top: 15px;
+        }
+        .btn-primary:focus{
+            box-shadow: 0px 0px 2px 0pc #11144C !important;
+            border: none !important;
+        }
+        @media screen and (max-width: 600px){
+            #contact .row{
+            padding: 30px;
+        }
+        }
+
 
     </style>
 </head>
@@ -26,17 +60,43 @@
 
     <div id="contact" class="container">
 
-        <h1>contact us</h1>
+        <h1>Contact us</h1>
         {{!-- WRITE ALL YOUR CONTACT-US CODE WITHIN --}}
-        
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A consequatur quas voluptates officia labore eaque quod
-        ipsa atque amet, quisquam voluptatum voluptatibus alias! Quo eius modi debitis! Sequi, magni voluptates?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro veritatis iste harum ipsam asperiores velit praesentium vero quidem. Rem, eos voluptatum. Sunt dicta possimus sed fuga quasi quis id eligendi.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla molestias eaque repudiandae et! Beatae, consequuntur. Fuga esse voluptas iusto distinctio. Officia minima ea in distinctio quo! Id porro debitis rerum?
+        <form action="">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="contact-text">
+                        <i class="fa fa-home"></i>
+                        <h3>Country, State</h3>
+                        <p>Lorem ipsum</p>
+                         <i class="fa fa-mobile"></i>
+                        <h3>00 (958) 9865 562</h3>
+                        <p>Mon to Fri 9am to 6 pm</p>
+                         <i class="fa fa-envelope"></i>
+                        <h3>Support@DevAlert.com</h3>
+                        <p>Send us your query anytime!</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-input">
+                        <input type="text" class="form-control" placeholder="Enter your name">
+                        <input type="text" class="form-control" placeholder="Enter email Address">
+                        <input type="text" class="form-control" placeholder="Enter Subject">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-message">
+                        <textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="Enter Message"></textarea>
+                        <button class="form-control btn btn-primary">SEND MESSAGE</button>
+                    </div>
+                </div>
+            </div>
+        </form> 
+       
 
         {{!-- WRITE ALL YOUR CONTACT-US CODE WITHIN --}}
 
-    </div>>
+    </div>
 
     {{> footer}}
 </body>
