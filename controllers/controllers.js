@@ -30,8 +30,8 @@ const Jobs = {
     };
     try {
       let createdJob = await db.create(queryText);
-      console.log(createdJob);
       sendMailForRemoteJob(createdJob, next);
+      console.log(createdJob);
       return res.status(201).redirect("/managejobs");
     } catch (error) {
       return res.status(400).send(error);
