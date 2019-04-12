@@ -41,7 +41,15 @@ const Jobs = {
     const queryText = {};
     try {
       let foundJobs = await db.find(queryText);
-      return res.status(200).render("manage_jobs", { content: foundJobs });
+      return res.status(200).render("manage_jobs", {
+        content: foundJobs,
+        helpers: {
+          inc: function(index) {
+            index++;
+            return index;
+          }
+        }
+      });
     } catch (error) {
       return res.status(400).send(error);
     }
@@ -125,4 +133,3 @@ const Jobs = {
 };
 
 module.exports = Jobs;
-yy;

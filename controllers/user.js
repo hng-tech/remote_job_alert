@@ -84,8 +84,6 @@ async function sendMailForRemoteJob(job, next) {
       .on("end", function() {
         console.log("Done!");
       });
-
-    // req.flash("success", "Email subscription was successful");
   } catch (err) {
     console.error(err);
     next(err);
