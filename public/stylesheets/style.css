@@ -34,6 +34,13 @@ header nav {
   padding: 20px 0;
 }
 
+header .alert {
+  position: absolute;
+  top: 30px;
+  width: 80%;
+  padding: 20px 10px;
+  z-index: 10000;
+}
 @media screen and (max-width: 322px) {
   header nav .logo {
     margin-bottom: 10px !important;

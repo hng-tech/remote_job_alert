@@ -7,13 +7,7 @@
     sans-serif;
 }
 
-#homepage .alert {
-  position: absolute;
-  top: 30px;
-  width: 80%;
-  padding: 20px 30px;
-  z-index: 10000;
-}
+
 #homepage main {
   width: 100%;
   margin: 0 auto !important;

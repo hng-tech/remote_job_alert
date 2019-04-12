@@ -4,6 +4,7 @@
 <head>
   <title>DevAlert Admin Dashboard</title>
 </head>
+
 <body class="admin_body">
   <div id="sidebar">
     <div class="sidebar-wrapper">
@@ -91,7 +92,7 @@
                 <tbody class="t-13 xc_table">
                   {{# each content}}
                   <tr>
-                    <td>1</td>
+                    <td>{{inc @index}}</td>
                     <td>{{this.employer_email}}</td>
                     <td>{{this.company_name}}</td>
                     <td>{{this.career_level}}</td>
@@ -109,7 +110,7 @@
                         <i class="fa fa-trash"></i> Delete</a>
                     </td>
                   </tr>
-                   {{/each}}
+                  {{/each}}
                 </tbody>
               </table>
             </div>
@@ -121,156 +122,156 @@
 
   <!-- Create Job Modal-->
   <form action="/jobs" method="POST">
-  <div class="modal fade" id="createJobModal" tabindex="-1" role="dialog" aria-labelledby="createJobModalLabel" aria-hidden="true">
-    <div class="modal-dialog " role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-light">
-          <h5 class="modal-title" id="createJobModalLabel">Create Job</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="nrm-wrapper">
-            <div class="form-group">
-              <input type="text" class="form-control br-0" name="company_name" placeholder="Company's Name">
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control br-0" name="job_title" placeholder="Job Title">
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control br-0" name="email" placeholder="Email Address">
-            </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <input type="number" class="form-control br-0" name="minimum_salary" placeholder="Minimum Salary">
+    <div class="modal fade" id="createJobModal" tabindex="-1" role="dialog" aria-labelledby="createJobModalLabel" aria-hidden="true">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-light">
+            <h5 class="modal-title" id="createJobModalLabel">Create Job</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="nrm-wrapper">
+              <div class="form-group">
+                <input type="text" class="form-control br-0" name="company_name" placeholder="Company's Name">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control br-0" name="job_title" placeholder="Job Title">
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control br-0" name="email" placeholder="Email Address">
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <input type="number" class="form-control br-0" name="minimum_salary" placeholder="Minimum Salary">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <input type="number" class="form-control br-0" name="maximum_salary" placeholder="Maximum Salary">
+                  </div>
                 </div>
               </div>
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <input type="number" class="form-control br-0" name="maximum_salary" placeholder="Maximum Salary">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <select name="location" id="" class="form-control br-0">
+                      <option selected>Select State</option>
+                      <option>Abuja</option>
+                      <option>Lagos</option>
+                      <option>Port Harcourt</option>
+                      <option>Ghana</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <select name="career_level" id="" class="form-control br-0">
+                      <option>Choose Experience</option>
+                      <option>Junior</option>
+                      <option>Intermidiate</option>
+                      <option>Expert</option>
+                    </select>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <select name="location" id="" class="form-control br-0">
-                    <option selected>Select State</option>
-                    <option>Abuja</option>
-                    <option>Lagos</option>
-                    <option>Port Harcourt</option>
-                    <option>Ghana</option>
-                  </select>
-                </div>
+              <div class="form-group">
+                <textarea id="" cols="30" rows="4" name="job_description" placeholder="Job Description" class="form-control br-0"></textarea>
               </div>
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <select name="career_level" id="" class="form-control br-0">
-                    <option>Choose Experience</option>
-                    <option>Junior</option>
-                    <option>Intermidiate</option>
-                    <option>Expert</option>
-                  </select>
-                </div>
+              <div class="form-group">
+                <input type="text" name="image_link" class="form-control br-0" placeholder="Enter Image link">
               </div>
-            </div>
-            <div class="form-group">
-              <textarea id="" cols="30" rows="4" name="job_description" placeholder="Job Description" class="form-control br-0"></textarea>
-            </div>
-            <div class="form-group">
-              <input type="text" name="image_link" class="form-control br-0" placeholder="Enter Image link">
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <input type="submit" class="submit btn btn-success b-7 br-0 btn-block" value="Add New">
+              <div class="row">
+                <div class="col-12">
+                  <input type="submit" class="submit btn btn-success b-7 br-0 btn-block" value="Add New">
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </form>
 
   <!-- Edit Job Modal-->
   {{# each content}}
   <form action="/jobs/{{this.id}}" method="post">
-  <div class="modal fade" id="a{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="editJobModalLabel" aria-hidden="true">
-    <div class="modal-dialog " role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-light">
-          <!-- Create Job Modal-->
-          <h5 class="modal-title" id="editJobModalLabel">Edit Job</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="nrm-wrapper">
-            <div class="form-group">
-              <input type="text" class="form-control br-0" name="company_name" value="{{this.company_name}}" placeholder="Company's Name">
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control br-0" name="job_title" value="{{this.job_title}}" placeholder="Job Title">
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control br-0" name="email" value="{{this.employer_email}}" placeholder="Email Address">
-            </div>
-            <div class="row">
-              <div class="col-lg-6">
+    <div class="modal fade" id="a{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="editJobModalLabel" aria-hidden="true">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-light">
+            <!-- Create Job Modal-->
+            <h5 class="modal-title" id="editJobModalLabel">Edit Job</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="nrm-wrapper">
+              <div class="form-group">
+                <input type="text" class="form-control br-0" name="company_name" value="{{this.company_name}}" placeholder="Company's Name">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control br-0" name="job_title" value="{{this.job_title}}" placeholder="Job Title">
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control br-0" name="email" value="{{this.employer_email}}" placeholder="Email Address">
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <input type="number" class="form-control br-0" name="minimum_salary" value="{{this.job_pay_min}}" placeholder="Minimum Salary">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <input type="number" class="form-control br-0" name="maximum_salary" value="{{this.job_pay_max}}" placeholder="Maximum Salary">
+                  </div>
+                </div>
                 <div class="form-group">
-                  <input type="number" class="form-control br-0" name="minimum_salary" value="{{this.job_pay_min}}" placeholder="Minimum Salary">
+                  <input type="email" class="form-control br-0" value="{{this.employer_email}}" placeholder="Email Address">
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input type="email" class="form-control br-0" value="{{this.job_pay_min}}" placeholder="Minimum Salary">
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <input type="email" class="form-control br-0" value="{{this.job_pay_max}}" placeholder="Maximum Salary">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <select name="career_level" id="" class="form-control br-0">
+                      <option selected>Choose Experience</option>
+                      <option>Choose Experience</option>
+                      <option>Junior</option>
+                      <option>Intermidiate</option>
+                      <option>Expert</option>
+                    </select>
+                  </div>
                 </div>
               </div>
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <input type="number" class="form-control br-0" name="maximum_salary" value="{{this.job_pay_max}}" placeholder="Maximum Salary">
-                </div>
+              <div class="form-group">
+                <textarea id="" cols="30" rows="4" name="job_description" placeholder="Job Description" class="form-control br-0">{{this.job_description}}</textarea>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <select name="" id="" class="form-control br-0">
-                    <option selected>Select State</option>
-                    <option>Abuja</option>
-                    <option>Lagos</option>
-                    <option>Port Harcourt</option>
-                    <option>Ghana</option>
-                  </select>
-                  </select>
-                </div>
+              <div class="form-group">
+                <input type="text" name="image_link" value="{{this.image_link}}" class="form-control br-0">
               </div>
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <select name="career_level" id="" class="form-control br-0">
-                    <option selected>Choose Experience</option>
-                    <option>Choose Experience</option>
-                    <option>Junior</option>
-                    <option>Intermidiate</option>
-                    <option>Expert</option>
-                  </select>
+              <div class="row">
+                <div class="col-12">
+                  <input type="submit" class="submit btn btn-info b-7 br-0 btn-block" value="Save Changes">
                 </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <textarea id="" cols="30" rows="4" name="job_description" placeholder="Job Description" class="form-control br-0">{{this.job_description}}</textarea>
-            </div>
-            <div class="form-group">
-              <input type="text" name="image_link" value="{{this.image_link}}" class="form-control br-0">
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <input type="submit" class="submit btn btn-info b-7 br-0 btn-block" value="Save Changes">
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
   </form>
   {{/each}}
 
