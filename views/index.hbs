@@ -9,89 +9,46 @@
 	{{> header }}
 	<div id="homepage">
 		<main class="container">
-			{{#if success}} {{#if success}}
-			<div class="alert alert-success alert-dismissible fade show">
-				<strong>{{success}}</strong>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			{{/if}} {{#each errors}}
-			<div class="alert alert-danger alert-dismissible fade show" role="alert">
-				<strong>{{msg}}</strong>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			{{/each}}
-
 
 			<!-- BODY TOP -->
-			<section id="body_top" class="container ">
-				<div class="d-flex justify-content-center ">
-					<button class="btn btn-custom btn-html d-flex justify-content-center ">
-						<img src="/images/html.svg" alt=" " />
-					</button>
+			<section id="intro">
+				<div class="code">
+
+					<img src="images/code2.png" />
+
+				</div>
+				<div class="row">
+					<div class="col-sm-12 col-md-6 intro-text">
+						<h4>The remote life</h4>
+						<h1>Subscribe to recieve remote developer jobs</h1>
+						<p>Built by Africans for Africa. Let us help you get that dream remote job you are perfect for.
+						</p>
+						<form action="/email-subscription" method="POST">
+							<div class="input-group">
+								<input type="email" class="form-control" placeholder="Email" name="email">
+								<div class="input-group-append">
+									<button class="btn" type="submit">Subscribe</button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="col-sm-12 col-md-6 intro-img d-flex justify-content-center align-items-center">
+						<img src="images/introimg.jpg" width="300" />
+					</div>
 				</div>
 
-				<div class="row ">
-					<div class="col-md-5">
-						<p>The remote life</p>
-						<h1>Subscribe to receive remote developers job</h1>
-						<p class="text-muted ">Built for africa and by africa. Let us help you get that dream remote job you’re perfect for.</p>
-						<div class="card mt-5 ">
-							<div class="card-body p-2 ">
-								<form action=" " class="form-inline ">
-									<input type="email " class="borderless " placeholder="Enter email address ">
-									<button type="submit " class="btn btn-custom ml-auto font-weight-bold ">Get started</button>
-								</form>
-							</div>
-						</div>
-					</div>
-					{{/if}} {{#each errors}}
-					<div class="alert alert-danger alert-dismissible fade show" role="alert">
-						<strong>{{msg}}</strong>
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					{{/each}}
-					<section id="intro">
-						<div class="code">
-
-							<img src="images/code2.png" />
-
-						</div>
-						<div class="row">
-							<div class="col-sm-12 col-md-6 intro-text">
-								<h4>The remote life</h4>
-								<h1>Subscribe to recieve remote developer jobs</h1>
-								<p>Built for africa and for africa. Let us help you get that dream remote job you’re perfect for
-								</p>
-								<form action="/email-subscription" method="POST">
-									<div class="input-group">
-										<input type="email" class="form-control" placeholder="Email" name="email">
-										<div class="input-group-append">
-											<button class="btn" type="submit">Subscribe</button>
-										</div>
-									</div>
-								</form>
-							</div>
-							<div class="col-sm-12 col-md-6 intro-img d-flex justify-content-center align-items-center">
-								<img src="images/introimg.jpg" width="300" />
-							</div>
-						</div>
-
-					</section>
+			</section>
 		</main>
 		<section id="pay-agent">
 			<div class="container">
 				<div class="pay-header">
 					<h1>Pay an agent to apply</h1>
 					<p>Secure the job faster and easier.
-						<br />Let an agent help you apply to get more probability of sucess
+						<br />Let an agent help you apply to get more probability of sucess.
 					</p>
-					<button class="btn">Contact Agent</button>
+					<button data-toggle="modal" class="btn btn-custom" data-target="#registerModal">
+						Contact Agent
+					</button>
 				</div>
 			</div>
 		</section>
@@ -123,7 +80,7 @@
 							{{# each contents}}
 							<ul class="job col-sm-5">
 								<li>
-									<img src="{{ this.advert_header }}" height="30" width="30" />
+									<img src="{{ this.image_link }}" height="30" width="30" />
 								</li>
 								<li>
 									<p>{{ this.job_title }}</p>
@@ -131,7 +88,7 @@
 								<li>
 									<a href="#" data-toggle="modal" data-target="#a{{this.id}}">
 										<p>view
-											<img src="images/Arrow.png" />
+											<img src="/images/Arrow.png" />
 										</p>
 									</a>
 								</li>
@@ -151,42 +108,43 @@
 				</div>
 			</div>
 		</section>
-		</div>
+	</div>
 
-		<!--- JOB LISTING MODAL -->
-		{{# each contents}}
+	<!--- JOB LISTING MODAL -->
+	{{# each contents}}
 	<div style="width: 100%;" class="modal fade" id="a{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-		 aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-body" id="job-details">
-						<button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
+	 aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="text-align: center;">
+				<div class="modal-body" id="job-details">
+					<button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 
-						<h3 class="mt-4" class="font-weight-bold">Job Details</h3>
-						<div class="row mt-4">
-							<div class="col-md-6">
-								<p class="text-muted">Job Title</p>
-								<h6 class="font-weight-bold">{{ this.job_title }}</h6>
-							</div>
-							<div class="col-md-6">
-								<p class="text-muted">Company</p>
-								<h6 class="font-weight-bold">{{ this.company_name }}</h6>
-							</div>
+					<h3 class="mt-4" class="font-weight-bold">Job Details</h3>
+					<div class="row mt-4">
+						<div class="col-md-6">
+							<p class="font-weight-bold">Job Title</p>
+							<h6 id="job-title">{{ this.job_title }}</h6>
 						</div>
-						<div class="mt-4">
-							<h6 class="font-weight-bold">Requirements</h6>
-							<p class="font-weight-light text-muted">{{ this.job_description }}</p>
-						
+						<div class="col-md-6">
+							<p class="font-weight-bold">Company</p>
+							<h6 id="company-name">{{ this.company_name }}</h6>
 						</div>
-						<a href="#" class="btn btn-custom mt-4 px-4">Hire agent</a>
-						
 					</div>
-					
+					<div class="mt-4">
+						<h6 class="font-weight-bold">Requirements</h6>
+						<p id="job-requirement" class="text-muted">2 years Minimum</p>
+						<hr />
+						<p id="job-description" class="text-muted">{{ this.job_description }}</p>
+					</div>
+					<a href="#" style="margin: 0 auto; background: #11144C; color: #fff;" class="btn mt-4 px-4">Hire agent
+					</a>
 				</div>
+
 			</div>
 		</div>
+<<<<<<< HEAD
 	</div>
 </body>
 	</div>
@@ -195,3 +153,13 @@
 
 		{{> footer}}
 </body>
+||||||| merged common ancestors
+		{{/each}}
+
+		{{> footer}}
+</body>
+=======
+	</div>
+	{{/each}} {{> footer}}
+</body>
+>>>>>>> aa0460fe2bad7b154b83b6a7e0ebc4ade8247788

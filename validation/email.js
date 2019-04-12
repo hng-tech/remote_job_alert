@@ -4,8 +4,7 @@ function validateEmail() {
   return [
     body("email")
       .isEmail()
-      .withMessage("Must be an email")
-      .normalizeEmail()
+      .withMessage("Email is not valid")
   ];
 }
 

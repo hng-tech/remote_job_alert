@@ -1,7 +1,7 @@
-const _ = require('lodash');
+const _ = require("lodash");
 const db = require("./promise").DbAgent;
-const secretKey = 'sk_test_a66878c14f256d4f84f31591e07280d6d18b78b4';
-const paystack = require('paystack')(secretKey);
+const secretKey = "sk_test_a66878c14f256d4f84f31591e07280d6d18b78b4";
+const paystack = require("paystack")(secretKey);
 
 const Paystack = {
   async pay(req, res) {
@@ -13,7 +13,7 @@ const Paystack = {
       return res.redirect(response.data.authorization_url);
     } catch (err) {
       console.log(err);
-      return res.status(400).send(err);
+      next(err);
     }
   }
 };

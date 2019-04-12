@@ -1,4 +1,26 @@
 <header id="header" class="container">
+	{{#each errors}}
+	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		<strong>{{msg}}</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	{{/each}} {{#if emailError}}
+	<div class="alert alert-warning alert-dismissible fade show">
+		<strong>{{emailError}}</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	{{/if}} {{#if success}}
+	<div class="alert alert-success alert-dismissible fade show">
+		<strong>{{success}}</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	{{/if}}
 	<div class="container-fluid">
 		<nav>
 			<div class="logo font-weight-bold">
@@ -7,11 +29,14 @@
 			<div class="nav-items">
 				<ul>
 					<li>
-						<a href="#job-posting">Jobs</a>
+						<a href="/#job-posting">Jobs</a>
 					</li>
 					<li>
-						<button data-toggle="modal" class="btn btn-custom" data-target="#registerModal">
-							</a>Pay an Agent</button>
+						<a href="/about">About</a>
+					</li>
+
+					<li>
+						<a href="/contact">Contact</a>
 					</li>
 				</ul>
 			</div>
@@ -30,24 +55,13 @@
 				<h5 class="mt-5 font-weight-bold">Pay to an agent</h5>
 				<form action="/pay" method="post" class="mt-3">
 					<div class="form-group">
+						<label for="" class="my-0">Email</label>
+						<input type="text" name="email" class="form-control my-0" placeholder="johndoe@example.com" required>
+					</div>
+					<div class="form-group">
 						<label for="" class="my-0">Phone number</label>
-						<input type="text" name="email" class="form-control my-0" placeholder="johndoe@example.com">
+						<input type="tel" name="phoneNo" class="form-control my-0" placeholder="0903455123442" required>
 					</div>
-					{{!--
-					<div class="form-group">
-						<label for="Email" class="my-0">Last name</label>
-						<input type="text" class="form-control my-0" placeholder="run">
-					</div>
-					<div class="form-group">
-						<label for="Email" class="my-0">Email</label>
-						<input type="email" class="form-control my-0" placeholder="testrun01@gmail.com">
-					</div>
-					<div class="form-group">
-						<label for="" class="my-0">Job role</label>
-						<select name="" id="" class="form-control my-0">
-							<option value="">Choose a position</option>
-						</select>
-					</div> --}}
 					<input value="Pay" type="submit" name="phone" class="btn btn-custom px-5 mt-4"></input>
 				</form>
 			</div>
