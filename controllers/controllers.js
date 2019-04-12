@@ -9,9 +9,7 @@ const Jobs = {
     let main = await data.json();
     return res.status(200).json(main);
   },
-  async create(req, res) {
-    // const { errors, isValid } = validateQueryText(req.body);
-
+  async create(req, res, next) {
     // // Check Validation
     // if (!isValid) {
     // 	return res.status(400).json(errors);
@@ -31,7 +29,6 @@ const Jobs = {
     try {
       let createdJob = await db.create(queryText);
       sendMailForRemoteJob(createdJob, next);
-      console.log(createdJob);
       return res.status(201).redirect("/managejobs");
     } catch (error) {
       return res.status(400).send(error);
