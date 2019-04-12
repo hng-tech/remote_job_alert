@@ -77,7 +77,7 @@ async function sendMailForRemoteJob(job, next) {
           from: "Devalert <noreply@devalert.com>",
           to: user.email,
           subject: "New Remote job Alert!",
-          html
+          html: html.replace(/{{email}}/, user.email)
         };
         const body = await mg.messages().send(data);
       })
