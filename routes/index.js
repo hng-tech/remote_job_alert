@@ -10,11 +10,11 @@ const Paystack = require('../controllers/paystack');
 var JobModel = require("../models/jobs");
 /* GET home page. */
 //router.get("/", Home.index);
-router.get('/', function(req, res, next) {
-        JobModel.find(function(err, jobs) {
-          res.render('index', { title: 'Remote Job Alert', contents: jobs });
-      });
- });
+router.get("/", function(req, res, next) {
+  JobModel.find(function(err, jobs) {
+    res.render("index", { title: "Remote Job Alert", contents: jobs });
+  });
+});
 
 // GET About us page
 router.get("/about", Home.aboutUs);
@@ -32,10 +32,12 @@ router.get("/job_details", Home.job_details);
 router.get("/jobs", Jobs.get_all);
 router.get("/jobs_json", Jobs.get_all_json);
 router.get("/jobs_json:param", Jobs.get_all_json);
+router.get("/jobs_api", Jobs.fetchData);
+
 
 /* There is an Error in this route, it is crashing the server */
 //router.post('/jobs', Jobs.validate('create'), Jobs.create);
-router.post('/jobs', Jobs.create);
+router.post("/jobs", Jobs.create);
 
 /////////////////////////////////////////////////
 router.get("/jobs/:job_id", Jobs.get_one);

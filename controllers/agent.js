@@ -23,7 +23,7 @@ const Agent = {
         }
         try {
             let createdAgent = await db.create(queryText);
-            return res.status(200).send("This is to post the Agent Details to the database");
+            return res.status(200).redirect("/");
         } catch(error){
             return res.status(400).send(error);
         }
@@ -32,7 +32,7 @@ const Agent = {
         const queryText = {};
         try {
             let foundAgents = await db.find(queryText);
-            return res.status(200).send("View all the data for the agents");;
+            return res.status(200).render('agents', {agents: foundAgents});
         } catch(error){
             return res.status(400).send(error);
         }
