@@ -1,6 +1,7 @@
 const db = require("./promise").Db;
 const validateQueryText = require("../validation/controller");
 const fetch = require("node-fetch");
+const { sendMailForRemoteJob } = require("./user");
 
 const Jobs = {
   async fetchData(req, res) {
@@ -8,7 +9,7 @@ const Jobs = {
     let main = await data.json();
     return res.status(200).json(main);
   },
-  async create(req, res) {
+  async create(req, res, next) {
     // // Check Validation
     // if (!isValid) {
     // 	return res.status(400).json(errors);
@@ -27,7 +28,7 @@ const Jobs = {
     };
     try {
       let createdJob = await db.create(queryText);
-      console.log(createdJob);
+      sendMailForRemoteJob(createdJob, next);
       return res.status(201).redirect("/managejobs");
     } catch (error) {
       return res.status(400).send(error);
