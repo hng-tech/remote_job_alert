@@ -1,4 +1,26 @@
 <header id="header" class="container">
+	{{#each errors}}
+	<div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top:20px !important;">
+		<strong>{{msg}}</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	{{/each}} {{#if emailError}}
+	<div class="alert alert-warning alert-dismissible fade show" style="argin-top:20px !important;">
+		<strong>{{emailError}}</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	{{/if}} {{#if success}}
+	<div class="alert alert-success alert-dismissible fade show" style="width:100%; margin-top:20px !important;">
+		<strong>{{success}}</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	{{/if}}
 	<div class="container-fluid">
 		<nav>
 			<div class="logo font-weight-bold">
@@ -7,11 +29,14 @@
 			<div class="nav-items">
 				<ul>
 					<li>
-						<a href="#job-posting">Jobs</a>
+						<a href="/#job-posting">Jobs</a>
 					</li>
 					<li>
-						<button data-toggle="modal" class="btn btn-custom" data-target="#registerModal">
-							</a>Pay an Agent</button>
+						<a href="/about">About</a>
+					</li>
+
+					<li>
+						<a href="/contact">Contact</a>
 					</li>
 				</ul>
 			</div>
@@ -20,7 +45,8 @@
 </header>
 
 {{!-- REGISTER MODAL--}}
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+	aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-body">
@@ -31,7 +57,8 @@
 				<form action="/pay" method="post" class="mt-3">
 					<div class="form-group">
 						<label for="" class="my-0">Email</label>
-						<input type="text" name="email" class="form-control my-0" placeholder="johndoe@example.com" required>
+						<input type="text" name="email" class="form-control my-0" placeholder="johndoe@example.com"
+							required>
 					</div>
 					<div class="form-group">
 						<label for="" class="my-0">Phone number</label>

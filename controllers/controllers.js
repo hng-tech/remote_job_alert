@@ -66,6 +66,18 @@ const Jobs = {
 		}
 	},
 	
+	async get_one_json(req, res) {
+		const queryText = {
+			_id: req.params.job_id,
+		};
+		try {
+			let foundJob = await db.findOne(queryText);
+			return res.status(200).json(foundJob);
+		} catch (error) {
+			return res.status(400).send(error);
+		}
+	},
+	
     async update_job(req, res){
         const queryText = {
             _id: req.params.job_id
