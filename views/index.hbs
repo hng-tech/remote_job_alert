@@ -14,39 +14,12 @@
 	{{> header }}
 	<div id="homepage">
 		<main class="container">
-			{{#if success}} {{#if success}}
-			<div class="alert alert-success alert-dismissible fade show">
-				<strong>{{success}}</strong>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			{{/if}} {{#each errors}}
-			<div class="alert alert-danger alert-dismissible fade show" role="alert">
-				<strong>{{msg}}</strong>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			{{/each}}
-
-
 			<!-- BODY TOP -->
 			<section id="body_top" class="container ">
 				<div class="row ">
-					{{/if}} {{#each errors}}
-					<div class="alert alert-danger alert-dismissible fade show" role="alert">
-						<strong>{{msg}}</strong>
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					{{/each}}
 					<section id="intro">
 						<div class="code">
-
 							<img src="images/code2.png" />
-
 						</div>
 						<div class="row">
 							<div class="col-sm-12 col-md-6 intro-text">
@@ -68,8 +41,9 @@
 								<img src="images/introimg.jpg" width="300" />
 							</div>
 						</div>
-
 					</section>
+				</div>
+			</section>
 		</main>
 		<section id="pay-agent">
 			<div class="container">
@@ -121,7 +95,6 @@
 							</h5>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</section>
@@ -218,7 +191,6 @@
 							return el.career_level.toLowerCase() === filter
 						});
 					}
-					debugger;
 					let qty = 0;
 					if ((loaded + 10) > jobs.length) {
 						qty = (jobs.length - loaded)
@@ -235,28 +207,20 @@
 					if (loaded === jobs.length) {
 						$("#load_listings").attr("disabled", true).html("No more listings");
 					}
-
-
 				}
-
 			});
-
 		}
 
 		function load_single_data(id) {
-
 			$.ajax({
 				url: "/jobs_json/" + id,
 				async: false,
 				success: function (data) {
 					job = data;
-
 					if (!job.career_level) {
 						job.career_level = ""
 					}
-
 					$("#job-title").html(job.job_title.toUpperCase() + " - " + job.career_level)
-
 					$("#company-name").html(job.company_name.toUpperCase())
 					if (!job.job_link) {
 						job.job_link = ""
@@ -277,39 +241,21 @@
 						job.location = ""
 					}
 					let job_description_string = job.company_name.toUpperCase() + " is hiring!<br/>Category: " + job.job_category + "<br/>Description: " + job.job_description + "<br/>Location: " + job.location + "<br/>Mail us:" + job.employer_email + "<br/> Salary: " + job.job_pay_min + " - " + job.job_pay_max + "<br/>Link: <a href='" + job.job_link + "'>" + job.job_link + "</a>";
-
-					debugger
-
-
 					$("#job-description").html(job_description_string)
-
-
 				}
 			});
 		}
 
-
 		$(function () {
-
 			load_data();
-
-
 			$("#filter > a").on("click", function () {
-
-
 				$(".jobs ul").remove();
-
 				filter = $(this).attr("data-filter")
-
 				loaded = 0;
-
 				load_data(filter)
-
 			})
 
-
 			$("#load_listings").on('click', function () {
-
 				if (loaded < jobs.length) {
 					// add 10 more jobs to the homepage // or what's left in the db
 					load_data()
@@ -317,19 +263,11 @@
 				if (jobs.length == loaded) {
 					$("#load_listings").attr("disabled", true).html("No more listings");
 				}
-
 			});
 
 			$(".jobs").on('click', ".view-more", function () {
-
-
-
 				job_id = $(this).parent().parent().attr("data-id");
-
 				load_single_data(job_id);
-
-
-
 			});
 		});
 
