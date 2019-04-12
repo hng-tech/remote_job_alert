@@ -1,0 +1,182 @@
+.admin_body {
+  background: #f3f3f3;
+}
+
+.admin_body ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.admin_body .login-container {
+  background: #0e2847;
+  height: 100vh;
+}
+.admin_body .t-11 {
+  font-size: 11px;
+}
+.admin_body .t-12 {
+  font-size: 12px;
+}
+.admin_body .t-13 {
+  font-size: 13px;
+}
+.admin_body .t-14 {
+  font-size: 14px;
+}
+.admin_body .t-15 {
+  font-size: 15px;
+}
+.admin_body .b-6 {
+  font-weight: 600 !important;
+}
+.admin_body .b-7 {
+  font-weight: 700 !important;
+}
+.admin_body .b-8 {
+  font-weight: 800 !important;
+}
+.admin_body .login-wrapper {
+  margin-top: 10%;
+}
+.admin_body .bg-white {
+  background: #ffffff;
+}
+.admin_body .br-0 {
+  border-radius: 0%;
+}
+.admin_body .has-search .form-control {
+  padding-left: 3.4rem;
+}
+
+.admin_body .has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 3.375rem;
+  height: 3.6rem;
+  line-height: 3em;
+  text-align: center;
+  pointer-events: none;
+  color: #6b6b6b;
+  font-size: 20px;
+  /* background: #f7f7f7; */
+}
+
+/* Dashboard */
+.admin_body #sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  background: #11144c;
+  width: 17%;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+}
+.admin_body .sidebar-wrapper {
+  padding: 20px 0;
+}
+.admin_body .page-content {
+  margin-left: 17%;
+  width: 83%;
+}
+.admin_body .fixed-header {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 17%;
+  background: #ffffff;
+  z-index: 100;
+  box-shadow: 2px 0px 10px #cbc7c7;
+  transition: 0.3s all ease;
+  -webkit-transition: 0.3s all ease;
+  -moz-transition: 0.3s all ease;
+}
+.admin_body .content-wrapper {
+  top: 15%;
+  position: absolute;
+  right: 0;
+  left: 17%;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+}
+.admin_body .dash_check_in {
+  background: #ffffff;
+}
+
+.admin_body .menu ul li a {
+  display: block;
+  color: #cfcbcb;
+  padding: 0.5em 0.7em;
+  transition: 0.3s all ease;
+  -webkit-transition: 0.3s all ease;
+  -moz-transition: 0.3s all ease;
+}
+.admin_body .menu ul li a:hover {
+  background: #081a2f;
+  color: #ffffff;
+  text-decoration: none;
+}
+.admin_body .menu ul li a i {
+  width: 20px;
+}
+
+.admin_body .dash_bar {
+  font-size: 20px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.admin_body.xc_table td {
+  padding: 0.4em 0.75rem !important;
+}
+
+.admin_body .job_text_color {
+  color: #11144c;
+}
+
+.admin_body .l-27 {
+  line-height: 27px;
+}
+
+.admin_body .sidebar-collapse {
+  left: -17% !important;
+}
+.admin_body .content-wrapper-collapse,
+.fixed-header-collapse {
+  left: 0% !important;
+}
+
+@media (max-width: 900px) {
+  .admin_body #sidebar {
+    left: -30%;
+    width: 30%;
+  }
+  .admin_body .content-wrapper,
+  .admin_body .fixed-header {
+    left: 0% !important;
+  }
+  .admin_body .sidebar-collapse {
+    left: 0% !important;
+  }
+  .admin_body .content-wrapper-collapse,
+  .admin_body .fixed-header-collapse {
+    left: 30% !important;
+  }
+  .admin_body .page-content {
+    margin-left: 30%;
+    width: 70%;
+  }
+  .admin_body .content-wrapper {
+    left: 30%;
+  }
+  .admin_body .fixed-header {
+    left: 30%;
+  }
+}

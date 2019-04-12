@@ -1,0 +1,342 @@
+#homepage {
+  margin: 0;
+  background: #ffffff;
+  width: 100%;
+  font-size: 16px;
+  font-family: "Work Sans", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+    sans-serif;
+}
+
+
+#homepage main {
+  width: 100%;
+  margin: 0 auto !important;
+}
+
+@media screen and (max-width: 322px) {
+  #homepage main .intro-text {
+    padding: 20px !important;
+  }
+}
+
+@media screen and (max-width: 786px) {
+  #homepage main .code {
+    display: none;
+  }
+
+  #homepage > .container {
+    margin: 0 auto !important;
+  }
+
+  #homepage main div.intro-img img {
+    width: 80% !important;
+  }
+}
+
+#homepage main #intro {
+  position: relative;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+#homepage main #intro .code {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 9;
+}
+
+#homepage main #intro .code img {
+  background: #11144c;
+  display: block;
+  width: 50px;
+  border-radius: 10px;
+}
+
+#homepage main #intro .intro-text {
+  padding: 50px 30px;
+  color: #11144c;
+}
+
+#homepage main #intro .intro-text h5 {
+  font-weight: 400;
+  padding: 20px 0;
+}
+
+#homepage main #intro .intro-text h1 {
+  font-weight: bolder;
+}
+
+#homepage main #intro .intro-text p {
+  padding: 10px 0;
+  color: #77777d;
+}
+
+#homepage main #intro .intro-text form {
+  margin-top: 15px;
+  width: 70%;
+  padding: 5px;
+  border: 1px solid rgba(17, 20, 76, 0.25);
+}
+
+#homepage main #intro .intro-text form input {
+  border: none;
+}
+
+#homepage main #intro .intro-text form button {
+  background: #11144c;
+  border-radius: 6px;
+  color: white;
+}
+
+#homepage main #intro .intro-img {
+  text-align: center;
+}
+
+#homepage #pay-agent {
+  margin-top: 40px;
+  padding: 20px;
+  background: rgba(17, 20, 76, 0.07);
+}
+
+@media screen and (max-width: 786px) {
+  #homepage #pay-agent .pay-header {
+    padding: 10px !important;
+  }
+
+  #homepage #pay-agent h1 {
+    font-size: 20px !important;
+  }
+}
+
+#homepage #pay-agent .pay-header {
+  padding: 80px;
+  text-align: center;
+}
+
+#homepage #pay-agent .pay-header h1 {
+  color: #11144c;
+  font-weight: 800;
+}
+
+#homepage #pay-agent .pay-header button {
+  background: #11144c;
+  padding: 15px;
+  margin-top: 25px;
+  color: white;
+}
+
+@media screen and (max-width: 786px) {
+  #homepage #pay-agent .pay-header h1 {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 571px) {
+  #homepage main #intro .intro-text form .input-group {
+    flex-direction: column;
+  }
+
+  #homepage main #intro .intro-text form .input-group input,
+  #homepage main #intro .intro-text form .input-group button {
+    width: 100%;
+  }
+}
+
+#homepage #job-posting {
+  margin-top: 40px;
+  padding: 20px;
+  background: #ffffff;
+}
+
+#homepage #job-posting .listings {
+  text-decoration: none;
+  color: #11144c;
+}
+
+@media screen and (max-width: 786px) {
+  #homepage #job-posting .job-header {
+    padding: 10px !important;
+  }
+
+  #homepage #job-posting h1 {
+    font-size: 24px !important;
+  }
+}
+
+#homepage #job-posting .job-header {
+  padding: 80px;
+  text-align: center;
+}
+
+#homepage #job-posting .job-header h1 {
+  color: #11144c;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+#homepage #job-posting .job-header form {
+  margin-bottom: 30px;
+}
+
+#homepage #job-posting .job-header form h4 {
+  display: inline-block;
+  color: #11144c;
+  margin-right: 10px;
+}
+
+#homepage #job-posting .job-header form input {
+  border: none;
+}
+
+#homepage #job-posting .job-header form button {
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #11144c;
+  color: #000;
+}
+
+@media screen and (max-width: 786px) {
+  #homepage #job-posting .job-header .job li p {
+    font-size: 12px !important;
+  }
+
+  #homepage #job-posting .job-header h1 {
+    font-size: 20px !important;
+  }
+}
+
+#homepage #job-posting .job-header .job {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.5px solid rgba(17, 20, 76, 0.25);
+  border-radius: 5px;
+  padding: 15px;
+  margin: 15px auto;
+  list-style: none;
+}
+
+#homepage #job-posting .job-header .job li {
+  line-height: 16px;
+  display: inline-block;
+}
+
+#homepage #job-posting .job-header .job li a {
+  text-decoration: none;
+}
+
+#homepage #job-posting .job-header .job li a:hover {
+  color: #11144c;
+}
+
+#homepage #job-posting .job-header .job li a p {
+  color: #77777d !important;
+}
+
+#homepage #job-posting .job-header .job li p {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 0;
+  color: #11144c;
+}
+
+#homepage #job-posting .job-header .job li img {
+  height: 100%;
+}
+
+#homepage #job-posting .job-header .job p {
+  color: #77777d;
+}
+
+#homepage footer {
+  background: #11144c;
+}
+
+#homepage footer .links {
+  padding: 60px;
+}
+
+#homepage footer .links .link-subgroup {
+  color: white;
+  font-family: "Work Sans", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+    sans-serif;
+  margin: 20px;
+}
+
+@media screen and (max-width: 322px) {
+  #homepage footer .links .link-subgroup h3 {
+    font-size: 18px !important;
+  }
+}
+
+#homepage footer .links .link-subgroup .social {
+  margin-top: 20px;
+}
+
+#homepage footer .links .link-subgroup .social a {
+  display: inline-block;
+  font-size: 100%;
+  padding: 10px;
+}
+
+#homepage footer .links .link-subgroup h3 {
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: bolder;
+  line-height: 20px;
+}
+
+#homepage footer .links .link-subgroup ul {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+#homepage footer .links .link-subgroup ul li {
+  padding: 5px;
+}
+
+#homepage footer .links .link-subgroup ul li a {
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+#homepage footer .copyright {
+  background: #0b0d38;
+  text-align: center;
+  line-height: 16px;
+}
+
+#homepage footer .copyright p {
+  font-size: 14px;
+  padding: 20px;
+  margin-bottom: 0;
+  color: white;
+}
+
+@media screen and (max-width: 786px) {
+  #homepage main {
+    margin: 0 !important;
+  }
+
+  #homepage main .intro-text {
+    text-align: center !important;
+    padding: 20px;
+  }
+
+  #homepage main .intro-text h4 {
+    font-size: 18px;
+  }
+
+  #homepage main .intro-text h1 {
+    font-size: 24px;
+  }
+
+  #homepage main .intro-text form {
+    margin: 0 auto;
+  }
+}

@@ -1,2 +1,149 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>{{title}}</title>
+</head>
+
+<body>
+	{{> header }}
+	<div id="homepage">
+		<main class="container">
+
+			<!-- BODY TOP -->
+			<section id="intro">
+				<div class="code">
+
+					<img src="images/code2.png" />
+
+				</div>
+				<div class="row">
+					<div class="col-sm-12 col-md-6 intro-text">
+						<h4>The remote life</h4>
+						<h1>Subscribe to recieve remote developer jobs</h1>
+						<p>Built by africans for africa. Let us help you get that dream remote job you’re perfect for
+						</p>
+						<form action="/email-subscription" method="POST">
+							<div class="input-group">
+								<input type="email" class="form-control" placeholder="Email" name="email">
+								<div class="input-group-append">
+									<button class="btn" type="submit">Subscribe</button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="col-sm-12 col-md-6 intro-img d-flex justify-content-center align-items-center">
+						<img src="images/introimg.jpg" width="300" />
+					</div>
+				</div>
+
+			</section>
+		</main>
+		<section id="pay-agent">
+			<div class="container">
+				<div class="pay-header">
+					<h1>Pay an agent to apply</h1>
+					<p>Secure the job faster and easier.
+						<br />Let an agent help you apply to get more probability of sucess
+					</p>
+					<button data-toggle="modal" class="btn btn-custom" data-target="#registerModal">
+						Contact Agent
+					</button>
+				</div>
+			</div>
+		</section>
+		<section id="job-posting">
+			<div class="container-fluid">
+				<div class="job-header">
+					<h1>Job Postings</h1>
+					<form>
+						<div class="dropdown">
+							<h4>Filter</h4>
+							<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+								Select a job role
+							</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">Link 1</a>
+								<a class="dropdown-item" href="#">Link 2</a>
+								<a class="dropdown-item" href="#">Link 3</a>
+							</div>
+						</div>
+						<!-- <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Enter email address">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button">Subscribe</button>
+                        </div>
+                    </div> -->
+					</form>
+					<div class="container">
+						<div class="row">
+							{{# each contents}}
+							<ul class="job col-sm-5">
+								<li>
+									<img src="{{ this.image_link }}" height="30" width="30" />
+								</li>
+								<li>
+									<p>{{ this.job_title }}</p>
+								</li>
+								<li>
+									<a href="#" data-toggle="modal" data-target="#a{{this.id}}">
+										<p>view
+											<img src="/images/Arrow.png" />
+										</p>
+									</a>
+								</li>
+							</ul>
+							{{/each}}
+						</div>
+						<div>
+							<br />
+							<h5>
+								<button class="listings btn btn-outline btn-sm" href="#">Load more listings
+									<img src="images/arrowdown.svg" />
+								</button>
+							</h5>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!--- JOB LISTING MODAL -->
+	{{# each contents}}
+	<div style="width: 100%;" class="modal fade" id="a{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+	 aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="text-align: center;">
+				<div class="modal-body" id="job-details">
+					<button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<h3 class="mt-4" class="font-weight-bold">Job Details</h3>
+					<div class="row mt-4">
+						<div class="col-md-6">
+							<p class="font-weight-bold">Job Title</p>
+							<h6 id="job-title">{{ this.job_title }}</h6>
+						</div>
+						<div class="col-md-6">
+							<p class="font-weight-bold">Company</p>
+							<h6 id="company-name">{{ this.company_name }}</h6>
+						</div>
+					</div>
+					<div class="mt-4">
+						<h6 class="font-weight-bold">Requirements</h6>
+						<p id="job-requirement" class="text-muted">2 years Minimum</p>
+						<hr />
+						<p id="job-description" class="text-muted">{{ this.job_description }}</p>
+					</div>
+					<a href="#" style="margin: 0 auto; background: #11144C; color: #fff;" class="btn mt-4 px-4">Hire agent
+					</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	{{/each}} {{> footer}}
+</body>
