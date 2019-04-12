@@ -1,8 +1,13 @@
 const db = require('./promise').Db;
 const validateQueryText = require('../validation/controller');
+const fetch = require("node-fetch");
 
 const Jobs = {
-  
+	async fetchData(req, res){
+		let data = await fetch('https://remoteok.io/api?ref=producthunt');
+		let main = await data.json();
+		return res.status(200).json(main);  
+	},
     async create(req, res){
 
         // const { errors, isValid } = validateQueryText(req.body);

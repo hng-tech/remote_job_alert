@@ -26,6 +26,7 @@
 		"lodash": "^4.17.11",
 		"mongoose": "^5.5.0",
 		"morgan": "~1.9.0",
+		"node-fetch": "^2.3.0",
 		"node-paystack": "^1.0.3",
 		"nodemailer": "^6.1.0",
 		"paystack": "^2.0.1",
