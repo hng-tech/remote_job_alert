@@ -14,7 +14,7 @@ Remote job alert is a service used to serve curated job listings outside of Afri
 7. Do not merge, the mentor would.
  Getting Started
 
-Fork the repository firt and clone it
+Fork the repository first and clone it
 ```
 git clone CLONE_URL
 ```
