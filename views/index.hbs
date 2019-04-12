@@ -41,8 +41,8 @@
 				<div class="row">
 					<div class="col-sm-12 col-md-6 intro-text">
 						<h4>The remote life</h4>
-						<h1>Subscribe to recieve remote developer jobs</h1>
-						<p>Built for africa and for africa. Let us help you get that dream remote job you’re perfect for
+						<h1>Subscribe to receive remote developer jobs</h1>
+						<p>Built by Africa and for Africa. Let us help you get that dream remote job you’re perfect for
 						</p>
 						<form action="/email-subscription" method="POST">
 							<div class="input-group">
@@ -93,6 +93,10 @@
                             <button class="btn btn-outline-secondary" type="button">Subscribe</button>
                         </div>
                     </div> -->
+						{{#if query.reference}}
+						<script id="entry-template"
+							type="text/javascript">alert(`Payment Successful. An agent will be with you shortly.Your reference ID is {{query.reference}}`); window.location.href = "http://localhost:3000"</script>
+						{{/if}}
 					</form>
 					<div class="container">
 						<div class="row">
@@ -131,8 +135,8 @@
 
 	<!--- JOB LISTING MODAL -->
 	{{# each contents}}
-	<div style="width: 100%;" class="modal fade" id="a{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-	 aria-hidden="true">
+	<div style="width: 100%;" class="modal fade" id="a{{this.id}}" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-body" id="job-details">

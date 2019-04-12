@@ -23,7 +23,6 @@
 		"hbs": "~4.0.1",
 		"http-errors": "~1.6.2",
 		"mailgun-js": "^0.22.0",
-		"lodash": "^4.17.11",
 		"mongoose": "^5.5.0",
 		"morgan": "~1.9.0",
 		"node-fetch": "^2.3.0",

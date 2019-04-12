@@ -12,7 +12,7 @@ var JobModel = require("../models/jobs");
 //router.get("/", Home.index);
 router.get("/", function(req, res, next) {
   JobModel.find(function(err, jobs) {
-    res.render("index", { title: "Remote Job Alert", contents: jobs });
+    res.render("index", { title: "Remote Job Alert", query: req.query, contents: jobs });
   });
 });
 
@@ -51,7 +51,6 @@ router.post("/agents", Agents.create_agent);
 router.post('/pay', Paystack.pay);
 
 router.get("/managejobs", Jobs.get_all);
-
 //check if email is valid, then sends welcome email and saves email to db
 router.post(
   "/email-subscription",
