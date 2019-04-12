@@ -3,40 +3,46 @@
 
 <head>
 	<title>{{title}}</title>
+	<style>
+		.view-more {
+			cursor: pointer !important;
+		}
+	</style>
 </head>
 
 <body>
 	{{> header }}
 	<div id="homepage">
 		<main class="container">
-
 			<!-- BODY TOP -->
-			<section id="intro">
-				<div class="code">
-
-					<img src="images/code2.png" />
-
-				</div>
-				<div class="row">
-					<div class="col-sm-12 col-md-6 intro-text">
-						<h4>The remote life</h4>
-						<h1>Subscribe to recieve remote developer jobs</h1>
-						<p>Built by Africans for Africa. Let us help you get that dream remote job you are perfect for.
-						</p>
-						<form action="/email-subscription" method="POST">
-							<div class="input-group">
-								<input type="email" class="form-control" placeholder="Email" name="email">
-								<div class="input-group-append">
-									<button class="btn" type="submit">Subscribe</button>
-								</div>
+			<section id="body_top" class="container ">
+				<div class="row ">
+					<section id="intro">
+						<div class="code">
+							<img src="images/code2.png" />
+						</div>
+						<div class="row">
+							<div class="col-sm-12 col-md-6 intro-text">
+								<h4>The remote life</h4>
+								<h1>Subscribe to recieve remote developer jobs</h1>
+								<p>Built for africa and for africa. Let us help you get that dream remote job you’re
+									perfect for
+								</p>
+								<form action="/email-subscription" method="POST">
+									<div class="input-group">
+										<input type="email" class="form-control" placeholder="Email" name="email">
+										<div class="input-group-append">
+											<button class="btn" type="submit">Subscribe</button>
+										</div>
+									</div>
+								</form>
 							</div>
-						</form>
-					</div>
-					<div class="col-sm-12 col-md-6 intro-img d-flex justify-content-center align-items-center">
-						<img src="images/introimg.jpg" width="300" />
-					</div>
+							<div class="col-sm-12 col-md-6 intro-img d-flex justify-content-center align-items-center">
+								<img src="images/introimg.jpg" width="300" />
+							</div>
+						</div>
+					</section>
 				</div>
-
 			</section>
 		</main>
 		<section id="pay-agent">
@@ -44,7 +50,7 @@
 				<div class="pay-header">
 					<h1>Pay an agent to apply</h1>
 					<p>Secure the job faster and easier.
-						<br />Let an agent help you apply to get more probability of sucess.
+						<br />Let an agent help you apply to get more probability of sucess
 					</p>
 					<button data-toggle="modal" class="btn btn-custom" data-target="#registerModal">
 						Contact Agent
@@ -62,10 +68,11 @@
 							<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
 								Select a job role
 							</button>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="#">Link 1</a>
-								<a class="dropdown-item" href="#">Link 2</a>
-								<a class="dropdown-item" href="#">Link 3</a>
+							<div id="filter" class="dropdown-menu">
+								<a class="dropdown-item" data-filter="all">All</a>
+								<a class="dropdown-item" data-filter="junior">Junior</a>
+								<a class="dropdown-item" data-filter="intermediate">Intermediate</a>
+								<a class="dropdown-item" data-filter="expert">Expert</a>
 							</div>
 						</div>
 						<!-- <div class="input-group">
@@ -76,74 +83,194 @@
                     </div> -->
 					</form>
 					<div class="container">
-						<div class="row">
-							{{# each contents}}
-							<ul class="job col-sm-5">
-								<li>
-									<img src="{{ this.image_link }}" height="30" width="30" />
-								</li>
-								<li>
-									<p>{{ this.job_title }}</p>
-								</li>
-								<li>
-									<a href="#" data-toggle="modal" data-target="#a{{this.id}}">
-										<p>view
-											<img src="/images/Arrow.png" />
-										</p>
-									</a>
-								</li>
-							</ul>
-							{{/each}}
+						<div class="row jobs">
+
 						</div>
 						<div>
 							<br />
 							<h5>
-								<button class="listings btn btn-outline btn-sm" href="#">Load more listings
+								<button id="load_listings" class="listings btn btn-outline btn-sm">Load more listings
 									<img src="images/arrowdown.svg" />
 								</button>
 							</h5>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</section>
 	</div>
 
 	<!--- JOB LISTING MODAL -->
-	{{# each contents}}
-	<div style="width: 100%;" class="modal fade" id="a{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-	 aria-hidden="true">
+	<div style="width: 100%;" class="modal fade" id="jobModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content" style="text-align: center;">
 				<div class="modal-body" id="job-details">
 					<button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-
-					<h3 class="mt-4" class="font-weight-bold">Job Details</h3>
+					<h3 class="mt-4">Job Details</h3>
 					<div class="row mt-4">
 						<div class="col-md-6">
 							<p class="font-weight-bold">Job Title</p>
-							<h6 id="job-title">{{ this.job_title }}</h6>
+							<h6 id="job-title"></h6>
 						</div>
 						<div class="col-md-6">
 							<p class="font-weight-bold">Company</p>
-							<h6 id="company-name">{{ this.company_name }}</h6>
+							<h6 id="company-name"></h6>
 						</div>
 					</div>
 					<div class="mt-4">
 						<h6 class="font-weight-bold">Requirements</h6>
-						<p id="job-requirement" class="text-muted">2 years Minimum</p>
+						<p id="job-requirement" class="text-muted">2years Minimum</p>
 						<hr />
-						<p id="job-description" class="text-muted">{{ this.job_description }}</p>
+						<p id="job-description" class="text-muted"></p>
 					</div>
-					<a href="#" style="margin: 0 auto; background: #11144C; color: #fff;" class="btn mt-4 px-4">Hire agent
-					</a>
+					<a href="#" style="margin: 0 auto; background: #11144C; color: #fff;" class="btn mt-4 px-4">Hire
+						agent</a>
+
 				</div>
 
 			</div>
 		</div>
 	</div>
-	{{/each}} {{> footer}}
+	<script>
+		let jobs = null; // To store all jobs
+		let single_job = null; // to store a single job
+		let loaded = 0;
+		let filter = "all";
+
+		function add_jobs(jobs) {
+			for (let i = 0; i < jobs.length; i++) {
+				add_job(jobs[i]);
+				loaded += 1;
+			}
+		}
+
+		function add_job(job) {
+			// if it's a job from microsoft, use microsoft's logo
+			if (job.company_name.toLowerCase() == "microsoft") {
+				job.image_link = "images/ms.png";
+			}
+
+			// if it's a job from google's, use google's logo
+			else if (job.company_name.toLowerCase() == "google") {
+				job.image_link = "https://img.icons8.com/color/29/000000/google-logo.png";
+			}
+
+			// if it's a job from google's, use google's logo
+			else if (job.company_name.toLowerCase() == "facebook") {
+				job.image_link = "https://img.icons8.com/ios/29/000000/facebook-filled.png";
+			}
+
+			let job_html = "<ul data-id=" + job._id + " class='job col-sm-5'><li><img style='width:29px; height:29px;' src='" + job.image_link + "' /></li><li><p>" + job.job_title + "</p></li><li><a class='view-more' data-toggle='modal' data-target='#jobModal'><p>view<img src='images/Arrow.png' /></p></a></li></ul>";
+
+			$(".jobs").append(job_html);
+
+
+			var image = $('ul[data-id=' + job._id + '] > li > img');
+
+			if (image.attr("src") == "") {
+				image.attr("src", "https://img.icons8.com/ios-glyphs/29/000000/organization.png");
+			}
+
+		}
+
+
+		function load_data() {
+
+			$("#load_listings").html("<img src='images/spinner.gif' style='height: 31px; width:31px;' />");
+			$.ajax({
+				url: "/jobs_json",
+				async: false,
+				success: function (data) {
+					jobs = data;
+
+					if (filter !== "all") {
+						jobs = jobs.slice().filter(function (el) {
+							return el.career_level.toLowerCase() === filter
+						});
+					}
+					let qty = 0;
+					if ((loaded + 10) > jobs.length) {
+						qty = (jobs.length - loaded)
+						if (loaded == jobs.length) {
+							$("#load_listings").attr("disabled", true).html("No more listings");
+						}
+					} else {
+						qty = 10
+						$("#load_listings").attr("disabled", false).html("Load more listings <img src='images/arrowdown.svg' />");
+					}
+
+					add_jobs(jobs.slice(loaded, loaded + qty));
+
+					if (loaded === jobs.length) {
+						$("#load_listings").attr("disabled", true).html("No more listings");
+					}
+				}
+			});
+		}
+
+		function load_single_data(id) {
+			$.ajax({
+				url: "/jobs_json/" + id,
+				async: false,
+				success: function (data) {
+					job = data;
+					if (!job.career_level) {
+						job.career_level = ""
+					}
+					$("#job-title").html(job.job_title.toUpperCase() + " - " + job.career_level)
+					$("#company-name").html(job.company_name.toUpperCase())
+					if (!job.job_link) {
+						job.job_link = ""
+					}
+					if (!job.job_category) {
+						job.job_category = ""
+					}
+					if (!job.job_pay_max) {
+						job.job_pay_max = ""
+					}
+					if (!job.job_pay_min) {
+						job.job_pay_min = ""
+					}
+					if (!job.employer_email) {
+						job.employer_email = ""
+					}
+					if (!job.location) {
+						job.location = ""
+					}
+					let job_description_string = job.company_name.toUpperCase() + " is hiring!<br/>Category: " + job.job_category + "<br/>Description: " + job.job_description + "<br/>Location: " + job.location + "<br/>Mail us:" + job.employer_email + "<br/> Salary: " + job.job_pay_min + " - " + job.job_pay_max + "<br/>Link: <a href='" + job.job_link + "'>" + job.job_link + "</a>";
+					$("#job-description").html(job_description_string)
+				}
+			});
+		}
+
+		$(function () {
+			load_data();
+			$("#filter > a").on("click", function () {
+				$(".jobs ul").remove();
+				filter = $(this).attr("data-filter")
+				loaded = 0;
+				load_data(filter)
+			})
+
+			$("#load_listings").on('click', function () {
+				if (loaded < jobs.length) {
+					// add 10 more jobs to the homepage // or what's left in the db
+					load_data()
+				}
+				if (jobs.length == loaded) {
+					$("#load_listings").attr("disabled", true).html("No more listings");
+				}
+			});
+
+			$(".jobs").on('click', ".view-more", function () {
+				job_id = $(this).parent().parent().attr("data-id");
+				load_single_data(job_id);
+			});
+		});
+
+	</script>
+	{{> footer}}
 </body>
