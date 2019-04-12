@@ -62,6 +62,9 @@ router.post(
 //unsuscribe user from mailing
 router.get("/unsubscribe/:email", UserController.unsubscribeUser);
 
+//contact
+router.post("/contact", UserController.sendContactAlert);
+
 /* THERE IS A PROBLEM WITH THE BELOW ROUTES, THEY ARE BREAKING THE SITE*/
 
 // GET Job list page
