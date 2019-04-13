@@ -399,7 +399,9 @@
   
 }
 
-
+.navbar-brand img{
+  border-radius: 10px;
+}
 
 #mobile_hamburger{
   width: 28px;
