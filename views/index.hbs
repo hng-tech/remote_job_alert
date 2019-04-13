@@ -63,7 +63,7 @@
 					<form>
 						<div class="dropdown">
 							<h4>Filter</h4>
-							<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+							<button id="curr_filter" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
 								Select a job role
 							</button>
 							<div id="filter" class="dropdown-menu drp-cur">
@@ -251,6 +251,7 @@
 				$(".jobs ul").remove();
 				filter = $(this).attr("data-filter")
 				loaded = 0;
+				$("#curr_filter").html(filter)
 				load_data(filter)
 			})
 
