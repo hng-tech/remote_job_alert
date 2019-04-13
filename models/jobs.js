@@ -11,6 +11,10 @@ const jobSchema = new Schema(
       type: String,
       required: true
     },
+    job_link: {
+      type: String,
+      required: true
+    },
     image_link: {
       type: String,
       required: false
