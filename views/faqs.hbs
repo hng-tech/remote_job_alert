@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{title}}</title>
+    <style>
+        
+        #faqs {
+            margin: 0 auto;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 400;
+            line-height: 1.5725;
+            font-size:  15.795px;
+        }
+
+        #faqs > h1 {
+            background: #11144C;
+            color: #fff;
+            text-align: center;
+            margin: 15px 0 30px;
+            padding: 5px 0;
+        }
+
+        .faq-text{
+            margin: 0;
+            color: #11144C;
+            font-size: 18px;
+        }
+
+        .faq-link{
+            text-decoration: none;
+            color: #11144C;
+        }
+
+        .faq-link:hover {
+            text-decoration: none;
+            color: #11144C;
+        }
+
+        .faq-link:focus, .faq-link:hover{
+            text-decoration: none;
+        }
+
+        .txt-c{
+            text-align: center;
+        }
+
+        .faq-answers{
+            font-size: 16px;
+        }
+
+        .pleft-1{
+            padding-left: 2rem;
+        }
+
+        .pbottom-1{
+            padding-bottom: rem;
+        }
+
+        .mtop-1{
+            margin-top: 1rem;
+        }
+        .mtop-3{
+            margin-top: 3rem;
+        }
+        .mbottom-0{
+            margin-bottom: 0rem;
+        }
+        .mbottom-1{
+            margin-bottom: 1rem;
+        }
+        .base-color{
+            color: #11144C;
+        }
+
+        .faq-body{
+            max-width: 765px;
+            margin: 0 auto;
+        }
+
+        .faq-box{
+            width: 750px;
+            border-left: 2px solid #11144C;
+            
+        }
+
+        @media only screen and (max-width: 835px){
+            .faq-body{
+                width: 500px;
+                margin: 0 auto;
+            }
+
+            .faq-box{
+                width: 500px;
+                border-left: 1.5px solid #11144C;
+                
+                /* box-shadow: 0 18px 24px -6px rgba(17, 20, 76, 0.1); */
+            }
+        }
+
+        @media only screen and (max-width: 533px){
+            .faq-body{
+                width: 350px;
+                margin: 0 auto;
+            }
+
+            .faq-box{
+                width: 350px;
+                border-left: 4px solid #11144C;
+                
+                padding-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {{> header }}
+
+    <div id="faqs" class="container">
+        <h1>Frequently Asked Questions</h1>
+        <section class="faq-body">
+         <div class="faq-box pleft-1 pbottom-1 mbottom-1 mtop-1">
+             <h3 class="base-color mbottom-0">
+                What is DevAlert?
+             </h3>
+             <p class="faq-answers">
+                It is a platform that connects developers to remote jobs all over the globe.
+             </p>
+         </div>
+         <hr/>
+         <div class="faq-box pleft-1 pbottom-1 mbottom-1 mtop-1">
+            <h3 class="base-color mbottom-0">
+                How do I apply to DevAlert?
+            </h3>
+            <p class="faq-answers">
+                Click on the register button and fill in your details. then wait for the confirmation message. subscribe to the newsletter to get the latest jobs.
+            </p>
+        </div>
+        <hr/>
+        <div class="faq-box pleft-1 pbottom-1 mbottom-1 mtop-1">
+            <h3 class="base-color mbottom-0">
+                Why can't I register?
+            </h3>
+            <p class="faq-answers">
+                Try checking your internet connection and try again.
+            </p>
+        </div>
+        <hr/>
+        <div class="faq-box pleft-1 pbottom-1 mbottom-1 mtop-1">
+            <h3 class="base-color mbottom-0">
+               How can I apply to be an Agent?
+            </h3>
+            <p class="faq-answers">
+                Click on the register button and fill in your details. then wait for the confirmation message. subscribe to the newsletter to get the latest jobs.
+            </p>
+        </div>
+        <hr/>
+        <div class="faq-box pleft-1 pbottom-1 mbottom-1 mtop-1">
+            <h3 class="base-color mbottom-0">
+                How can I stop my subscription?
+            </h3>
+            <p class="faq-answers">
+                Click on profile and go to settings,then log out of the app.
+            </p>
+        </div>
+        <hr/>
+        <div class="faq-box pleft-1 pbottom-1 mbottom-1 mtop-1">
+            <h3 class="base-color mbottom-0">
+                How can I get an Agent?
+            </h3>
+            <p class="faq-answers">
+                Follow the button on the homepage, input your details and wait for the mail. after the mail wait for the instructions.                
+            </p>
+        </div>
+        <hr/>
+        <p class="mt-1 mbottom-2 txt-c faq-text" style="color: black">
+            Still got questions? <a href="/contact" class="faq-link">Contact us!</a> .
+        </p>
+     </section>
+
+    </div>>
+
+    {{> footer}}
+</body>

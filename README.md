@@ -14,20 +14,24 @@ Remote job alert is a service used to serve curated job listings outside of Afri
 7. Do not merge, the mentor would.
  Getting Started
 
-Fork the repository firt and clone it
+Fork the repository first and clone it
 ```
-git clone CLONE_URL
+git clone <CLONE_URL>
 ```
 
 Change into cloned repo and install dependencies
 ```
-npm install
+`npm install`
+
+Create a .env file in the root folder and add the following:
+MAILGUN_API_KEY=key-ahdhdhhd
+MAILGUN_DOMAIN=any.com
+```
 ```
 
 Start the project
 ```
-npm start
-```
+`npm start`
 
 Visit `http://localhost:3000` to view the project.
 

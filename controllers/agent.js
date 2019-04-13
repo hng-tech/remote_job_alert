@@ -1,28 +1,20 @@
 const db = require("./promise").DbAgent;
-const { body } = require('express-validator/check');
+
+const validateAgentQueryText = require('../validation/agent');
+
 
 const Agent = {
 
-    validate(method) {
-        switch (method) {
-            case 'create_agent': {
-             return [
-                body('email', 'Invalid email').isEmail()
-                .normalizeEmail(),
-                body('first_name').not().isEmpty()
-                .trim()
-                .escape(),
-                body('last_name').not().isEmpty()
-                .trim()
-                .escape(),
-                body('job_role').not().isEmpty()
-                .trim()
-                .escape()
-               ]   
-            }
-          }
-    },
+  
     async create_agent(req, res){
+
+        const { errors, isValid } = validateAgentQueryText(req.body);
+
+		// Check Validation
+		if (!isValid) {
+			return res.status(400).json(errors);
+		}
+
         const queryText = {
             first_name: req.body.first_name,
             last_name: req.body.last_name,
@@ -31,7 +23,7 @@ const Agent = {
         }
         try {
             let createdAgent = await db.create(queryText);
-            return res.status(200).send("This is to post the Agent Details to the database");
+            return res.status(200).redirect("/");
         } catch(error){
             return res.status(400).send(error);
         }
@@ -40,7 +32,7 @@ const Agent = {
         const queryText = {};
         try {
             let foundAgents = await db.find(queryText);
-            return res.status(200).send("View all the data for the agents");;
+            return res.status(200).render('agents', {agents: foundAgents});
         } catch(error){
             return res.status(400).send(error);
         }

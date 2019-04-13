@@ -1,134 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="views/dist/css/bootstrap.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="public/stylesheets/style.css">
-    <title>Manage Jobs Here </title>
+  <title>DevAlert Admin Dashboard</title>
 </head>
-<body id="manage-job">
-   <div class="container-fluid">
-       <div class="row">
-           <div class="col-lg-2 col-md-3 col-sm-12">
-               <div class="left-section">
-                    <center>
-                      <div class="logo">
-                        <h3>Logo</h3>
-                    </div>
-                    <a href="" class="btn btn-primary">Post New Job</a>
-                    <a href="">Manage Jobs</a>
-                    </center>
 
-               </div>
-           </div>
-           <div class="col-lg-10 col-md-9 col-sm-12">
-            <div class="right-section">
-                <h1 class="section-header">
-                    Manage Job Posts
-                </h1>
-               <div class="section-form">
-                 <div class="container">
-                   <div class="row">
-                      <div class="col-lg-12">
-                            <div class="table-responsive">
-                              <table cellpadding="10" cellspacing="20" >
-    <tr>
-      
-      <td scope="row" style="padding-left: 90px;"><b>Job Position</b></th>
-      <td scope="row"><b>Date</b></th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      
-      <td> Sort By &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name="" id="" class="form-control">
-        <option value="">All</option>
-      </select></td>
-      <td><input type="text" class="form-control" value="Mon, 9 April 2019"></td>
-      
-    </tr>
-    
-  </tbody>
-</table>
-                            </div>
-                      </div>
-                   </div>
-                 </div>
-               </div>
-               <div class="management table-responsive">
-                 <div class="container">
-                   <div class="row">
-                     <div class="col-lg-12">
-                       <table class="table table-hover">
-                        <tr id="no-border">
-                          <th>Advert Header</th>
-                          <th>Category</th>
-                          <th>Date Added</th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                        </tr>
-  
-    <tr>
-      <td scope="col" >Lorem Ipsum</td>
-      <td scope="col">Sunday March 11 2019</td>
-      <td scope="col"><a href="" class="btn btn-outline-primary">VIEW</a></td>
-      <td scope="col"><a href="" class="btn btn-primary">EDIT</a></td>
-      <td scope="col"><a href="" class="btn btn-outline-danger">DELETE</a></td>
-    </tr>
-     <tr>
-      <td scope="col" >Lorem Ipsum</td>
-      <td scope="col">Sunday March 11 2019</td>
-      <td scope="col"><a href="" class="btn btn-outline-primary">VIEW</a></td>
-      <td scope="col"><a href="" class="btn btn-primary">EDIT</a></td>
-      <td scope="col"><a href="" class="btn btn-outline-danger">DELETE</a></td>
-    </tr>
-     <tr>
-      <td scope="col" >Lorem Ipsum</td>
-      <td scope="col">Sunday March 11 2019</td>
-      <td scope="col"><a href="" class="btn btn-outline-primary">VIEW</a></td>
-      <td scope="col"><a href="" class="btn btn-primary">EDIT</a></td>
-      <td scope="col"><a href="" class="btn btn-outline-danger">DELETE</a></td>
-    </tr>
-     <tr>
-      <td scope="col" >Lorem Ipsum</td>
-      <td scope="col">Sunday March 11 2019</td>
-      <td scope="col"><a href="" class="btn btn-outline-primary">VIEW</a></td>
-      <td scope="col"><a href="" class="btn btn-primary">EDIT</a></td>
-      <td scope="col"><a href="" class="btn btn-outline-danger">DELETE</a></td>
-    </tr>
-     <tr>
-      <td scope="col" >Lorem Ipsum</td>
-      <td scope="col">Sunday March 11 2019</td>
-      <td scope="col"><a href="" class="btn btn-outline-primary">VIEW</a></td>
-      <td scope="col"><a href="" class="btn btn-primary">EDIT</a></td>
-      <td scope="col"><a href="" class="btn btn-outline-danger">DELETE</a></td>
-    </tr>
-     <tr>
-      <td scope="col" >Lorem Ipsum</td>
-      <td scope="col">Sunday March 11 2019</td>
-      <td scope="col"><a href="" class="btn btn-outline-primary">VIEW</a></td>
-      <td scope="col"><a href="" class="btn btn-primary">EDIT</a></td>
-      <td scope="col"><a href="" class="btn btn-outline-danger">DELETE</a></td>
-    </tr>
-  </thead>
-  
-    
+<body class="admin_body">
+  <div id="sidebar">
+    <div class="sidebar-wrapper">
 
-</table>
-                     </div>
-                   </div>
-                 </div>
-               </div>
+      <div class="menu mt-5">
+        <ul>
+          <li>
+            <a href="index.html">
+              <i class="fas fa-home"></i> Dashboard</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="page-content">
+    <div class="fixed-header p-3">
+      <i class="fas fa-bars dash_bar"></i>
+      <ul>
+        <li>
+          <button class="btn-primary btn br-0 t-13" data-toggle="modal" data-target="#createJobModal">
+            <i class="fa fa-plus mr-1"></i>Add Job</button>
+        </li>
+      </ul>
+    </div>
+    <div class="content-wrapper">
+      <div class="container-fluid">
+        <div class="mb-3">
+          <div class="row">
+            <div class="col-md-4 mb-md-0 mb-3 text-center">
+              <div class="bg-white p-3 shadow-sm">
+                <h5 class="t-2 text-info">10</h5>
+                <span class="b-6">Email Subscribers</span>
+              </div>
+            </div>
+            <div class="col-md-4 mb-md-0 mb-3 text-center">
+              <div class="bg-white p-3 shadow-sm">
+                <h5 class="t-2 text-info">10</h5>
+                <span class="b-6">Total Jobs</span>
+              </div>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="bg-white p-3 shadow-sm">
+                <h5 class="t-2 text-info">3</h5>
+                <span class="b-6">Total Agents</span>
+              </div>
+            </div>
+          </div>
         </div>
-       </div>
-   </div>
-    
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Job List</h4>
+            <a class="heading-elements-toggle">
+              <i class="icon-ellipsis font-medium-3"></i>
+            </a>
+            <div class="heading-elements">
+              <ul class="list-inline mb-0">
+                <li>
+                  <a data-action="reload">
+                    <i class="icon-reload"></i>
+                  </a>
+                </li>
+                <li>
+                  <a data-action="expand">
+                    <i class="icon-expand2"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead class="bg-primary t-14 text-white">
+                  <tr>
+                    <th>S/N</th>
+                    <th>Email</th>
+                    <th>Company Name</th>
+                    <th>Job Title</th>
+                    <th>Date Created</th>
+                    <th>Action</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody class="t-13 xc_table">
+                  {{# each content}}
+                  <tr>
+                    <td>{{inc @index}}</td>
+                    <td>{{this.employer_email}}</td>
+                    <td>{{this.company_name}}</td>
+                    <td>{{this.career_level}}</td>
+                    <td>{{this.created_date}}</td>
+                    <td>
+                      <button class="btn br-0 btn-primary btn-sm t-11" data-toggle="modal" data-target="#a{{this.id}}">
+                        <i class="fa fa-pen"></i> Edit</button>
+                    </td>
+                    <td>
+                      <button class="btn br-0 btn-dark btn-sm t-11" data-toggle="modal" data-target="#b{{this.id}}">
+                        <i class="fa fa-eye"></i> View</button>
+                    </td>
+                    <td>
+                      <a href="/jobs/{{this.id}}/delete" class="btn br-0 btn-danger btn-sm t-11">
+                        <i class="fa fa-trash"></i> Delete</a>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script src="views/dist/js/bootstrap.min.js"></script>
+  <!-- Create Job Modal-->
+  <form action="/jobs" method="POST">
+    <div class="modal fade" id="createJobModal" tabindex="-1" role="dialog" aria-labelledby="createJobModalLabel" aria-hidden="true">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-light">
+            <h5 class="modal-title" id="createJobModalLabel">Create Job</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="nrm-wrapper">
+              <div class="form-group">
+                <input type="text" class="form-control br-0" name="company_name" placeholder="Company's Name">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control br-0" name="job_title" placeholder="Job Title">
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control br-0" name="email" placeholder="Email Address">
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <input type="number" class="form-control br-0" name="minimum_salary" placeholder="Minimum Salary">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <input type="number" class="form-control br-0" name="maximum_salary" placeholder="Maximum Salary">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <select name="location" id="" class="form-control br-0">
+                      <option selected>Select State</option>
+                      <option>Abuja</option>
+                      <option>Lagos</option>
+                      <option>Port Harcourt</option>
+                      <option>Ghana</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <select name="career_level" id="" class="form-control br-0">
+                      <option>Choose Experience</option>
+                      <option>Junior</option>
+                      <option>Intermediate</option>
+                      <option>Expert</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <textarea id="" cols="30" rows="4" name="job_description" placeholder="Job Description" class="form-control br-0"></textarea>
+              </div>
+              <div class="form-group">
+                <input type="text" name="image_link" class="form-control br-0" placeholder="Enter Image link">
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <input type="submit" class="submit btn btn-success b-7 br-0 btn-block" value="Add New">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Edit Job Modal-->
+  {{# each content}}
+  <form action="/jobs/{{this.id}}" method="post">
+    <div class="modal fade" id="a{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="editJobModalLabel" aria-hidden="true">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-light">
+            <!-- Create Job Modal-->
+            <h5 class="modal-title" id="editJobModalLabel">Edit Job</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="nrm-wrapper">
+              <div class="form-group">
+                <input type="text" class="form-control br-0" name="company_name" value="{{this.company_name}}" placeholder="Company's Name">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control br-0" name="job_title" value="{{this.job_title}}" placeholder="Job Title">
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control br-0" name="email" value="{{this.employer_email}}" placeholder="Email Address">
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <input type="number" class="form-control br-0" name="minimum_salary" value="{{this.job_pay_min}}" placeholder="Minimum Salary">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <input type="number" class="form-control br-0" name="maximum_salary" value="{{this.job_pay_max}}" placeholder="Maximum Salary">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <select name="career_level" id="" class="form-control br-0">
+                      <option selected>Choose Experience</option>
+                      <option>Choose Experience</option>
+                      <option>Junior</option>
+                      <option>Intermediate</option>
+                      <option>Expert</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <textarea id="" cols="30" rows="4" name="job_description" placeholder="Job Description" class="form-control br-0">{{this.job_description}}</textarea>
+              </div>
+              <div class="form-group">
+                <input type="text" name="image_link" value="{{this.image_link}}" class="form-control br-0">
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <input type="submit" class="submit btn btn-info b-7 br-0 btn-block" value="Save Changes">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </form>
+  {{/each}}
+
+  <!-- View Job Modal-->
+  {{# each content}}
+  <div class="modal fade" id="b{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="viewJobModalLabel" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+      <div class="modal-content">
+        <div class="modal-header ">
+          <!-- Create Job Modal-->
+          <h5 class="modal-title job_text_color" id="viewJobModalLabel">Job Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="nrm-wrapper">
+            <div class="row">
+              <div class="col-6">
+                <h6 class="text-muted t-12">Job Title</h6>
+                <h5 class="job_text_color t-15">{{this.job_title}}</h5>
+              </div>
+              <div class="col-6">
+                <h6 class="text-muted t-12">Company</h6>
+                <h5 class="job_text_color t-15">{{this.company_name}}</h5>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-6">
+                <h6 class="text-muted t-12">Salary</h6>
+                <h5 class="job_text_color t-15">&#8358; {{this.pay_min}} - &#8358;{{this.pay_max}}</h5>
+              </div>
+              <div class="col-6">
+                <h6 class="text-muted t-12">Email Address</h6>
+                <h5 class="job_text_color t-15">{{this.employer_email}}</h5>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-6">
+                <h6 class="text-muted t-12">State</h6>
+                <h5 class="job_text_color t-15">{{this.location}}</h5>
+              </div>
+              <div class="col-6">
+                <h6 class="text-muted t-12">Experience</h6>
+                <h5 class="job_text_color t-15">{{this.career_level}}</h5>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="bg-light p-2">
+                  <h6 class="text-muted t-12 b-7">Description</h6>
+                  <p class="job_textcolor t-14 l-27">
+                    {{this.job_description}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(() => {
+      $('.dash_bar').click(e => {
+        $('#sidebar').toggleClass('sidebar-collapse')
+        $('.content-wrapper').toggleClass('content-wrapper-collapse')
+        $('.fixed-header').toggleClass('fixed-header-collapse')
+      })
+    })
+  </script>
 </body>
-</html>

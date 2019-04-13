@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{title}}</title>
+    <style>
+        #contact {
+            padding: 15px 5px;
+            background: #fff;
+        }
+
+        #contact>h1 {
+            background: #11144C;
+            color: #fff;
+            text-align: center;
+            margin: 15px 0 30px;
+            padding: 5px 0;
+        }
+
+        #contact .row .contact-text i,
+        h3 {
+            display: inline-flex;
+        }
+
+        #contact .row .contact-text i {
+            font-size: 30px;
+        }
+
+        .contact-input input {
+            margin-bottom: 40px;
+            height: 60px;
+        }
+
+        .contact-input input:focus {
+            box-shadow: 0px 0px 4px 0px #11144C !important;
+            border: none;
+        }
+
+        .contact-message textarea:focus {
+            box-shadow: 0px 0px 4px 0px #11144C !important;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #11144C !important;
+            border: none;
+            margin-top: 15px;
+        }
+
+        .btn-primary:focus {
+            box-shadow: 0px 0px 2px 0pc #11144C !important;
+            border: none !important;
+        }
+
+        @media screen and (max-width: 600px) {
+            #contact .row {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {{> header }}
+
+    <div id="contact" class="container">
+
+        <h1>Contact us</h1>
+        {{!-- WRITE ALL YOUR CONTACT-US CODE WITHIN --}}
+        <form action="/contact" method="post">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="contact-text">
+                        <i class="fa fa-home"></i>
+                        <h3>Country, State</h3>
+                        <p>Nigeria, Lagos</p>
+                        <i class="fa fa-mobile"></i>
+                        <h3>+234 812 3233</h3>
+                        <p>Mon to Fri 9am to 6 pm</p>
+                        <i class="fa fa-envelope"></i>
+                        <h3>Supports@DevAlert.com</h3>
+                        <p>Send us your query anytime!</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-input">
+                        <input type="text" name="name" class="form-control" placeholder="Enter your name">
+                        <input type="email" name="email" class="form-control" placeholder="Enter email Address">
+                        <input type="subject" class="form-control" placeholder="Enter Subject">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-message">
+                        <textarea name="message" id="" cols="30" rows="10" class="form-control" placeholder="Enter Message"></textarea>
+                        <button class="form-control btn btn-primary">SEND MESSAGE</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        {{!-- WRITE ALL YOUR CONTACT-US CODE WITHIN --}}
+
+    </div>
+
+    {{> footer}}
+</body>

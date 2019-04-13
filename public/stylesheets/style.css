@@ -1,12 +1,11 @@
 /* Styling For JOBS_DETAILS */
 
 @import url("homepage.css");
-@import url("sign_manage.css");
 @import url("manage_jobs.css");
-@import url("dashboard.css");
-@import url("sign_manage.css");
-@import url("creat-job-post.css");
-@import url("edit-job-post.css");
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -15,3 +14,180 @@ body {
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+
+.btn-custom {
+  background: #11144c;
+  color: #fff;
+  padding: 10px 10px;
+}
+.btn-custom:hover {
+  background: #11144c;
+  color: #fff;
+}
+/************************************* HEADER STYLES  **********************************/
+
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 20px 0;
+}
+
+header .alert {
+  position: absolute;
+  top: 30px;
+  width: 80%;
+  padding: 20px 10px;
+  z-index: 10000;
+}
+@media screen and (max-width: 322px) {
+  header nav .logo {
+    margin-bottom: 10px !important;
+  }
+
+  header nav .nav-items ul {
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  header nav .nav-items ul li {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 786px) {
+  header nav {
+    display: block !important;
+  }
+
+  header nav .logo {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #11144c !important;
+    width: 100%;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  header nav .nav-items {
+    text-align: center !important;
+  }
+
+  header nav .nav-items ul {
+    margin: 0 !important;
+    padding: 10px !important;
+  }
+
+  header nav .nav-items ul li {
+    padding: 10px;
+    margin: 10px auto;
+    display: inline;
+  }
+}
+
+header nav ul {
+  list-style: none;
+  margin: 0 60px 0;
+}
+
+header nav div a {
+  color: #11144c;
+}
+
+header nav ul li {
+  display: inline-block;
+  padding: 15px;
+  margin-left: 30px;
+  line-height: 16px;
+}
+
+header nav ul li a {
+  text-decoration: none !important;
+  font-size: 16px;
+  color: #11144c;
+}
+
+/************************************* HEADER STYLES END  **********************************/
+
+/************************************* FOOTER STYLES  **********************************/
+
+footer {
+  background: #11144c;
+}
+
+footer .links {
+  padding: 60px;
+}
+
+footer .links .link-subgroup {
+  color: white;
+}
+
+footer .links .link-subgroup a {
+  color: #dedada;
+  font-size: 15px;
+  font-weight: 200;
+  text-decoration: none;
+}
+footer .links .link-subgroup a:hover {
+  color: #fff;
+}
+
+@media screen and (max-width: 322px) {
+  footer .links .link-subgroup h3 {
+    font-size: 18px !important;
+  }
+}
+
+@media screen and (max-width: 556px) {
+  footer .links {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+footer .links .link-subgroup .social {
+  margin-top: 20px;
+}
+
+footer .links .link-subgroup .social a {
+  display: inline-block;
+  font-size: 100%;
+  margin-right: 16px;
+}
+
+footer .links .link-subgroup h3 {
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: bolder;
+  line-height: 20px;
+}
+
+footer .links .link-subgroup ul {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+footer .links .link-subgroup ul li {
+  padding: 5px;
+}
+
+footer .copyright {
+  background: #0b0d38;
+  text-align: center;
+  line-height: 16px;
+}
+
+footer .copyright p {
+  font-size: 12px;
+  padding: 20px;
+  margin-bottom: 0;
+  color: #dedada;
+}
+
+/************************************* FOOTER STYLES END  **********************************/
