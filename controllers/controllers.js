@@ -25,7 +25,8 @@ const Jobs = {
       career_level: req.body.career_level,
       location: req.body.location,
       job_description: req.body.job_description,
-      image_link: req.body.image_link
+      image_link: req.body.image_link,
+      employer_link: req.body.employer_link
     };
     try {
       let createdJob = await db.create(queryText);
@@ -109,7 +110,8 @@ const Jobs = {
       career_level: req.body.career_level,
       location: req.body.location,
       job_description: req.body.job_description,
-      image_link: req.body.image_link
+      image_link: req.body.image_link,
+      employer_link: req.body.employer_link
     };
     try {
       let updatedJob = await db.findOneAndUpdate(queryText, updateText);
