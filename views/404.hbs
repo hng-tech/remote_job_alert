@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{title}}</title>
+    <style>
+.error-message{
+            font-size: 50px;
+            line-height: 30px;
+            font-weight: bolder;
+            text-align: center;
+            font-family: Work Sans;
+            font-style: normal;
+            font-size: 50px;
+            line-height: normal;
+            color: #11144C;
+
+        }
+
+        .main{
+            background-color: #fff;
+            margin-top: 3%;
+        }
+
+        .return-button{
+            background-color:#11144C;
+
+            padding: 13px;
+            padding-left: 50px;
+            padding-right: 50px;
+            position: relative;
+            top: 300px;
+            bottom: 30%;
+            left:41%;
+            border-radius: 10px;
+            font-size: 20px;
+            line-height: 30px;
+            font-weight: bold;
+           color:#ffffff;
+            
+            
+        }
+
+        .error-image{
+            position: absolute;
+            width: 175px;
+            height: 175px;
+            left: 43.78%;
+            transform: matrix(-1, 0, 0, 1, 0, 0);
+
+        }
+
+
+        @media only screen and (max-width: 600px){
+            .error-message{
+                font-size: 30px;
+                text-align: center;
+                margin-top: 15%;
+                
+
+            }
+            .error-image{
+                width: 125px;
+                height: 125px;
+                left: 35%;
+                position: absolute;
+                top: 35%;
+            }
+
+            .return-button{
+                font-size: 13px;
+                position: relative;
+                left: 27.45%;
+                top: 250px;
+            }
+
+}
+
+        </style>
+</head>
+
+<body class="main">
+    {{> header }}
+
+<p class="error-message">Oops! Looks like that page <br> doesn't exist</p>
+
+<img class="error-image" src="images/broken_link.png"/>
+
+    <span class="return-button">Go back to Home</span>
+
+{{> footer}}
+</body>
