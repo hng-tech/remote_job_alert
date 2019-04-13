@@ -6,7 +6,7 @@ var router = express.Router();
 const UserController = require("../controllers/user");
 const Validation = require("../validation/email");
 const Paystack = require("../controllers/paystack");
-
+var Admin = require("../models/admin");
 var JobModel = require("../models/jobs");
 /* GET home page. */
 //router.get("/", Home.index);
@@ -18,6 +18,43 @@ router.get("/", function(req, res, next) {
 
 // GET About us page
 router.get("/about", Home.aboutUs);
+
+//Admin Page
+router.get('/admin', Home.admin);
+
+router.post('/admin', function(req, res, next){
+	if (req.body.username && req.body.password) {
+    Admin.authenticate(req.body.username, req.body.password, function (error, admin) {
+      if (error || !admin) {
+        var err = new Error('Wrong username or password.');
+        err.status = 401;
+        return next(err);
+      } else {
+        req.session.adminId = admin._id;
+        return res.redirect('/managejobs');
+      }
+    });
+}
+});
+
+//Authenticate Admin Login to Manage Jobs
+router.get('/managejobs', function (req, res, next) {
+  Admin.findById(req.session.adminId)
+    .exec(function (error, admin) {
+      if (error) {
+        return next(error);
+      } else {
+        if (admin === null) {
+          var err = new Error('Not authorized! Go back!');
+          err.status = 400;
+          res.redirect("/admin");
+        //  return next(err);
+        } else {
+          return res.render("manage_jobs");
+        }
+      }
+    });
+});
 
 // GET Contact us page
 router.get("/contact", Home.contactUs);
