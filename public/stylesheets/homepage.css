@@ -99,6 +99,10 @@
   background: rgba(17, 20, 76, 0.07);
 }
 
+#homepage form .drp-cur{
+  cursor: pointer;
+}
+
 @media screen and (max-width: 786px) {
   #homepage #pay-agent .pay-header {
     padding: 10px !important;
