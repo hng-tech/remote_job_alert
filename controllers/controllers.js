@@ -10,7 +10,7 @@ const Jobs = {
     let main = await data.json();
     return res.status(200).json(main);
   },
-  async create(req, res, next) {
+ async create(req, res, next) {
     // // Check Validation
     // if (!isValid) {
     // 	return res.status(400).json(errors);
