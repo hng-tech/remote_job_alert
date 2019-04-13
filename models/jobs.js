@@ -15,10 +15,6 @@ const jobSchema = new Schema(
       type: String,
       required: false
     },
-    employer_link: {
-      type: String,
-      required: false
-    },
     job_description: {
       type: String,
       required: true
