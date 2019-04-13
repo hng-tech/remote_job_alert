@@ -22,11 +22,15 @@ class Home {
     // Render job details page
     // TODO?
     static job_details(req, res, next){
-        res.render('job_details', {title : 'Job Details'});
+        res.render('job_details', { title : 'Job Details' });
     }
 
     static managejobs(req, res, next){
-        res.render('manage-job', {title : 'Manage Jobs'});
+        res.render('manage-job', { title : 'Manage Jobs' });
+    }
+
+    static get_summary(req, res, next){
+        res.render('get-summary', { title : 'Payment Summary', reference: req.query.reference });
     }
 }
 
