@@ -400,7 +400,8 @@
 }
 
 .navbar-brand img{
-  border-radius: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px rgb(146, 145, 145)
 }
 
 #mobile_hamburger{
