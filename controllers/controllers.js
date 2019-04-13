@@ -2,6 +2,7 @@ const db = require("./promise").Db;
 const validateQueryText = require("../validation/controller");
 const fetch = require("node-fetch");
 const { sendMailForRemoteJob } = require("./user");
+const userModel = require("../models/user");
 
 const Jobs = {
   async fetchData(req, res) {
@@ -38,8 +39,11 @@ const Jobs = {
     const queryText = {};
     try {
       let foundJobs = await db.find(queryText);
+      let usersCount = await userModel.countDocuments({});
       return res.status(200).render("manage_jobs", {
         content: foundJobs,
+        jobCount: foundJobs.length,
+        usersCount,
         helpers: {
           inc: function(index) {
             index++;
