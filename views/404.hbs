@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{title}}</title>
+    <style>
+        @media only screen and (max-width: 767px) {
+            .page404 h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {{> header }}
+    <div class="container mt-2 mb-4">
+
+
+        <div class="page404 d-flex align-items-center flex-column">
+            <h1 class="text-center mb-4 font-weight-bold">Oops! Looks like that page
+                <br> doesn’t exist.</h1>
+            <img width="250px" src="images/broken_link.svg" />
+            <p class="mt-5">
+                <a href="/" class="btn btn-custom px-5">Go to Home</a>
+            </p>
+        </div>
+
+    </div>
+    {{> footer}}
+</body>
