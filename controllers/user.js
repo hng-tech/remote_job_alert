@@ -62,12 +62,14 @@ async function sendMailForRemoteJob(job, next) {
     const filename = path.normalize(
       path.join(__dirname, "../email-templates/remote_job.hbs")
     );
+    const job_link = job_link || "";
     const html = fs
       .readFileSync(filename)
       .toString()
       .replace(/{{job_title}}/, job.job_title)
       .replace(/{{company_name}}/, job.company_name)
       .replace(/{{image_link}}/, job.image_link)
+      .replace(/{{job_link}}/, job_link)
       .replace(/ {{career_level}}/, job.career_level);
 
     User.find()
