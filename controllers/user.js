@@ -90,8 +90,38 @@ async function sendMailForRemoteJob(job, next) {
   }
 }
 
+async function sendContactAlert(req, res, next) {
+  try {
+    const { email, name, subject, message } = req.body;
+    const filename = path.normalize(
+      path.join(__dirname, "../email-templates/contact.hbs")
+    );
+    const html = fs
+      .readFileSync(filename)
+      .toString()
+      .replace(/{{name}}/, name);
+    const data = {
+      from: "Devalert <supports@devalert.com>",
+      to: email,
+      subject: "Contact Us - DevAlert",
+      html
+    };
+    const body = await mg.messages().send(data);
+
+    req.flash(
+      "success",
+      "Your message was sent. Our support would reply within 24 hours."
+    );
+    res.redirect("/contact");
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+}
+
 module.exports = {
   unsubscribeUser,
   sendMail,
-  sendMailForRemoteJob
+  sendMailForRemoteJob,
+  sendContactAlert
 };

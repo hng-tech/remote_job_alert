@@ -35,13 +35,13 @@
           <div class="row">
             <div class="col-md-4 mb-md-0 mb-3 text-center">
               <div class="bg-white p-3 shadow-sm">
-                <h5 class="t-2 text-info">10</h5>
+                <h5 class="t-2 text-info">{{usersCount}}</h5>
                 <span class="b-6">Email Subscribers</span>
               </div>
             </div>
             <div class="col-md-4 mb-md-0 mb-3 text-center">
               <div class="bg-white p-3 shadow-sm">
-                <h5 class="t-2 text-info">10</h5>
+                <h5 class="t-2 text-info">{{jobCount}}</h5>
                 <span class="b-6">Total Jobs</span>
               </div>
             </div>
@@ -171,7 +171,7 @@
                     <select name="career_level" id="" class="form-control br-0">
                       <option>Choose Experience</option>
                       <option>Junior</option>
-                      <option>Intermidiate</option>
+                      <option>Intermediate</option>
                       <option>Expert</option>
                     </select>
                   </div>
@@ -230,28 +230,13 @@
                     <input type="number" class="form-control br-0" name="maximum_salary" value="{{this.job_pay_max}}" placeholder="Maximum Salary">
                   </div>
                 </div>
-                <div class="form-group">
-                  <input type="email" class="form-control br-0" value="{{this.employer_email}}" placeholder="Email Address">
-                </div>
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <input type="email" class="form-control br-0" value="{{this.job_pay_min}}" placeholder="Minimum Salary">
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <input type="email" class="form-control br-0" value="{{this.job_pay_max}}" placeholder="Maximum Salary">
-                    </div>
-                  </div>
-                </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <select name="career_level" id="" class="form-control br-0">
                       <option selected>Choose Experience</option>
                       <option>Choose Experience</option>
                       <option>Junior</option>
-                      <option>Intermidiate</option>
+                      <option>Intermediate</option>
                       <option>Expert</option>
                     </select>
                   </div>

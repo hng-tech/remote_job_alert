@@ -1,4 +1,4 @@
-<header id="header" class="container">
+<div class="container">
 	{{#each errors}}
 	<div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<strong>{{msg}}</strong>
@@ -21,6 +21,9 @@
 		</button>
 	</div>
 	{{/if}}
+</div>
+<header id="header" class="container">
+
 	<div class="container-fluid">
 		<nav>
 			<div class="logo font-weight-bold">
@@ -60,7 +63,8 @@
 					</div>
 					<div class="form-group">
 						<label for="" class="my-0">Phone number</label>
-						<input type="tel" name="phoneNo" class="form-control my-0" placeholder="0903455123442" required>
+						<input type="tel" name="phoneNo" class="form-control my-0" placeholder="+234 7036836753" minlength="11" pattern="[+]{0,1}[0-9\s]+"
+						 maxlength="16" required>
 					</div>
 					<input value="Pay" type="submit" name="phone" class="btn btn-custom px-5 mt-4"></input>
 				</form>
