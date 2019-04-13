@@ -7,6 +7,10 @@ html {
   scroll-behavior: smooth;
 }
 
+.subscribe:hover{
+    color: #11144c;
+}
+
 body {
   margin: 0;
   color: #11144c;
