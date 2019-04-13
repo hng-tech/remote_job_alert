@@ -75,12 +75,7 @@
 								<a class="dropdown-item" data-filter="expert">Expert</a>
 							</div>
 						</div>
-						<!-- <div class="input-group">
-                        <input type="email" class="form-control" placeholder="Enter email address">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button">Subscribe</button>
-                        </div>
-                    </div> -->
+						
 					</form>
 					<div class="container">
 						<div class="row jobs">
@@ -122,12 +117,11 @@
 					</div>
 					<div class="mt-4">
 						<h6 class="font-weight-bold">Requirements</h6>
-						<p id="job-requirement" class="text-muted">2years Minimum</p>
+						<p id="job-requirement" class="text-muted">2 years minimum</p>
 						<hr />
 						<p id="job-description" class="text-muted"></p>
 					</div>
-					<a href="#" style="margin: 0 auto; background: #11144C; color: #fff;" class="btn mt-4 px-4">Hire
-						agent</a>
+					<a id="job-link" href="#" style="margin: 0 auto; background: #11144C; color: #fff;" class="btn mt-4 px-4">Apply</a>
 
 				</div>
 
@@ -240,7 +234,10 @@
 					if (!job.location) {
 						job.location = ""
 					}
-					let job_description_string = job.company_name.toUpperCase() + " is hiring!<br/>Category: " + job.job_category + "<br/>Description: " + job.job_description + "<br/>Location: " + job.location + "<br/>Mail us:" + job.employer_email + "<br/> Salary: " + job.job_pay_min + " - " + job.job_pay_max + "<br/>Link: <a href='" + job.job_link + "'>" + job.job_link + "</a>";
+					let job_description_string = job.company_name.toUpperCase() + " is hiring!<br/>Category: " + job.job_category + "<br/>Description: " + job.job_description + "<br/>Location: " + job.location + "<br/>Mail us:" + job.employer_email + "<br/> Salary: " + job.job_pay_min + " - " + job.job_pay_max + "<br/>";
+					
+					$("#job-link").attr("href", job.job_link)
+
 					$("#job-description").html(job_description_string)
 				}
 			});
