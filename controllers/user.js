@@ -57,7 +57,7 @@ async function sendMail(req, res, next) {
   }
 }
 
-async function sendMailForRemoteJob(job, next) {
+async function sendMailForRemoteJob(job) {
   try {
     const filename = path.normalize(
       path.join(__dirname, "../email-templates/remote_job.hbs")
@@ -88,7 +88,6 @@ async function sendMailForRemoteJob(job, next) {
       });
   } catch (err) {
     console.error(err);
-    next(err);
   }
 }
 
