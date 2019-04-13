@@ -10,9 +10,12 @@ const Paystack = require("../controllers/paystack");
 var JobModel = require("../models/jobs");
 /* GET home page. */
 //router.get("/", Home.index);
-router.get("/", function(req, res, next) {
-  JobModel.find(function(err, jobs) {
-    res.render("index", { title: "Remote Job Alert", contents: jobs });
+router.get("/", function (req, res, next) {
+  JobModel.find(function (err, jobs) {
+    res.render("index", {
+      title: "Remote Job Alert",
+      contents: jobs
+    });
   });
 });
 
@@ -48,6 +51,7 @@ router.get("/jobs/:job_id/delete", Jobs.cancel_job);
 router.get("/agents", Agents.get_all_agents);
 router.post("/agents", Agents.create_agent);
 router.post("/pay", Paystack.pay);
+router.get("/invoice", Home.get_summary);
 
 router.get("/managejobs", Jobs.get_all);
 

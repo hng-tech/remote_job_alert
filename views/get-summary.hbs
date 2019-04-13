@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{title}}</title>
+    <style>
+        
+        #payment-view {
+            padding: 15px 5px;
+            background: #fff;
+        }
+
+        #payment-view > h1 {
+            background: #11144C;
+            color: #fff;
+            text-align: center;
+            margin: 15px 0 30px;
+            padding: 5px 0;
+        }
+
+    </style>
+</head>
+
+<body>
+    {{> header }}
+
+    <div id="payment-view" class="container main">
+
+        <h1>PAYMENT SUCCESSFUL</h1>
+        {{!-- WRITE ALL YOUR INVOICE CODE WITHIN --}}
+        
+        Your payment was successful. An agent will contact you shortly. <br>
+
+        <h5>PAYMENT REFERENCE: {{reference}}</h5><br>
+        If you are not contacted within <b>TWO</b> hours, please send us a message.<br><br>
+        
+        PHONE: <b>08123456789</b> EMAIL: <b><a href="mailto:info@devalert.com">info@devalert.com</a></b>
+        
+        <br><br><br><br>
+        {{!-- WRITE ALL YOUR INVOICE CODE WITHIN --}}
+
+    </div>
+
+    {{> footer}}
+</body>
