@@ -1,6 +1,4 @@
-const _ = require("lodash");
-const db = require("./promise").DbAgent;
-const secretKey = "sk_test_a66878c14f256d4f84f31591e07280d6d18b78b4";
+const secretKey = process.env.PAYSTACK_SECRET_KEY;
 const paystack = require("paystack")(secretKey);
 
 const Paystack = {
@@ -12,8 +10,8 @@ const Paystack = {
       const response = await paystack.transaction.initialize({ amount, email });
       return res.redirect(response.data.authorization_url);
     } catch (err) {
-      console.log(err);
-      next(err);
+      return err;
+      
     }
   }
 };
