@@ -75,8 +75,9 @@
 #homepage main #intro .intro-text form {
   margin-top: 15px;
   width: 70%;
-  padding: 5px;
+  padding: 1px;
   border: 1px solid rgba(17, 20, 76, 0.25);
+  border-radius:.25rem;
 }
 
 #homepage main #intro .intro-text form input {
