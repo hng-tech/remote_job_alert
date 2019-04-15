@@ -89,6 +89,14 @@
   color: white;
 }
 
+#homepage main #intro .intro-text form button:hover {
+  background: white;
+  border-radius: 6px;
+  color: #11144c;
+  font-weight: 600;
+  border: 1px solid #11144c;
+}
+
 #homepage main #intro .intro-img {
   text-align: center;
 }
@@ -128,6 +136,15 @@
   padding: 15px;
   margin-top: 25px;
   color: white;
+}
+
+#homepage #pay-agent .pay-header button:hover {
+  background: white;
+  padding: 15px;
+  margin-top: 25px;
+  color: #11144c;
+  font-weight: 600;
+  border: 1px solid #11144c;
 }
 
 @media screen and (max-width: 786px) {
