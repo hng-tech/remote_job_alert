@@ -10,7 +10,7 @@ const Jobs = {
     let main = await data.json();
     return res.status(200).json(main);
   },
-  async create(req, res, next) {
+ async create(req, res, next) {
     // // Check Validation
     // if (!isValid) {
     // 	return res.status(400).json(errors);
@@ -30,7 +30,7 @@ const Jobs = {
     };
     try {
       let createdJob = await db.create(queryText);
-      // sendMailForRemoteJob(createdJob, next);
+      sendMailForRemoteJob(createdJob);
       return res.status(201).redirect("/managejobs");
     } catch (error) {
       return res.status(400).send(error);

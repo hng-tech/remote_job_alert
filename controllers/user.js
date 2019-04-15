@@ -57,17 +57,19 @@ async function sendMail(req, res, next) {
   }
 }
 
-async function sendMailForRemoteJob(job, next) {
+async function sendMailForRemoteJob(job) {
   try {
     const filename = path.normalize(
       path.join(__dirname, "../email-templates/remote_job.hbs")
     );
+    const job_link = job.job_link || "";
     const html = fs
       .readFileSync(filename)
       .toString()
       .replace(/{{job_title}}/, job.job_title)
       .replace(/{{company_name}}/, job.company_name)
       .replace(/{{image_link}}/, job.image_link)
+      .replace(/{{job_link}}/, job_link)
       .replace(/ {{career_level}}/, job.career_level);
 
     User.find()
@@ -86,7 +88,6 @@ async function sendMailForRemoteJob(job, next) {
       });
   } catch (err) {
     console.error(err);
-    next(err);
   }
 }
 
