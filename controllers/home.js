@@ -18,6 +18,10 @@ class Home {
     static faqs(req, res, next) {
         res.render("faqs");
     }
+    //Render Admin page
+    static admin(req, res, next) {
+        res.render("admin");
+    }
 
     // Render job details page
     // TODO?
