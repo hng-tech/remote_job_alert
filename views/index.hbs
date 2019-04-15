@@ -18,19 +18,18 @@
 			<section id="body_top" class="container ">
 				<div class="row ">
 					<section id="intro">
-						
+
 						<div class="row">
 							<div class="col-sm-12 col-md-6 intro-text">
 								<h4>The Remote Life</h4>
 								<h1>Subscribe to receive remote developer jobs</h1>
-								<p>Built for Africa by Africans. Let us help you get that dream remote job you’re
-									perfect for.
+								<p>Built for Africa by Africans. Let us help you get that dream remote job you’re perfect for.
 								</p>
 								<form action="/email-subscription" method="POST">
 									<div class="input-group">
 										<input type="email" class="form-control" placeholder="Email" name="email">
 										<div class="input-group-append">
-											<button class="btn" type="submit">Subscribe</button>
+											<button class="btn subscribe" type="submit">Subscribe</button>
 										</div>
 									</div>
 								</form>
@@ -63,7 +62,7 @@
 					<form>
 						<div class="dropdown">
 							<h4>Filter</h4>
-							<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+							<button id="curr_filter" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
 								Select a job role
 							</button>
 							<div id="filter" class="dropdown-menu drp-cur">
@@ -99,8 +98,8 @@
 	</div>
 
 	<!--- JOB LISTING MODAL -->
-	<div style="width: 100%;" class="modal fade" id="jobModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+	<div style="width: 100%;" class="modal fade" id="jobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+	 aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content" style="text-align: center;">
 				<div class="modal-body" id="job-details">
@@ -125,7 +124,7 @@
 						<p id="job-description" class="text-muted"></p>
 					</div>
 
-					<a href="#" id="job-link" style="margin: 0 auto; background: #11144C; color: #fff;" class="btn mt-4 px-4">Apply</a>
+					<a href="#" id="job-link" target="_blank" style="margin: 0 auto; background: #11144C; color: #fff;" class="btn mt-4 px-4">Apply</a>
 
 				</div>
 
@@ -251,6 +250,7 @@
 				$(".jobs ul").remove();
 				filter = $(this).attr("data-filter")
 				loaded = 0;
+				$("#curr_filter").html(filter)
 				load_data(filter)
 			})
 
@@ -270,6 +270,5 @@
 			});
 		});
 
-	</script>
-	{{> footer}}
+	</script> {{> footer}}
 </body>
