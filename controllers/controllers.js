@@ -10,7 +10,7 @@ const Jobs = {
     let main = await data.json();
     return res.status(200).json(main);
   },
-  async create(req, res, next) {
+ async create(req, res, next) {
     // // Check Validation
     // if (!isValid) {
     // 	return res.status(400).json(errors);
@@ -19,6 +19,7 @@ const Jobs = {
     const queryText = {
       company_name: req.body.company_name,
       job_title: req.body.job_title,
+      job_link: req.body.job_link,
       employer_email: req.body.email,
       job_pay_min: req.body.minimum_salary,
       job_pay_max: req.body.maximum_salary,
@@ -29,7 +30,7 @@ const Jobs = {
     };
     try {
       let createdJob = await db.create(queryText);
-      sendMailForRemoteJob(createdJob, next);
+      sendMailForRemoteJob(createdJob);
       return res.status(201).redirect("/managejobs");
     } catch (error) {
       return res.status(400).send(error);
@@ -103,6 +104,7 @@ const Jobs = {
     const updateText = {
       company_name: req.body.company_name,
       job_title: req.body.job_title,
+      job_link: req.body.job_link,
       employer_email: req.body.email,
       job_pay_min: req.body.minimum_salary,
       job_pay_max: req.body.maximum_salary,

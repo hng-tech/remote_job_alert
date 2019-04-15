@@ -7,7 +7,7 @@ const validateAgentQueryText = data => {
 	data.first_name = !isEmpty(data.first_name) ? data.first_name : '';
 	data.last_name = !isEmpty(data.last_name) ? data.last_name : '';
 	data.email = !isEmpty(data.email) ? data.email : '';
-	data.job_role = !isEmpty(data.job_role) ? data.job_role : '';
+	data.number = !isEmpty(data.number) ? data.number : '';
 
 	if (Validator.isEmpty(data.first_name)) {
 		errors.first_name = 'First name is required';
@@ -22,8 +22,8 @@ const validateAgentQueryText = data => {
 		errors.email = 'Email is invalid';
 	}
 
-	if (Validator.isEmpty(data.job_role)) {
-		errors.job_role = 'Job Role is required';
+	if (Validator.isEmpty(data.number)) {
+		errors.number = 'Phone Number is required';
 	}
 
 	return {

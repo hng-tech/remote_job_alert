@@ -7,6 +7,10 @@ html {
   scroll-behavior: smooth;
 }
 
+.subscribe:hover{
+    color: #11144c;
+}
+
 body {
   margin: 0;
   color: #11144c;
@@ -32,6 +36,10 @@ header nav {
   justify-content: space-between;
   background: white;
   padding: 20px 0;
+}
+
+#logo a:hover {
+  color: #11144c;
 }
 
 header .alert {

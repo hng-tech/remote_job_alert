@@ -1,0 +1,20 @@
+ {{> header }}
+<div class="container d-flex">
+
+    <div style="text-align: center;">
+        <div class="form-text" style="display: inline-block;">
+            <h2 class="text-center">Admin Login</h2>
+            <p class="text-center">Authorised Personnel Only</p>
+        </div>
+        <div style="display: inline-block;">
+            <form action="/admin" method="POST">
+                <input style="margin-right: 15px;" type="text" name="username" placeholder="Username" required>
+                <input style="margin-right: 15px;" type="password" name="password" placeholder="Password" required>
+                <br/>
+                <button style="margin-top: 10px; margin-bottom: 10px;" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="views/dist/js/bootstrap.min.js"></script> {{> footer}}
