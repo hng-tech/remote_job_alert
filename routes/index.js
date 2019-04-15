@@ -50,7 +50,7 @@ router.get('/managejobs', function (req, res, next) {
           res.redirect("/admin");
         //  return next(err);
         } else {
-          return res.render("manage_jobs");
+          return next();
         }
       }
     });
@@ -66,7 +66,6 @@ router.get("/faqs", Home.faqs);
 router.get("/job_details", Home.job_details);
 
 //Job Routes
-router.get("/jobs", Jobs.get_all);
 router.get("/jobs_json", Jobs.get_all_json);
 router.get("/jobs_json/:job_id", Jobs.get_one_json);
 router.get("/jobs_api", Jobs.fetchData);
