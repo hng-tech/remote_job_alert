@@ -14,7 +14,9 @@ const AdminSchema = new mongoose.Schema({
 
 
 AdminSchema.statics.authenticate = function (username, password, callback) {
-  Admin.findOne({ username: username })
+  Admin.findOne({ username: username,
+                  password: password
+                })
     .exec(function (err, admin) {
       if (err) {
         return callback(err)
