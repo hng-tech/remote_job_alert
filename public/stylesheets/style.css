@@ -163,9 +163,9 @@ footer .links .link-subgroup .social {
 }
 
 footer .links .link-subgroup .social a {
-  display: inline-block;
+  /* display: inline-block; */
   font-size: 100%;
-  margin-right: 16px;
+  /* margin-right: 16px; */
 }
 
 footer .links .link-subgroup h3 {
@@ -196,6 +196,10 @@ footer .copyright p {
   padding: 20px;
   margin-bottom: 0;
   color: #dedada;
+}
+
+footer .link-subgroup .w-150{
+  width: 150px;
 }
 
 /************************************* FOOTER STYLES END  **********************************/
