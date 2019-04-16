@@ -19,7 +19,7 @@ const Agent = {
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             email: req.body.email,
-            job_role: req.body.job_role
+            phone_number: req.body.phone_number
         }
         try {
             let createdAgent = await db.create(queryText);
