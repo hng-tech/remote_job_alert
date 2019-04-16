@@ -18,8 +18,8 @@ const agentSchema = new Schema({
         trim: true,
         required: true
     },
-    job_role: {
-        type: String,
+    number: {
+        type: Number,
         required: true
     },
     password: {
