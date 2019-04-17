@@ -33,7 +33,7 @@ Start the project
 ```
 `npm start`
 
-Visit `http://localhost:3000` to view the project.
+Visit `https://localhost:3000` to view the project.
 
 **NOTES:**
 
