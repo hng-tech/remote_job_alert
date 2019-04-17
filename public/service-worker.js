@@ -6,7 +6,7 @@ var filesToCache = [
   'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', 
   'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', 
   'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',
-  'http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css',
+  'https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css',
   '/stylesheets/style.css',
   'https://res.cloudinary.com/sastech/image/upload/v1554756662/Group_10_cxypyd.png',
   'https://res.cloudinary.com/sastech/image/upload/v1554740633/undraw_laravel_and_vue_59tp_d2m8cr.png',
