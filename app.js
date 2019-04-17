@@ -75,7 +75,7 @@ app.use(function(req, res, next) {
   res.render("404");
 });
 
-console.log("Server running on PORT 3000");
+console.log("Server running on PORT 3020");
 
 // error handler
 app.use(function(err, req, res, next) {
