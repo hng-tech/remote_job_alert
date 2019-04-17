@@ -37,13 +37,19 @@ const Jobs = {
     }
   },
   async get_all(req, res) {
+    const page= Number(req.query.page) || 1;
+    const limit= Number(req.query.limit) || 10;
+
+    const paginationOptions = {page, limit}
     const queryText = {};
     try {
-      let foundJobs = await db.find(queryText);
+      let result = await db.find(queryText, paginationOptions);
       let usersCount = await userModel.countDocuments({});
       return res.status(200).render("manage_jobs", {
-        content: foundJobs,
-        jobCount: foundJobs.length,
+        content: result.docs,
+        jobCount: result.total,
+        page: result.page,
+        pages: result.pages,
         usersCount,
         helpers: {
           inc: function(index) {
@@ -57,10 +63,18 @@ const Jobs = {
     }
   },
   async get_all_json(req, res) {
+    const page= Number(req.query.page) || 1;
+    const limit= Number(req.query.limit) || 10;
+
+    const paginationOptions = {page, limit}
     const queryText = {};
     try {
-      let foundJobs_Json = await db.find(queryText);
-      return res.status(200).json(foundJobs_Json);
+      let result = await db.find(queryText, paginationOptions);
+      return res.status(200).json({
+        jobs: result.docs,
+        page: result.page,
+        pages: result.pages
+      });
     } catch (error) {
       return res.status(400).send(error);
     }
