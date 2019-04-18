@@ -67,16 +67,16 @@ async function sendMailForRemoteJob() {
       .readFileSync(path.join(__dirname, '../email-templates/remote_job.hbs'))
       .toString();
     const template = hbs.compile(file);
-    const html = template({ jobs });
 
     User.find()
       .cursor()
       .on('data', async function(user) {
+        const html = template({ jobs, email: user.email });
         const data = {
           from: 'Devalert <noreply@devalert.com>',
           to: user.email,
-          subject: 'New Remote job Alert!',
-          html
+          subject: 'New Remote job Alert! ',
+          html: html.replace(/{{email}}/, user.email)
         };
         mg.messages().send(data, (error, body) => {
           if (error) console.error(error);
