@@ -1,6 +1,7 @@
 const Jobs = require("../models/jobs");
 const Users = require("../models/user");
 const Agent = require("../models/agent");
+const Applicant = require("../models/applicant");
 
 class Db {
     /**
@@ -64,14 +65,14 @@ class Db {
     }
 };
 
-class DbAgent {
+class DbApplicant {
     /**
      * @param {string} text
      * @returns {object} Return all 
      */
     static find(param){
         return new Promise((resolve, reject) => {
-            Agent.find(param)
+            Applicant.find(param)
             .then((res) => {
                 resolve(res);
             })
@@ -82,7 +83,7 @@ class DbAgent {
     }
     static create(param){
         return new Promise((resolve, reject) => {
-            Agent.create(param)
+            Applicant.create(param)
             .then((res) => {
                 resolve(res);
             })
@@ -95,5 +96,5 @@ class DbAgent {
 
 module.exports = {
     Db,
-    DbAgent
+    DbApplicant
 };

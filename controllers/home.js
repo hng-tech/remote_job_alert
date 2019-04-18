@@ -36,6 +36,9 @@ class Home {
     static get_summary(req, res, next){
         res.render('get-summary', { title : 'Payment Summary', reference: req.query.reference });
     }
+    static get_applicant(req, res, next){
+        res.render('applicant', {title: 'Applicant Details'});
+    }
 }
 
 module.exports = Home;
