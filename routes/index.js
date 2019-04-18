@@ -8,6 +8,7 @@ const Validation = require("../validation/email");
 const Paystack = require("../controllers/paystack");
 var Admin = require("../models/admin");
 var JobModel = require("../models/jobs");
+const Applicant = require("../controllers/applicant");
 /* GET home page. */
 //router.get("/", Home.index);
 router.get("/", function(req, res, next) {
@@ -39,6 +40,25 @@ router.post('/admin', function(req, res, next){
 
 //Authenticate Admin Login to Manage Jobs
 router.get('/managejobs', function (req, res, next) {
+  Admin.findById(req.session.adminId)
+    .exec(function (error, admin) {
+      if (error) {
+        return next(error);
+      } else {
+        if (admin === null) {
+          var err = new Error('Not authorized! Go back!');
+          err.status = 400;
+          res.redirect("/admin");
+        //  return next(err);
+        } else {
+          return next();
+        }
+      }
+    });
+});
+
+//Authenticate Admin Login to Manage Appliants
+router.get('/manageapplicants', function (req, res, next) {
   Admin.findById(req.session.adminId)
     .exec(function (error, admin) {
       if (error) {
@@ -95,8 +115,13 @@ router.get("/agents", Agents.get_all_agents);
 router.post("/agents", Agents.create_agent);
 router.post("/pay", Paystack.pay);
 router.get("/invoice", Home.get_summary);
-
+//Dashboard Links
 router.get("/managejobs", Jobs.get_all);
+router.get("/manageapplicants", Applicant.get_all);
+
+//Route for Applicant details
+router.get("/applicant", Home.get_applicant);
+router.post("/applicant", Applicant.create_applicant);
 
 //check if email is valid, then sends welcome email and saves email to db
 router.post(
