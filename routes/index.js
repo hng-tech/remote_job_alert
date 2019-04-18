@@ -59,6 +59,16 @@ router.get('/managejobs', function (req, res, next) {
 // GET Contact us page
 router.get("/contact", Home.contactUs);
 
+
+//Routes for user pages
+// GET User Login page
+router.get("/user-login", Home.userLogin);
+
+// GET User Signup page
+router.get("/user-signup", Home.userSignup);
+
+
+
 // GET FAQS us page
 router.get("/faqs", Home.faqs);
 
