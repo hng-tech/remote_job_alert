@@ -10,41 +10,40 @@
         </div>
             <form action="/applicant" method="POST">
                 <div class="form-group">
-                <label>First Name</label>
-                <input class="form-control" type="text" name="first_name" placeholder="First Name" required>
+                <label for="first_name">First Name</label>
+                <input class="form-control" type="text" id="first_name" name="first_name" placeholder="First Name" required>
                 </div>
                 <div class="form-group">
-                    <label>Last Name</label>
-                <input class="form-control" type="text" name="last_name" placeholder="Last Name" required>
+                    <label for="last_name">Last Name</label>
+                <input class="form-control" type="text" id="last_name" name="last_name" placeholder="Last Name" required>
                 </div>
                 <div class="form-group">
-                    <label>Email</label>
-                <input class="form-control" type="email" name="email" placeholder="email@example.com" required>
+                    <label for="email">Email</label>
+                <input class="form-control" type="email" id="email" name="email" placeholder="email@example.com" required>
                 </div>
                 <div class="form-group">
-                    <label>Phone Number</label>
-                <input class="form-control" type="text" name="number" placeholder="08029202929" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Experience</label>
-                <input class="form-control" type="text" name="experience" placeholder="2 years" required>
+                    <label for="number">Phone Number</label>
+                <input class="form-control" type="text" id="number" name="number" placeholder="08029202929" required>
                 </div>
                 <div class="form-group">
-                    <label>Tech Stack</label>
-                <input class="form-control" type="text" name="tech_stack" placeholder="php, java..." required>
+                    <label for="experience">Experience</label>
+                <input class="form-control" type="text" id="experience" name="experience" placeholder="2 years" required>
                 </div>
                 <div class="form-group">
-                    <label>Linkedin Profile</label>
-                <input class="form-control" type="text" name="linkedin_profile" placeholder="https://linkedin.com/in/someone" required>
+                    <label for="tech_stack">Tech Stack</label>
+                <input class="form-control" type="text" id="tech_stack" name="tech_stack" placeholder="php, java..." required>
+                </div>
+                <div class="form-group">
+                    <label for="linkedin_profile">Linkedin Profile</label>
+                <input class="form-control" type="text" id="linkedin_profile" name="linkedin_profile" placeholder="https://linkedin.com/in/someone" required>
             </div>
                 <div class="form-group">
-                    <label>Github Profile</label>
-                <input class="form-control" type="text" name="github_profile" placeholder="https://github.com/someone" required>
+                    <label for="github_profile">Github Profile</label>
+                <input class="form-control" type="text" id="github_profile" name="github_profile" placeholder="https://github.com/someone" required>
             </div>
                 <div class="form-group">
-                    <label>Website</label>
-                <input class="form-control" type="text" name="link_to_projects" placeholder="https://someone.com/works" required>
+                    <label for="link_to_projects">Website</label>
+                <input class="form-control" type="text" id="link_to_projects" name="link_to_projects" placeholder="https://someone.com/works" required>
             </div>
                 <br/>
                 <button class="btn btn-primary" style="margin-bottom: 40px;">Submit</button>
