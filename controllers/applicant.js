@@ -32,6 +32,7 @@ const Applicant = {
             return res.redirect("/");
         } catch(error){
             req.flash("errors", "There are errors in your details filled, Retry");
+            return res.redirect("/applicant");
             return res.send(error);
         }
     },
@@ -39,12 +40,33 @@ const Applicant = {
         const queryText = {};
         try {
             let foundApplicant = await db.find(queryText);
-            return res.status(200).render('applicant_data', {content: foundApplicant});
+            return res.status(200).render('applicant_data', {
+                content: foundApplicant,
+                helpers: {
+                inc: function(index) {
+                index++;
+                return index;
+            }
+        }
+    });
         } catch(error){
             return res.status(400).send(error);
         }
 
+    },
+
+    async cancel(req, res) {
+    const queryText = {
+      _id: req.params.applicant_id
+    };
+    try {
+      let foundApplicant = await db.findOneAndDelete(queryText);
+      console.log(foundApplicant);
+      return res.status(200).redirect("/manageapplicants");
+    } catch (error) {
+      return res.status(400).send(error);
     }
+  }
 }
 
 module.exports = Applicant;

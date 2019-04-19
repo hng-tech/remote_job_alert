@@ -92,6 +92,18 @@ class DbApplicant {
             });
         });    
     }
+
+    static findOneAndDelete(param){
+        return new Promise((resolve, reject) => {
+            Applicant.findOneAndDelete(param)
+            .then((res) => {
+                resolve(res);
+            })
+            .catch(err => {
+                reject(err);
+            });
+        });
+    }
 };
 
 module.exports = {
