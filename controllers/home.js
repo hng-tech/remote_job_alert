@@ -9,6 +9,21 @@ class Home {
         res.render("about");
     }
 
+    
+
+    //User Pages
+     // Render user-login page
+     static userLogin(req, res, next) {
+        res.render("user-login");
+    }
+
+    // Render user-signup page
+    static userSignup(req, res, next) {
+        res.render("user-signup");
+    }
+
+
+
     //Render contact details page
     static contactUs(req, res, next) {
         res.render("contact");
@@ -35,6 +50,9 @@ class Home {
 
     static get_summary(req, res, next){
         res.render('get-summary', { title : 'Payment Summary', reference: req.query.reference });
+    }
+    static get_applicant(req, res, next){
+        res.render('applicant', {title: 'Applicant Details'});
     }
 }
 
