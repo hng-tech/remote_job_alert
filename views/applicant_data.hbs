@@ -14,7 +14,8 @@
           <li>
             <a href="/managejobs">
               <i class="fas fa-home"></i> Dashboard</a>
-            <a href="/manageapplicants"><i class="fas fa-link"></i> Applicants </a>
+            <a href="/manageapplicants">
+              <i class="fas fa-link"></i> Applicants </a>
           </li>
         </ul>
       </div>
@@ -23,12 +24,6 @@
   <div class="page-content">
     <div class="fixed-header p-3">
       <i class="fas fa-bars dash_bar"></i>
-      <ul>
-        <li>
-          <button class="btn-primary btn br-0 t-13" data-toggle="modal" data-target="#createJobModal">
-            <i class="fa fa-plus mr-1"></i>Add Job</button>
-        </li>
-      </ul>
     </div>
     <div class="content-wrapper">
       <div class="container-fluid">
@@ -87,7 +82,7 @@
                     <th>Experience</th>
                     <th>Action</th>
                     <th></th>
-                    
+
                   </tr>
                 </thead>
                 <tbody class="t-13 xc_table">
@@ -98,7 +93,7 @@
                     <td>{{this.first_name}}</td>
                     <td>{{this.last_name}}</td>
                     <td>{{this.experience}}</td>
-                    
+
                     <td>
                       <button class="btn br-0 btn-dark btn-sm t-11" data-toggle="modal" data-target="#b{{this.id}}">
                         <i class="fa fa-eye"></i> View</button>
@@ -197,7 +192,7 @@
   </form>
 
   <!-- Edit Job Modal-->
-  
+
 
   <!-- View Applicant Modal-->
   {{# each content}}
@@ -224,42 +219,42 @@
               </div>
             </div>
             <div class="row">
-            <div class="col-6">
+              <div class="col-6">
                 <h6 class="text-muted t-12">Email Address</h6>
                 <h5 class="job_text_color t-15">{{this.email}}</h5>
               </div>
-           <div class="col-6">
+              <div class="col-6">
                 <h6 class="text-muted t-12">Experience</h6>
                 <h5 class="job_text_color t-15">{{this.experience}}</h5>
               </div>
-          </div>
-          	<div class="row">
-            <div class="col-6">
+            </div>
+            <div class="row">
+              <div class="col-6">
                 <h6 class="text-muted t-12">Website</h6>
                 <h5 class="job_text_color t-15">{{this.website}}</h5>
               </div>
-            
-            <div class="col-6">
+
+              <div class="col-6">
                 <h6 class="text-muted t-12">Github</h6>
                 <h5 class="job_text_color t-15">{{this.github_profile}}</h5>
               </div>
             </div>
             <div class="row">
-            <div class="col-6">
+              <div class="col-6">
                 <h6 class="text-muted t-12">Tech Stack</h6>
                 <h5 class="job_text_color t-15">{{this.tech_stack}}</h5>
               </div>
-            <div class="col-6">
+              <div class="col-6">
                 <h6 class="text-muted t-12">Linkedin</h6>
                 <h5 class="job_text_color t-15">{{this.linkedin_profile}}</h5>
               </div>
-          </div>
             </div>
-            
           </div>
+
         </div>
       </div>
     </div>
+  </div>
   </div>
   {{/each}}
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
