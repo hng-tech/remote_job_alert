@@ -2,55 +2,54 @@
 <div class="container d-flex">
 
 
-        
-        <div class="col-md-6" style="margin: auto">
-            <div class="form-text">
+
+    <div class="col-md-6 my-4" style="margin: auto">
+        <div class="form-text">
             <h2>Applicant details</h2>
             <p class="text-center"></p>
         </div>
-            <form action="/applicant" method="POST">
-                <div class="form-group">
+        <form action="/applicant" method="POST">
+            <div class="form-group">
                 <label>First Name</label>
                 <input class="form-control" type="text" name="first_name" placeholder="First Name" required>
-                </div>
-                <div class="form-group">
-                    <label>Last Name</label>
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
                 <input class="form-control" type="text" name="last_name" placeholder="Last Name" required>
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
                 <input class="form-control" type="email" name="email" placeholder="email@example.com" required>
-                </div>
-                <div class="form-group">
-                    <label>Phone Number</label>
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
                 <input class="form-control" type="text" name="number" placeholder="08029202929" required>
-                </div>
+            </div>
 
-                <div class="form-group">
-                    <label>Experience</label>
+            <div class="form-group">
+                <label>Experience</label>
                 <input class="form-control" type="text" name="experience" placeholder="2 years" required>
-                </div>
-                <div class="form-group">
-                    <label>Tech Stack</label>
+            </div>
+            <div class="form-group">
+                <label>Tech Stack</label>
                 <input class="form-control" type="text" name="tech_stack" placeholder="php, java..." required>
-                </div>
-                <div class="form-group">
-                    <label>Linkedin Profile</label>
+            </div>
+            <div class="form-group">
+                <label>Linkedin Profile</label>
                 <input class="form-control" type="text" name="linkedin_profile" placeholder="https://linkedin.com/in/someone" required>
             </div>
-                <div class="form-group">
-                    <label>Github Profile</label>
+            <div class="form-group">
+                <label>Github Profile</label>
                 <input class="form-control" type="text" name="github_profile" placeholder="https://github.com/someone" required>
             </div>
-                <div class="form-group">
-                    <label>Website</label>
+            <div class="form-group">
+                <label>Website</label>
                 <input class="form-control" type="text" name="link_to_projects" placeholder="https://someone.com/works" required>
             </div>
-                <br/>
-                <button class="btn btn-primary" style="margin-bottom: 40px;">Submit</button>
-            </form>
-        </div>
+            <br/>
+            <button class="btn btn-primary" style="margin-bottom: 40px;">Submit</button>
+        </form>
+    </div>
 </div>
 
 <script src="views/dist/js/bootstrap.min.js"></script> {{> footer}}
-
