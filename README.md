@@ -1,6 +1,6 @@
 # Remote Job Alert
 
-A remote job listing site for Africans
+A remote job listing site for the world
 
 # About Remote Job Alert
 

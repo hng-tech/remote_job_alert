@@ -14,7 +14,8 @@
           <li>
             <a href="/managejobs">
               <i class="fas fa-home"></i> Dashboard</a>
-            <a href="/manageapplicants"><i class="fas fa-link"></i> Applicants </a>
+            <a href="/manageapplicants">
+              <i class="fas fa-link"></i> Applicants </a>
           </li>
         </ul>
       </div>
@@ -23,12 +24,6 @@
   <div class="page-content">
     <div class="fixed-header p-3">
       <i class="fas fa-bars dash_bar"></i>
-      <ul>
-        <li>
-          <button class="btn-primary btn br-0 t-13" data-toggle="modal" data-target="#createJobModal">
-            <i class="fa fa-plus mr-1"></i>Add Job</button>
-        </li>
-      </ul>
     </div>
     <div class="content-wrapper">
       <div class="container-fluid">
@@ -56,7 +51,7 @@
         </div>
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Job List</h4>
+            <h4 class="card-title">Applicants List</h4>
             <a class="heading-elements-toggle">
               <i class="icon-ellipsis font-medium-3"></i>
             </a>
@@ -87,24 +82,24 @@
                     <th>Experience</th>
                     <th>Action</th>
                     <th></th>
-                    
+
                   </tr>
                 </thead>
                 <tbody class="t-13 xc_table">
                   {{# each content}}
                   <tr>
-                    <td>{{@index}}</td>
+                    <td>{{inc @index}}</td>
                     <td>{{this.email}}</td>
                     <td>{{this.first_name}}</td>
                     <td>{{this.last_name}}</td>
                     <td>{{this.experience}}</td>
-                    
+
                     <td>
                       <button class="btn br-0 btn-dark btn-sm t-11" data-toggle="modal" data-target="#b{{this.id}}">
                         <i class="fa fa-eye"></i> View</button>
                     </td>
                     <td>
-                      <a href="/jobs/{{this.id}}/delete" class="btn br-0 btn-danger btn-sm t-11">
+                      <a href="/applicant/{{this.id}}/delete" class="btn br-0 btn-danger btn-sm t-11">
                         <i class="fa fa-trash"></i> Delete</a>
                     </td>
                   </tr>
@@ -160,20 +155,20 @@
                   <div class="form-group">
                     <select name="location" id="" class="form-control br-0" required>
                       <option selected>Select State</option>
-                      <option>Abuja</option>
-                      <option>Lagos</option>
-                      <option>Port Harcourt</option>
-                      <option>Ghana</option>
+                      <option value="Abuja">Abuja</option>
+                      <option value="Lagos">Lagos</option>
+                      <option value="Port Harcourt">Port Harcourt</option>
+                      <option value="Ghana">Ghana</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <select name="career_level" id="" class="form-control br-0">
-                      <option>Choose Experience</option>
-                      <option>Junior</option>
-                      <option>Intermediate</option>
-                      <option>Expert</option>
+                    <select name="career_level" id="" class="form-control br-0" required>
+                      <option selected>Choose Experience</option>
+                      <option value="Junior">Junior</option>
+                      <option value="Intermediate">Intermediate</option>
+                      <option value="Expert">Expert</option>
                     </select>
                   </div>
                 </div>
@@ -197,7 +192,7 @@
   </form>
 
   <!-- Edit Job Modal-->
-  
+
 
   <!-- View Applicant Modal-->
   {{# each content}}
@@ -223,36 +218,43 @@
                 <h5 class="job_text_color t-15">{{this.last_name}}</h5>
               </div>
             </div>
-            <div class="col-6">
+            <div class="row">
+              <div class="col-6">
                 <h6 class="text-muted t-12">Email Address</h6>
                 <h5 class="job_text_color t-15">{{this.email}}</h5>
               </div>
-            </div>
-           <div class="col-6">
+              <div class="col-6">
                 <h6 class="text-muted t-12">Experience</h6>
                 <h5 class="job_text_color t-15">{{this.experience}}</h5>
               </div>
             </div>
-            <div class="col-6">
+            <div class="row">
+              <div class="col-6">
                 <h6 class="text-muted t-12">Website</h6>
                 <h5 class="job_text_color t-15">{{this.website}}</h5>
               </div>
-            </div>
-            <div class="col-6">
+
+              <div class="col-6">
                 <h6 class="text-muted t-12">Github</h6>
                 <h5 class="job_text_color t-15">{{this.github_profile}}</h5>
               </div>
             </div>
-            <div class="col-6">
+            <div class="row">
+              <div class="col-6">
+                <h6 class="text-muted t-12">Tech Stack</h6>
+                <h5 class="job_text_color t-15">{{this.tech_stack}}</h5>
+              </div>
+              <div class="col-6">
                 <h6 class="text-muted t-12">Linkedin</h6>
                 <h5 class="job_text_color t-15">{{this.linkedin_profile}}</h5>
               </div>
             </div>
-            
           </div>
+
         </div>
       </div>
     </div>
+  </div>
   </div>
   {{/each}}
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
