@@ -119,9 +119,13 @@ router.get("/invoice", Home.get_summary);
 router.get("/managejobs", Jobs.get_all);
 router.get("/manageapplicants", Applicant.get_all);
 
+//Deleting Applicant details
+router.get("/applicant/:applicant_id/delete", Applicant.cancel);
+
 //Route for Applicant details
 router.get("/applicant", Home.get_applicant);
 router.post("/applicant", Applicant.create_applicant);
+
 
 //check if email is valid, then sends welcome email and saves email to db
 router.post(
