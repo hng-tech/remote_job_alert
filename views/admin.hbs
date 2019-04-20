@@ -1,25 +1,43 @@
- {{> header }}
-<div class="container d-flex">
+<!DOCTYPE html>
+<html lang="en">
 
-        <div class="col-md-6" style="margin: auto">
-            <div class="form-text">
-            <h2 >Admin login</h2>            
-            <p>Authorised Personnel Only</p>
-        </div>
-            <form action="/admin" method="POST">                
-                <div class="form-group">
-                    <label for="username">Username</label>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin Login</title>
+
+    <style>
+        form {
+            width: 400px;
+        }
+        @media(max-width:560px) {
+            form h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    {{> header }}
+    <div class="container d-flex justify-content-center my-5">
+        <form action="/admin" method="POST">
+            <h2 class="text-center font-weight-bold" style="margin-top: 40px">Admin Login</h2>
+            <p class="text-center">Authorised Personnel Only</p>
+            <div class="form-group">
+                <label for="username">Username</label>
                 <input class="form-control" type="text" id="username" name="username" placeholder="Username" required>
-                </div>               
-                <div class="form-group">
-                    <label for="password">Password</label>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
                 <input class="form-control" type="password" id="password" name="password" placeholder="Password" required>
             </div>
-                <br/>
-                <button class="btn btn-primary" style="margin-bottom: 40px;">Login</button>
-            </form>
-        </div>
-</div>
+            <button type="submit" class="btn btn-custom px-5 mt-4">LOGIN</button>
+        </form>
+    </div>
+    <br> {{> footer}}
+</body>
 
-<script src="views/dist/js/bootstrap.min.js"></script> {{> footer}}
-
+</html>
