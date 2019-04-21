@@ -66,6 +66,9 @@ async function sendMailForRemoteJob() {
   try {
     const last7days = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
     const jobs = await Job.find({ createdAt: { $gte: last7days } });
+    if (jobs.length === 0) {
+      return;
+    }
     const file = fs
       .readFileSync(path.join(__dirname, '../email-templates/remote_job.hbs'))
       .toString();
