@@ -232,8 +232,9 @@
 }
 
 #homepage #job-posting .job-header .job {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  justify-items: center;
   align-items: center;
   border: 0.5px solid rgba(17, 20, 76, 0.25);
   border-radius: 5px;
@@ -243,6 +244,7 @@
 }
 
 #homepage #job-posting .job-header .job li {
+  width: 100%;
   line-height: 16px;
   display: inline-block;
 }
@@ -262,8 +264,10 @@
 #homepage #job-posting .job-header .job li p {
   font-weight: 600;
   font-size: 18px;
-  margin-bottom: 0;
   color: #11144c;
+  text-align: left;
+  width: 90%;
+  margin: 0 auto;
 }
 
 #homepage #job-posting .job-header .job li img {
