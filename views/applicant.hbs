@@ -1,0 +1,54 @@
+ {{> header }}
+<div class="container d-flex">
+
+
+        
+        <div class="col-md-6" style="margin: auto">
+            <div class="form-text">
+            <h2>Applicant details</h2>
+            <p class="text-center"></p>
+        </div>
+            <form action="/applicant" method="POST">
+                <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input class="form-control" type="text" id="first_name" name="first_name" placeholder="First Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                <input class="form-control" type="text" id="last_name" name="last_name" placeholder="Last Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                <input class="form-control" type="email" id="email" name="email" placeholder="email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="number">Phone Number</label>
+                <input class="form-control" type="text" id="number" name="number" placeholder="08029202929" required>
+                </div>
+                <div class="form-group">
+                    <label for="experience">Experience</label>
+                <input class="form-control" type="text" id="experience" name="experience" placeholder="2 years" required>
+                </div>
+                <div class="form-group">
+                    <label for="tech_stack">Tech Stack</label>
+                <input class="form-control" type="text" id="tech_stack" name="tech_stack" placeholder="php, java..." required>
+                </div>
+                <div class="form-group">
+                    <label for="linkedin_profile">Linkedin Profile</label>
+                <input class="form-control" type="text" id="linkedin_profile" name="linkedin_profile" placeholder="https://linkedin.com/in/someone" required>
+            </div>
+                <div class="form-group">
+                    <label for="github_profile">Github Profile</label>
+                <input class="form-control" type="text" id="github_profile" name="github_profile" placeholder="https://github.com/someone" required>
+            </div>
+                <div class="form-group">
+                    <label for="link_to_projects">Website</label>
+                <input class="form-control" type="text" id="link_to_projects" name="link_to_projects" placeholder="https://someone.com/works" required>
+            </div>
+                <br/>
+                <button class="btn btn-primary" style="margin-bottom: 40px;">Submit</button>
+            </form>
+        </div>
+</div>
+
+<script src="views/dist/js/bootstrap.min.js"></script> {{> footer}}
