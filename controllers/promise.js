@@ -4,18 +4,19 @@ const Agent = require('../models/agent');
 const Applicant = require('../models/applicant');
 
 class Db {
-  /**
-   * @param {string} text
-   * @returns {object} Return all
-   */
-  static find(param) {
-    return new Promise((resolve, reject) => {
-      Jobs.find(param)
-        .then(res => {
-          resolve(res);
-        })
-        .catch(err => {
-          reject(err);
+    /**
+     * @param {string} text
+     * @returns {object} Return all 
+     */
+    static find(queryText, paginationOptions){
+        return new Promise((resolve, reject) => {
+            Jobs.paginate(queryText, paginationOptions)
+            .then((res) => {
+                resolve(res);
+            })
+            .catch(err => {
+                reject(err);
+            });
         });
     });
   }
