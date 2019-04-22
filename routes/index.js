@@ -13,7 +13,7 @@ const Applicant = require("../controllers/applicant");
 //router.get("/", Home.index);
 router.get("/", function(req, res, next) {
   JobModel.find(function(err, jobs) {
-    res.render("index", { title: "Remote Job Alert", contents: jobs });
+    res.render("index", { title: "DevAlert", contents: jobs });
   });
 });
 
