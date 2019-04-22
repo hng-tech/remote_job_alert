@@ -163,20 +163,20 @@
                   <div class="form-group">
                     <select name="location" id="" class="form-control br-0" required>
                       <option selected>Select State</option>
-                      <option>Abuja</option>
-                      <option>Lagos</option>
-                      <option>Port Harcourt</option>
-                      <option>Ghana</option>
+                      <option value="Abuja">Abuja</option>
+                      <option value="Lagos">Lagos</option>
+                      <option value="Port Harcourt">Port Harcourt</option>
+                      <option value="Ghana">Ghana</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <select name="career_level" id="" class="form-control br-0">
-                      <option>Choose Experience</option>
-                      <option>Junior</option>
-                      <option>Intermediate</option>
-                      <option>Expert</option>
+                    <select name="career_level" id="" class="form-control br-0" required>
+                      <option selected>Choose Experience</option>
+                      <option value="Junior">Junior</option>
+                      <option value="Intermediate">Intermediate</option>
+                      <option value="Expert">Expert</option>
                     </select>
                   </div>
                 </div>
@@ -242,10 +242,9 @@
                   <div class="form-group">
                     <select name="career_level" id="" class="form-control br-0">
                       <option selected>Choose Experience</option>
-                      <option>Choose Experience</option>
-                      <option>Junior</option>
-                      <option>Intermediate</option>
-                      <option>Expert</option>
+                      <option value="Junior">Junior</option>
+                      <option value="Intermediate">Intermediate</option>
+                      <option value="Expert">Expert</option>
                     </select>
                   </div>
                 </div>
@@ -264,7 +263,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div></div>
   </form>
   {{/each}}
 
@@ -295,7 +294,7 @@
             <div class="row mt-3">
               <div class="col-6">
                 <h6 class="text-muted t-12">Salary</h6>
-                <h5 class="job_text_color t-15">&#8358; {{this.pay_min}} - &#8358;{{this.pay_max}}</h5>
+                <h5 class="job_text_color t-15">&#8358; {{this.job_pay_min}} - &#8358;{{this.job_pay_max}}</h5>
               </div>
               <div class="col-6">
                 <h6 class="text-muted t-12">Email Address</h6>

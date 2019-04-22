@@ -5,9 +5,12 @@ const mailgun = require('mailgun-js');
 const path = require('path');
 const hbs = require('handlebars');
 const fs = require('fs');
+
 const mg = mailgun({
   apiKey: process.env.MAILGUN_API_KEY,
-  domain: process.env.MAILGUN_DOMAIN
+  domain: process.env.MAILGUN_DOMAIN,
+  host: 'api.eu.mailgun.net',
+  endpoint: '/v3'
 });
 
 async function unsubscribeUser(req, res, next) {
@@ -63,6 +66,9 @@ async function sendMailForRemoteJob() {
   try {
     const last7days = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
     const jobs = await Job.find({ createdAt: { $gte: last7days } });
+    if (jobs.length === 0) {
+      return;
+    }
     const file = fs
       .readFileSync(path.join(__dirname, '../email-templates/remote_job.hbs'))
       .toString();
@@ -106,7 +112,10 @@ async function sendContactAlert(req, res, next) {
       subject: 'Contact Us - DevAlert',
       html
     };
-    const body = await mg.messages().send(data);
+    mg.messages().send(data, (error, body) => {
+      if (error) console.error(error);
+      console.log(body);
+    });
 
     req.flash(
       'success',

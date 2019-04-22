@@ -1,0 +1,129 @@
+
+<head>
+<style>
+    body {
+      padding: 0; 
+      margin: 0;
+    }
+    
+/****Styling for Logo****/
+    .banner {
+        color: #11144c;
+    }
+    
+/***Media Queries for Logo***/
+    @media only screen and (max-width:600px){
+     .banner {
+        text-align: center;
+    }
+    }
+
+/****Styling for Background Images****/
+    .image-one {
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+    }
+    
+    .image-two {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 30%;
+    }
+    
+    /***Media Queries for Background Images***/
+    @media only screen and (max-width:600px){
+     .image-one {
+           display:none;
+    }
+        form-field {
+            display: block;
+        } 
+    }
+
+/***Styling for Main Page*****/
+    .header{
+        position: relative;
+        top: 100px;
+        padding-left: 20px;
+        width: 100%;
+        font-size: 20px;
+        letter-spacing: 0.2px;
+    }
+    
+    @media only screen and (min-width:600px) {
+         .header {
+            top: 150px;
+        }
+    }
+
+    .header-text {
+       font-size: 3em;
+       line-height: 2;
+       color: #11144c;
+    }
+    
+    .sub-text {
+       color: #666666;
+    }
+    
+/*****Form Field*****/
+    
+    .form-field input {
+        color: #666666;
+        font-size: 16px;
+        padding: 6px;
+        width: 50%;
+    }
+    
+    .subscribe-btn {
+        background-color: #11144c;
+        color: #fff;
+        padding: 10px 30px 10px 30px;
+        font-size: 16px;
+        border-radius: 5px;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+      
+      <!-- Banner -->
+      <div class="row">
+        <div class="col-md-12 pt-5">
+            <div class="banner">
+                 <h5>Dev/Alert</h5>
+            </div>
+        </div>
+      </div>
+       
+       <!-- Header text -->
+        <div class="header">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="header-text"><h2>Subscribe to get notified of the <br>hottest remote jobs for developers</h2></div>
+                    <div class="sub-text pt-4"><p>Get up-to-date information on the latest remote developer jobs in the industry</p></div>
+                </div>
+            </div>
+
+           <!-- Form field -->
+            <div class="row pt-3">
+                <div class="col-md-7">
+                   <div class="form-field">
+                    <input type="email" placeholder="Enter Your Email Address">
+                    <a href="" class="subscribe-btn">Subscribe</a>   
+                   </div>
+                </div>
+            </div>
+          </div>
+          
+          <!-- Background Images -->
+            <div class="body-img">
+            <img class="image-one" src="/public/images/pexels-photo-891679.png">
+            <img class="image-two" src="/public/images/Vector.png">  
+          </div>
+        </div>
+      
+</body>
+<script src="views/dist/js/bootstrap.min.js"></script>
