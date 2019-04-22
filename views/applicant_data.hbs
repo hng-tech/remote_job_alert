@@ -14,7 +14,8 @@
           <li>
             <a href="/managejobs">
               <i class="fas fa-home"></i> Dashboard</a>
-            <a href="/manageapplicants"><i class="fas fa-link"></i> Applicants </a>
+            <a href="/manageapplicants">
+              <i class="fas fa-link"></i> Applicants </a>
           </li>
         </ul>
       </div>
@@ -23,12 +24,6 @@
   <div class="page-content">
     <div class="fixed-header p-3">
       <i class="fas fa-bars dash_bar"></i>
-      <ul>
-        <li>
-          <button class="btn-primary btn br-0 t-13" data-toggle="modal" data-target="#createJobModal">
-            <i class="fa fa-plus mr-1"></i>Add Job</button>
-        </li>
-      </ul>
     </div>
     <div class="content-wrapper">
       <div class="container-fluid">
@@ -56,7 +51,7 @@
         </div>
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Job List</h4>
+            <h4 class="card-title">Applicants List</h4>
             <a class="heading-elements-toggle">
               <i class="icon-ellipsis font-medium-3"></i>
             </a>
@@ -82,32 +77,29 @@
                   <tr>
                     <th>S/N</th>
                     <th>Email</th>
-                    <th>Company Name</th>
-                    <th>Job Title</th>
-                    <th>Date Created</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Experience</th>
                     <th>Action</th>
                     <th></th>
-                    <th></th>
+
                   </tr>
                 </thead>
                 <tbody class="t-13 xc_table">
                   {{# each content}}
                   <tr>
                     <td>{{inc @index}}</td>
-                    <td>{{this.employer_email}}</td>
-                    <td>{{this.company_name}}</td>
-                    <td>{{this.career_level}}</td>
-                    <td>{{this.created_date}}</td>
-                    <td>
-                      <button class="btn br-0 btn-primary btn-sm t-11" data-toggle="modal" data-target="#a{{this.id}}">
-                        <i class="fa fa-pen"></i> Edit</button>
-                    </td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.first_name}}</td>
+                    <td>{{this.last_name}}</td>
+                    <td>{{this.experience}}</td>
+
                     <td>
                       <button class="btn br-0 btn-dark btn-sm t-11" data-toggle="modal" data-target="#b{{this.id}}">
                         <i class="fa fa-eye"></i> View</button>
                     </td>
                     <td>
-                      <a href="/jobs/{{this.id}}/delete" class="btn br-0 btn-danger btn-sm t-11">
+                      <a href="/applicant/{{this.id}}/delete" class="btn br-0 btn-danger btn-sm t-11">
                         <i class="fa fa-trash"></i> Delete</a>
                     </td>
                   </tr>
@@ -200,81 +192,16 @@
   </form>
 
   <!-- Edit Job Modal-->
-  {{# each content}}
-  <form action="/jobs/{{this.id}}" method="post">
-    <div class="modal fade" id="a{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="editJobModalLabel" aria-hidden="true">
-      <div class="modal-dialog " role="document">
-        <div class="modal-content">
-          <div class="modal-header bg-light">
-            <!-- Create Job Modal-->
-            <h5 class="modal-title" id="editJobModalLabel">Edit Job</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="nrm-wrapper">
-              <div class="form-group">
-                <input type="text" class="form-control br-0" name="company_name" value="{{this.company_name}}" placeholder="Company's Name">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control br-0" name="job_title" value="{{this.job_title}}" placeholder="Job Title">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control br-0" name="job_link" value="{{this.job_link}}" placeholder="Job link">
-              </div>
 
-              <div class="form-group">
-                <input type="email" class="form-control br-0" name="email" value="{{this.employer_email}}" placeholder="Email Address">
-              </div>
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <input type="number" class="form-control br-0" name="minimum_salary" value="{{this.job_pay_min}}" placeholder="Minimum Salary">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <input type="number" class="form-control br-0" name="maximum_salary" value="{{this.job_pay_max}}" placeholder="Maximum Salary">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <select name="career_level" id="" class="form-control br-0">
-                      <option selected>Choose Experience</option>
-                      <option value="Junior">Junior</option>
-                      <option value="Intermediate">Intermediate</option>
-                      <option value="Expert">Expert</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <textarea id="" cols="30" rows="4" name="job_description" placeholder="Job Description" class="form-control br-0">{{this.job_description}}</textarea>
-              </div>
-              <div class="form-group">
-                <input type="text" name="image_link" value="{{this.image_link}}" class="form-control br-0">
-              </div>
-              <div class="row">
-                <div class="col-12">
-                  <input type="submit" class="submit btn btn-info b-7 br-0 btn-block" value="Save Changes">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div></div>
-  </form>
-  {{/each}}
 
-  <!-- View Job Modal-->
+  <!-- View Applicant Modal-->
   {{# each content}}
   <div class="modal fade" id="b{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="viewJobModalLabel" aria-hidden="true">
     <div class="modal-dialog " role="document">
       <div class="modal-content">
         <div class="modal-header ">
           <!-- Create Job Modal-->
-          <h5 class="modal-title job_text_color" id="viewJobModalLabel">Job Details</h5>
+          <h5 class="modal-title job_text_color" id="viewJobModalLabel">Applicant Details</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -283,48 +210,51 @@
           <div class="nrm-wrapper">
             <div class="row">
               <div class="col-6">
-                <h6 class="text-muted t-12">Job Title</h6>
-                <h5 class="job_text_color t-15">{{this.job_title}}</h5>
+                <h6 class="text-muted t-12">First Name</h6>
+                <h5 class="job_text_color t-15">{{this.first_name}}</h5>
               </div>
               <div class="col-6">
-                <h6 class="text-muted t-12">Company</h6>
-                <h5 class="job_text_color t-15">{{this.company_name}}</h5>
+                <h6 class="text-muted t-12">Last Name</h6>
+                <h5 class="job_text_color t-15">{{this.last_name}}</h5>
               </div>
             </div>
-            <div class="row mt-3">
-              <div class="col-6">
-                <h6 class="text-muted t-12">Salary</h6>
-                <h5 class="job_text_color t-15">&#8358; {{this.job_pay_min}} - &#8358;{{this.job_pay_max}}</h5>
-              </div>
+            <div class="row">
               <div class="col-6">
                 <h6 class="text-muted t-12">Email Address</h6>
-                <h5 class="job_text_color t-15">{{this.employer_email}}</h5>
-              </div>
-            </div>
-            <div class="row mt-3">
-              <div class="col-6">
-                <h6 class="text-muted t-12">State</h6>
-                <h5 class="job_text_color t-15">{{this.location}}</h5>
+                <h5 class="job_text_color t-15">{{this.email}}</h5>
               </div>
               <div class="col-6">
                 <h6 class="text-muted t-12">Experience</h6>
-                <h5 class="job_text_color t-15">{{this.career_level}}</h5>
+                <h5 class="job_text_color t-15">{{this.experience}}</h5>
               </div>
             </div>
-            <div class="row mt-4">
-              <div class="col-12">
-                <div class="bg-light p-2">
-                  <h6 class="text-muted t-12 b-7">Description</h6>
-                  <p class="job_textcolor t-14 l-27">
-                    {{this.job_description}}
-                  </p>
-                </div>
+            <div class="row">
+              <div class="col-6">
+                <h6 class="text-muted t-12">Website</h6>
+                <h5 class="job_text_color t-15">{{this.website}}</h5>
+              </div>
+
+              <div class="col-6">
+                <h6 class="text-muted t-12">Github</h6>
+                <h5 class="job_text_color t-15">{{this.github_profile}}</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <h6 class="text-muted t-12">Tech Stack</h6>
+                <h5 class="job_text_color t-15">{{this.tech_stack}}</h5>
+              </div>
+              <div class="col-6">
+                <h6 class="text-muted t-12">Linkedin</h6>
+                <h5 class="job_text_color t-15">{{this.linkedin_profile}}</h5>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
+  </div>
   </div>
   {{/each}}
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

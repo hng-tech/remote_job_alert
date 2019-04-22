@@ -4,13 +4,12 @@
 <head>
     <title>{{title}}</title>
     <style>
-        
         #about {
             padding: 15px 5px;
             background: #fff;
         }
 
-        #about > h1 {
+        #about>h1 {
             background: #11144C;
             color: #fff;
             text-align: center;
@@ -18,25 +17,35 @@
             padding: 5px 0;
 
         }
-        #about > h4 {
-            text-align: center;
-            background-color:white;
-           
+        .Main{
+            font-size: 110%
         }
-         #about > h6 {
+        #about>h4 {
             text-align: center;
-            background-color:white;
-           
+            background-color: white;
+
         }
-        #last > h2 {
+
+        #about>h6 {
+            text-align: center;
+            background-color: white;
+
+        }
+
+        #last>h2 {
             text-align: center;
         }
-        #about >  hr{
-            border:1px solid;
+
+        #about>hr {
+            border: 1px solid;
             width: 100%;
-            margin-left:10px;
+            margin-left: 10px;
+            border-top: 1px solid #11144c;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            background-color: transparent;
         }
-        #last > h3{
+
+        #last>h3 {
             text-align: center;
             background-color: #11144c;
             color: white;
@@ -45,26 +54,125 @@
 </head>
 
 <body>
-    {{> header }}
+    <div class="container">
+        <div class="container">
+            {{#each errors}}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{msg}}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{/each}} {{#if emailError}}
+            <div class="alert alert-warning alert-dismissible fade show">
+                <strong>{{emailError}}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{/if}} {{#if success}}
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>{{success}}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{/if}}
+        </div>
+        <header id="header" class="">
 
-    <div id="about" class="container">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                    <a class="navbar-brand" href="/">
+                        <img src="images/code2.png" class="img-fluid" height="40" width="40"> <span
+                            class="b-7">DevAlert</span>
+                    </a>
+                    <!--<button id="hamburger_menu" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>-->
+                    <div id="mobile_hamburger" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
 
-        <h1>About us</h1>
-        
-        {{!-- WRITE ALL YOUR ABOUT-US CODE WITHIN --}}
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto xcv_link">
+                            <li class="nav-item">
+                                <a class="nav-link b-6 hover_link" href="/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link b-6 hover_link" href="/#job-posting">Jobs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link b-6 hover_link" href="/about">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link b-6 hover_link" href="/contact">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
 
-        <b>Dev/Alert</b> is an online <b>remote job</b> operating system that connects African developers to the rest of the world, it allows developers from anywhere in Africa to work at where is comfortable, happiest and most productive, regardless of their physical proximity to an office
-        or a coworker. <b>Dev/Alert</b> is a reality for more than 60 percent of the workforce that is experienced in the physical world. We bridge the enormous gap between the increasing number of African developers and the few available tech jobs on the continent. It is a service where one can subscribe for a remote job that is available for full stack developers in Africa. 
-        <br> <b>Dev/Alert</b> was created by a group of programmers to meet the needs of jobs availability in the continent and to connect to developers across the continent. <b>Dev/Alert</b> also gives developers the opportunity to subscribe to our mailing list for latest remote job opportunities. To ensure that developers get all the help they need in getting the job, we have agents that they can hire to apply on their
-        behalf. <b>Dev/Alert</b> has proven to be the best mediator between developers and agents to ensure the process ends with the developers getting the desired job of their dreams. The site offers full-time and part-time jobs that will improve your skills as a developer. 
+        {{!-- REGISTER MODAL--}}
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="mt-5 font-weight-bold">Pay to an agent</h5>
+                        <form action="/pay" method="post" class="mt-3">
+                            <div class="form-group">
+                                <label for="" class="my-0">Email</label>
+                                <input type="text" name="email" class="form-control my-0"
+                                    placeholder="johndoe@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="my-0">Phone number</label>
+                                <input type="tel" name="phoneNo" class="form-control my-0" placeholder="+234 7036836753"
+                                    minlength="11" pattern="[+]{0,1}[0-9\s]+" maxlength="16" required>
+                            </div>
+
+                            <input value="Pay" type="submit" name="phone" class="btn btn-custom px-5 mt-4"></input>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div id="about" class="container">
+
+            <h1>About us</h1>
+
+            {{!-- WRITE ALL YOUR ABOUT-US CODE WITHIN --}}
+        <div class="Main">
+            
+            <p> DevAlert is a platform that curates and connects the best available remote tech jobs with awesome developers who need them. It allows developers around the world to work from places where they are most comfortable, happy and most productive. </p>
+                </br>
+            <p>We bridge the enormous gap between the increasing number of developers and the few available remote tech jobs on the continent by opening the door to the world. </p>
+                </br>
+            <p>We give developers updates about latest remote job opportunities when they subscribe to our weekly remote job newsletter and ensure that developers get all the help they need in getting the job. We also have agents that can be hired to apply on their behalf. </p>
+                </br>
+            <p>Dev/Alert has proven to be the best mediator between developers and agents to ensure the process ends with the developers getting the desired job of their dreams. The site offers full-time and part-time jobs that will improve your skills as a developer.</p>
+                <br>
+            <p>DevAlert was created by a group of <b>HNG Interns</b> (#TeamDragonBeast ).</p>    
+        </div>
         <br>
-        <br>
-        <h4>OUR TECHNICAL TEAM</h4><hr>
-        {{!-- <b>Dev/Alert</b> was created by a group of programmers to meet the needs of jobs availability in the continent and to
+        </br>
+        </br>
+            {{!-- <b>Dev/Alert</b> was created by a group of programmers to meet the needs of jobs availability in the continent and to
         connect to developers across the continent.<p> And this group of programmers include:</p>
         <ul>
             <li type="1">Jesutomiwa Salam (Senior Back-End Developer)</li> 
-            <li type="1">Abdullahi Oladosu (Senior Front-End Developer)</li> 
+            <li type="1">Abdullahi Ayobami Oladosu (Senior Front-End Developer)</li> 
             <li type="1">Chiaju Chinedu (Front-End Developer)</li>
             <li type="1">Damilola Shofoluwe (Senior UI/UX Designer)</li>
         </ul> 
@@ -77,62 +185,154 @@
             <br> on the UI/UX platform.</p></div>
         <br>
         <br> --}}
-        <h4>HOW IT WORKS</h4>
-        <hr>
-        <b>Dev/Alert</b> gives developers the opportunity to subscribe to our mailing list for latest remote job opportunities. We bridge
-          the enormous gap between the increasing number of African developers and the few available tech jobs on the continent. It
-          provides a subscription service to effectively connect developers to remote jobs available in Africa.
-          <br>
-          <br>
-            <h4>APPLYING ON YOUR OWN?</h4>
-            <hr>
-            <br>
-            <h6><b>STEP 1</b></h6>
-            <h6><p>Subscribe to our mailing list using a working email address.</p></h6>
-            <h6><b>STEP 2</b></h6>
-            <h6><p>Receive updates on recent remote jobs alerts and apply for jobs directly from your email address.</p></h6>
-            <hr>
-            <br>
-            <h4>APPLYING VIA A DEV/ALERT AGENT?</h4>
-            <br>
-            <h6><b>STEP 1</b></h6>
-            <h6><p>Click on Contact an Agent button on the homepage, which will give you a short guide on contacting your dedicated agent. </p></h6>
-            <h6><b>STEP 2</b></h6>
-            <h6><p>Click on Pay an Agent to begin our guided job application process.</p></h6>
-            <hr>
-        {{!-- AN AREA FOR CONTRIBUTORS --}}
-        <h1>OUR CONTRIBUTORS</h1>
+     
 
-{{!--  Row of Contributors --}}
+
+
+            
+        {{!-- AN AREA FOR CONTRIBUTORS --}}
+        
+
+{{!-- 1st Row of Contributors --}}
         <div class="row">
             <div class="col-md-6">
-
-        <ul>
-            <li> Ivory Okeke</li> 
-            <li> Marow Macaulay</li> 
-           
-        </ul> 
+{{!-- Add your name into a list tag and make a PR--}}
+        
             </div>
 
             <div class="col-md-6">
-
-        <ul>
-            <li> Abdullahi Oladosu</li> 
-            <li> Sholademi Elijah</li> 
-           
-        </ul>                 
+{{!-- Add your name into a list tag and make a PR--}}
+                       
             </div>
         </div>
+{{!-- 2nd Row of Contributors and make a PR--}}
+        <div class="row">
+            <div class="col-md-6">
+{{!-- A 
+            </div>
 
-    </div>
-    
-    {{!-- <div id="last" class="container">
+            <div class="col-md-6">
+{{!-- Add your name into a list tag and make a PR--}}
+                      
+            </div>
+        </div>
+{{!-- 3rd Row of Contributors and make a PR--}}
+        <div class="row">
+            <div class="col-md-6">
+{{!-- Add your name into a list tag and make a PR--}}
+        
+            </div>
+
+            <div class="col-md-6">
+{{!-- Add your name into a list tag and make a PR--}}
+                  
+
+            {{!-- AN AREA FOR CONTRIBUTORS --}}
+            
+
+            {{!--  Row of Contributors --}}
+            <div class="row">
+                <div class="col-md-6">
+            </div>
+
+        </div>
+        {{!-- WRITE ALL YOUR ABOUT-US CODE WITHIN --}}
+
+        {{!-- <div id="last" class="container">
         <h3>Dev/Alert</h3>
   </div>--}}
-</div>
-<script src="views/dist/js/bootstrap.min.js"></script>
+    </div>
+    <script src="views/dist/js/bootstrap.min.js"></script>
 
     </div>
 
-    {{> footer}}
 </body>
+<footer>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/57c3e32a416c00672f62e672/1d8iusnc3';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+    <div class="container">
+        <div class="row links">
+            <div class="col link-subgroup">
+                <h3>COMPANY</h3>
+                <ul>
+                    <li>
+                        <a href="/about">About Us</a>
+                    </li>
+                    <li>
+                        <a href="/contact">Contact Us</a>
+                    </li>
+                    <li>
+                        <a href="/faqs">FAQs</a>
+                    </li>
+                    <li>
+                        <a class="typeform-share button" href="https://opensaucedeveloper.typeform.com/to/CXoPol"
+                            data-mode="popup" data-submit-close-delay="5" target="_blank">
+                            Become an Agent
+                        </a>
+
+
+                    </li>
+                    <script> (function () { var qs, js, q, s, d = document, gi = d.getElementById, ce = d.createElement, gt = d.getElementsByTagName, id = "typef_orm_share", b = "https://embed.typeform.com/"; if (!gi.call(d, id)) { js = ce.call(d, "script"); js.id = id; js.src = b + "embed.js"; q = gt.call(d, "script")[0]; q.parentNode.insertBefore(js, q) } })() </script>
+                </ul>
+            </div>
+            <div class="col link-subgroup">
+                <h3>OUR SPONSORS</h3>
+                <ul>
+                    <li>
+                        <a target="_blank" href="https://hotels.ng/">HotelsNG</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://hotel.africa/">Hotel Africa</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://verifi.ng/">Verifi</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col link-subgroup">
+                <h3>FOLLOW US</h3>
+                <div class="social">
+                    <a target="_blank" href="https://fb.me/DevAlert">
+                        <img src="images/facebook.png" />
+                    </a>
+                    <a target="_blank" href="https://instagram.com/devalert__">
+                        <img src="images/instagram.png" />
+                    </a>
+                    <a target="_blank" href="https://twitter.com/devalert__">
+
+                        <img src="images/twitter.png" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>&copy;Copyright
+            <script>document.write(new Date().getFullYear())</script>. All rights reserved</p>
+    </div>
+    <a id="back-to-top" href="#header"
+        style="display: none;padding: 10px;text-align:center; position: fixed; background: #11144C;bottom: 24px; right: 24px;"><span
+            style="width: 24px; height: 24px; padding: 4px;color:white;" class="fa fa-arrow-up"></span></a>
+    <script>
+        $(window).scroll(function () {
+
+            if ($(window).scrollTop() > 500) {
+                $("#back-to-top").css("display", "block")
+            } else {
+                $("#back-to-top").css("display", "none")
+            }
+        });
+    </script>
+</footer>
