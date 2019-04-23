@@ -82,10 +82,10 @@ router.get("/contact", Home.contactUs);
 
 //Routes for user pages
 // GET User Login page
-router.get("/user-login", Home.userLogin);
+//router.get("/user-login", Home.userLogin);
 
 // GET User Signup page
-router.get("/user-signup", Home.userSignup);
+//router.get("/user-signup", Home.userSignup);
 
 
 
