@@ -27,9 +27,9 @@ Change into cloned repo and install dependencies
 
 ```
 `npm install`
-
-create a .env file in the root folder and copy the details in the .env.example file into the file. 
 ```
+
+Create a .env file in the root folder and copy the details in the .env.example file into the file. 
 
 ```
 
