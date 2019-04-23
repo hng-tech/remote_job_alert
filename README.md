@@ -28,9 +28,7 @@ Change into cloned repo and install dependencies
 ```
 `npm install`
 
-Create a .env file in the root folder and add the following:
-MAILGUN_API_KEY=key-ahdhdhhd
-MAILGUN_DOMAIN=any.com
+create a .env file in the root folder and copy the details in the .env.example file into the file. 
 ```
 
 ```
