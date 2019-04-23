@@ -1,19 +1,19 @@
-const db = require('./promise').Db;
-const validateQueryText = require('../validation/controller');
-const fetch = require('node-fetch');
-const { sendMailForRemoteJob } = require('./user');
-const userModel = require('../models/user');
+const db = require("./promise").Db;
+const validateQueryText = require("../validation/controller");
+const fetch = require("node-fetch");
+const { sendMailForRemoteJob } = require("./user");
+const userModel = require("../models/user");
 
 const Jobs = {
   async fetchData(req, res) {
-    let data = await fetch('https://remoteok.io/api?ref=producthunt');
+    let data = await fetch("https://remoteok.io/api?ref=producthunt");
     let main = await data.json();
     return res.status(200).json(main);
   },
-  async create(req, res, next) {
+ async create(req, res, next) {
     // // Check Validation
     // if (!isValid) {
-    // 	return res.status(400).json(errors);
+    //  return res.status(400).json(errors);
     // }
 
     const queryText = {
@@ -30,30 +30,21 @@ const Jobs = {
     };
     try {
       let createdJob = await db.create(queryText);
-      return res.status(201).redirect('/managejobs');
+      sendMailForRemoteJob(createdJob);
+      return res.status(201).redirect("/managejobs");
     } catch (error) {
       return res.status(400).send(error);
     }
   },
   
   async get_all(req, res) {
-    const page = Number(req.query.page) || 1;
-    const limit = Number(req.query.limit) || 10;
-    const career_level = req.query.career_level;
-
-    const paginationOptions = { page, limit };
     const queryText = {};
-    if ((career_level && career_level !== 'all') || 'All')
-      queryText.career_level = career_level;
-
     try {
-      let result = await db.find(queryText, paginationOptions);
+      let foundJobs = await db.find(queryText);
       let usersCount = await userModel.countDocuments({});
-      return res.status(200).render('manage_jobs', {
-        content: result.docs,
-        jobCount: result.total,
-        page: result.page,
-        pages: result.pages,
+      return res.status(200).render("manage_jobs", {
+        content: foundJobs,
+        jobCount: foundJobs.length,
         usersCount,
         helpers: {
           inc: function(index) {
@@ -67,18 +58,10 @@ const Jobs = {
     }
   },
   async get_all_json(req, res) {
-    const page = Number(req.query.page) || 1;
-    const limit = Number(req.query.limit) || 10;
-
-    const paginationOptions = { page, limit };
     const queryText = {};
     try {
-      let result = await db.find(queryText, paginationOptions);
-      return res.status(200).json({
-        jobs: result.docs,
-        page: result.page,
-        pages: result.pages
-      });
+      let foundJobs_Json = await db.find(queryText);
+      return res.status(200).json(foundJobs_Json);
     } catch (error) {
       return res.status(400).send(error);
     }
@@ -89,7 +72,7 @@ const Jobs = {
     };
     try {
       let foundJob = await db.findOne(queryText);
-      return res.status(200).render('/', { content: foundJob });
+      return res.status(200).render("/", { content: foundJob });
     } catch (error) {
       return res.status(400).send(error);
     }
@@ -134,7 +117,7 @@ const Jobs = {
     try {
       let updatedJob = await db.findOneAndUpdate(queryText, updateText);
       console.log(updatedJob);
-      return res.status(201).redirect('/managejobs');
+      return res.status(201).redirect("/managejobs");
     } catch (error) {
       return res.status(400).send(error);
     }
@@ -146,7 +129,7 @@ const Jobs = {
     try {
       let foundJob = await db.findOneAndDelete(queryText);
       console.log(foundJob);
-      return res.status(200).redirect('/managejobs');
+      return res.status(200).redirect("/managejobs");
     } catch (error) {
       return res.status(400).send(error);
     }
