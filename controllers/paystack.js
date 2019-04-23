@@ -1,6 +1,5 @@
 const _ = require("lodash");
 const db = require("./promise").DbAgent;
-const secretKey = "sk_live_9f957be2c68dda29dc62a2048a12ef2901f16a57";
 const paystack = require("paystack")(process.env.PAYSTACK_SECRET_KEY);
 
 const Paystack = {
