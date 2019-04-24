@@ -87,8 +87,8 @@
 						<div>
 							<br />
 							<h5>
-								<button id="load_listings" class="listings btn btn-outline btn-sm">Load more listings
-									<img src="images/arrowdown.svg" />
+								<button id="load_listings" class=" btn btn-outline ">Load more listings
+									<img src="images/arrow-down.svg" width="20px">
 								</button>
 							</h5>
 						</div>
@@ -178,7 +178,7 @@
 
 		function load_data() {
 
-			$("#load_listings").html("<img src='images/spinner.gif' style='height: 31px; width:31px;' />");
+			$("#load_listings");
 			$.ajax({
 				url: "/jobs_api",
 				async: false,
@@ -198,7 +198,7 @@
 						}
 					} else {
 						qty = 10
-						$("#load_listings").attr("disabled", false).html("Load more listings <img src='images/arrowdown.svg' />");
+						$("#load_listings").attr("disabled", false).html("Load more listings <img src='images/arrow-down.svg' width='20px' />");
 					}
 
 					add_jobs(jobs.slice(loaded, loaded + qty));
