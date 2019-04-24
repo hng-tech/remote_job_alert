@@ -178,7 +178,7 @@
 
 		function load_data() {
 
-			$("#load_listings");
+			$("#load_listings").html("<img src='images/spinner.gif' style='height: 31px; width:31px;' />");
 			$.ajax({
 				url: "/jobs_api",
 				async: false,
