@@ -88,7 +88,7 @@
 							<br />
 							<h5>
 								<button id="load_listings" class="listings btn btn-outline btn-sm">Load more listings
-									<img src="images/arrowdown.svg" />
+									<img src="images/arrow-down.svg" width="20px">
 								</button>
 							</h5>
 						</div>
@@ -198,7 +198,7 @@
 						}
 					} else {
 						qty = 10
-						$("#load_listings").attr("disabled", false).html("Load more listings <img src='images/arrowdown.svg' />");
+						$("#load_listings").attr("disabled", false).html("Load more listings <img src='images/arrow-down.svg' width='20px' />");
 					}
 
 					add_jobs(jobs.slice(loaded, loaded + qty));
