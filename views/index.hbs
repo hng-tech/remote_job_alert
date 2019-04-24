@@ -88,7 +88,7 @@
 							<br />
 							<h5>
 								<button id="load_listings" class="listings btn btn-outline btn-sm">Load more listings
-									<img src="images/arrowdown.svg" />
+									<img src="images/arrow-down.svg" width="20px">
 								</button>
 							</h5>
 						</div>
@@ -135,6 +135,8 @@
 
 	<script>
 		let jobs = null; // To store all jobs
+		var job_id = null;
+		var job = null;
 		let single_job = null; // to store a single job
 		let loaded = 0;
 		let filter = "all";
@@ -161,17 +163,18 @@
 			else if (job.company.toLowerCase() == "facebook") {
 				job.company_logo = "https://img.icons8.com/ios/29/000000/facebook-filled.png";
 			}
-
-			let job_html = "<ul data-id=" + job.id + " class='job col-sm-5'><li><img style='width:29px; height:29px;' src='" + job.company_logo + "' /></li><li><p>" + job.title + "</p></li><li><a class='view-more' data-toggle='modal' data-target='#jobModal'><p>view<img src='images/Arrow.png' /></p></a></li></ul>";
+			
+				let job_html = "<ul data-id=" + job.id + " class='job col-sm-5'><li><img style='width:29px; height:29px;' src='" + job.company_logo + "' /></li><li><p>" + job.title + "</p></li><li><a class='view-more' data-toggle='modal' data-target='#jobModal'><p>view<img src='images/Arrow.png' /></p></a></li></ul>";
 
 			$(".jobs").append(job_html);
-
+	
 
 			var image = $('ul[data-id=' + job.id + '] > li > img');
 
 			if (image.attr("src") == "") {
 				image.attr("src", "https://img.icons8.com/ios-glyphs/29/000000/organization.png");
 			}
+			
 
 		}
 
@@ -198,7 +201,7 @@
 						}
 					} else {
 						qty = 10
-						$("#load_listings").attr("disabled", false).html("Load more listings <img src='images/arrowdown.svg' />");
+						$("#load_listings").attr("disabled", false).html("Load more listings <img src='images/arrow-down.svg' width='20px' />");
 					}
 
 					add_jobs(jobs.slice(loaded, loaded + qty));
@@ -215,11 +218,16 @@
 				url: "/jobs_api/" + id,
 				async: false,
 				success: function (data) {
-					job = data;
+					for(let i = 0; i < data.length; i++){
+						if(data[i].id == id){
+							job = data[i];
+						}
+					}
+					if (job.id)
 					if (!job.type) {
 						job.type = ""
 					}
-					$("#job-title").html(job.title.toUpperCase() + " - " + job.type)
+					$("#job-title").append(job.title.toUpperCase() + " - " + job.type)
 					$("#company-name").html(job.company.toUpperCase())
 					if (!job.company_url) {
 						job.company_url = ""
