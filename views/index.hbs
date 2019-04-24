@@ -64,13 +64,13 @@
 						<div class="dropdown">
 							<h4>Filter</h4>
 							<button id="curr_filter" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-								Select a job role
+								Select a job type
 							</button>
 							<div id="filter" class="dropdown-menu drp-cur">
 								<a class="dropdown-item" data-filter="all">All</a>
-								<a class="dropdown-item" data-filter="junior">Junior</a>
-								<a class="dropdown-item" data-filter="intermediate">Intermediate</a>
-								<a class="dropdown-item" data-filter="expert">Expert</a>
+								<a class="dropdown-item" data-filter="full time">Full Time</a>
+								<a class="dropdown-item" data-filter="part time">Part Time</a>
+								<a class="dropdown-item" data-filter="contract">Contract</a>
 							</div>
 						</div>
 						<!-- <div class="input-group">
@@ -88,7 +88,7 @@
 							<br />
 							<h5>
 								<button id="load_listings" class="listings btn btn-outline btn-sm">Load more listings
-									<img src="images/arrowdown.svg" />
+									<img src="images/arrow-down.svg" width="20px">
 								</button>
 							</h5>
 						</div>
@@ -132,8 +132,11 @@
 			</div>
 		</div>
 	</div>
+
 	<script>
 		let jobs = null; // To store all jobs
+		var job_id = null;
+		var job = null;
 		let single_job = null; // to store a single job
 		let loaded = 0;
 		let filter = "all";
@@ -147,30 +150,31 @@
 
 		function add_job(job) {
 			// if it's a job from microsoft, use microsoft's logo
-			if (job.company_name.toLowerCase() == "microsoft") {
-				job.image_link = "images/ms.png";
+			if (job.company.toLowerCase() == "microsoft") {
+				job.company_logo = "images/ms.png";
 			}
 
 			// if it's a job from google's, use google's logo
-			else if (job.company_name.toLowerCase() == "google") {
-				job.image_link = "https://img.icons8.com/color/29/000000/google-logo.png";
+			else if (job.company.toLowerCase() == "google") {
+				job.company_logo = "https://img.icons8.com/color/29/000000/google-logo.png";
 			}
 
 			// if it's a job from google's, use google's logo
-			else if (job.company_name.toLowerCase() == "facebook") {
-				job.image_link = "https://img.icons8.com/ios/29/000000/facebook-filled.png";
+			else if (job.company.toLowerCase() == "facebook") {
+				job.company_logo = "https://img.icons8.com/ios/29/000000/facebook-filled.png";
 			}
-
-			let job_html = "<ul data-id=" + job._id + " class='job col-sm-5'><li><img style='width:29px; height:29px;' src='" + job.image_link + "' /></li><li><p>" + job.job_title + "</p></li><li><a class='view-more' data-toggle='modal' data-target='#jobModal'><p>view<img src='images/Arrow.png' /></p></a></li></ul>";
+			
+				let job_html = "<ul data-id=" + job.id + " class='job col-sm-5'><li><img style='width:29px; height:29px;' src='" + job.company_logo + "' /></li><li><p>" + job.title + "</p></li><li><a class='view-more' data-toggle='modal' data-target='#jobModal'><p>view<img src='images/Arrow.png' /></p></a></li></ul>";
 
 			$(".jobs").append(job_html);
+	
 
-
-			var image = $('ul[data-id=' + job._id + '] > li > img');
+			var image = $('ul[data-id=' + job.id + '] > li > img');
 
 			if (image.attr("src") == "") {
 				image.attr("src", "https://img.icons8.com/ios-glyphs/29/000000/organization.png");
 			}
+			
 
 		}
 
@@ -179,14 +183,14 @@
 
 			$("#load_listings").html("<img src='images/spinner.gif' style='height: 31px; width:31px;' />");
 			$.ajax({
-				url: "/jobs_json",
+				url: "/jobs_api",
 				async: false,
 				success: function (data) {
 					jobs = data;
 
 					if (filter !== "all") {
 						jobs = jobs.slice().filter(function (el) {
-							return el.career_level.toLowerCase() === filter
+							return el.type.toLowerCase() === filter
 						});
 					}
 					let qty = 0;
@@ -197,7 +201,7 @@
 						}
 					} else {
 						qty = 10
-						$("#load_listings").attr("disabled", false).html("Load more listings <img src='images/arrowdown.svg' />");
+						$("#load_listings").attr("disabled", false).html("Load more listings <img src='images/arrow-down.svg' width='20px' />");
 					}
 
 					add_jobs(jobs.slice(loaded, loaded + qty));
@@ -211,35 +215,35 @@
 
 		function load_single_data(id) {
 			$.ajax({
-				url: "/jobs_json/" + id,
+				url: "/jobs_api/" + id,
 				async: false,
 				success: function (data) {
-					job = data;
-					if (!job.career_level) {
-						job.career_level = ""
+					for(let i = 0; i < data.length; i++){
+						if(data[i].id == id){
+							job = data[i];
+						}
 					}
-					$("#job-title").html(job.job_title.toUpperCase() + " - " + job.career_level)
-					$("#company-name").html(job.company_name.toUpperCase())
-					if (!job.job_link) {
-						job.job_link = ""
+					if (job.id)
+					if (!job.type) {
+						job.type = ""
 					}
-					if (!job.job_category) {
-						job.job_category = ""
-					}
-					if (!job.job_pay_max) {
-						job.job_pay_max = ""
-					}
-					if (!job.job_pay_min) {
-						job.job_pay_min = ""
-					}
-					if (!job.employer_email) {
-						job.employer_email = ""
+					$("#job-title").append(job.title.toUpperCase() + " - " + job.type)
+					$("#company-name").html(job.company.toUpperCase())
+					if (!job.company_url) {
+						job.company_url = ""
 					}
 					if (!job.location) {
 						job.location = ""
 					}
-					let job_description_string = job.company_name.toUpperCase() + " is hiring!<br/>Category: " + job.job_category + "<br/>Description: " + job.job_description + "<br/>Location: " + job.location + "<br/>Mail us:" + job.employer_email + "<br/> Salary: " + job.job_pay_min + " - " + job.job_pay_max + "<br/>";
-					$("#job-link").attr("href", job.job_link)
+					//if (!job.job_pay_max) {
+					//	job.job_pay_max = ""
+					//}
+					//if (!job.job_pay_min) {
+					//	job.job_pay_min = ""
+					//}
+					
+					let job_description_string = job.company.toUpperCase() + " is hiring!<br/>Category: " + "<br/>Description: " + job.description + "<br/>Location: " + job.location + "<br/>Mail us:" + job.company_url + "<br/>";
+					$("#job-link").attr("href", job.url)
 					$("#job-description").html(job_description_string)
 				}
 			});
