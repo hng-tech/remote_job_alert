@@ -382,7 +382,13 @@
   -webkit-transition: .4s ease all;
   -moz-transition: .4s ease all;
 }
-
+.hoverBtn{
+  color: rgb(86, 153, 86) !important;
+  width: 150px;
+}
+.hoverBtn:hover{
+  color: #ffffff !important;
+}
 .hover_link:hover{
   color: #11144c !important;
   border-bottom: 2px solid #11144c
