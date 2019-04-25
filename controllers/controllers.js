@@ -15,7 +15,7 @@ const Jobs = {
       id: req.params.job_id
     };
     try {
-      let data = await fetch("https://jobs.github.com/positions.json?location=remote" + queryText);
+      let data = await fetch("https://jobs.github.com/positions.json?location=remote");
       let main = await data.json();
       return res.status(200).json(main);
       
