@@ -82,10 +82,10 @@ router.get("/contact", Home.contactUs);
 
 //Routes for user pages
 // GET User Login page
-router.get("/user-login", Home.userLogin);
+//router.get("/user-login", Home.userLogin);
 
 // GET User Signup page
-router.get("/user-signup", Home.userSignup);
+//router.get("/user-signup", Home.userSignup);
 
 
 
@@ -99,6 +99,7 @@ router.get("/job_details", Home.job_details);
 router.get("/jobs_json", Jobs.get_all_json);
 router.get("/jobs_json/:job_id", Jobs.get_one_json);
 router.get("/jobs_api", Jobs.fetchData);
+router.get("/jobs_api/:job_id", Jobs.fetchSingle);
 
 /* There is an Error in this route, it is crashing the server */
 //router.post('/jobs', Jobs.validate('create'), Jobs.create);

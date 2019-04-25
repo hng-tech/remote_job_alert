@@ -6,12 +6,12 @@ const Applicant = require('../models/applicant');
 class Db {
   /**
    * @param {string} text
-   * @returns {object} Return all 
+   * @returns {object} Return all
    */
-  static find(queryText, paginationOptions) {
+  static find(param) {
     return new Promise((resolve, reject) => {
-      Jobs.paginate(queryText, paginationOptions)
-        .then((res) => {
+      Jobs.find(param)
+        .then(res => {
           resolve(res);
         })
         .catch(err => {
@@ -55,6 +55,18 @@ class Db {
   static create(param) {
     return new Promise((resolve, reject) => {
       Jobs.create(param)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
+
+  static insertMany(param) {
+    return new Promise((resolve, reject) => {
+      Jobs.insertMany(param)
         .then(res => {
           resolve(res);
         })
