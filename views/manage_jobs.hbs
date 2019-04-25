@@ -338,4 +338,64 @@
       })
     })
   </script>
+  <script>
+    function load_jobs(){
+
+      $(#"").html("<img src='images/spinner.gif' style='height: 31px; width:31px;' />");
+      $.ajax({
+        url: "/jobs_api",
+        async: false,
+				success: function (data) {
+					jobs = data;
+
+					if (filter !== "all") {
+						jobs = jobs.slice().filter(function (el) {
+							return el.type.toLowerCase() === filter
+						});
+					}
+					let qty = 0;
+					if ((loaded + 10) > jobs.length) {
+						qty = (jobs.length - loaded)
+						if (loaded == jobs.length) {
+							$("#").attr("disabled", true).html("No more listings");
+						}
+					} else {
+						qty = 10
+						$("#").attr("disabled", false).html("Load more listings <img src='images/arrowdown.svg' />");
+					}
+
+					add_jobs(jobs.slice(loaded, loaded + qty));
+
+					if (loaded === jobs.length) {
+						$("#").attr("disabled", true).html("No more listings");
+					}
+				}
+      });
+    }
+    function load_single_job(id) {
+			$.ajax({
+				url: "/jobs_api/" + id,
+				async: false,
+				success: function (data) {
+					job = data;
+					if (!job.type) {
+						job.type = ""
+					}
+					$("#job-title").html(job.title.toUpperCase() + " - " + job.type)
+					$("#company-name").html(job.company.toUpperCase())
+					if (!job.company_url) {
+						job.company_url = ""
+					}
+					if (!job.location) {
+						job.location = ""
+					}
+          let job_description_string = job.company.toUpperCase() + " is hiring!<br/>Category: " + "<br/>Description: " + job.description + "<br/>Location: " + job.location + "<br/>Mail us:" + job.company_url + "<br/>";
+					$("#job-link").attr("href", job.url)
+					$("#job-description").html(job_description_string)
+				}
+			});
+		}
+
+          
+  </script>
 </body>
