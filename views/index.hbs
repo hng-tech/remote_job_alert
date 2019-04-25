@@ -132,7 +132,19 @@
 			</div>
 		</div>
 	</div>
-
+	<script src="https://js.stripe.com/v3/"></script>
+	<script>
+		var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
+		document.getElementById("buttonCheckout").addEventListener("click", function(){
+			stripe.redirectToCheckout({
+				sessionId: '{{sessionId}}',
+			}).then(function (result) {
+			// If `redirectToCheckout` fails due to a browser or network
+			// error, display the localized error message to your customer
+			// using `result.error.message`.
+			});
+		})
+	</script>
 	<script>
 		let jobs = null; // To store all jobs
 		var job_id = null;
