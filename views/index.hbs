@@ -235,11 +235,10 @@
 							job = data[i];
 						}
 					}
-					if (job.id)
 					if (!job.type) {
 						job.type = ""
 					}
-					$("#job-title").append(job.title.toUpperCase() + " - " + job.type)
+					$("#job-title").html(job.title.toUpperCase() + " - " + job.type)
 					$("#company-name").html(job.company.toUpperCase())
 					if (!job.company_url) {
 						job.company_url = ""
@@ -254,7 +253,7 @@
 					//	job.job_pay_min = ""
 					//}
 					
-					let job_description_string = job.company.toUpperCase() + " is hiring!<br/>Category: " + "<br/>Description: " + job.description + "<br/>Location: " + job.location + "<br/>Mail us:" + job.company_url + "<br/>";
+					let job_description_string = job.company.toUpperCase() + " is hiring!<br/>Category: " + "<br/>Description: " + job.description + "<br/>Location: " + job.location + "<br/>Our Website:" + job.company_url + "<br/>";
 					$("#job-link").attr("href", job.url)
 					$("#job-description").html(job_description_string)
 				}
