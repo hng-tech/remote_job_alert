@@ -635,6 +635,6 @@
 
 @media (max-width: 768px){
   .input-group {
-    width: 80%;
+    width: 100%;
   }
 }
