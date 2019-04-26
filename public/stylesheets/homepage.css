@@ -495,3 +495,10 @@
   -o-transform: rotate(-135deg);
   transform: rotate(-135deg);
 }
+.hoverBtn{
+  color: rgb(86, 153, 86) !important;
+  width: 150px;
+}
+.hoverBtn:hover{
+  color: #ffffff !important;
+}
