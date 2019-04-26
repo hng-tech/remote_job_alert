@@ -25,7 +25,7 @@
 						<div class="row">
 							<div class="col-sm-12 col-md-6 intro-text">
 								<h4>The remote life</h4>
-								<h1>Subscribe to recieve remote developer jobs</h1>
+								<h1>Subscribe to receive remote developer jobs.</h1>
 								<p>Built by Africans for the World. Let us help you get that dream remote job you’re
 									perfect for
 								</p>
@@ -62,7 +62,6 @@
 		<section id="job-posting">
 			<div class="job-header">
 				<h1>Job Postings</h1>
-
 				<div class="input-group input-group-search">
 					<input id="search-text" value="" type="text" class="form-control" placeholder="Search">
 					<div class="input-group-btn">
@@ -127,10 +126,10 @@
 		</div>
 	</div>
 	{{> footer}}
+	<script src="https://js.stripe.com/v3/"></script>
 	<script>
 
 		let data = null;
-
 		function sort_jobs(array, input) {
 			input = input.toLowerCase();
 
@@ -150,7 +149,6 @@
 
 				return a.description.localeCompare(b.description);
 			});
-			debugger;
 
 			return sorted;
 		}
@@ -185,6 +183,7 @@
 				jobs_html += job_html;
 			}
 
+
 			$("#content").html(jobs_html); // or some ajax content loading...
 		}
 
@@ -199,11 +198,11 @@
 
 		$("#content").on('click', '.read-more', function () {
 			$("#job-description, #company-name, #job-title").html("loading");
-			let id = $(this).attr("data-id")
+			let id = $(this).attr("data-id");
 
 			let response = null;
-			for (let i = 0; i < data.length; i++){
-				if (data[i].id == id){
+			for (let i = 0; i < data.length; i++) {
+				if (data[i].id == id) {
 					response = data[i];
 					break;
 				}
@@ -229,6 +228,16 @@
 		}
 
 		$(function () {
+			var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
+			$("buttonCheckout").click(function () {
+				stripe.redirectToCheckout({
+					sessionId: '{{sessionId}}',
+				}).then(function (result) {
+					// If `redirectToCheckout` fails due to a browser or network
+					// error, display the localized error message to your customer
+					// using `result.error.message`.
+				});
+			})
 
 			$.ajax({
 				url: "/jobs_api",
