@@ -9,12 +9,18 @@ const Paystack = require("../controllers/paystack");
 var Admin = require("../models/admin");
 var JobModel = require("../models/jobs");
 const Applicant = require("../controllers/applicant");
+const session = require("../controllers/stripe");
 /* GET home page. */
 //router.get("/", Home.index);
-router.get("/", function(req, res, next) {
-  JobModel.find(function(err, jobs) {
-    res.render("index", { title: "Remote Job Alert", contents: jobs });
-  });
+router.get("/", async function(req, res, next) {
+  try{
+    const stripeSession =  await session;
+    const jobs = await JobModel.find();
+    res.render("index", { title: "Remote Job Alert", contents: jobs, sessionId: stripeSession.id});
+  }catch(err){
+    console.log(err);
+    next(err);
+  }
 });
 
 // GET About us page

@@ -326,38 +326,39 @@
             <div class="row">
               <div class="col-6">
                 <h6 class="text-muted t-12">Job Title</h6>
-                <h5 class="job_text_color t-15"></h5>
+                <h5 id="jobTitle" class="job_text_color t-15"></h5>
               </div>
               <div class="col-6">
                 <h6 class="text-muted t-12">Company</h6>
-                <h5 class="job_text_color t-15"></h5>
+                <h5 id="company" class="job_text_color t-15"></h5>
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-6">
-                <h6 class="text-muted t-12">Salary</h6>
-                <h5 class="job_text_color t-15"></h5>
+                <h6 class="text-muted t-12">Job Type</h6>
+                <h5 id="jobType" class="job_text_color t-15"></h5>
               </div>
               <div class="col-6">
-                <h6 class="text-muted t-12">Email Address</h6>
-                <h5 class="job_text_color t-15"></h5>
+                <h6 class="text-muted t-12">Website</h6>
+                <h5 id="website" class="job_text_color t-15"></h5>
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-6">
-                <h6 class="text-muted t-12">State</h6>
-                <h5 class="job_text_color t-15"></h5>
+                <h6 class="text-muted t-12">Job Link</h6>
+                <h5 id="jobURL" class="job_text_color t-15"></h5>
               </div>
               <div class="col-6">
-                <h6 class="text-muted t-12">Experience</h6>
-                <h5 class="job_text_color t-15"></h5>
+                <h6 class="text-muted t-12">Location</h6>
+                <h5 id="location" class="job_text_color t-15"></h5>
               </div>
+              
             </div>
             <div class="row mt-4">
               <div class="col-12">
                 <div class="bg-light p-2">
-                  <h6 class="text-muted t-12 b-7">Description</h6>
-                  <p class="job_textcolor t-14 l-27">
+                  <h6 class="text-muted t-12 b-7">How To Apply</h6>
+                  <p id="description" class="job_textcolor t-14 l-27">
                     
                   </p>
                 </div>
@@ -376,7 +377,7 @@
 		var job = null;
 		let single_job = null; // to store a single job
 		let loaded = 0;
-		let filter = "all";
+		let i = 1;
 
 		function add_jobs(jobs) {
 			for (let i = 0; i < jobs.length; i++) {
@@ -406,7 +407,6 @@
 			$(".jobs").append(job_html);
 	
 
-			var image = $('ul[data-id=' + job.id + '] > li > img');
 
 			if (image.attr("src") == "") {
 				image.attr("src", "https://img.icons8.com/ios-glyphs/29/000000/organization.png");
@@ -425,11 +425,13 @@
 				dataType: 'JSON',
 				success: function (data) {
 					var table = document.getElementById('jobtable');
-          let i =1;
+					
+					
+
 					data.forEach(
                             function(jobs) {
                             	var tr = document.createElement('tr');
-                                  tr.innerHTML =  '<tr data-id='+jobs.id+'><td>' + i++
+                                  tr.innerHTML =  '<tr><td>' + i++
                                                 + '</td><td>'
                                                 + jobs.company_url
                                                 + '</td><td>'
@@ -441,11 +443,12 @@
                                                 + '</td><td>'
                                                + '<button class="btn br-0 btn-primary btn-sm t-11" data-toggle="modal" data-target="#a{{this.id}}"><i class="fa fa-pen"></i> Edit</button>'
                                                + '</td><td>'
-                                               + '<button class="ViewBtn btn br-0 btn-dark btn-sm t-11" data-toggle="modal" data-target="#ViewJob"><i class="fa fa-eye"></i> View</button>'
+                                               + '<button class="ViewBtn btn br-0 btn-dark btn-sm t-11" data-id=' + jobs.id +' data-toggle="modal" data-target="#ViewJob"><i class="fa fa-eye"></i> View</button>'
                                                + '</td><td>'
                                                + '<a href="/jobs/{{this.id}}/delete" class="btn br-0 btn-danger btn-sm t-11"><i class="fa fa-trash"></i> Delete</a>'
                                                 + '</td></tr>';
                                      table.appendChild(tr);
+                                     
                             });
 				}
 			});
@@ -456,14 +459,25 @@
 				url: "/jobs_api/" + id,
 				async: false,
 				success: function (data) {
-					for(let i = 0; i < data.length; i++){
-						if(data[i].id == id){
-							job = data[i];
+					for(let j = 0; j < data.length; j++){
+						if(data[j].id){
+							job = data[j];
 						}
-						//if (job.id)
+						
+						if (!job.company_url){
+							job.company_url = ""
+						}
 
-						$("#ViewJob").innerHTML = job.company.toUpperCase() + "want to hire a"+ job.title + "<br/>Category: " + "<br/>Description: " + job.description + "<br/>Location: " + job.location + "<br/>Mail us:" + job.company_url + "<br/>" + job.how_to_apply;
-
+						if(!job.how_to_apply){
+							job.how_to_apply = ""
+						}
+						$("#jobTitle").html(job.title)
+						$("#website").html(job.company_url)
+						$("#description").html(job.how_to_apply)
+						$("#location").html(job.location)
+						$("#company").html(job.company)
+						$("#jobType").html(job.type)
+						$("#jobURL").html(job.url)
 					}
 					
 					
@@ -492,7 +506,7 @@
 			});
 
 			$("#jobtable").on('click', ".ViewBtn", function () {
-				job_id = $(this).parent().parent().attr("data-id");
+				job_id = $(this).attr("data-id");
 				load_single_data(job_id);
 			});
 		});
