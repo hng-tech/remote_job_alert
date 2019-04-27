@@ -6,14 +6,27 @@ const userModel = require("../models/user");
 
 const Jobs = {
   async fetchData(req, res) {
-    let data = await fetch("https://remoteok.io/api?ref=producthunt");
+    let data = await fetch("https://jobs.github.com/positions.json?location=remote");
     let main = await data.json();
     return res.status(200).json(main);
   },
- async create(req, res, next) {
+  async fetchSingle(req, res) {
+    const queryText = {
+      id: req.params.job_id
+    };
+    try {
+      let data = await fetch("https://jobs.github.com/positions/" + queryText.id + ".json");
+      let main = await data.json();
+      return res.status(200).json(main);
+
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+  async create(req, res, next) {
     // // Check Validation
     // if (!isValid) {
-    // 	return res.status(400).json(errors);
+    //  return res.status(400).json(errors);
     // }
 
     const queryText = {

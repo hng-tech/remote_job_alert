@@ -1,15 +1,12 @@
 const nodemailer = require('nodemailer');
 const User = require('../models/user');
 const Job = require('../models/jobs');
-const mailgun = require('mailgun-js');
 const path = require('path');
 const hbs = require('handlebars');
 const fs = require('fs');
-const mg = mailgun({
-  apiKey: process.env.MAILGUN_API_KEY,
-  domain: process.env.MAILGUN_DOMAIN
-});
+const sgMail = require('@sendgrid/mail');
 
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 async function unsubscribeUser(req, res, next) {
   try {
     await User.deleteOne({ email: req.params.email });
@@ -49,7 +46,7 @@ async function sendMail(req, res, next) {
       subject: 'Devalert Subscription',
       html
     };
-    const body = await mg.messages().send(data);
+    sgMail.send(data);
 
     req.flash('success', 'Email subscription was successful');
     res.redirect('/');
@@ -63,6 +60,9 @@ async function sendMailForRemoteJob() {
   try {
     const last7days = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
     const jobs = await Job.find({ createdAt: { $gte: last7days } });
+    if (jobs.length === 0) {
+      return;
+    }
     const file = fs
       .readFileSync(path.join(__dirname, '../email-templates/remote_job.hbs'))
       .toString();
@@ -78,9 +78,7 @@ async function sendMailForRemoteJob() {
           subject: 'New Remote job Alert! ',
           html: html.replace(/{{email}}/, user.email)
         };
-        mg.messages().send(data, (error, body) => {
-          if (error) console.error(error);
-        });
+        sgMail.send(data);
       })
       .on('end', function() {
         console.log('Done!');
@@ -106,7 +104,7 @@ async function sendContactAlert(req, res, next) {
       subject: 'Contact Us - DevAlert',
       html
     };
-    const body = await mg.messages().send(data);
+    sgMail.send(data);
 
     req.flash(
       'success',
@@ -119,14 +117,9 @@ async function sendContactAlert(req, res, next) {
   }
 }
 
-async function test() {
-  console.log('works');
-}
-
 module.exports = {
   unsubscribeUser,
   sendMail,
   sendMailForRemoteJob,
-  sendContactAlert,
-  test
+  sendContactAlert
 };

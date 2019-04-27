@@ -67,7 +67,7 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<h5 class="mt-5 font-weight-bold">Pay to an agent</h5>
-				<form action="/pay" method="post" class="mt-3">
+				<form action="/pay" method="POST" class="mt-3">
 					<div class="form-group">
 						<label for="" class="my-0">Email</label>
 						<input type="text" name="email" class="form-control my-0" placeholder="johndoe@example.com" required>
@@ -77,9 +77,10 @@
 						<input type="tel" name="phoneNo" class="form-control my-0" placeholder="+234 7036836753" minlength="11" pattern="[+]{0,1}[0-9\s]+"
 						 maxlength="16" required>
 					</div>
-					
-					<input value="Pay" type="submit" name="phone" class="btn btn-custom px-5 mt-4"></input>
+					<input value="Pay with Paystack" type="submit" name="phone" class="btn btn-custom px-5 mt-4"></input>
 				</form>
+				<hr>
+				<button id="buttonCheckout" class="btn btn-custom px-5 mt-4">Pay with Stripe</button>
 			</div>
 
 		</div>
