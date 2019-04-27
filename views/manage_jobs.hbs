@@ -310,7 +310,7 @@
   
 
 
-<!---View Modal of API Jobs---->
+<!---View Modal of API Jobs--->
 <div class="ViewJob modal fade" id="ViewJob" tabindex="-1" role="dialog" aria-labelledby="viewJobModalLabel" aria-hidden="true">
     <div class="modal-dialog " role="document">
       <div class="modal-content">
@@ -425,10 +425,11 @@
 				dataType: 'JSON',
 				success: function (data) {
 					var table = document.getElementById('jobtable');
+          let i =1;
 					data.forEach(
                             function(jobs) {
                             	var tr = document.createElement('tr');
-                                  tr.innerHTML =  '<tr data-id='+jobs.id+'><td>' + 1
+                                  tr.innerHTML =  '<tr data-id='+jobs.id+'><td>' + i++
                                                 + '</td><td>'
                                                 + jobs.company_url
                                                 + '</td><td>'
