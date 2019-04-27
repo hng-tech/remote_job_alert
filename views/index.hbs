@@ -7,6 +7,61 @@
 		.view-more {
 			cursor: pointer !important;
 		}
+
+	/*CAROUSEL STYLING*/
+	a.carousel-control-prev {
+    color: black;
+}
+
+.carousel-inner {
+    margin-top: 50px;
+    height: 100vh;
+}
+
+.carousel-item img {
+}
+
+.carousel-content p {
+    font-size: 16px;
+    padding-top: 10px;
+}
+
+a.get-started {
+    background-color: #11144c;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.carousel-button {
+    padding-top: 10px;
+}
+
+/*.carousel-content {
+    margin-top: 30px;
+}*/
+
+@media screen and (max-width:600px){
+    .carousel-content {
+        text-align: center;
+    }
+    img {
+        height: 100%;
+        margin: auto;
+    }
+}
+
+@media screen and (min-width:768px){
+    .carousel-content {
+        margin-top: 100px;
+    }
+    .carousel-button {
+    padding-top: 20px;
+}
+}
+
 	</style>
 </head>
 
@@ -17,6 +72,90 @@
 	</div>
 	<div id="homepage">
 		<main class="container">
+
+			<!--CAROUSEL -->
+			<div class="row mx-auto">
+        <div class="col-md-12">
+        <div id="carousel-controls" class="carousel slide" data-ride="carousel">
+            
+       <div class="carousel-inner">
+
+		   <!--CAROUSEL SLIDE 1-->
+           <div class="carousel-item active">
+              <div class="row">
+                  <div class="col-md-6">
+                     <img src="images/debt-blue.png" class="img-responsive d-block w-100 p-5" alt="">
+                  </div>
+                  
+                  <div class="col-md-6">
+                      <div class="carousel-content pt-2">
+                          <h2 class="pb-2">Level Up Your Income Stream</h2>
+                      <p>Increase your income by applying to remote jobs around the world using DevAlert. <br>Take advantage of high paying remote positions by applying any of our listed jobs using a DevAlert agent</p>
+                      <div class="carousel-button">
+                        <a href="#" class="get-started">GET STARTED</a>  
+                      </div>
+                      
+                      </div>
+                  </div>
+              </div> 
+           </div>
+           
+		   <!--CAROUSEL SLIDE 2-->
+           <div class="carousel-item">
+              <div class="row">
+                  <div class="col-md-6">
+                     <img src="images/outsourcing-blue.png" class="img-responsive d-block w-100 p-5" alt="">
+                  </div>
+                  
+                  <div class="col-md-6">
+                      <div class="carousel-content pt-2">
+                          <h2 class="pb-2">Apply Your Skills to Jobs Around the World</h2>
+                      <p>The world is moving beyond your local enviroment. With our platform, you can get hired and begin applying your skills to jobs around the world from the comfort of your chosen workspace.</p>
+                      <div class="carousel-button">
+                        <a href="#" class="get-started">GET STARTED</a>  
+                      </div>
+                      
+                      </div>
+                  </div>
+              </div> 
+           </div>
+           
+		   <!--CAROUSEL SLIDE 3-->
+           <div class="carousel-item">
+              <div class="row">
+                  <div class="col-md-6">
+                     <img src="images/support-blue.png" class="img-responsive d-block w-100 p-5" alt="">
+                  </div>
+                  
+                  <div class="col-md-6">
+                      <div class="carousel-content pt-2">
+                          <h2 class="pb-2">Pay our Agents to Secure Your Dream Remote Job</h2>
+                      <p>Use our dedicated agents to secure your dream remote job, we're available at a fee to help you apply and secure a number of the many remote developer jobs around the world.</p>
+                      <div class="carousel-button">
+                        <a href="#" class="get-started">GET STARTED</a>  
+                      </div>
+                      
+                      </div>
+                  </div>
+              </div> 
+           </div>
+           
+           <!-- Carousel Controls-->
+           <a href="#carousel-controls" class="carousel-control-prev" role="button" data-slide="prev">
+               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+               <span class="sr-only">Previous</span>
+           </a>
+           <a href="#carousel-controls" class="carousel-control-next" role="button" data-slide="next">
+               <span class="carousel-control-next-icon" aria-hidden="true"></span>
+               <span class="sr-only">Next</span>
+           </a>
+           
+       </div>
+    </div>
+    </div>
+    </div>
+	<!--END OF CAROUSEL-->
+
 			<!-- BODY TOP -->
 			<section id="body_top" class="container ">
 				<div class="row ">
