@@ -142,11 +142,12 @@ router.post(
   UserController.sendMail
 );
 
-//unsuscribe user from mailing
+//unsubscribe user from mailing
 router.get("/unsubscribe/:email", UserController.unsubscribeUser);
 
 //contact
 router.post("/contact", UserController.sendContactAlert);
+
 
 /* THERE IS A PROBLEM WITH THE BELOW ROUTES, THEY ARE BREAKING THE SITE*/
 
