@@ -24,9 +24,9 @@
 
 						<div class="row">
 							<div class="col-sm-12 col-md-6 intro-text">
-								<h4>The remote life</h4>
-								<h1>Subscribe to receive remote developer jobs.</h1>
-								<p>Built by Africans for the World. Let us help you get that dream remote job you’re
+								<h4>The Remote life</h4>
+								<h1>Subscribe to receive remote developer jobs</h1>
+								<p>Built for Africa by Africans. Let us help you get that dream remote job you’re
 									perfect for
 								</p>
 								<form action="/email-subscription" method="POST">
@@ -60,19 +60,26 @@
 			</div>
 		</section>
 		<section id="job-posting">
-			<div class="job-header">
-				<h1>Job Postings</h1>
-				<div class="input-group input-group-search">
-					<input id="search-text" value="" type="text" class="form-control" placeholder="Search">
-					<div class="input-group-btn">
-						<button class="btn btn-default" id="search-submit" type="submit">
-							<i class="fa fa-search"></i>
-						</button>
-						<button class="btn btn-default" id="search-clear" type="submit">
-							<i class="fa fa-times"></i>
-						</button>
-					</div>
-				</div>
+			<div class="container-fluid">
+				<div class="job-header">
+					<h1>Job Postings</h1>
+					<form>
+						<div class="dropdown">
+							<h4>Filter</h4>
+							<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+								Select a job role
+							</button>
+							<div id="filter" class="dropdown-menu">
+								<a class="dropdown-item" data-filter="all">All</a>
+								<a class="dropdown-item" data-filter="junior">Junior</a>
+								<a class="dropdown-item" data-filter="intermediate">Intermediate</a>
+								<a class="dropdown-item" data-filter="expert">Expert</a>
+							</div>
+						</div>
+						
+					</form>
+					<div class="container">
+						<div class="row jobs">
 
 				<br />
 				<p id="search-info" style="font-weight: lighter !important; font-size: .8em;"></p>
@@ -112,13 +119,12 @@
 						</div>
 					</div>
 					<div class="mt-4">
-						<hr>
+						<h6 class="font-weight-bold">Requirements</h6>
+						<p id="job-requirement" class="text-muted">2 years minimum</p>
+						<hr />
 						<p id="job-description" class="text-muted"></p>
 					</div>
-
-					<a href="#registerModal" data-toggle="modal" data-dismiss="modal"
-						style="margin: 0 auto; background: #11144C; color: #fff;" class="btn mt-4 px-4">Hire
-						Agent</a><br /><br />
+					<a id="job-link" href="#" style="margin: 0 auto; background: #11144C; color: #fff;" class="btn mt-4 px-4">Apply</a>
 
 				</div>
 
@@ -217,14 +223,42 @@
 
 		function load_page(page) {
 
-			$("#overlay").addClass("overlay-block")
-			load_data(data, page);
-			$(".page-link.active-link").removeClass("active-link");
-			$(`.page-link[data-number=${page}]`).addClass("active-link");
-			$("#overlay").hide();
-			$('html, body').animate({
-				scrollTop: $("#job-posting").offset().top
-			}, 1000);
+		function load_single_data(id) {
+			$.ajax({
+				url: "/jobs_json/" + id,
+				async: false,
+				success: function (data) {
+					job = data;
+					if (!job.career_level) {
+						job.career_level = ""
+					}
+					$("#job-title").html(job.job_title.toUpperCase() + " - " + job.career_level)
+					$("#company-name").html(job.company_name.toUpperCase())
+					if (!job.job_link) {
+						job.job_link = ""
+					}
+					if (!job.job_category) {
+						job.job_category = ""
+					}
+					if (!job.job_pay_max) {
+						job.job_pay_max = ""
+					}
+					if (!job.job_pay_min) {
+						job.job_pay_min = ""
+					}
+					if (!job.employer_email) {
+						job.employer_email = ""
+					}
+					if (!job.location) {
+						job.location = ""
+					}
+					let job_description_string = job.company_name.toUpperCase() + " is hiring!<br/>Category: " + job.job_category + "<br/>Description: " + job.job_description + "<br/>Location: " + job.location + "<br/>Mail us:" + job.employer_email + "<br/> Salary: " + job.job_pay_min + " - " + job.job_pay_max + "<br/>";
+					
+					$("#job-link").attr("href", job.job_link)
+
+					$("#job-description").html(job_description_string)
+				}
+			});
 		}
 
 		$(function () {

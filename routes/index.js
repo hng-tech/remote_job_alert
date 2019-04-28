@@ -12,15 +12,13 @@ const Applicant = require("../controllers/applicant");
 const session = require("../controllers/stripe");
 /* GET home page. */
 //router.get("/", Home.index);
-router.get("/", async function(req, res, next) {
-  try{
-    const stripeSession =  await session;
-    const jobs = await JobModel.find();
-    res.render("index", { title: "Remote Job Alert", contents: jobs, sessionId: stripeSession.id});
-  }catch(err){
-    console.log(err);
-    next(err);
-  }
+router.get("/", function (req, res, next) {
+  JobModel.find(function (err, jobs) {
+    res.render("index", {
+      title: "Remote Job Alert",
+      contents: jobs
+    });
+  });
 });
 
 // GET About us page
@@ -122,7 +120,6 @@ router.get("/agents", Agents.get_all_agents);
 router.post("/agents", Agents.create_agent);
 router.post("/pay", Paystack.pay);
 router.get("/invoice", Home.get_summary);
-//Dashboard Links
 router.get("/managejobs", Jobs.get_all);
 router.get("/manageapplicants", Applicant.get_all);
 
