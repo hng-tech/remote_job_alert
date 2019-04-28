@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<html xmlns="https://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 
 <head>
     <title> Hello world </title>
@@ -94,6 +94,10 @@
                 width: 45% !important;
                 max-width: 45%;
             }
+            .mj-column-per-89 {
+                width: 89% !important;
+                max-width: 89%;
+            }
             .mj-column-per-75 {
                 width: 75% !important;
                 max-width: 75%;
@@ -101,6 +105,14 @@
             .mj-column-per-25 {
                 width: 25% !important;
                 max-width: 25%;
+            }
+            .mj-column-per-65 {
+                width: 65% !important;
+                max-width: 65%;
+            }
+            .mj-column-per-35 {
+                width: 35% !important;
+                max-width: 35%;
             }
         }
     </style>
@@ -147,7 +159,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td style="width:550px;">
-                                                            <a href="https://devalert.herokuapp.com/" target="_blank">
+                                                            <a href="https://devalert.me/" target="_blank">
 
                                                                 <img height="auto" src="https://res.cloudinary.com/dqfn8m6ti/image/upload/v1555005327/city-01.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;"
                                                                     width="550" />
@@ -164,6 +176,36 @@
                             <!--[if mso | IE]>
             </td>
           
+        </tr>
+      
+                  </table>
+                <![endif]-->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--[if mso | IE]>
+          </td>
+        </tr>
+      </table>
+      
+      <table
+         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
+      >
+        <tr>
+          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+      <![endif]-->
+        <div style="Margin:0px auto;max-width:600px;">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+                <tbody>
+                    <tr>
+                        <td style="direction:ltr;font-size:0px;padding:0px;text-align:center;vertical-align:top;">
+                            <!--[if mso | IE]>
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                
+        <tr>
+      
         </tr>
       
                   </table>
@@ -258,15 +300,15 @@
         <tr>
       
             <td
-               class="" style="vertical-align:top;width:600px;"
+               class="" style="vertical-align:top;width:534px;"
             >
           <![endif]-->
-                            <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                            <div class="mj-column-per-89 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                                     <tr>
-                                        <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                            <div style="font-family:Roboto, Helvetica, sans-serif;font-size:16px;font-weight:300;line-height:24px;text-align:center;color:#616161;">
-                                                <h3>New Remote job Available</h3>
+                                        <td align="left" style="font-size:0px;padding:0 25px;word-break:break-word;">
+                                            <div style="font-family:Roboto, Helvetica, sans-serif;font-size:16px;font-weight:300;line-height:24px;text-align:left;color:#616161;">
+                                                <h3>New Remote Jobs</h3>
                                             </div>
                                         </td>
                                     </tr>
@@ -352,6 +394,7 @@
         <tr>
           <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
       <![endif]-->
+        {{#each jobs}}
         <div style="Margin:0px auto;max-width:600px;">
             <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
                 <tbody>
@@ -369,17 +412,20 @@
                             <div class="mj-column-per-75 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                                     <tr>
+
                                         <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                             <div style="font-family:Roboto, Helvetica, sans-serif;font-size:16px;font-weight:300;line-height:24px;text-align:left;color:#616161;">
                                                 <h3 style="font-weight: bold; margin-top: 0; margin-bottom: 0">
-                                                    <a href="" style="color: #3498DB; text-decoration: none">
+                                                    <a href="{{job_link}}" style="color: #3498DB; text-decoration: none">
                                                         {{job_title}}
                                                     </a>
                                                 </h3>
-                                                <mj-text style="font-weight:400;">company | {{company_name}}</mj-text>
+                                                <span style="font-weight:bold;">company | {{company_name}}</span>
+                                                <p style="font-size: 14px">{{job_description}}</p>
                                             </div>
                                         </td>
                                     </tr>
+
                                 </table>
                             </div>
                             <!--[if mso | IE]>
@@ -396,10 +442,13 @@
                                             <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
                                                 <tbody>
                                                     <tr>
-                                                        <td style="width:50px;">
+                                                        <td style="width:100px;">
+                                                            <a href="{{job_link}}" target="_blank">
 
-                                                            <img height="auto" src={{image_link}} style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;"
-                                                                width="50" />
+                                                                <img height="auto" src="{{image_link}}" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;"
+                                                                    width="100" />
+
+                                                            </a>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -411,17 +460,47 @@
                             <!--[if mso | IE]>
             </td>
           
+        </tr>
+      
+                  </table>
+                <![endif]-->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {{/each}}
+        <!--[if mso | IE]>
+          </td>
+        </tr>
+      </table>
+      
+      <table
+         align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
+      >
+        <tr>
+          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
+      <![endif]-->
+        <div style="Margin:0px auto;max-width:600px;">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+                <tbody>
+                    <tr>
+                        <td style="direction:ltr;font-size:0px;padding:0px;text-align:center;vertical-align:top;">
+                            <!--[if mso | IE]>
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                
+        <tr>
+      
             <td
-               class="" style="vertical-align:top;width:600px;"
+               class="" style="vertical-align:top;width:390px;"
             >
           <![endif]-->
-                            <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                            <div class="mj-column-per-65 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                                     <tr>
                                         <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                             <div style="font-family:Roboto, Helvetica, sans-serif;font-size:16px;font-weight:300;line-height:24px;text-align:left;color:#616161;">
-                                                <h4 style="font-weight: bold; margin-top: 0; margin-bottom: 0">Requirement</h4>
-                                                <p style="margin-top: 0; margin-bottom: 0"> {{career_level}}</p>
+                                                <h5 style="margin:0; font-weight:bold; font-size:18px;">DevAlert</h5>
                                             </div>
                                         </td>
                                     </tr>
@@ -431,28 +510,32 @@
             </td>
           
             <td
-               class="" style="vertical-align:top;width:600px;"
+               class="" style="vertical-align:top;width:210px;"
             >
           <![endif]-->
-                            <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                            <div class="mj-column-per-35 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                                     <tr>
-                                        <td style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                            <p style="border-top:solid 1px #E0E0E0;font-size:1;margin:0px auto;width:100%;"> </p>
-                                            <!--[if mso | IE]>
-        <table
-           align="center" border="0" cellpadding="0" cellspacing="0" style="border-top:solid 1px #E0E0E0;font-size:1;margin:0px auto;width:550px;" role="presentation" width="550px"
-        >
-          <tr>
-            <td style="height:0;line-height:0;">
-              &nbsp;
-            </td>
-          </tr>
-        </table>
-      <![endif]-->
-
-                                            <a href="https://devalert.herokuapp.com/unsubscribe/{{email}}" style="margin-top:20px; color:#1114cc; font-size:12px;">
-                                                unsubscribe from newsletter</a>
+                                        <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                            <table cellpadding="0" cellspacing="0" width="100%" border="0" style="cellspacing:0;color:#000000;font-family:Roboto, Helvetica, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;">
+                                                <tr style="list-style: none;line-height:1">
+                                                    <td>
+                                                        <a href="https://twitter.com/devalert__">
+                                                            <img width="25" src="https://cdn.recast.ai/newsletter/twitter.png" />
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="https://web.facebook.com/DevAlert">
+                                                            <img width="25" src="https://cdn.recast.ai/newsletter/facebook.png" />
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="https://www.instagram.com/devalert__/">
+                                                            <img width="25" src="https://cdnjs.cloudflare.com/ajax/libs/webicons/2.0.0/webicons/webicon-instagram.png" />
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </td>
                                     </tr>
                                 </table>
@@ -464,6 +547,12 @@
       
                   </table>
                 <![endif]-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="margin-bottom:30px; margin-top:10px;">
+                            <a href="https://devalert.me/unsubscribe/{{email}}" style="margin-top:20px; color:#1114cc; font-size:12px;">
+                                unsubscribe from newsletter</a>
                         </td>
                     </tr>
                 </tbody>
