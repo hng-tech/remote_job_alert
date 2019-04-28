@@ -126,7 +126,7 @@ router.post(
   UserController.sendMail
 );
 
-//unsuscribe user from mailing
+//unsubscribe user from mailing
 router.get("/unsubscribe/:email", UserController.unsubscribeUser);
 
 //contact

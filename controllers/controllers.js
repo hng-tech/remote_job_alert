@@ -140,8 +140,23 @@ const Jobs = {
     };
     try {
       let foundJob = await db.findOneAndDelete(queryText);
-      console.log(foundJob);
       return res.status(200).redirect("/managejobs");
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+  // API to return all countries and their slug for use in filtering
+  async fetchCountries(req, res) {
+    try {
+      const countries = await fetch('https://restcountries.eu/rest/v2/all');
+      const json = await countries.json();
+      const countryNames = await json.map(country => {
+         return { name: country.name, slug: country.alpha3Code };
+        });
+      return res.status(200).send({
+        message: 'Countries returned successfully', 
+        data: countryNames,
+      });
     } catch (error) {
       return res.status(400).send(error);
     }
