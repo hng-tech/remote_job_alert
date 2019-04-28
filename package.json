@@ -24,7 +24,7 @@
 		"flash": "~1.1.0",
 		"hbs": "~4.0.4",
 		"http-errors": "~1.6.2",
-		"lodash": "^4.17.11",
+		"mailgun-js": "^0.22.0",
 		"mongoose": "^5.5.0",
 		"mongoose-paginate": "^5.0.3",
 		"morgan": "~1.9.0",

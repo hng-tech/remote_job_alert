@@ -12,12 +12,9 @@ const Applicant = require("../controllers/applicant");
 const session = require("../controllers/stripe");
 /* GET home page. */
 //router.get("/", Home.index);
-router.get("/", function (req, res, next) {
-  JobModel.find(function (err, jobs) {
-    res.render("index", {
-      title: "Remote Job Alert",
-      contents: jobs
-    });
+router.get("/", function(req, res, next) {
+  JobModel.find(function(err, jobs) {
+    res.render("index", { title: "Remote Job Alert", query: req.query, contents: jobs });
   });
 });
 
@@ -121,16 +118,6 @@ router.post("/agents", Agents.create_agent);
 router.post("/pay", Paystack.pay);
 router.get("/invoice", Home.get_summary);
 router.get("/managejobs", Jobs.get_all);
-router.get("/manageapplicants", Applicant.get_all);
-
-//Deleting Applicant details
-router.get("/applicant/:applicant_id/delete", Applicant.cancel);
-
-//Route for Applicant details
-router.get("/applicant", Home.get_applicant);
-router.post("/applicant", Applicant.create_applicant);
-
-
 //check if email is valid, then sends welcome email and saves email to db
 router.post(
   "/email-subscription",

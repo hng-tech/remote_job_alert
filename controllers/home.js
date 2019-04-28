@@ -47,10 +47,5 @@ class Home {
     static managejobs(req, res, next){
         res.render('manage-job', { title : 'Manage Jobs' });
     }
-
-    static get_summary(req, res, next){
-        res.render('get-summary', { title : 'Payment Summary', reference: req.query.reference });
-    }
 }
-
 module.exports = Home;
