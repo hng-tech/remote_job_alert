@@ -22,7 +22,10 @@ class Home {
         res.render("user-signup");
     }
 
-
+    // Render dashboard page
+    static dashboard(req, res, next) {
+        res.render("");
+    }
 
     //Render contact details page
     static contactUs(req, res, next) {
@@ -45,7 +48,7 @@ class Home {
     }
 
     static managejobs(req, res, next){
-        res.render('manage-job', { title : 'Manage Jobs' });
+        res.render('manage_jobs', { title : 'Manage Jobs' });
     }
 
     static get_summary(req, res, next){
