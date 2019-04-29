@@ -13,11 +13,11 @@ const session = require("../controllers/stripe");
 /* GET home page. */
 //router.get("/", Home.index);
 router.get("/", async function(req, res, next) {
-  try{
+  try {
     const stripeSession =  await session;
     const jobs = await JobModel.find();
     res.render("index", { title: "Remote Job Alert", contents: jobs, sessionId: stripeSession.id});
-  }catch(err){
+  } catch(err){
     console.log(err);
     next(err);
   }
@@ -26,11 +26,11 @@ router.get("/", async function(req, res, next) {
 // GET About us page
 router.get("/about", Home.aboutUs);
 
-//Admin Page
+// Admin auth Page
 router.get('/admin', Home.admin);
 
-router.post('/admin', function(req, res, next){
-	if (req.body.username && req.body.password) {
+router.post('/admin', function(req, res, next) {
+  if (req.body.username && req.body.password) {
     Admin.authenticate(req.body.username, req.body.password, function (error, admin) {
       if (error || !admin) {
         var err = new Error('Wrong username or password.');
@@ -41,7 +41,7 @@ router.post('/admin', function(req, res, next){
         return res.redirect('/managejobs');
       }
     });
-}
+  }
 });
 
 //Authenticate Admin Login to Manage Jobs
