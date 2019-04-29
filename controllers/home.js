@@ -33,6 +33,11 @@ class Home {
     static faqs(req, res, next) {
         res.render("faqs");
     }
+
+    // Render Job Listing page
+    static get_job_listing(req, res) {
+        res.render('job-listing', {title: 'Job Listing'});
+    }
     //Render Admin page
     static admin(req, res, next) {
         res.render("admin");

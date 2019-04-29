@@ -93,7 +93,8 @@ router.get("/contact", Home.contactUs);
 // GET User Signup page
 //router.get("/user-signup", Home.userSignup);
 
-
+// GET Job Listing Page
+router.get('/job-listing', Home.get_job_listing);
 
 // GET FAQS us page
 router.get("/faqs", Home.faqs);
