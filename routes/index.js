@@ -38,10 +38,29 @@ router.post('/admin', function(req, res, next){
         return next(err);
       } else {
         req.session.adminId = admin._id;
-        return res.redirect('/managejobs');
+        return res.redirect('/dashboard');
       }
     });
 }
+});
+
+//Authenticate Admin Login to Dashboard
+router.get('/dashboard', function (req, res, next) {
+  Admin.findById(req.session.adminId)
+    .exec(function (error, admin) {
+      if (error) {
+        return next(error);
+      } else {
+        if (admin === null) {
+          var err = new Error('Not authorized! Go back!');
+          err.status = 400;
+          res.redirect("/admin");
+        //  return next(err);
+        } else {
+          return next();
+        }
+      }
+    });
 });
 
 //Authenticate Admin Login to Manage Jobs
@@ -123,8 +142,9 @@ router.post("/agents", Agents.create_agent);
 router.post("/pay", Paystack.pay);
 router.get("/invoice", Home.get_summary);
 //Dashboard Links
-router.get("/managejobs", Jobs.get_all);
+router.get("/dashboard", Jobs.get_all);
 router.get("/manageapplicants", Applicant.get_all);
+router.get("/managejobs", Home.managejobs);
 
 //Deleting Applicant details
 router.get("/applicant/:applicant_id/delete", Applicant.cancel);

@@ -17,9 +17,11 @@
             padding: 5px 0;
 
         }
-        .Main{
+
+        .Main {
             font-size: 110%
         }
+
         #about>h4 {
             text-align: center;
             background-color: white;
@@ -54,6 +56,7 @@
 </head>
 
 <body>
+    {{> header }}
     <div class="container">
         <div class="container">
             {{#each errors}}
@@ -79,43 +82,6 @@
             </div>
             {{/if}}
         </div>
-        <header id="header" class="">
-
-            <div class="container">
-                <nav class="navbar navbar-expand-lg navbar-light bg-white">
-                    <a class="navbar-brand" href="/">
-                        <img src="images/code2.png" class="img-fluid" height="40" width="40"> <span
-                            class="b-7">DevAlert</span>
-                    </a>
-                    <!--<button id="hamburger_menu" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>-->
-                    <div id="mobile_hamburger" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto xcv_link">
-                            <li class="nav-item">
-                                <a class="nav-link b-6 hover_link" href="/">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link b-6 hover_link" href="/#job-posting">Jobs</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link b-6 hover_link" href="/about">About Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link b-6 hover_link" href="/contact">Contact Us</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </header>
 
         {{!-- REGISTER MODAL--}}
         <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
@@ -153,21 +119,28 @@
             <h1>About us</h1>
 
             {{!-- WRITE ALL YOUR ABOUT-US CODE WITHIN --}}
-        <div class="Main">
-            
-            <p> DevAlert is a platform that curates and connects the best available remote tech jobs with awesome developers who need them. It allows developers around the world to work from places where they are most comfortable, happy and most productive. </p>
+            <div class="Main">
+
+                <p> DevAlert is a platform that curates and connects the best available remote tech jobs with awesome
+                    developers who need them. It allows developers around the world to work from places where they are
+                    most comfortable, happy and most productive. </p>
                 </br>
-            <p>We bridge the enormous gap between the increasing number of developers and the few available remote tech jobs on the continent by opening the door to the world. </p>
+                <p>We bridge the enormous gap between the increasing number of developers and the few available remote
+                    tech jobs on the continent by opening the door to the world. </p>
                 </br>
-            <p>We give developers updates about latest remote job opportunities when they subscribe to our weekly remote job newsletter and ensure that developers get all the help they need in getting the job. We also have agents that can be hired to apply on their behalf. </p>
+                <p>We give developers updates about latest remote job opportunities when they subscribe to our weekly
+                    remote job newsletter and ensure that developers get all the help they need in getting the job. We
+                    also have agents that can be hired to apply on their behalf. </p>
                 </br>
-            <p>Dev/Alert has proven to be the best mediator between developers and agents to ensure the process ends with the developers getting the desired job of their dreams. The site offers full-time and part-time jobs that will improve your skills as a developer.</p>
+                <p>Dev/Alert has proven to be the best mediator between developers and agents to ensure the process ends
+                    with the developers getting the desired job of their dreams. The site offers full-time and part-time
+                    jobs that will improve your skills as a developer.</p>
                 <br>
-            <p>DevAlert was created by a group of <b>HNG Interns</b> (#TeamDragonBeast ).</p>    
-        </div>
-        <br>
-        </br>
-        </br>
+                <p>DevAlert was created by a group of <b>HNG Interns</b> (#TeamDragonBeast ).</p>
+            </div>
+            <br>
+            </br>
+            </br>
             {{!-- <b>Dev/Alert</b> was created by a group of programmers to meet the needs of jobs availability in the continent and to
         connect to developers across the continent.<p> And this group of programmers include:</p>
         <ul>
@@ -185,157 +158,67 @@
             <br> on the UI/UX platform.</p></div>
         <br>
         <br> --}}
-     
 
 
 
-            
-        {{!-- AN AREA FOR CONTRIBUTORS --}}
-        
 
-{{!-- 1st Row of Contributors --}}
-        <div class="row">
-            <div class="col-md-6">
-{{!-- Add your name into a list tag and make a PR--}}
-        
-            </div>
-
-            <div class="col-md-6">
-{{!-- Add your name into a list tag and make a PR--}}
-                       
-            </div>
-        </div>
-{{!-- 2nd Row of Contributors and make a PR--}}
-        <div class="row">
-            <div class="col-md-6">
-{{!-- A 
-            </div>
-
-            <div class="col-md-6">
-{{!-- Add your name into a list tag and make a PR--}}
-                      
-            </div>
-        </div>
-{{!-- 3rd Row of Contributors and make a PR--}}
-        <div class="row">
-            <div class="col-md-6">
-{{!-- Add your name into a list tag and make a PR--}}
-        
-            </div>
-
-            <div class="col-md-6">
-{{!-- Add your name into a list tag and make a PR--}}
-                  
 
             {{!-- AN AREA FOR CONTRIBUTORS --}}
-            
 
-            {{!--  Row of Contributors --}}
+
+            {{!-- 1st Row of Contributors --}}
             <div class="row">
                 <div class="col-md-6">
-            </div>
+                    {{!-- Add your name into a list tag and make a PR--}}
 
-        </div>
-        {{!-- WRITE ALL YOUR ABOUT-US CODE WITHIN --}}
+                </div>
 
-        {{!-- <div id="last" class="container">
-        <h3>Dev/Alert</h3>
-  </div>--}}
-    </div>
-    <script src="views/dist/js/bootstrap.min.js"></script>
+                <div class="col-md-6">
+                    {{!-- Add your name into a list tag and make a PR--}}
 
-    </div>
-
-</body>
-<footer>
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-        (function () {
-            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/57c3e32a416c00672f62e672/1d8iusnc3';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
-        })();
-    </script>
-    <!--End of Tawk.to Script-->
-
-    <div class="container">
-        <div class="row links">
-            <div class="col link-subgroup">
-                <h3>COMPANY</h3>
-                <ul>
-                    <li>
-                        <a href="/about">About Us</a>
-                    </li>
-                    <li>
-                        <a href="/contact">Contact Us</a>
-                    </li>
-                    <li>
-                        <a href="/faqs">FAQs</a>
-                    </li>
-                    <li>
-                        <a class="typeform-share button" href="https://opensaucedeveloper.typeform.com/to/CXoPol"
-                            data-mode="popup" data-submit-close-delay="5" target="_blank">
-                            Become an Agent
-                        </a>
-
-
-                    </li>
-                    <script> (function () { var qs, js, q, s, d = document, gi = d.getElementById, ce = d.createElement, gt = d.getElementsByTagName, id = "typef_orm_share", b = "https://embed.typeform.com/"; if (!gi.call(d, id)) { js = ce.call(d, "script"); js.id = id; js.src = b + "embed.js"; q = gt.call(d, "script")[0]; q.parentNode.insertBefore(js, q) } })() </script>
-                </ul>
-            </div>
-            <div class="col link-subgroup">
-                <h3>OUR SPONSORS</h3>
-                <ul>
-                    <li>
-                        <a target="_blank" href="https://hotels.ng/">HotelsNG</a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="https://hotel.africa/">Hotel Africa</a>
-                    </li>
-                    <li>
-						<a target="_blank" href="https://flyafrica.com/">Fly Africa</a>
-					</li>
-                    <li>
-                        <a target="_blank" href="https://verifi.ng/">Verifi</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col link-subgroup">
-                <h3>FOLLOW US</h3>
-                <div class="social">
-                    <a target="_blank" href="https://fb.me/DevAlert">
-                        <img src="images/facebook.png" />
-                    </a>
-                    <a target="_blank" href="https://instagram.com/devalert__">
-                        <img src="images/instagram.png" />
-                    </a>
-                    <a target="_blank" href="https://twitter.com/devalert__">
-
-                        <img src="images/twitter.png" />
-                    </a>
                 </div>
             </div>
+            {{!-- 2nd Row of Contributors and make a PR--}}
+            <div class="row">
+                <div class="col-md-6">
+
+                </div>
+
+                <div class="col-md-6">
+                    {{!-- Add your name into a list tag and make a PR--}}
+
+                </div>
+            </div>
+            {{!-- 3rd Row of Contributors and make a PR--}}
+            <div class="row">
+                <div class="col-md-6">
+                    {{!-- Add your name into a list tag and make a PR--}}
+
+                </div>
+
+                <div class="col-md-6">
+                    {{!-- Add your name into a list tag and make a PR--}}
+
+
+                    {{!-- AN AREA FOR CONTRIBUTORS --}}
+
+
+                    {{!--  Row of Contributors --}}
+                    <div class="row">
+                        <div class="col-md-6">
+                        </div>
+
+                    </div>
+                    {{!-- WRITE ALL YOUR ABOUT-US CODE WITHIN --}}
+
+                    {{!-- <div id="last" class="container">
+        <h3>Dev/Alert</h3>
+  </div>--}}
+                </div>
+                {{!-- <script src="views/dist/js/bootstrap.min.js"></script> --}}
+
+            </div>
         </div>
     </div>
-    <div class="copyright">
-        <p>&copy;Copyright
-            <script>document.write(new Date().getFullYear())</script>. All rights reserved</p>
-    </div>
-    <a id="back-to-top" href="#header"
-        style="display: none;padding: 10px;text-align:center; position: fixed; background: #11144C;bottom: 24px; right: 24px;"><span
-            style="width: 24px; height: 24px; padding: 4px;color:white;" class="fa fa-arrow-up"></span></a>
-    <script>
-        $(window).scroll(function () {
-
-            if ($(window).scrollTop() > 500) {
-                $("#back-to-top").css("display", "block")
-            } else {
-                $("#back-to-top").css("display", "none")
-            }
-        });
-    </script>
-</footer>
+    {{> footer}}
+</body>

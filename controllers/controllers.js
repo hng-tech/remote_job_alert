@@ -54,7 +54,7 @@ const Jobs = {
     try {
       let foundJobs = await db.find(queryText);
       let usersCount = await userModel.countDocuments({});
-      return res.status(200).render("manage_jobs", {
+      return res.status(200).render("admin_dashboard", {
         content: foundJobs,
         jobCount: foundJobs.length,
         usersCount,
