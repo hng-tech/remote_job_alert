@@ -2,112 +2,161 @@
 <html lang="en">
 
 <head>
-  <title>DevAlert Admin Dashboard</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>{{title}}</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="stylesheets/sb-admin-2.min.css" rel="stylesheet">
+  <style type="text/css">
+    .sidebar{
+      background-color: #11122C;
+    }
+    .bg-blue{
+       background-color: #11122C;
+    }
+    .dashboard{
+      height:14vh;
+      width: 100%;
+      background-color: #11144C;
+      color: white;
+    }
+  </style>
 </head>
 
-<body class="admin_body">
-  <div id="sidebar">
-    <div class="sidebar-wrapper">
+<body id="page-top">
 
-      <div class="menu mt-5">
-        <ul>
-          <li>
-            <a href="/managejobs">
-              <i class="fas fa-home"></i> Dashboard</a>
-            <a href="/manageapplicants"><i class="fas fa-link"></i> Applicants </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="page-content">
-    <div class="fixed-header p-3">
-      <i class="fas fa-bars dash_bar"></i>
-      <ul>
-        <li>
-          <button class="btn-primary btn br-0 t-13" data-toggle="modal" data-target="#createJobModal">
-            <i class="fa fa-plus mr-1"></i>Add Job</button>
-        </li>
-      </ul>
-    </div>
-    <div class="content-wrapper">
-      <div class="container-fluid">
-        <div class="mb-3">
-          <div class="row">
-            <div class="col-md-4 mb-md-0 mb-3 text-center">
-              <div class="bg-white p-3 shadow-sm">
-                <h5 class="t-2 text-info">{{usersCount}}</h5>
-                <span class="b-6">Email Subscribers</span>
-              </div>
-            </div>
-            <div class="col-md-4 mb-md-0 mb-3 text-center">
-              <div class="bg-white p-3 shadow-sm">
-                <h5 class="t-2 text-info">{{jobCount}}</h5>
-                <span class="b-6">Total Jobs</span>
-              </div>
-            </div>
-            <div class="col-md-4 text-center">
-              <div class="bg-white p-3 shadow-sm">
-                <h5 class="t-2 text-info">3</h5>
-                <span class="b-6">Total Agents</span>
-              </div>
-            </div>
-          </div>
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav  sidebar sidebar-dark accordion text-center" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
         </div>
-        <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Job List</h4>
-            <a class="heading-elements-toggle">
-              <i class="icon-ellipsis font-medium-3"></i>
-            </a>
-            <div class="heading-elements">
-              <ul class="list-inline mb-0">
-                <li>
-                  <a data-action="reload">
-                    <i class="icon-reload"></i>
-                  </a>
-                </li>
-                <li>
-                  <a data-action="expand">
-                    <i class="icon-expand2"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table id="jobtable" class="table table-striped">
-                <thead class="bg-primary t-14 text-white">
-                  <tr>
-                    <th>S/N</th>
-                    <th>Website</th>
-                    <th>Company Name</th>
-                    <th>Job Title</th>
-                    <th>Date Created</th>
-                    <th>Action</th>
-                    <th></th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody id="tbody" class="t-13 xc_table">
-                  
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+        <div class="sidebar-brand-text mx-3">DevAlert</div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider ">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider py-0">
+
+
+      <!-- Nav Item - Manage Subscribers -->
+      <li class="nav-item">
+        <a class="nav-link" href="#" >
+          <span>Manage Subscribers</span>
+        </a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider ">
+
+      <!-- Nav Item - Manage Jobs -->
+      <li class="nav-item active">
+        <a class="nav-link" href="managejobs.html">
+          <span>Manage Jobs</span>
+        </a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider ">
+
+
+      <!-- Nav Item - Manage agents -->
+      <li class="nav-item">
+        <a class="nav-link " href="#">
+          <span>Manage Agents</span>
+        </a>
+      </li>
+
+      <!-- Nav Item - Charts -->
+            <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
-    </div>
-  </div>
+
+    </ul>
+
+<body class="admin_body">
+
+  <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content ">
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-center mb-4 dashboard">
+            <h1 class="h3 mb-0 text-blue-700">Manage Jobs</h1>
+          </div>
+          
+         <div class="container-fluid">
+           <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <p class="mb-4 text-gray-800">This is the managejobs page for DevAlert</p>
+            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50" data-toggle="modal" data-target="#createJobModal" ></i> Add Jobs</button>
+          </div>
+          <div class="card shadow mb-4">
+            <div class="card-header py-3 bg-blue">
+              <h6 class="m-0 font-weight-bold text-white">Job Table</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="jobtable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>S/N</th>
+                      <th>Website</th>
+                      <th>Company Name</th>
+                      <th>Job Title</th>
+                      <th>Date Created</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody">
+                    <tr>
+                      
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
 
   <!-- Create Job Modal-->
   <form action="/jobs" method="POST">
     <div class="modal fade" id="createJobModal" tabindex="-1" role="dialog" aria-labelledby="createJobModalLabel" aria-hidden="true">
       <div class="modal-dialog " role="document">
         <div class="modal-content">
-          <div class="modal-header bg-light">
-            <h5 class="modal-title" id="createJobModalLabel">Create Job</h5>
+          <div class="modal-header bg-blue">
+            <h5 class="modal-title text-white" id="createJobModalLabel">Create Job</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -442,9 +491,9 @@
                                                 + jobs.created_at
                                                 + '</td><td>'
                                                + '<button class="btn br-0 btn-primary btn-sm t-11" data-toggle="modal" data-target="#a{{this.id}}"><i class="fa fa-pen"></i> Edit</button>'
-                                               + '</td><td>'
+                                               
                                                + '<button class="ViewBtn btn br-0 btn-dark btn-sm t-11" data-id=' + jobs.id +' data-toggle="modal" data-target="#ViewJob"><i class="fa fa-eye"></i> View</button>'
-                                               + '</td><td>'
+                                               
                                                + '<a href="/jobs/{{this.id}}/delete" class="btn br-0 btn-danger btn-sm t-11"><i class="fa fa-trash"></i> Delete</a>'
                                                 + '</td></tr>';
                                      table.appendChild(tr);
@@ -527,6 +576,6 @@
       })
     })
   </script>
-
+  <script src="js/sb-admin-2.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 </body>
