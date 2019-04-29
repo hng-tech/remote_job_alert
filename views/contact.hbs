@@ -5,13 +5,14 @@
     <title>{{title}}</title>
     <style>
         #contact {
+            
             padding: 15px 5px;
             background: #fff;
         }
 
         #contact>h1 {
-            background: #11144C;
-            color: #fff;
+            
+            color: #11144C;
             text-align: center;
             margin: 15px 0 30px;
             padding: 5px 0;
@@ -45,6 +46,12 @@
             background: #11144C !important;
             border: none;
             margin-top: 15px;
+        }
+        .btn-primary[type="submit"]:hover {
+            background: rgb(108, 108, 124);
+            -webkit-transition: background 0.3s ease-in-out;
+            -moz-transition: background 0.3s ease-in-out;
+            transition: background-color 0.3s ease-in-out;
         }
 
         .btn-primary:focus {
@@ -84,15 +91,15 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="contact-input">
-                        <input type="text" name="name" class="form-control" placeholder="Enter your name">
-                        <input type="email" name="email" class="form-control" placeholder="Enter email Address">
-                        <input type="subject" class="form-control" placeholder="Enter Subject">
+                        <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
+                        <input type="email" name="email" class="form-control" placeholder="Enter email Address" required>
+                        <input type="subject" class="form-control" placeholder="Enter Subject" required>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="contact-message">
                         <textarea name="message" id="" cols="30" rows="10" class="form-control" placeholder="Enter Message"></textarea>
-                        <button class="form-control btn btn-primary">SEND MESSAGE</button>
+                        <button class="form-control btn btn-primary">SEND MESSAGE →</button>
                     </div>
                 </div>
             </div>
