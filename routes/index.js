@@ -10,6 +10,7 @@ var Admin = require("../models/admin");
 var JobModel = require("../models/jobs");
 const Applicant = require("../controllers/applicant");
 const session = require("../controllers/stripe");
+var app = require("passport");
 /* GET home page. */
 //router.get("/", Home.index);
 router.get("/", async function(req, res, next) {
@@ -35,7 +36,11 @@ router.post('/admin', function(req, res, next) {
       if (error || !admin) {
         var err = new Error('Wrong username or password.');
         err.status = 401;
-        return next(err);
+        // return next(err);
+        req.session.err;
+        return res.redirect('/admin');
+        // res.render('login', { error: req.session.error });
+        // delete res.session.error;
       } else {
         req.session.adminId = admin._id;
         return res.redirect('/managejobs');
@@ -44,7 +49,16 @@ router.post('/admin', function(req, res, next) {
   }
 });
 
-//Authenticate Admin Login to Manage Jobs
+// Logout
+// This is generic and could be used anywhere
+router.get('/logout', function(req, res){
+  req.session.destroy();
+  req.logout();
+  res.redirect('/');
+});
+
+// Manage jobs page
+// Only authorised persons can access this page
 router.get('/managejobs', function (req, res, next) {
   Admin.findById(req.session.adminId)
     .exec(function (error, admin) {
@@ -63,7 +77,8 @@ router.get('/managejobs', function (req, res, next) {
     });
 });
 
-//Authenticate Admin Login to Manage Appliants
+// Manage Appliants page
+// Only authorised persons can access this page
 router.get('/manageapplicants', function (req, res, next) {
   Admin.findById(req.session.adminId)
     .exec(function (error, admin) {
