@@ -44,6 +44,7 @@ router.post('/admin', function(req, res, next){
 }
 });
 
+
 //Authenticate Admin Login to Manage Jobs
 router.get('/managejobs', function (req, res, next) {
   Admin.findById(req.session.adminId)
@@ -93,6 +94,8 @@ router.get("/contact", Home.contactUs);
 // GET User Signup page
 //router.get("/user-signup", Home.userSignup);
 
+//Get JOB LISTING PAGE
+router.get('/jobPage', Home.get_job_page);
 
 
 // GET FAQS us page
