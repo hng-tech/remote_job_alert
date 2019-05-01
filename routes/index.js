@@ -95,7 +95,7 @@ router.get("/contact", Home.contactUs);
 //router.get("/user-signup", Home.userSignup);
 
 //Get JOB LISTING PAGE
-router.get('/jobPage', Home.get_job_page);
+// router.get('/jobPage', Home.get_job_page);
 
 
 // GET FAQS us page
@@ -113,7 +113,7 @@ router.get("/jobs_api/:job_id", Jobs.fetchSingle);
 /* There is an Error in this route, it is crashing the server */
 //router.post('/jobs', Jobs.validate('create'), Jobs.create);
 router.post("/jobs", Jobs.create);
-
+router.get("/jobs", Jobs.get_api_jobs);
 /////////////////////////////////////////////////
 router.get("/jobs/:job_id", Jobs.get_one);
 //router.get("/jobs/:job_id/edit", Jobs.edit);

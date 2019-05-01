@@ -377,28 +377,30 @@ border: none!important;
                     </div>
                 </div>
                  
+                 {{# each content}}
                  <div class="ci-card">
                     <div class="card">
                       <div class="card-body">
                          <div class="row">
                         <div class="col-md-1 col-sm-12">
-                            <img class="ci-logo" src="img/new_logo.png">
+                            <img class="ci-logo" src="{{this.company_logo}}" width="32" height="32">
                         </div>
                         <div class="col-md-7 ci-title">
-                          <h3>Senior Backend Developer <br><span class="ci-job-nature">Full-Time</span></h3>
-                          <h4 class="ci-company">Shell</h4>
+                          <h3>{{this.title}} <br><span class="ci-job-nature">{{this.type}}</span></h3>
+                          <h4 class="ci-company">{{this.company}}</h4>
                         </div>
                          <div class="col-md-4 ci-position" >
-                            <a href="/" class="ci-btn">Read More</a>
+                            <a href="?id={{this.id}}" class="ci-btn">Read More</a>
                         </div>
                       </div>
                     </div>
                     </div>
                   </div>
+                  {{/each}}
 
 
                        
-                 <div class="ci-card">
+                 <!-- <div class="ci-card">
                     <div class="card">
                       <div class="card-body">
                          <div class="row">
@@ -497,7 +499,7 @@ border: none!important;
                     </div>
                   </div>
 
-
+ -->
                     
                   
                </div>
@@ -518,6 +520,8 @@ border: none!important;
                       <span class="sr-only">Previous</span>
                     </a>
                   </li>
+                  
+                  
                   <li class="page-item"><a class="page-link" href="#">1</a></li>
                   <li class="page-item"><a class="page-link" href="#">2</a></li>
                   <li class="page-item"><a class="page-link" href="#">3</a></li>

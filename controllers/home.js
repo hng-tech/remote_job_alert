@@ -41,7 +41,7 @@ class Home {
 
     //Render Job listing
     static get_job_page(req, res, next){
-        res.render('jobPage' , { title : 'Job Liting' })
+        res.render('jobPage' , { title : 'Job Listing' })
     }
 
     // Render job details page
