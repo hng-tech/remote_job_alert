@@ -165,8 +165,8 @@
               </div>
               
               <div class="col-md-6 position-relative">
-                  <div class="px-4 py-4 card position-md-absolute">
-                      <form action="/contact" method="post">
+                  <div class="px-4 py-4 card position-md-absolute" style="z-index:10000">
+                      <form action="/contact" method="POST">
                         <h4 class="text-center mb-3">Tell us what you need</h4>
                         <div class="contact-input">
                             <input type="text" name="name" class="form-control" placeholder="Enter your Name" required>
@@ -176,7 +176,7 @@
                 
                         <div class="contact-message">
                             <textarea name="message" id="" cols="30" rows="6" class="form-control" placeholder="Enter Message..."></textarea>
-                            <button class="form-control btn btn-primary">SEND MESSAGE →</button>
+                            <button type="submit" class="form-control btn btn-primary">SEND MESSAGE →</button>
                         </div>
                 
                     </form>
