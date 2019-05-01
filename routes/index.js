@@ -10,6 +10,7 @@ var Admin = require("../models/admin");
 var JobModel = require("../models/jobs");
 const Applicant = require("../controllers/applicant");
 const session = require("../controllers/stripe");
+const JobPreferenceController = require("../controllers/preference");
 /* GET home page. */
 //router.get("/", Home.index);
 router.get("/", async function(req, res, next) {
@@ -116,6 +117,16 @@ router.get("/jobs/:job_id", Jobs.get_one);
 //router.get("/jobs/:job_id/edit", Jobs.edit);
 router.post("/jobs/:job_id", Jobs.update_job);
 router.get("/jobs/:job_id/delete", Jobs.cancel_job);
+
+//Job Preferences Route
+router.get('/jobpreference/roles', JobPreferenceController.getJobRoles);
+router.get('/jobpreference/types', JobPreferenceController.getJobTypes);
+router.get('/jobpreference/levels', JobPreferenceController.getJobLevels);
+router.get('/jobpreference/locations', JobPreferenceController.getJobLocations);
+router.get('/jobpreference/stack', JobPreferenceController.getJobStack);
+router.get('/jobpreference/frequencies', JobPreferenceController.getJobFrequency);
+
+router.post("/jobpreference", JobPreferenceController.savePreference);
 
 //Agent Routes
 router.get("/agents", Agents.get_all_agents);

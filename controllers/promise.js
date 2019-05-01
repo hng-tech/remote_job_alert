@@ -2,6 +2,7 @@ const Jobs = require('../models/jobs');
 const Users = require('../models/user');
 const Agent = require('../models/agent');
 const Applicant = require('../models/applicant');
+const JobPreference = require('../models/preference');
 
 class Db {
   /**
@@ -129,7 +130,55 @@ class DbApplicant {
   }
 }
 
+class DbPreference {
+  static find(param) {
+    return new Promise((resolve, reject) => {
+      JobPreference.find(param)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
+  static create(param) {
+    return new Promise((resolve, reject) => {
+      JobPreference.create(param)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
+  static findOneAndUpdate(param, text) {
+    return new Promise((resolve, reject) => {
+      JobPreference.findOneAndUpdate(param, text)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
+  static findOneAndDelete(param) {
+    return new Promise((resolve, reject) => {
+      JobPreference.findOneAndDelete(param)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
+}
+
 module.exports = {
   Db,
-  DbApplicant
+  DbApplicant,
+  DbPreference
 };
