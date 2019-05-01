@@ -73,6 +73,13 @@
   width: 17vw;
 }
 
+.ci-location-filter{
+  background-color: #66000000;
+  border: 1px solid #c4c4c4;
+  margin-left: 0px;
+  width: 17vw;
+}
+
 /* Filter jobs*/
 .ci-btn-second{
   background-color: #66000000;
@@ -285,6 +292,13 @@ border: none!important;
   width: 19.5vw;
 }
 
+.ci-location-filter{
+  background-color: #66000000;
+  border: 1px solid #f4f4f4;
+  margin-left: 0px;
+  width: 19.5vw;
+}
+
 .card{
   border: none!important;
     height: 230px;
@@ -353,6 +367,13 @@ border: none!important;
 }
 
 .ci-btn-secondary{
+  background-color: #66000000;
+  border: 1px solid #f4f4f4;
+  margin-left: 0px;
+  width: 84.5vw;
+}
+
+.ci-location-filter{
   background-color: #66000000;
   border: 1px solid #f4f4f4;
   margin-left: 0px;
@@ -439,11 +460,26 @@ border: none!important;
 
 			<div class="col-md-9">
 			 <!-- Job Listing -->
-        <div class="row">
-             <div class="col-md-12 col-sm-12">
+         <div class="row">
+             <div class="col-md-4 col-sm-12">
+                       <div class="dropdown">
+                  <button class="btn ci-location-filter dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Location
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </div>
+                <br>
+             </div>
+
+               <div class="col-md-8 col-sm-12">
                   <input  class="form-control" type="text" placeholder="Search with Keyword, Location, company">
                   <br>
              </div>
+             
              </div>
          
             <div class="">
