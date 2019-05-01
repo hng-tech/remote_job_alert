@@ -54,6 +54,9 @@ class Home {
     static get_applicant(req, res, next){
         res.render('applicant', {title: 'Applicant Details'});
     }
+    static unsubscribe(req, res, next){
+        res.render('unsubscribe', {title: 'unsubscribe'});
+    }
 }
 
 module.exports = Home;
