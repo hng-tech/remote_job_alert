@@ -4,16 +4,26 @@ const Job = require('../models/jobs');
 const path = require('path');
 const hbs = require('handlebars');
 const fs = require('fs');
-const sgMail = require('@sendgrid/mail');
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const transporter = nodemailer.createTransport({
+  host: 'smtp.zoho.com',
+  port: 587,
+  auth: {
+    user: process.env.ZOHO_USER,
+    pass: process.env.ZOHO_PASS
+  }
+});
+
 async function unsubscribeUser(req, res, next) {
   try {
-    await User.deleteOne({ email: req.params.email });
-    req.flash(
-      'success',
-      'You successfully unsubscribed from DevAlert NewsLetter'
-    );
+    const email = req.params.email;
+
+    const user = await User.findOne({ email });
+
+    if (user) {
+      await User.deleteOne({ email });
+      return res.redirect('/unsubscribe_success');
+    }
     res.redirect('/');
   } catch (err) {
     console.error(err);
@@ -26,7 +36,6 @@ async function sendMail(req, res, next) {
     const { email } = req.body;
     const user = await User.findOne({ email });
     if (user) {
-      console.log(user);
       req.flash('emailError', 'Email already subscribed');
       return res.redirect('/');
     }
@@ -41,13 +50,13 @@ async function sendMail(req, res, next) {
       .toString()
       .replace(/{{email}}/, email);
     const data = {
-      from: 'Devalert <noreply@devalert.com>',
+      from: 'Devalert Team <info@devalert.me>',
       to: email,
-      subject: 'Devalert Subscription',
+      subject: 'Devalert Remote Job Alert',
       html
     };
-    sgMail.send(data);
 
+    await transporter.sendMail(data);
     req.flash('success', 'Email subscription was successful');
     res.redirect('/');
   } catch (err) {
@@ -78,7 +87,7 @@ async function sendMailForRemoteJob() {
           subject: 'New Remote job Alert! ',
           html: html.replace(/{{email}}/, user.email)
         };
-        sgMail.send(data);
+        await transporter.sendMail(data);
       })
       .on('end', function() {
         console.log('Done!');
@@ -104,7 +113,7 @@ async function sendContactAlert(req, res, next) {
       subject: 'Contact Us - DevAlert',
       html
     };
-    sgMail.send(data);
+    await transporter.sendMail(data);
 
     req.flash(
       'success',
