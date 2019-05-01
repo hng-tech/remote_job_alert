@@ -27,6 +27,15 @@ class Home {
         res.render("");
     }
 
+     // Render manage agents page
+     static manageagents(req, res, next) {
+        res.render("manage_agents");
+    }
+
+     // Render manage subscribers page
+     static managesubscribers(req, res, next) {
+        res.render("manage_subscribers");
+    }
     //Render contact details page
     static contactUs(req, res, next) {
         res.render("contact");

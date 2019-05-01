@@ -42,79 +42,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav  sidebar sidebar-dark accordion text-center" id="accordionSidebar">
-
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-        <div class="sidebar-brand-icon rotate-n-15">
-        </div>
-        <div class="sidebar-brand-text mx-3">DevAlert</div>
-      </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider ">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="/dashboard">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider py-0">
-
-
-      <!-- Nav Item - Manage Subscribers -->
-      <li class="nav-item">
-        <a class="nav-link" href="#" >
-          <span>Manage Subscribers</span>
-        </a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider ">
-
-      <!-- Nav Item - Manage Jobs -->
-      <li class="nav-item">
-        <a class="nav-link " href="/managejobs">
-          <span>Manage Jobs</span>
-        </a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider ">
-
-
-      <!-- Nav Item - Manage agents -->
-      <li class="nav-item">
-        <a class="nav-link " href="#">
-          <span>Manage Agents</span>
-        </a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider ">
-
-
-      <li class="nav-item" >
-        <a class="btn py-2" href="">
-        <i class="fas fa-sign-out-alt fa-sm fa-fw text-gray-400"></i>
-        Logout
-        </a>
-      </li>
-
-      <!-- Nav Item - Charts -->
-            <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
-
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
-    </ul>
-    <!-- End of Sidebar -->
+    {{> dashboard_nav }}
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -230,6 +158,10 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+        
               
 
   <!-- Scroll to Top Button-->

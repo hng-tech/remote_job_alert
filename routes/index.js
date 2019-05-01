@@ -145,6 +145,8 @@ router.get("/invoice", Home.get_summary);
 router.get("/dashboard", Jobs.get_all);
 router.get("/manageapplicants", Applicant.get_all);
 router.get("/managejobs", Home.managejobs);
+router.get("/manageagents", Home.manageagents);
+router.get("/managesubscribers", Home.managesubscribers);
 
 //Deleting Applicant details
 router.get("/applicant/:applicant_id/delete", Applicant.cancel);
