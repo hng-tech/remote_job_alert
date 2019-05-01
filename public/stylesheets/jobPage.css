@@ -1,17 +1,17 @@
 .ci-body{
-	margin: 0;
-	line-height: 1.6rem;
-	box-sizing: border-box;
+  margin: 0;
+  line-height: 1.6rem;
+  box-sizing: border-box;
 }
 
 /* Page Title*/
-#header h1{
-	font-style: normal;
-	font-weight: 600;
-	font-size: 36px;
-	line-height: 42px;
-	align-items: center;
-	text-align: center;
+#ci-header h1{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 42px;
+  align-items: center;
+  text-align: center;
     color: #11144C;
     padding: 40px;
 }
@@ -20,28 +20,28 @@
 /* category*/
 
 .main-title{
-	color: #11144c!important;
-	font-weight: bold;
+  color: #11144c!important;
+  font-weight: bold;
 }
 
 
 .list-group a{
-	color: #222222;
-	padding-bottom: 5px;
+  color: #222222;
+  padding-bottom: 5px;
 }
 
 .list-group{
-	border: 1px solid #c4c4c4;
-	margin-bottom: 10px;
+  border: 1px solid #c4c4c4;
+  margin-bottom: 10px;
 }
 
 
 .list-group-item{
-	border: none!important;
+  border: none!important;
 }
 
 .ci-last{
-	margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 
@@ -50,10 +50,10 @@
 
 /* Filter Bar*/
 .form-control{
-	background:  url(../img/search.png);
-	background-repeat: no-repeat;
-	background-position: right;
-	background-origin: content-box;
+  background:  url(../img/search.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-origin: content-box;
 
 }
 
@@ -61,36 +61,43 @@
 
 /* Job role*/
 .ci-btn-secondary{
-	background-color: #66000000;
-	border: 1px solid #c4c4c4;
-	margin-left: 0px;
-	width: 17vw;
+  background-color: #66000000;
+  border: 1px solid #c4c4c4;
+  margin-left: 0px;
+  width: 17vw;
+}
+
+.ci-location-filter{
+  background-color: #66000000;
+  border: 1px solid #c4c4c4;
+  margin-left: 0px;
+  width: 17vw;
 }
 
 /* Filter jobs*/
 .ci-btn-second{
-	background-color: #66000000;
-	color: #6A707E;
+  background-color: #66000000;
+  color: #6A707E;
 }
 
 .ci-head{
-	font-size: 16px;
-	margin-top: -10px;
-	color: #334D6E;
+  font-size: 16px;
+  margin-top: -10px;
+  color: #334D6E;
 }
 
 
 .ci-option{
-	float: right;
-	margin-top: -40px;
-	padding-right: 5px;
-	font-size: 16px;
-	color: #6A707E;
+  float: right;
+  margin-top: -40px;
+  padding-right: 5px;
+  font-size: 16px;
+  color: #6A707E;
 }
 
 
 .ci-drop{
-	color: #109CF1;
+  color: #109CF1;
 }
 
 
@@ -98,101 +105,101 @@
 /* job list view*/
 
 .ci-logo{
-		height: 62px;
-		width: 62px;
-	}
+    height: 62px;
+    width: 62px;
+  }
 
 
 .ci-card{
-	padding-top: 25px;
-	padding-bottom: 10px;
-	border: 1px solid #c4c4c4;
-	margin-bottom: 10px;
+  padding-top: 25px;
+  padding-bottom: 10px;
+  border: 1px solid #c4c4c4;
+  margin-bottom: 10px;
 
 
 
 }
 
 .card{
-	border: none!important;
-		height: 160px;
+  border: none!important;
+    
 }
 
 
 
 /* Read more button*/
 #main .ci-btn{
-	text-decoration: none;
-	padding: 0.7rem;
-	text-transform: uppercase;
-	color: #000000;
-	border: 1px solid #109CF1;
-	font-family: Roboto;
-	font-style: normal;
-	font-weight: 500;
-	font-size: 10px;
-	line-height: 16px;
+  text-decoration: none;
+  padding: 0.7rem;
+  text-transform: uppercase;
+  color: #000000;
+  border: 1px solid #109CF1;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
 }
 
 
 /*For job description*/
 .ci-job-nature{
-	font-size: 16px;
-	margin-top: -10px;
+  font-size: 16px;
+  margin-top: -10px;
 }
 
 
 .ci-position{
-	margin-top: 70px;
-	padding-left: 100px;
+  margin-top: 70px;
+  padding-left: 100px;
 }
 
 
 .ci-title{
-	padding-left: 40px;
+  padding-left: 40px;
 
 }
 
 .ci-title h3{
-	color: #11144c;
-	font-weight: 600;
+  color: #11144c;
+  font-weight: 600;
 
 }
 
 .ci-title span{
-	color: #222222;
-	font-family: Fira Sans;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 18px;
-	line-height: 28px;
-	opacity: 0.7;
+  color: #222222;
+  font-family: Fira Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 28px;
+  opacity: 0.7;
 }
 
 
 .ci-company{
-	margin-top: 10px;
-	font-size: 18px;
-	font-family: Fira Sans;
-	font-style: normal;
-	font-weight: normal;
-	color: #222222;
-	opacity: 0.7;
-	line-height: 28px;
+  margin-top: 10px;
+  font-size: 18px;
+  font-family: Fira Sans;
+  font-style: normal;
+  font-weight: normal;
+  color: #222222;
+  opacity: 0.7;
+  line-height: 28px;
 }
 
 
 /*Pagination*/
 
 .ci-nav{
-	padding-left: 120px;
-	margin-bottom: 70px;
+  padding-left: 120px;
+  margin-bottom: 70px;
 }
 
 
 .ci-pagination{
-	padding-left: 40px;
-	padding-top: 15px;
+  padding-left: 40px;
+  padding-top: 15px;
 
 }
 
@@ -204,35 +211,35 @@ border: none!important;
 
 @media (max-width: 1173px){
 
-	.ci-position{
-	margin-top: 145px;
-	padding-left: 90px;
+  .ci-position{
+  margin-top: 145px;
+  padding-left: 90px;
  }
 
 .list-group{
-	border: 1.5px solid #f4f4f4;
-	margin-bottom: 10px;
+  border: 1.5px solid #f4f4f4;
+  margin-bottom: 10px;
 }
 
 .card{
-	border: none!important;
-		height: 230px;
+  border: none!important;
+    height: 230px;
 }
 
 .ci-company{
-	margin-top: 50px;
-	font-size: 18px;
-	font-family: Fira Sans;
-	font-style: normal;
-	font-weight: normal;
-	color: #222222;
-	opacity: 0.7;
-	line-height: 28px;
+  margin-top: 50px;
+  font-size: 18px;
+  font-family: Fira Sans;
+  font-style: normal;
+  font-weight: normal;
+  color: #222222;
+  opacity: 0.7;
+  line-height: 28px;
 }
 
 .ci-position{
-	margin-top: 150px;
-	padding-left: 100px;
+  margin-top: 150px;
+  padding-left: 100px;
 }
 
  
@@ -240,31 +247,31 @@ border: none!important;
 
 @media (max-width: 992px){
 
-	.ci-logo{
-		padding-left: 20px;
-		height: 62px;
-		width: 62px;
-	}
+  .ci-logo{
+    padding-left: 20px;
+    height: 62px;
+    width: 62px;
+  }
 
-	.ci-position{
-	margin-top: 140px;
-	padding-left: 0px;
+  .ci-position{
+  margin-top: 140px;
+  padding-left: 0px;
 }
 
 .ci-nav{
-	padding-left: 40px;
-	margin-bottom: 70px;
+  padding-left: 40px;
+  margin-bottom: 70px;
 }
 
 .list-group{
-	border: 1.5px solid #f4f4f4;
-	margin-bottom: 10px;
+  border: 1.5px solid #f4f4f4;
+  margin-bottom: 10px;
 }
 
 
 .ci-pagination{
-	padding-left: 20px;
-	padding-top: 15px;
+  padding-left: 20px;
+  padding-top: 15px;
 
 }
 
@@ -273,31 +280,38 @@ border: none!important;
 }
 
 .ci-btn-secondary{
-	background-color: #66000000;
-	border: 1px solid #f4f4f4;
-	margin-left: 0px;
-	width: 19.5vw;
+  background-color: #66000000;
+  border: 1px solid #f4f4f4;
+  margin-left: 0px;
+  width: 19.5vw;
+}
+
+.ci-location-filter{
+  background-color: #66000000;
+  border: 1px solid #f4f4f4;
+  margin-left: 0px;
+  width: 19.5vw;
 }
 
 .card{
-	border: none!important;
-		height: 230px;
+  border: none!important;
+    height: 230px;
 }
 
 .ci-company{
-	margin-top: 40px;
-	font-size: 18px;
-	font-family: Fira Sans;
-	font-style: normal;
-	font-weight: normal;
-	color: #222222;
-	opacity: 0.7;
-	line-height: 28px;
+  margin-top: 40px;
+  font-size: 18px;
+  font-family: Fira Sans;
+  font-style: normal;
+  font-weight: normal;
+  color: #222222;
+  opacity: 0.7;
+  line-height: 28px;
 }
 
 .ci-position{
-	margin-top: 150px;
-	padding-left: 20px;
+  margin-top: 150px;
+  padding-left: 20px;
 }
 
 }
@@ -305,41 +319,41 @@ border: none!important;
 
 @media (max-width: 750px){
 
-	.ci-logo{
-		padding-left: 20px;
-		height: 62px;
-		width: 62px;
-	}
+  .ci-logo{
+    padding-left: 20px;
+    height: 62px;
+    width: 62px;
+  }
 
-	.ci-position{
-	margin-top: 40px;
-	padding-left: 30px;
+  .ci-position{
+  margin-top: 40px;
+  padding-left: 30px;
 }
 
 .ci-nav{
-	padding-left: 5px;
-	margin-bottom: 70px;
+  padding-left: 5px;
+  margin-bottom: 70px;
 }
 
 .card{
-	border: none!important;
-		height: 340px;
+  border: none!important;
+    height: 340px;
 }
 
 .ci-title{
-	padding-left: 40px;
+  padding-left: 40px;
 }
 
 
 .ci-company{
-	margin-top: 20px;
-	font-size: 18px;
-	font-family: Fira Sans;
-	font-style: normal;
-	font-weight: normal;
-	color: #222222;
-	opacity: 0.7;
-	line-height: 28px;
+  margin-top: 20px;
+  font-size: 18px;
+  font-family: Fira Sans;
+  font-style: normal;
+  font-weight: normal;
+  color: #222222;
+  opacity: 0.7;
+  line-height: 28px;
 }
 
 .page-link{
@@ -347,10 +361,24 @@ border: none!important;
 }
 
 .ci-btn-secondary{
-	background-color: #66000000;
-	border: 1px solid #f4f4f4;
-	margin-left: 0px;
-	width: 84.5vw;
+  background-color: #66000000;
+  border: 1px solid #f4f4f4;
+  margin-left: 0px;
+  width: 84.5vw;
+}
+
+.ci-location-filter{
+  background-color: #66000000;
+  border: 1px solid #f4f4f4;
+  margin-left: 0px;
+  width: 84.5vw;
+}
+
+.ci-title h3{
+  color: #11144c;
+  font-weight: 600;
+  font-size: 18px;
+
 }
 
 
