@@ -4,272 +4,424 @@
 <head>
 	<title>{{title}}</title>
 	<style>
-		.view-more {
-			cursor: pointer !important;
+		
+		button.btn-primary{
+			background-color: #11144C !important;
+			cursor: pointer;
 		}
+		.main-body>.container .text-center{
+			text-align: center;
+		}
+		.main-body>.container .form-wrapper{
+			border: 1px solid #e8e1e1;
+			padding: 10px;
+			border-radius: 5px;
+		}
+		.main-body>.container .row{
+			display: block;
+		}
+		.main-body>.container .tags{
+			background: #eee;
+			padding: 5px;
+			cursor: pointer;
+			border-radius: 10px;
+		}
+		.main-body>.container table tbody{
+			padding: 100px !important;
+		}
+		.main-body>.container .pagination ul{
+			background: #11144C !important;
+		}
+        .main-body>.container td img{
+            width: 40px;
+        }
+		/*Mobile Responsiveness Here*/
+		@media screen and (max-width:500px){
+			.main-body>.container input,select,button.btn-primary{
+				display: block;
+				width: 100%;
+				margin-top: 5px;
+			}
+			.main-body>.container .tags{
+			font-size: 10px;
+		}
+			
+		}
+		/* End of Mobile Responsiveness */
+		
 	</style>
 </head>
 
 <body>
 	{{> header }}
-	<div id="overlay">
-		<div class="loading-icon"></div>
-	</div>
-	<div id="homepage">
-		<main class="container">
-			<!-- BODY TOP -->
-			<section id="body_top" class="container">
-				<div class="row ">
-					<section id="intro">
+	
+	<div class="main-body">
+		<div class="container">
+		<div class="row">
+			<h1 class="text-center pt-3">Job Listing</h1>
+			<div class="col-lg-12">
+				<h4>Keywords</h4>
+				<div class="input-group form-wrapper">
+					<input type="search" placeholder="Search by keywords" class="form-control">
+					<select name="" id="" class="form-control">
+						<option value="">Select Skill</option>
+						<option value="">Designer</option>
+						<option value="">Software Engineer</option>
+						<option value="">Frontend Developer</option>
+						<option value="">Backend Developer</option>
+						<option value="">Fullstack Developer</option>
+						<option value="">Android Developer</option>
+						<option value="">IOS Developer</option>
+					</select>
 
-						<div class="row">
-							<div class="col-sm-12 col-md-6 intro-text">
-								<h4>The remote life</h4>
-								<h1>Subscribe to receive remote developer jobs.</h1>
-								<p>Built by Africans for the World. Let us help you get that dream remote job you’re
-									perfect for
-								</p>
-								<form action="/email-subscription" method="POST">
-									<div class="input-group">
-										<input type="email" class="form-control" placeholder="Email" name="email">
-										<div class="input-group-append">
-											<button class="btn subscribe" type="submit">Subscribe</button>
-										</div>
-									</div>
-								</form>
-							</div>
-							<div class="col-sm-12 col-md-6 intro-img d-flex justify-content-center align-items-center">
-								<img src="images/introimg.jpg" width="300" />
-							</div>
-						</div>
-					</section>
+					<select name="" id="" class="form-control">
+						<option value="">Select Country</option>
+						<option value="">Afghanisthan</option>
+						<option value="">America</option>
+						<option value="">Nigeria</option>
+					</select>
+					<button class="btn btn-primary">SEARCH</button>
 				</div>
-			</section>
-		</main>
-		<section id="pay-agent">
-			<div class="container">
-				<div class="pay-header">
-					<h1>Pay an agent to apply</h1>
-					<p>Secure the job faster and easier.
-						<br />Let an agent help you apply to get more probability of sucess
-					</p>
-					<button data-toggle="modal" class="btn btn-custom" data-target="#registerModal">
-						Contact Agent
-					</button>
+				<div class="mt-2">
+				<h5 style="display:inline-block;">Open Positions: 480 </h5>  <span class="tags">FRONTEND</span>  <span class="tags">BACKEND</span>  <span class="tags">DESIGNER</span>
 				</div>
-			</div>
-		</section>
-		<section id="job-posting">
-			<div class="job-header">
-				<h1>Job Postings</h1>
-				<div class="input-group input-group-search">
-					<input id="search-text" value="" type="text" class="form-control" placeholder="Search">
-					<div class="input-group-btn">
-						<button class="btn btn-default" id="search-submit" type="submit">
-							<i class="fa fa-search"></i>
-						</button>
-						<button class="btn btn-default" id="search-clear" type="submit">
-							<i class="fa fa-times"></i>
-						</button>
-					</div>
-				</div>
-
-				<br />
-				<p id="search-info" style="font-weight: lighter !important; font-size: .8em;"></p>
-				<br />
-				<div class="container-fluid">
-					<ul id="content" class="row article-list-vertical">
-
-					</ul>
-					<hr>
-					<div id="page-links" class="text-align: center;">
-					</div>
-					<div id="page-selection"></div>
-				</div>
-			</div>
-		</section>
-	</div>
-
-	<!--- JOB LISTING MODAL -->
-	<div style="width: 100%;" class="modal fade" id="jobModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content" style="text-align: left;">
-				<div class="modal-body" id="job-details" style="overflow-y:scroll; height: 85vh;">
-					<button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h3 class="mt-4">Job Details</h3>
-					<div class="row mt-4">
-						<div class="col-md-6">
-							<p class="font-weight-bold">Job Title</p>
-							<h6 id="job-title"></h6>
-						</div>
-						<div class="col-md-6">
-							<p class="font-weight-bold">Company</p>
-							<h6 id="company-name"></h6>
-
-						</div>
-					</div>
-					<div class="mt-4">
-						<hr>
-						<p id="job-description" class="text-muted"></p>
-					</div>
-
-					<a href="#registerModal" data-toggle="modal" data-dismiss="modal"
-						style="margin: 0 auto; background: #11144C; color: #fff;" class="btn mt-4 px-4">Hire
-						Agent</a><br /><br />
-
-				</div>
-
+				
 			</div>
 		</div>
+		<div class="row">
+			<div class="job-list">
+				<div class="job-list-group">
+					<table class="table table-striped mt-5">
+					
+    <tbody>
+        <tr>
+            <td><img src="images/microsoft.png" alt="facebook"></td>
+            <td>Senior Backend Developer</td>
+            <td>Austria</td>
+            
+        </tr>
+        <tr>
+            <td> <img src="images/Lyft_logo.png" alt="facebook-logo"></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>
+        <tr>
+            <td><img src="images/Lyft_logo.png" alt="facebook-logo"></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>       
+		 <tr>
+            <td><img src="images/ms.png" alt="microsoft-logo"></td>
+            <td>Senior Backend Developer</td>
+            <td>Austria</td>
+            
+        </tr>
+        <tr>
+            <td><img src="images/Lyft_logo.png" alt="facebook-logo"></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>
+        <tr>
+            <td><img src="images/Lyft_logo.png" alt="facebook-logo"></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>       
+		 <tr>
+            <td><img src="images/ms.png" alt="microsoft-logo"></td>
+            <td>Senior Backend Developer</td>
+            <td>Austria</td>
+            
+        </tr>
+        <tr>
+            <td><img src="images/Lyft_logo.png" alt="facebook-logo"></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>
+        <tr>
+            <td><img src="images/Lyft_logo.png" alt="facebook-logo"></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>            
+    </tbody>
+</table>
+				</div>
+			</div>
+
+			<div class="job-list">
+				<div class="job-list-group">
+					<table class="table table-striped mt-5">
+					{{!-- Images not working that's why i decided to use fontawesom icone --}}
+    <tbody>
+        <tr>
+            <td><img src="images/ms.png" alt=""></td>
+            <td>2nd Senior Backend Developer</td>
+            <td>Austria</td>
+            
+        </tr>
+        <tr>
+            <td> <img src="images/ms.png" alt=""></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>
+        <tr>
+            <td><img src="images/Lyft_logo.png" alt="facebook-logo"></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>       
+		 <tr>
+            <td><img src="images/ms.png" alt="microsoft-logo"></td>
+            <td>Senior Backend Developer</td>
+            <td>Austria</td>
+            
+        </tr>
+        <tr>
+            <td><img src="images/Lyft_logo.png" alt="facebook-logo"></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>
+        <tr>
+            <td><img src="images/Lyft_logo.png" alt="facebook-logo"></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>       
+		 <tr>
+            <td><img src="images/ms.png" alt="microsoft-logo"></td>
+            <td>Senior Backend Developer</td>
+            <td>Austria</td>
+            
+        </tr>
+        <tr>
+            <td><img src="images/Lyft_logo.png" alt="facebook-logo"></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>
+        <tr>
+            <td><img src="images/Lyft_logo.png" alt="facebook-logo"></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>            
+    </tbody>
+</table>
+				</div>
+			</div>
+
+			<div class="job-list">
+				<div class="job-list-group">
+					<table class="table table-striped mt-5">
+					{{!-- Images not working that's why i decided to use fontawesom icone --}}
+    <tbody>
+        <tr>
+            <td><img src="images/ms.png" alt=""></td>
+            <td>Senior Backend Developer</td>
+            <td>Austria</td>
+            
+        </tr>
+        <tr>
+            <td> <img src="images/ms.png" alt="microsoft-logo"></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>
+        <tr>
+            <td><img src="images/Lyft_logo.png" alt="facebook-logo"></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>       
+		 <tr>
+            <td><img src="images/ms.png" alt="microsoft-logo"></td>
+            <td>Senior Backend Developer</td>
+            <td>Austria</td>
+            
+        </tr>
+        <tr>
+            <td><img src="images/Lyft_logo.png" alt="facebook-logo"></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>
+        <tr>
+            <td><img src="images/Lyft_logo.png" alt="facebook-logo"></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>       
+		 <tr>
+            <td><img src="images/ms.png" alt="microsoft-logo"></td>
+            <td>Senior Backend Developer</td>
+            <td>Austria</td>
+            
+        </tr>
+        <tr>
+            <td><img src="images/Lyft_logo.png" alt="facebook-logo"></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>
+        <tr>
+            <td><img src="images/Lyft_logo.png" alt="facebook-logo"></td>
+            <td>Senior Bacend Developer</td>
+            <td>Brazil</td>
+            
+        </tr>            
+    </tbody>
+</table>
+				</div>
+			</div>
+		</div>
+		 <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item" id="previous-page"></li>
+                            
+                        </ul>
+                    </nav>
 	</div>
+	</div>
+
+	
 	{{> footer}}
 	<script src="https://js.stripe.com/v3/"></script>
-	<script>
-
-		let data = null;
-		function sort_jobs(array, input) {
-			input = input.toLowerCase();
-
-			// sort by title
-			var sorted = array.slice().sort((a, b) => {
-				if (a.title.toLowerCase().includes(input) && b.title.toLowerCase().includes(input)) return a.title.localeCompare(b.title);
-				else if (a.title.toLowerCase().includes(input)) return -1;
-				else if (b.title.toLowerCase().includes(input)) return 1;
-
-				return a.title.localeCompare(b.title);
-			});
-			// sort by desc
-			sorted = array.slice().sort((a, b) => {
-				if (a.description.toLowerCase().includes(input) && b.description.toLowerCase().includes(input)) return a.description.localeCompare(b.description);
-				else if (a.description.toLowerCase().includes(input)) return -1;
-				else if (b.description.toLowerCase().includes(input)) return 1;
-
-				return a.description.localeCompare(b.description);
-			});
-
-			return sorted;
-		}
-
-		function load_data(data, page) {
-			debugger;
-			const page_number = parseInt(page);
-			let offset_start = page_number * 9;
-			let jobs = null;
-			let search_key = $("#search-text").val().trim();
-			$("#search-info").html("");
-			if (search_key !== "") {
-				$("#search-info").html(`showing search results for &quot;<span>${search_key}</span>&quot on page ${page_number + 1}`);
-				jobs = sort_jobs(data, search_key);
-				jobs = (jobs.slice(offset_start).length > 9) ? jobs.slice(offset_start, offset_start + 9) : jobs.slice(offset_start);
-			} else {
-				jobs = (data.slice(offset_start).length > 9) ? data.slice(offset_start, offset_start + 9) : data.slice(offset_start);
-			}
-			var jobs_html = "";
-			for (var i = 0; i < jobs.length; i++) {
-				let job_html = `<li data-id="${jobs[i].id}">
-							<a>
-								<img src="${(jobs[i].company_logo) ? jobs[i].company_logo : "images/code2.png"}"
-									class="img-fluid company-image" lazyload="on" />
-							</a>
-							<div>
-								<h2><a href="${jobs[i].company_url}">${jobs[i].title}</a></h2>
-								<p>${jobs[i].description.replace(/<[^>]*>/g, '').substring(0, 100) + "..."}</p>
-								<a data-toggle='modal' data-target='#jobModal' data-id=${jobs[i].id} class="read-more">Read more &rarr;</a>
-							</div>
-						</li>`;
-				jobs_html += job_html;
-			}
-
-
-			$("#content").html(jobs_html); // or some ajax content loading...
-		}
-
-		$("#search-submit").click(function () {
-			load_page(0)
-		})
-
-		$("#search-clear").click(function () {
-			$("#search-text").val("");
-			load_page(0)
-		})
-
-		$("#content").on('click', '.read-more', function () {
-			$("#job-description, #company-name, #job-title").html("loading");
-			let id = $(this).attr("data-id");
-
-			let response = null;
-			for (let i = 0; i < data.length; i++) {
-				if (data[i].id == id) {
-					response = data[i];
-					break;
-				}
-			}
-
-			$("#job-title").html(response.title.toUpperCase() + " - " + response.type)
-			$("#company-name").html(response.company.toUpperCase())
-			let job_description_string = response.company.toUpperCase() + "<br/>Description: " + response.description + "<br/>Location: " + response.location + "<br/>Visit us:" + response.company_url + "<br/>";
-			$("#job-link").attr("href", response.company_url);
-			$("#job-description").html(job_description_string);
-		});
-
-		function load_page(page) {
-
-			$("#overlay").addClass("overlay-block")
-			load_data(data, page);
-			$(".page-link.active-link").removeClass("active-link");
-			$(`.page-link[data-number=${page}]`).addClass("active-link");
-			$("#overlay").hide();
-			$('html, body').animate({
-				scrollTop: $("#job-posting").offset().top
-			}, 1000);
-		}
-
-		$(function () {
-			var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
-			$("buttonCheckout").click(function () {
-				stripe.redirectToCheckout({
-					sessionId: '{{sessionId}}',
-				}).then(function (result) {
-					// If `redirectToCheckout` fails due to a browser or network
-					// error, display the localized error message to your customer
-					// using `result.error.message`.
-				});
-			})
-
-			$.ajax({
-				url: "/jobs_api",
-				type: "get",
-
-				beforeSend: function () {
-					$("#overlay").show();
-				},
-				success: function (response) {
-					data = response;
-					const pages = Math.ceil(data.length / 9.0)
-					let links = "";
-					for (let i = 0; i < pages; i++) {
-						links += `
-							<button class="page-link" data-number=${i} style="display: inline-block;color:black;">${i + 1}</button>
-						`;
-					}
-
-					$("#page-links").html(links);
-					$(".page-link").first().addClass("active-link");
-
-					load_data(data, 0)
-					$("#overlay").hide();
-				}
-			});
-
-			$("#page-links").on('click', '.page-link', function () {
-				let page_num = $(this).attr("data-number");
-				$(".page-link").removeClass("active-link");
-				$(this).addClass("active-link");
-				load_page(page_num);
-			});
-		});
-	</script>
+	
 </body>
+<script>
+	
+const pageNumbers = $(".job-list .job-list-group").length;
+const limitPerPage = 1;
+// gt - It works mostly with figures, GT passed here is used to determine the number of figures to display
+$(".job-list .job-list-group:gt("+  (limitPerPage - 1) + ")").hide();
+
+// Dividing the TOTAL NUMBER OF ITEMS / the LIMIT SET
+const totalPages = Math.round(pageNumbers / limitPerPage);
+$(".pagination").append("<li class='page-item current-page active'><a class='page-link' href='javascript:void(0)'>"+ 1 +"</a></li>");
+
+for(let i = 2; i <= totalPages; i++){
+    $(".pagination").append("<li class='page-item current-page'><a class='page-link' href='javascript:void(0)'>"+ i +"</a></li>");
+
+}
+$(".pagination").append("<li class='page-item' id='next-page'></li>");
+
+// Adding functionalities to the pages on click
+$(".pagination li.current-page").on("click", function() {
+        //Checking if the list item has the active class - 
+        //if it has then don't perform the function else
+        // perform the functions
+        if($(this).hasClass("active")){
+            return false;
+        } else{
+            const currentPage = $(this).index();
+            $(".pagination li").removeClass("active");
+            $(this).addClass("active");
+            $(".job-list .job-list-group").hide();
+
+           //     1         2         3           4
+           // 0 1 2 3 | 4 5 6 7 | 8 9 10 11 | 12 13 14 15 
+           //Performing some maths below to determine the number of pages to show per user click
+           const grandTotal = limitPerPage * currentPage;
+                        //8 - 4 = 4
+           for(let i = grandTotal - limitPerPage; i < grandTotal; i++){
+               $(".job-list .job-list-group:eq(" + i + ")").show();
+           }
+        }
+
+   });
+
+//    Adding functions to the nextpage button
+   $("#next-page").on("click", function (){
+        let currentPage = $(".pagination li.active").index();
+        if(currentPage === totalPages){
+            return false;
+        } else{
+            currentPage++; //Increment the pages by one when it is clicked
+            $(".pagination li").removeClass("active");
+            $(".job-list .job-list-group").hide();
+
+            const grandTotal = limitPerPage * currentPage;
+           for(let i = grandTotal - limitPerPage; i < grandTotal; i++){
+               $(".job-list .job-list-group:eq(" + i + ")").show();
+           }
+           $(".pagination li.current-page:eq(" + (currentPage - 1) +")").addClass("active");
+
+        }
+   });
+//    End of nextpage buton functionalities
+
+
+//    Adding functions to the previouspage button
+$("#previous-page").on("click", function (){
+    let currentPage = $(".pagination li.active").index();
+    if(currentPage === 1){
+        return false;
+    } else{
+        currentPage--; //Increment the pages by one when it is clicked
+        $(".pagination li").removeClass("active");
+        $(".job-list .job-list-group").hide();
+
+        const grandTotal = limitPerPage * currentPage;
+       for(let i = grandTotal - limitPerPage; i < grandTotal; i++){
+           $(".job-list .job-list-group:eq(" + i + ")").show();
+       }
+       $(".pagination li.current-page:eq(" + (currentPage - 1) +")").addClass("active");
+
+    }
+});
+//    End of previouspage buton functionalities
+
+//Adding functionalities to the next and previous button in the container
+//The next button
+$(".next").on("click", function (){
+    let currentPage = $(".pagination li.active").index();
+    if(currentPage === totalPages){
+        return false;
+    } else{
+        currentPage++; //Increment the pages by one when it is clicked
+        $(".pagination li").removeClass("active");
+        $(".job-list .job-list-group").hide();
+
+        const grandTotal = limitPerPage * currentPage;
+       for(let i = grandTotal - limitPerPage; i < grandTotal; i++){
+           $(".job-list .job-list-group:eq(" + i + ")").show();
+       }
+       $(".pagination li.current-page:eq(" + (currentPage - 1) +")").addClass("active");
+
+    }
+});
+//End of the next button
+    // The Previous button
+    $(".previous").on("click", function (){
+        let currentPage = $(".pagination li.active").index();
+        if(currentPage === 1){
+            return false;
+        } else{
+            currentPage--; //Increment the pages by one when it is clicked
+            $(".pagination li").removeClass("active");
+            $(".job-list .job-list-group").hide();
+    
+            const grandTotal = limitPerPage * currentPage;
+           for(let i = grandTotal - limitPerPage; i < grandTotal; i++){
+               $(".job-list .job-list-group:eq(" + i + ")").show();
+           }
+           $(".pagination li.current-page:eq(" + (currentPage - 1) +")").addClass("active");
+    
+        }
+    });
+
+    //End of the previous button
+
+
+//End of adding functionalities to the container
+
+
+
+	</script>
