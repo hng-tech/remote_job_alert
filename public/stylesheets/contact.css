@@ -1,0 +1,105 @@
+header#header {
+    border-bottom: 0px;
+}
+
+#contact.container, nav.navbar {
+    background-color: transparent !important;
+    padding-right: 0;
+}
+
+
+
+header nav ul.navbar-nav {
+    margin: 0;
+}
+
+header nav ul.navbar-nav li {
+    margin-left: 0px;
+    padding: 10px;
+}
+
+header nav ul.navbar-nav li:hover {
+    
+}
+
+
+.vector-bg-1 {
+    top: 0;
+    right: 0;
+    width: 47%;
+    height: 600px;
+    position: absolute;
+    background-image: url('/images/vector-right.jpg');
+    background-size: cover;
+    background-position: bottom left;
+    z-index: -1;
+}
+
+
+.vector-bg-2 {
+    top: 0;
+    left: 0;
+    width: 12vw;
+    height: 32.94vw;
+    position: absolute;
+    background-image: url('/images/vector-left-2.jpg');
+    background-size: cover;
+    background-position: bottom left;
+    z-index: -1;
+}
+
+.contact-input input.form-control {
+    margin-bottom: 20px;
+} 
+
+@media (max-width: 768px) {
+    div.contact-body {
+        /* i need the form in there to bve justified center but max of 400px */
+    }
+
+    #contact.container {
+        padding-left: 0;
+        padding-right: 0;
+        max-width: 100%;
+    }    
+
+    div.cta {
+        background-color: #e5e6f7;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .position-md-absolute {
+        position: absolute;
+    }
+
+    #mobile_hamburger span {
+        background-color: #fff !important;
+    }
+
+}
+@media (max-width:991px){
+    .navbar-light .navbar-nav li:hover a.nav-link {
+        color: #11144c !important;
+        border-bottom: 2px solid #11144c;
+    }
+}
+
+@media (min-width: 992px) {
+    div.contact-body {
+        margin-left: 10%;
+        margin-right: 10%
+    }
+
+
+.navbar-light .navbar-nav li:hover a.nav-link {
+    color: #ffffff;
+    border-bottom: 1px solid #fff;
+}
+
+
+.navbar-light .navbar-nav a.nav-link {
+    color: #ffffff;
+}
+}

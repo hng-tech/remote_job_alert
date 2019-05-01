@@ -377,6 +377,10 @@
   color: #11144c !important;
   border-bottom: 2px solid #11144c
 }
+.hover_lin:hover{
+  color: #fff !important;
+  border-bottom: 2px solid #fff;
+}
 
 #header{
   border-bottom: 1px solid #c0c0c0;
