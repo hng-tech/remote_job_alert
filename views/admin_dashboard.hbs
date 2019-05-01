@@ -23,6 +23,9 @@
     .sidebar{
       background-color: #11122C;
     }
+    .bg-blue{
+       background-color: #11122C;
+    }
     .dashboard{
       height:14vh;
       width: 100%;
@@ -90,6 +93,17 @@
         </a>
       </li>
 
+      <!-- Divider -->
+      <hr class="sidebar-divider ">
+
+
+      <li class="nav-item" >
+        <a class="btn py-2" href="">
+        <i class="fas fa-sign-out-alt fa-sm fa-fw text-gray-400"></i>
+        Logout
+        </a>
+      </li>
+
       <!-- Nav Item - Charts -->
             <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -116,6 +130,7 @@
           <div class="d-sm-flex align-items-center justify-content-center mb-4 dashboard">
             <h1 class="h3 mb-0 text-blue-700">DevAlert Admin Dashboard</h1>
           </div>
+            
 <div class="container-fluid">
           <!-- Content Row -->
           <div class="row">
@@ -190,6 +205,31 @@
             </div>
           </div>           
 
+          <div class="card-body">
+              <div class="card-header py-3 bg-blue">
+                <h6 class="m-0 font-weight-bold text-white">Payment</h6>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-bordered" id="" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>S/N</th>
+                      <th>Payer's email</th>
+                      <th>Payment Ref No.</th>
+                      <th>Payment date</th>
+                      <th>Amount paid</th>
+                      <th>Total No of payment made</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody">
+                    <tr>
+                      
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
               
 
   <!-- Scroll to Top Button-->
