@@ -11,14 +11,15 @@ var JobModel = require("../models/jobs");
 const Applicant = require("../controllers/applicant");
 const session = require("../controllers/stripe");
 const JobPreferenceController = require("../controllers/preference");
+var app = require("passport");
 /* GET home page. */
 //router.get("/", Home.index);
 router.get("/", async function(req, res, next) {
-  try{
+  try {
     const stripeSession =  await session;
     const jobs = await JobModel.find();
     res.render("index", { title: "Remote Job Alert", contents: jobs, sessionId: stripeSession.id});
-  }catch(err){
+  } catch(err){
     console.log(err);
     next(err);
   }
@@ -27,25 +28,38 @@ router.get("/", async function(req, res, next) {
 // GET About us page
 router.get("/about", Home.aboutUs);
 
-//Admin Page
+// Admin auth Page
 router.get('/admin', Home.admin);
 
-router.post('/admin', function(req, res, next){
-	if (req.body.username && req.body.password) {
+router.post('/admin', function(req, res, next) {
+  if (req.body.username && req.body.password) {
     Admin.authenticate(req.body.username, req.body.password, function (error, admin) {
       if (error || !admin) {
         var err = new Error('Wrong username or password.');
         err.status = 401;
-        return next(err);
+        // return next(err);
+        req.session.err;
+        return res.redirect('/admin');
+        // res.render('login', { error: req.session.error });
+        // delete res.session.error;
       } else {
         req.session.adminId = admin._id;
         return res.redirect('/managejobs');
       }
     });
-}
+  }
 });
 
-//Authenticate Admin Login to Manage Jobs
+// Logout
+// This is generic and could be used anywhere
+router.get('/logout', function(req, res){
+  req.session.destroy();
+  req.logout();
+  res.redirect('/');
+});
+
+// Manage jobs page
+// Only authorised persons can access this page
 router.get('/managejobs', function (req, res, next) {
   Admin.findById(req.session.adminId)
     .exec(function (error, admin) {
@@ -64,7 +78,8 @@ router.get('/managejobs', function (req, res, next) {
     });
 });
 
-//Authenticate Admin Login to Manage Appliants
+// Manage Appliants page
+// Only authorised persons can access this page
 router.get('/manageapplicants', function (req, res, next) {
   Admin.findById(req.session.adminId)
     .exec(function (error, admin) {
@@ -152,6 +167,8 @@ router.post(
   Validation.returnErrors,
   UserController.sendMail
 );
+
+router.get("/unsubscribe", Home.unsubscribe);
 
 //unsuscribe user from mailing
 router.get("/unsubscribe/:email", UserController.unsubscribeUser);
