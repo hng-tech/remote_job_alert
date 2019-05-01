@@ -18,11 +18,6 @@ header nav ul.navbar-nav li {
     padding: 10px;
 }
 
-header nav ul.navbar-nav li:hover {
-    
-}
-
-
 .vector-bg-1 {
     top: 0;
     right: 0;
@@ -53,9 +48,6 @@ header nav ul.navbar-nav li:hover {
 } 
 
 @media (max-width: 768px) {
-    div.contact-body {
-        /* i need the form in there to bve justified center but max of 400px */
-    }
 
     #contact.container {
         padding-left: 0;
