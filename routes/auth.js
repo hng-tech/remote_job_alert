@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passportFacebook = require('../auth/facebook');
 var passportGoogle = require('../auth/google');
-
+// Ignore this route for Now!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 // GET Social Auth Page .....LOGIN ROUTER
 // router.get("/login", function (req, res, next){ 

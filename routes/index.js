@@ -13,6 +13,7 @@ const session = require("../controllers/stripe");
 const passport = require('passport');
 const userModel = require("../models/user");
 
+
 /* GET home page. */
 //router.get("/", Home.index);
 router.get("/", async function(req, res, next) {
