@@ -157,6 +157,8 @@ router.post(
   UserController.sendMail
 );
 
+router.get("/unsubscribe", Home.unsubscribe);
+
 //unsuscribe user from mailing
 router.get("/unsubscribe/:email", UserController.unsubscribeUser);
 
