@@ -9,6 +9,10 @@ class Home {
         res.render("about");
     }
 
+    // Render Social Authentication (Facebook and Google)
+    static userAuth(req, res, next) {
+        res.render("auth");
+    }
     
 
     //User Pages

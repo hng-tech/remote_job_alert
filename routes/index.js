@@ -10,6 +10,9 @@ var Admin = require("../models/admin");
 var JobModel = require("../models/jobs");
 const Applicant = require("../controllers/applicant");
 const session = require("../controllers/stripe");
+const passport = require('passport');
+const userModel = require("../models/user");
+
 /* GET home page. */
 //router.get("/", Home.index);
 router.get("/", async function(req, res, next) {
@@ -81,6 +84,44 @@ router.get('/manageapplicants', function (req, res, next) {
       }
     });
 });
+
+
+// GET Social Auth Page .....LOGIN ROUTER
+router.get("/login", function (req, res, next){ 
+  res.status(200).render('login', {title: 'Please :' }); 
+});
+
+ /* LOGOUT ROUTER */
+ router.get('/auth/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+/* FACEBOOK ROUTER */
+router.get('/auth/facebook',
+passport.authenticate('facebook'));
+
+router.get('/auth/facebook/callback',
+passport.authenticate('facebook', {
+   successRedirect: '/',
+  failureRedirect: '/login' }),
+function(req, res) {
+  res.redirect('/');
+}); 
+
+/* GOOGLE ROUTER */
+router.get('/auth/google', 
+passport.authenticate('google', {
+scope: 'https://www.google.com/m8/feeds' }));
+
+router.get('/auth/google/callback',
+passport.authenticate('google', {
+ successRedirect: '/contact',
+ failureRedirect: '/login'}),
+function(req, res) {
+   res.redirect('/contact');
+});
+
 
 // GET Contact us page
 router.get("/contact", Home.contactUs);
@@ -163,4 +204,13 @@ router.post("/contact", UserController.sendContactAlert);
 // router.get('/remote-jobs/:job_id', Jobs.update_job);
 // router.get('/remote-jobs/:job_id', Jobs.cancel_job);
 
+/* GET users listing. */
+// router.get('/', ensureAuthenticated, function(req, res, next) {
+//   res.render('user', { user: req.user });
+// });
+
+// function ensureAuthenticated(req, res, next) {
+//   if (req.isAuthenticated()) { return next(); }
+//   res.redirect('/login')
+// }
 module.exports = router;
