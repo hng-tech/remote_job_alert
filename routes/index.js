@@ -9,6 +9,7 @@ const Paystack = require('../controllers/paystack');
 var Admin = require('../models/admin');
 var JobModel = require('../models/jobs');
 const Applicant = require('../controllers/applicant');
+const Subscription = require('../controllers/admin');
 const session = require('../controllers/stripe');
 //var app = require('passport');
 /* GET home page. */
