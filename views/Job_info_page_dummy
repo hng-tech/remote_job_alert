@@ -1,7 +1,0 @@
-Job info page
-{{#each content}}
-
-Job Title: {{this.job_title}}
-Job Description: {{this.job_description}}
-
-{{/each}}
