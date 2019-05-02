@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const socialSchema = new Schema({
     facebook: {
         
-    id: {
+    _id: {
         type: String
     },
     token: {

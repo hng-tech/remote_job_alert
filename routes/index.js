@@ -216,4 +216,18 @@ function isLoggedIn(req, res, next) {
     // if they aren't redirect them to the auth page
     res.redirect('/auth');
 }
+// GOOGLE ROUTES =======================
+    // =====================================
+    // send to google to do the authentication
+    // profile gets us their basic information including their name
+    // email gets their emails
+    router.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+    //the callback after google has authenticated the user
+    router.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect : '/profile',
+        failureRedirect : '/auth'
+    }));
+
 module.exports = router;
