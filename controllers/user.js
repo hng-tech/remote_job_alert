@@ -4,6 +4,7 @@ const Job = require('../models/jobs');
 const path = require('path');
 const hbs = require('handlebars');
 const fs = require('fs');
+const fetch = require('node-fetch');
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.zoho.com',
@@ -68,7 +69,12 @@ async function sendMail(req, res, next) {
 async function sendMailForRemoteJob() {
   try {
     const last7days = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-    const jobs = await Job.find({ createdAt: { $gte: last7days } });
+    let data = await fetch(
+      'https://jobs.github.com/positions.json?location=remote'
+    );
+    let jobs = await data.json();
+    jobs = jobs.filter(job => new Date(job.created_at) >= last7days);
+
     if (jobs.length === 0) {
       return;
     }
@@ -82,7 +88,7 @@ async function sendMailForRemoteJob() {
       .on('data', async function(user) {
         const html = template({ jobs, email: user.email });
         const data = {
-          from: 'Devalert <noreply@devalert.com>',
+          from: 'Devalert Team <info@devalert.com>',
           to: user.email,
           subject: 'New Remote job Alert! ',
           html: html.replace(/{{email}}/, user.email)
@@ -117,7 +123,8 @@ async function sendContactAlert(req, res, next) {
       from: 'info@devalert.me',
       to: 'supports@devalert.me',
       subject: subject + ' - ' + email,
-      html: `<p style="font-size:17px; font-weight:bold;">{${message}</p>`
+      html: `<h3>Sent from ${email} via contact page</h3>
+      <p style="font-size:17px; font-weight:bold;">${message}</p>`
     };
     await transporter.sendMail(data);
     await transporter.sendMail(support);

@@ -398,9 +398,8 @@
     border-bottom: 2px solid #fff;
 }
 
-#header {
-    border-bottom: 1px solid #c0c0c0;
-    padding-bottom: 1px
+#header{
+  padding-bottom: 1px;
 }
 
 #hamburger_menu {
