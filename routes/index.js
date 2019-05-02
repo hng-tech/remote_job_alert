@@ -81,7 +81,7 @@ router.get('/dashboard', function (req, res, next) {
 router.get('/logout', function(req, res) {
   req.session.destroy();
   //req.logout();
-  res.redirect('/admin');
+  res.redirect('/');
 });
 
 //successful payment
