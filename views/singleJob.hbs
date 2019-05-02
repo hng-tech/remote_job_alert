@@ -1,0 +1,392 @@
+<head>
+    <title>DevAlert - {{title}} </title>
+
+    <style type="text/css">
+        /* line 1, ../New folder (2)/mystyle.scss */
+        #single-job {
+            width: 100%;
+            margin: 60px 0;
+        }
+
+        /* line 5, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-top {
+            padding-top: 15px;
+        }
+
+        /* line 10, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-top .job-head p {
+            margin-bottom: 5px;
+        }
+
+        /* line 14, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-top .job-head .job-img-container {
+            width: 100%;
+        }
+
+        /* line 18, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-top .job-head .job-img-container img {
+            width: 50%;
+        }
+
+        /* line 23, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-top .job-head .job-quick-details {
+            width: 100%;
+        }
+
+        /* line 26, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-top .job-head .job-quick-details p {
+            font-size: 16px;
+        }
+
+        /* line 30, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-top .job-head .job-quick-details a {
+            width: 70%;
+            display: block;
+            color: white;
+            background: #11144c;
+        }
+
+        /* line 39, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-top .job-summary {
+            color: #666666;
+        }
+
+        /* line 40, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-top .job-summary h3 {
+            font-family: "Work Sans", sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 2em;
+            color: #11144C;
+        }
+
+        /* line 52, ../New folder (2)/mystyle.scss */
+        #single-job hr {
+            margin: 40px 0;
+            border-top: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* line 57, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-body {
+            padding: 10px 5px;
+        }
+
+        /* line 60, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-body h3 {
+            font-family: "Work Sans", sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 1em;
+            margin-bottom: 15px;
+            color: #11144C;
+        }
+
+        /* line 68, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-body p {
+            color: #666666;
+        }
+
+        /* line 74, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom {
+            margin: 20px 0;
+            padding: 0 10px;
+        }
+
+        /* line 78, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .more-jobs-section {
+            font-size: 16px;
+            box-shadow: 0 1px 2px .2px #666666;
+        }
+
+        /* line 83, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .more-jobs-section h4 {
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        /* line 88, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .more-jobs-section .more-jobs {
+            padding: 10px;
+        }
+
+        /* line 91, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job {
+            box-shadow: .2px 1.5px 4px .2px #666666;
+            padding: 15px 5px;
+            margin: 30px 0;
+            border: 0.5px solid rgba(6, 6, 6, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        /* line 102, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-image {
+            max-width: 120px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* line 107, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-image img {
+            width: 80%;
+        }
+
+        /* line 112, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-body {
+            margin-left: 10px;
+        }
+
+        /* line 115, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-body h4 {
+            font-size: 1.5em;
+            color: #11144c;
+            display: inline-block;
+        }
+
+        /* line 121, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-body p {
+            margin-bottom: 2px;
+        }
+
+        /* line 126, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-link {
+            align-self: flex-end;
+            margin-bottom: 10px;
+            margin-right: 10px;
+            margin-left: auto;
+        }
+
+        /* line 133, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-link a {
+            background: #fff;
+            color: #11144C;
+            border-color: #11144C;
+        }
+
+        /* line 138, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-link a:hover {
+            background: #11144C;
+            color: #ffffff;
+        }
+
+        /* line 148, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .hire-agent {
+            font-size: 16px;
+        }
+
+        /* line 152, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .hire-agent h4 {
+            font-size: 1.2em;
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        /* line 159, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .hire-agent .form-box {
+            padding: 20px;
+        }
+
+        /* line 164, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .hire-agent .form-box form .input-group {
+            padding: 5px;
+        }
+
+        /* line 168, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .hire-agent .form-box form .pay-buttons {
+            padding: 2px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-content: flex-start;
+        }
+
+        /* line 175, ../New folder (2)/mystyle.scss */
+        #single-job .single-job-bottom .hire-agent .form-box form .pay-buttons input,
+        #single-job .single-job-bottom .hire-agent .form-box form .pay-buttons button {
+            display: block;
+            width: 70%;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+
+            /* line 191, ../New folder (2)/mystyle.scss */
+            #single-job .single-job-top .job-head {
+                text-align: center;
+            }
+
+            /* line 195, ../New folder (2)/mystyle.scss */
+            #single-job .single-job-top .job-head .job-img-container img {
+                width: 140px;
+            }
+
+            /* line 201, ../New folder (2)/mystyle.scss */
+            #single-job .single-job-top .job-head .job-quick-details a {
+                margin-left: auto;
+                margin-right: auto;
+                width: 150px;
+            }
+
+            /* line 209, ../New folder (2)/mystyle.scss */
+            #single-job .single-job-top .job-summary {
+                margin-top: 40px;
+            }
+
+            /* line 213, ../New folder (2)/mystyle.scss */
+            #single-job .single-job-top .job-summary h3 {
+                font-size: 18px;
+                text-align: center;
+            }
+
+            /* line 218, ../New folder (2)/mystyle.scss */
+            #single-job .single-job-top .job-summary p {
+                font-size: 14px;
+            }
+
+            /* line 224, ../New folder (2)/mystyle.scss */
+            #single-job .single-job-body {
+                padding: 10px 2px;
+            }
+
+            /* line 225, ../New folder (2)/mystyle.scss */
+            #single-job .single-job-body h3 {
+                text-align: center;
+            }
+
+            /* line 235, ../New folder (2)/mystyle.scss */
+            #single-job .single-job-bottom .more-jobs-section .more-jobs h4 {
+                font-size: 20px;
+            }
+
+            /* line 243, ../New folder (2)/mystyle.scss */
+            #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-body h4 {
+                font-size: 16px;
+            }
+
+            /* line 247, ../New folder (2)/mystyle.scss */
+            #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-body p {
+                font-size: 12px;
+            }
+
+            /* line 255, ../New folder (2)/mystyle.scss */
+            #single-job .single-job-bottom .hire-agent {
+                margin-top: 30px;
+            }
+        }
+
+        @media (max-width: 468px) {
+
+            /* line 265, ../New folder (2)/mystyle.scss */
+            #single-job .single-job-top .job-head {
+                text-align: center;
+            }
+
+            /* line 269, ../New folder (2)/mystyle.scss */
+            #single-job .single-job-top .job-head .job-img-container img {
+                width: 60px;
+            }
+
+            /* line 287, ../New folder (2)/mystyle.scss */
+            #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-link>a {
+                font-size: 10px !important;
+            }
+        }
+    </style>
+</head>
+
+{{> header }}
+
+{{!-- All content goes here  --}}
+<div id="single-job">
+    <div class="container">
+        <div class="single-job-top">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 job-head">
+                    <div class="job-img-container">
+                        <img class="img-fluid" src="{{content.company_logo}}" alt="{{content.company_logo}}" />
+                    </div>
+                    <div class="job-quick-details mt-4">
+                        <p>{{content.type}}&nbsp;{{content.title}}</p>
+                        <p>At {{content.company}}</p>
+                        <p>Location: {{content.location}}</p>
+                        <p style="font-size: 10px;">Since: <span>{{content.created_at}}</span></p>
+                        <a class="btn mt-4" href="#hire-form">Apply Now</a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 job-summary">
+                    <h3>JOB SUMMARY</h3>
+                    <p>
+                        {{{summary}}}
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="single-job-body">
+            <h3>FULL DESCRIPTION</h3>
+            {{{content.description}}}
+            <h3>Want to Apply directly?</h3>
+            {{{content.how_to_apply}}}
+        </div>
+        <div class="single-job-bottom">
+            <div class="row">
+                <div class="col-md-12 col-lg-6 more-jobs-section">
+                    <div class="more-jobs">
+                        <h4>SIMILAR JOBS YOU MAY LIKE</h4>
+                        {{# each similar_jobs}}
+                        <div class="more-job">
+                            <div class="more-job-image">
+                                <img class="img-fluid" src="{{this.company_logo}}">
+                            </div>
+                            <div class="more-job-body">
+                                <h4>{{this.title}}</h4>
+                                <p>{{this.type}}</p>
+                                <p>Company: {{this.company}}</p>
+                            </div>
+                            <div class="more-job-link">
+                                <a href="/jobs/{{this.id}}" class="btn btn-sm">Read
+                                    More</a>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+                <div id="hire-form" class="col-md-12 col-lg-6 hire-agent">
+                    <div class="form-box">
+                        <h4>HIRE AN AGENT NOW</h4>
+                        <form method="POST" action="/pay">
+                            <div class="input-group input-group-lg mb-4">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">@</span>
+                                </div>
+                                <input type="text" name="" class="form-control" placeholder="email@dev.com"
+                                    aria-label="Email" aria-describedby="basic-addon1" required="required">
+                            </div>
+                            <div class="input-group input-group-lg mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><span
+                                            class="fa fa-phone"></span></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="234" minlength="11"
+                                    pattern="[+]{0,1}[0-9\s]+" maxlength="16" required="required"
+                                    aria-label="phonenumber" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="pay-buttons">
+                                <input value="Pay with Paystack" type="submit" name="phone"
+                                    class="btn btn-custom px-2 mt-4" />
+                                <button id="buttonCheckout" class="btn btn-custom px-2 mt-4">Pay with Stripe</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <a class="btn btn-sm btn-primary p-1" href="/jobs">Go Back</a>
+    </div>
+</div>
+
+{{> footer}}
