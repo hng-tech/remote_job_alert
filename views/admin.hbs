@@ -26,6 +26,14 @@
         <form action="/admin" method="POST">
             <h2 class="text-center font-weight-bold" style="margin-top: 40px">Admin Login</h2>
             <p class="text-center">Authorised Personnel Only</p>
+            {{#if err}}
+             <div class="alert alert-warning alert-dismissible fade show">
+              <strong>Wrong username or password</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            {{/if}}
             <div class="form-group">
                 <label for="username">Username</label>
                 <input class="form-control" type="text" id="username" name="username" placeholder="Username" required>
