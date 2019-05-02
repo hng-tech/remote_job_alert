@@ -11,9 +11,8 @@ var JobModel = require("../models/jobs");
 const Applicant = require("../controllers/applicant");
 const session = require("../controllers/stripe");
 const userModel = require("../models/user");
+const passport = require('passport');
 
-
-var app = require("passport");
 /* GET home page. */
 //router.get("/", Home.index);
 router.get("/", async function(req, res, next) {
@@ -101,43 +100,6 @@ router.get('/manageapplicants', function (req, res, next) {
 });
 
 
-// GET Social Auth Page .....LOGIN ROUTER
-router.get("/login", function (req, res, next){ 
-  res.status(200).render('login', {title: 'Please :' }); 
-});
-
- /* LOGOUT ROUTER */
- router.get('/auth/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
-
-/* FACEBOOK ROUTER */
-router.get('/auth/facebook',
-passport.authenticate('facebook'));
-
-router.get('/auth/facebook/callback',
-passport.authenticate('facebook', {
-   successRedirect: '/',
-  failureRedirect: '/login' }),
-function(req, res) {
-  res.redirect('/');
-}); 
-
-/* GOOGLE ROUTER */
-router.get('/auth/google', 
-passport.authenticate('google', {
-scope: 'https://www.google.com/m8/feeds' }));
-
-router.get('/auth/google/callback',
-passport.authenticate('google', {
- successRedirect: '/contact',
- failureRedirect: '/login'}),
-function(req, res) {
-   res.redirect('/contact');
-});
-
-
 // GET Contact us page
 router.get("/contact", Home.contactUs);
 
@@ -212,20 +174,46 @@ router.post("/contact", UserController.sendContactAlert);
 // // POST Job alerts subscription
 // router.post('/subscribe', Jobs.jobAlertSubscription);
 
-// router.get('/remote-jobs', Jobs.get_all)
-// router.post('/remote-jobs', Jobs.create);
-// router.get('/remote-jobs/:job_id', Jobs.get_one);
-// router.get('/remote-jobs/:job_id', Jobs.edit);
-// router.get('/remote-jobs/:job_id', Jobs.update_job);
-// router.get('/remote-jobs/:job_id', Jobs.cancel_job);
 
-/* GET users listing. */
-// router.get('/', ensureAuthenticated, function(req, res, next) {
-//   res.render('user', { user: req.user });
-// });
+/*FACEBOOK AUTH*/
+// GET Social Auth Page
+router.get("/auth", function (req, res, next){ 
+  res.status(200).render('auth') 
+});
 
-// function ensureAuthenticated(req, res, next) {
-//   if (req.isAuthenticated()) { return next(); }
-//   res.redirect('/login')
-// }
+
+router.get('/profile', isLoggedIn, function(req, res) {
+        res.render('profile.hbs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+
+// route for facebook authentication and login
+  router.get('/auth/facebook', passport.authenticate('facebook', { 
+      scope : ['public_profile', 'email']
+    }));
+
+    // handle the callback after facebook has authenticated the user
+  router.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect : '/profile',
+            failureRedirect : '/auth'
+        }));
+
+    // route for logging out
+  router.get('/logout', function(req, res) {
+        req.logout();
+        res.redirect('/auth');
+    });
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the auth page
+    res.redirect('/auth');
+}
 module.exports = router;

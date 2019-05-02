@@ -11,7 +11,6 @@ var MongoStore = require('connect-mongo')(session);
 require('dotenv').config();
 require('./schedule');
 const passport = require('passport');
-var auth = require('./routes/auth');
 
 
 // The database setup
@@ -35,7 +34,7 @@ db.on('error', console.error.bind(console, 'Database connection error:'));
 var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 
-var app = express();
+var app = express(); require('./config/passport')(passport);     //pass passport for configuration
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -74,6 +73,9 @@ app.use(function(req, res, next) {
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
+
+app.use(passport.initialize());
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   res.render('404');
@@ -90,75 +92,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
-// /*  PASSPORT SETUP  */
-
-app.use(passport.initialize());  //used to initialize passport
-app.use(passport.session());     //used to persist sessions
-app.use('/auth', auth);
-
-// /*  FACEBOOK AUTH  */
-
-
-// const FACEBOOK_APP_CLIENT_ID = '872760943056177';
-// const FACEBOOK_APP_SECRET = '1dc2c1aa725e38965ba207a43856798c';
-// const FACEBOOK_APP_CALLBACK = "http://localhost:3020/auth/facebook/callback";
-
-// const credentials = {
-//   facebook: {
-//     clientID: process.env.FACEBOOK_APP_CLIENT_ID,
-//     clientSecret: process.env.FACEBOOK_APP_SECRET,
-//     callbackURL: process.env.FACEBOOK_APP_CALLBACK,
-//     profileFields: ['id', 'email', 'name'],
-//     passReqToCallback: true
-//   },
-// };
-// const facebookAuth = async (accessToken, refreshToken, profile, done) => {
-//   try {
-//     console.log(profile);
-//     const currentUser = await User.findOrCreate({
-//       where: { socialId: profile.id },
-//       defaults: {
-//         firstName: profile.name.givenName,
-//         lastName: profile.name.familyName,
-//         username: profile.emails[0].value,
-//         email: profile.emails[0].value,
-//         socialProvider: profile.provider,
-//       },
-//     });
-
-//     return done(null, currentUser);
-//   } catch (err) {
-//     return done(err);
-//   }
-// };
-
-// passport.use(new FacebookStrategy(credentials.facebook, facebookAuth));
-
-
-
-// passport.use(new FacebookStrategy({
-//     clientID: FACEBOOK_APP_ID,
-//     clientSecret: FACEBOOK_APP_SECRET,
-//     callbackURL: "http://localhost:3020/auth/facebook/callback"
-//   },
-//   function(accessToken, refreshToken, user, done) {
-//     console.log('accessToken is'+ accessToken );
-//     console.log('refreshToken is', refreshToken );
-//     console.log('profile is', profile);
-//     console.log('user is', user);
-//     User.find({ facebookId: profile.id }, function (err, profile){
-       
-//     if (profile) {
-//       user= profile;
-//       return done(null,user);
-//     }
-//     else{
-//       return done(null, false);
-//     }
-//   });
-//   }
-// ));
 
 
 module.exports = app;
