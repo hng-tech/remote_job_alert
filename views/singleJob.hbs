@@ -362,7 +362,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">@</span>
                                 </div>
-                                <input type="text" name="" class="form-control" placeholder="email@dev.com"
+                                <input type="text" name="email" class="form-control" placeholder="email@dev.com"
                                     aria-label="Email" aria-describedby="basic-addon1" required="required">
                             </div>
                             <div class="input-group input-group-lg mb-3">
@@ -370,7 +370,7 @@
                                     <span class="input-group-text" id="basic-addon1"><span
                                             class="fa fa-phone"></span></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="234" minlength="11"
+                                <input type="text" name="phoneNo" class="form-control" placeholder="234" minlength="11"
                                     pattern="[+]{0,1}[0-9\s]+" maxlength="16" required="required"
                                     aria-label="phonenumber" aria-describedby="basic-addon1">
                             </div>
@@ -390,3 +390,19 @@
 </div>
 
 {{> footer}}
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    $(function () {
+        var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
+        $("buttonCheckout").click(function () {
+            stripe.redirectToCheckout({
+                sessionId: '{{sessionId}}',
+            }).then(function (result) {
+                // If `redirectToCheckout` fails due to a browser or network
+                // error, display the localized error message to your customer
+                // using `result.error.message`.
+            });
+        })
+    });
+</script>

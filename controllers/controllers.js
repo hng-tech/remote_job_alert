@@ -3,6 +3,9 @@ const validateQueryText = require("../validation/controller");
 const fetch = require("node-fetch");
 const { sendMailForRemoteJob } = require("./user");
 const userModel = require("../models/user");
+const Paystack = require('./paystack');
+const session = require('./stripe');
+const Applicant = require('./applicant');
 
 const Jobs = {
   async fetchData(req, res) {
@@ -31,11 +34,15 @@ const Jobs = {
       sub_data = sub_data.sort().slice(0, 3)
 
       let summary = main.description.slice(0, main.description.indexOf("</p>", 450));
+
+      const stripeSession = await session;
+
       return res.status(200).render('singleJob', {
         content: main,
         summary: summary,
         title: main.title,
-        similar_jobs: sub_data
+        similar_jobs: sub_data,
+        sessionId: stripeSession.id
       })
     } catch (error) {
       return res.status(400).send(error);
