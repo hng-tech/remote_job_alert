@@ -57,11 +57,16 @@ header nav ul.navbar-nav li {
 
     div.cta {
         background-color: #e5e6f7;
+        padding-left: 3rem !important;
     }
 }
+@media screen and (min-width:992px){
+    div.cta {
+        padding-left: 8rem !important;
+}
+}
 
-
-@media (min-width: 768px) {
+@media (min-width: 769px) {
     .position-md-absolute {
         position: absolute;
     }
