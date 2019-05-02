@@ -28,6 +28,10 @@ class Home {
     static contactUs(req, res, next) {
         res.render("contact");
     }
+    // Render choose agent page
+    static chooseAgent(req, res, next){
+        res.render('choose_agent', { title: 'Choose an Agent'});
+    }
 
     //Render FAQs page
     static faqs(req, res, next) {
