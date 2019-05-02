@@ -123,7 +123,8 @@ async function sendContactAlert(req, res, next) {
       from: 'info@devalert.me',
       to: 'supports@devalert.me',
       subject: subject + ' - ' + email,
-      html: `<p style="font-size:17px; font-weight:bold;">{${message}</p>`
+      html: `<h3>Sent from ${email} via contact page</h3>
+      <p style="font-size:17px; font-weight:bold;">${message}</p>`
     };
     await transporter.sendMail(data);
     await transporter.sendMail(support);
