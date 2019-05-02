@@ -168,6 +168,10 @@
   }
 }
 
+#homepage #Featured-jobs .featured-jobs-header {
+  padding: 80px;
+  text-align: center;
+}
 #homepage #job-posting {
   margin-top: 40px;
   padding: 20px;
@@ -203,7 +207,25 @@
 #homepage #job-posting .job-header form {
   margin-bottom: 30px;
 }
+.search input{
+  
+  width: 800px;
+  height: 40px;
+  border: 1px solid #aaa;
 
+}
+.search input { text-indent: 32px;}
+.search .fa-search { 
+  position: absolute;
+  top: 10px;
+  right: 100px;
+}
+
+.search .fa-times { 
+  position: absolute;
+  top: 10px;
+  right: 70px;
+}
 #homepage #job-posting .job-header form h4 {
   display: inline-block;
   color: #11144c;
@@ -377,6 +399,10 @@
   color: #11144c !important;
   border-bottom: 2px solid #11144c
 }
+.hover_lin:hover{
+  color: #fff !important;
+  border-bottom: 2px solid #fff;
+}
 
 #header{
   border-bottom: 1px solid #c0c0c0;
@@ -485,8 +511,93 @@
   -o-transform: rotate(-135deg);
   transform: rotate(-135deg);
 }
+/*Styling for featured jobs section*/
+#homepage #Featured-jobs .featured-jobs-header h1{
+  color: #11144c;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 42px;
+  margin-bottom: 30px;
+}
 
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: opacity 2s ease,transform 2s ease;
+  width: 480px;
+  height: 140px;
+  display: flex;
+  flex-direction: row;
+}
 
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  cursor: pointer;
+  transform:scale(1.1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.container {
+  padding: 2px 16px;
+  float: left;
+}
+.card img {
+    width: 38px;
+    height: 38px;
+    margin: 50px 15px 10px 40px;
+    vertical-align: center;
+    
+
+}
+.row {  
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+     }
+.right {
+  padding-left: 30px;
+}
+.more-jobs {
+  text-align: center;
+  color: #11144c;
+  font-weight: bold;
+}
+a:link {
+  text-decoration: none;
+}
+
+a:hover {
+  transition: color 1s ease, transform 1s ease;
+  transform:scale(1.1);
+}
+
+.container p {
+  padding-top: 15px;
+  text-align: left;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+
+color: #6F7484;
+}
+.card-head {
+  margin-top: 25px;
+  text-align: left;
+  color:  #11144C;
+  font-size: 18px;
+  line-height: 21px;
+}
+/*Responsive styling when screen is less than 700px */
+@media screen and (max-width: 700px) {
+  .row {   
+    
+  }
+  .card {
+    
+  }
+}
+
+/*End of Styling for featured jobs section*/
 
 .article-list-vertical{
   list-style:none;
