@@ -142,6 +142,17 @@ class DbPreference {
         });
     });
   }
+  static findOne(param) {
+    return new Promise((resolve, reject) => {
+      JobPreference.findOne(param)
+        .then(res => {
+          resolve(res);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
+  }
   static create(param) {
     return new Promise((resolve, reject) => {
       JobPreference.create(param)

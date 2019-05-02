@@ -147,14 +147,8 @@ router.post('/jobs/:job_id', Jobs.update_job);
 router.get('/jobs/:job_id/delete', Jobs.cancel_job);
 
 //Job Preferences Route
-router.get('/jobpreference/roles', JobPreferenceController.getJobRoles);
-router.get('/jobpreference/types', JobPreferenceController.getJobTypes);
-router.get('/jobpreference/levels', JobPreferenceController.getJobLevels);
-router.get('/jobpreference/locations', JobPreferenceController.getJobLocations);
-router.get('/jobpreference/stack', JobPreferenceController.getJobStack);
-router.get('/jobpreference/frequencies', JobPreferenceController.getJobFrequency);
-
-router.post("/jobpreference", JobPreferenceController.savePreference);
+router.get('/jobpreferences', JobPreferenceController.preferences);
+router.post("/jobpreferences", JobPreferenceController.savePreference);
 
 //Agent Routes
 router.get('/agents', Agents.get_all_agents);

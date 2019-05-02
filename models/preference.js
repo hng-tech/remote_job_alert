@@ -30,7 +30,7 @@ const preferenceSchema = new Schema({
     },
     frequency: { //Daily, Weekly, Monthly
         type: String,
-        enum: ['daily', 'weekly', 'monthly']
+        enum: ['Daily', 'Weekly', 'Monthly']
     }
 });
 

@@ -5,6 +5,7 @@ const path = require('path');
 const hbs = require('handlebars');
 const fs = require('fs');
 const fetch = require('node-fetch');
+const getJobsForUser = require('./preference').getJobsForUser;
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.zoho.com',
@@ -68,16 +69,13 @@ async function sendMail(req, res, next) {
 
 async function sendMailForRemoteJob() {
   try {
-    const last7days = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    /*const last7days = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
     let data = await fetch(
       'https://jobs.github.com/positions.json?location=remote'
     );
     let jobs = await data.json();
-    jobs = jobs.filter(job => new Date(job.created_at) >= last7days);
+    jobs = jobs.filter(job => new Date(job.created_at) >= last7days);*/
 
-    if (jobs.length === 0) {
-      return;
-    }
     const file = fs
       .readFileSync(path.join(__dirname, '../email-templates/remote_job.hbs'))
       .toString();
@@ -86,6 +84,11 @@ async function sendMailForRemoteJob() {
     User.find()
       .cursor()
       .on('data', async function(user) {
+        var jobs = await getJobsForUser(user._id);
+        if (jobs.length === 0) {
+          return;
+        }
+
         const html = template({ jobs, email: user.email });
         const data = {
           from: 'Devalert Team <info@devalert.com>',
