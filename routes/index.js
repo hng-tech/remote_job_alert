@@ -77,42 +77,43 @@ router.get('/payment-failed', function(req, res) {
 // Only authorised persons can access this page
 router.get('/managejobs', function(req, res, next) {
   Admin.findById(req.session.adminId).exec(function(error, admin) {
-    if (error) {
-      return next(error);
-    } else {
-      if (admin === null) {
-        var err = new Error('Not authorized! Go back!');
-        err.status = 400;
-        res.redirect('/admin');
-        //  return next(err);
+          if (error) {
+        return next(error);
       } else {
-        return next();
+        if (admin === null) {
+          var err = new Error('Not authorized! Go back!');
+          err.status = 400;
+          res.redirect('/admin');
+        //  return next(err);
+        } else {
+          return next();
+        }
       }
-    }
-  });
+    });
 });
 
 // Manage Appliants page
 // Only authorised persons can access this page
 router.get('/manageapplicants', function(req, res, next) {
   Admin.findById(req.session.adminId).exec(function(error, admin) {
-    if (error) {
-      return next(error);
-    } else {
-      if (admin === null) {
-        var err = new Error('Not authorized! Go back!');
-        err.status = 400;
-        res.redirect('/admin');
-        //  return next(err);
+      if (error) {
+        return next(error);
       } else {
-        return next();
+        if (admin === null) {
+          var err = new Error('Not authorized! Go back!');
+          err.status = 400;
+          res.redirect('/admin');
+        //  return next(err);
+        } else {
+          return next();
+        }
       }
-    }
-  });
+    });
 });
 
 // GET Contact us page
 router.get('/contact', Home.contactUs);
+
 
 //Routes for user pages
 // GET User Login page
@@ -139,7 +140,7 @@ router.post('/jobs', Jobs.create);
 router.get("/jobs", Jobs.get_api_jobs);
 
 /////////////////////////////////////////////////
-router.get('/jobs/:job_id', Jobs.get_one);
+router.get('/jobs/:job_id', Jobs.fetchSingle);
 //router.get("/jobs/:job_id/edit", Jobs.edit);
 router.post('/jobs/:job_id', Jobs.update_job);
 router.get('/jobs/:job_id/delete', Jobs.cancel_job);
