@@ -168,6 +168,10 @@
   }
 }
 
+#homepage #Featured-jobs .featured-jobs-header {
+  padding: 80px;
+  text-align: center;
+}
 #homepage #job-posting {
   margin-top: 40px;
   padding: 20px;
@@ -485,8 +489,76 @@
   -o-transform: rotate(-135deg);
   transform: rotate(-135deg);
 }
+/*Styling for featured jobs section*/
+#homepage #Featured-jobs .featured-jobs-header h1{
+  color: #11144c;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
 
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: opacity 2s ease,transform 2s ease;
+  width: 480px;
+  height: 140px;
+  display: flex;
+  flex-direction: row;
+}
 
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  cursor: pointer;
+  transform:scale(1.1)
+}
+
+.container {
+  padding: 2px 16px;
+  float: left;
+}
+.card img {
+    width: 50px;
+    height: 45px;
+    margin: 50px 0 10px 20px;
+}
+.row {  
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+     }
+.right {
+  padding-left: 30px;
+}
+.more-jobs {
+  text-align: center;
+  color: #11144c;
+  font-weight: bold;
+}
+a:link {
+  text-decoration: none;
+}
+
+a:hover {
+  
+}
+
+.container p {
+  color: #000;
+  padding-top: 15px;
+}
+.card-head {
+  margin-top: 25px;
+}
+/*Responsive styling when screen is less than 700px */
+@media screen and (max-width: 700px) {
+  .row {   
+    
+  }
+  .card {
+    
+  }
+}
+
+/*End of Styling for featured jobs section*/
 
 .article-list-vertical{
   list-style:none;
