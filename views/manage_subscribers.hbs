@@ -55,7 +55,7 @@
          <div class="container-fluid">
            <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <p class="mb-4 text-gray-800">This is the Manage Subscribers page for DevAlert</p>
-            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50" data-toggle="modal" data-target="#createJobModal" ></i> Add Jobs</button>
+            <button class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-trash fa-sm text-white mr2" data-toggle="modal" data-target="#createJobModal" ></i> Delete All Subscribers</button>
           </div>
           <div class="card shadow mb-4">
             <div class="card-header py-3 bg-blue">
@@ -63,12 +63,11 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="subscriberstable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>S/N</th>
                       <th>Subscriber's email</th>
-                      <th>Date subscribed</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -88,8 +87,62 @@
 
       </div>
 
+  <div class="ViewJob modal fade" id="ViewJob" tabindex="-1" role="dialog" aria-labelledby="viewJobModalLabel" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+      <div class="modal-content">
+        <div class="modal-header ">
+          <!-- Create Job Modal-->
+          <h5 class="modal-title job_text_color" id="viewJobModalLabel">Subscriber's details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="nrm-wrapper">
+            <div>
+              <div>
+                <h5>Subscriber's id : {{this.id}}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <script>
 		// script for getting subscribers 
+
+    var i= 1
+    function load_data() {
+			$.ajax({
+				url: "/view_all_email_subscribers",
+				async: false,
+				dataType: 'JSON',
+				success: function (subscribers) {
+					var table = document.getElementById('tbody');
+          subscribers.data.forEach(
+            function(data){
+              var tr = document.createElement('tr');
+                                  tr.innerHTML =  '<tr><td>' 
+                                                + i++
+                                                + '</td><td>'
+                                                + data.email
+                                                + '</td><td>'                                               
+                                               + '<button class="ViewBtn btn br-0 btn-dark btn-sm t-11 mr-2" data-id=' + data.id +' data-toggle="modal" data-target="#ViewJob"><i class="fa fa-eye"></i> View</button>'
+                                               + '<a href="/delete_one_email_subscriber/:_{{this.id}}" class="btn br-0 btn-danger btn-sm t-11"><i class="fa fa-trash"></i> Delete</a>'
+                                                + '</td></tr>'
+                                     table.appendChild(tr);
+            }
+          )
+				}
+			});
+      
+		}
+
+    $(function () {
+			  load_data();
+			});
   </script>
   <script src="js/sb-admin-2.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
