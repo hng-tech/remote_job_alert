@@ -108,12 +108,19 @@ async function sendContactAlert(req, res, next) {
       .toString()
       .replace(/{{name}}/, name);
     const data = {
-      from: 'Devalert <supports@devalert.com>',
+      from: 'Devalert <supports@devalert.me>',
       to: email,
       subject: 'Contact Us - DevAlert',
       html
     };
+    const support = {
+      from: 'info@devalert.me',
+      to: 'supports@devalert.me',
+      subject: subject + ' - ' + email,
+      html: `<p style="font-size:17px; font-weight:bold;">{${message}</p>`
+    };
     await transporter.sendMail(data);
+    await transporter.sendMail(support);
 
     req.flash(
       'success',
