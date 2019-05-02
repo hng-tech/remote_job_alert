@@ -9,6 +9,7 @@ const Paystack = require('../controllers/paystack');
 var Admin = require('../models/admin');
 var JobModel = require('../models/jobs');
 const Applicant = require('../controllers/applicant');
+const Subscription = require('../controllers/admin');
 const session = require('../controllers/stripe');
 //var app = require('passport');
 /* GET home page. */
@@ -205,4 +206,21 @@ router.post('/contact', UserController.sendContactAlert);
 // router.get('/remote-jobs/:job_id', Jobs.update_job);
 // router.get('/remote-jobs/:job_id', Jobs.cancel_job);
 
+
+router.get('/view_all_email_subscribers', Subscription.viewAllEmailSubscribers);
+router.get('/view_one_email_subscriber/:_id', Subscription.viewOneEmailSubscriber);
+router.get('/delete_one_email_subscriber/:_id', Subscription.DeleteOneEmailSubscriber);
+// router.get('/delete_all_email_subscribers', Subscription.DeleteAllEmailSubscribers); //CAUTION, IT'S WORKING
+router.post('/create_agent', Subscription.create_agent);
+router.post('/rate_an_agent/:_id', Subscription.rateAnAgent);
+router.get('/view_all_agents', Subscription.get_all_agents);
+router.get('/view_one_agent/:_id', Subscription.get_one_agent);
+router.get('/delete_one_agent/:_id', Subscription.DeleteOneAgent);
+// router.get('/delete_all_agents', Subscription.DeleteAllAgents);  //CAUTION, IT'S WORKING
+router.get('/invoice', Subscription.savePayment);
+router.get('/receipt/:id', Subscription.redirect);
+router.get('/view_all_payments', Subscription.view_all_payments);
+router.get('/view_one_payment/:_id', Subscription.view_one_payment);
+router.get('/delete_one_payment/:_id', Subscription.deleteOnePayment);
+// router.get('/delete_all_payments', Subscription.deleteAllPayments); //CAUTION, IT'S WORKING
 module.exports = router;

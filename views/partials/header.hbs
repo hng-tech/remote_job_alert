@@ -22,44 +22,73 @@
 	</div>
 	{{/if}}
 </div>
+
+
+<div class="container">
+	{{#each errors}}
+	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		<strong>{{msg}}</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	{{/each}} {{#if paymentError}}
+	<div class="alert alert-warning alert-dismissible fade show">
+		<strong>{{paymentError}}</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	{{/if}} {{#if payment}}
+	<div class="alert alert-success alert-dismissible fade show">
+		<strong>{{payment}}</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	{{/if}}
+</div>
+
 <header id="header" class="">
 
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-light bg-white">
-  <a class="navbar-brand" href="/">
-	  <img src="images/code2.png" class="img-fluid" height="40" width="40" > <span class="b-7">DevAlert</span>
-</a>
-  <!--<button id="hamburger_menu" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<a class="navbar-brand" href="/">
+				<img src="images/code2.png" class="img-fluid" height="40" width="40"> <span class="b-7">DevAlert</span>
+			</a>
+			<!--<button id="hamburger_menu" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>-->
-  <div id="mobile_hamburger" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		<span></span>
-		<span></span>
-		<span></span>
-	</div>
+			<div id="mobile_hamburger" data-toggle="collapse" data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto xcv_link">
-      <li class="nav-item">
-        <a class="nav-link b-6 hover_link" href="/">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link b-6 hover_link" href="/#job-posting">Jobs</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link b-6 hover_link" href="/about">About Us</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link b-6 hover_link" href="/contact">Contact Us</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ml-auto xcv_link">
+					<li class="nav-item">
+						<a class="nav-link b-6 hover_link" href="/">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link b-6 hover_link" href="/#job-posting">Jobs</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link b-6 hover_link" href="/about">About Us</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link b-6 hover_link" href="/contact">Contact Us</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
 	</div>
 </header>
 
 {{!-- REGISTER MODAL--}}
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+	aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-body">
@@ -74,8 +103,8 @@
 					</div>
 					<div class="form-group">
 						<label for="" class="my-0">Phone number</label>
-						<input type="tel" name="phoneNo" class="form-control my-0" placeholder="+234 7036836753" minlength="11" pattern="[+]{0,1}[0-9\s]+"
-						 maxlength="16" required>
+						<input type="tel" name="phoneNo" class="form-control my-0" placeholder="+234 7036836753" minlength="11"
+							pattern="[+]{0,1}[0-9\s]+" maxlength="16" required>
 					</div>
 					<input value="Pay with Paystack" type="submit" name="phone" class="btn btn-custom px-5 mt-4"></input>
 				</form>
