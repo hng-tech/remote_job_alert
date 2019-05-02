@@ -14,7 +14,7 @@
         @import url('https://fonts.googleapis.com/css?family=Work Sans');
         .main{
             background-color: #11144C;
-            height: 470px;
+            color: #FFF;
         }
         .banner{
             text-align: center;
@@ -42,7 +42,7 @@
             font-family: Work Sans;
             font-style: normal;
             font-weight: 600;
-            font-size: 40px;
+            font-size: 36px;
             text-align: center;
             color: #11144C;
             padding-top: 40px;
@@ -64,11 +64,18 @@
             margin-left: 20px;
         }
         .agent img{
-            margin-top: 60px;
+            padding-top: 70px;
             margin-right: 0px;
             margin-left:0px;
             padding-right: 0px;
         }
+        
+        @media screen and (max-width:768px) {
+            .agent {
+                display: none;
+            }
+        }
+        
         .agent p{
             width: 60%;
             margin-top: 55px;
@@ -76,7 +83,7 @@
             font-style: normal;
             font-weight: 300;
             font-size: 16px;
-            color: #000000;
+            color: #FFF;
         }
         .payBtn{
             background-color: #11144C;
@@ -100,12 +107,11 @@
             border: 1px solid #11144C;
             background-color: #FFFFFF;
         }
-
     </style>
 </head>
 <body>
     {{> header}}
-    <div class="main container-fluid">
+    <div class="main container">
 
             <div class="d-flex align-items-center justify-content-center">
                 <span style="margin-top: 150px; margin-bottom: 100px; margin-right: 5%"><svg width="10" height="64" viewBox="0 0 10 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -116,10 +122,14 @@
             </div>
 
         <div class="row">
-            <div class="col-sm-7" style="margin-left: 0px;padding-left: 0px; padding-right: 0px; margin-right:0px">
+            <div class="col-sm-7 ml-0 pl-0 pr-0 mr-0">
                     <div class="box shadow-lg">
                             <h3>Why use a DevAlert Agent</h3>
-                            <hr style="width:85%">
+                            <hr style="width:100%">
+                            
+                            <div>
+                                
+                            </div>
                             <div class="d-flex justify-content-center">
                                     <ul class="list">
                                             <li class="item">Level up your remote career by securing a remote job using one of our agents</li>
@@ -128,13 +138,13 @@
                                         </ul>
                             </div>
                             <div class="d-flex justify-content-center">
-                                <a href="#" class="btn payBtn d-flex align-items-center justify-content-center" style="text-align: center">Make Payment</a>
+                                <a href="#" class="btn payBtn d-flex align-items-center justify-content-center" data-target="#registerModal" data-toggle="modal" style="text-align: center">Make Payment</a>
                             </div>
-                                
+
                         </div>        
             </div>
             <div class="agent col-sm-5" style="padding-left: 0px; padding-right: 0px">
-                <img src="https://res.cloudinary.com/dhcrft7yd/image/upload/v1556728642/adult-connection-desk-1181524.jpg" alt="Agent image" width="100%" height="70%">
+                <img src="https://res.cloudinary.com/dhcrft7yd/image/upload/v1556728642/adult-connection-desk-1181524.jpg" class="img-responsive" alt="Agent image" width="100%" height="70%">
                 <div class="d-flex align-items-center justify-content-center">
                     <p>"It’s simple, easy and quick! I look forward to working with you" - Sandra Pels</p>
                 </div>
@@ -142,6 +152,6 @@
             </div>
         </div>
     </div>
-    {{> footer}}
+                {{> footer}}
 </body>
 </html>
