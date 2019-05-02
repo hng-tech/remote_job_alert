@@ -10,6 +10,7 @@
 	</style>
 </head>
 
+
 <body>
 	{{> header }}
 	<div id="overlay">
@@ -64,91 +65,35 @@
 		<section id="Featured-jobs">
         <div class="featured-jobs-header">
 			<h1>Featured Jobs</h1>
-       <div class="row">
+       
+       <!-- <div class="row"> -->
 			<!---Left column card-->
-        <div class="left">
-    <div class="card">
-        <img src="images/featured-images/google image.png" alt="google-image">
-      <div class="container cad">
-        <h4 class="card-head"><b>Front End Developer</b></h4> 
-        <p><ion-icon name="briefcase"></ion-icon>Google
-        <ion-icon name="time"></ion-icon>Full Time</p>
-      </div>
-    </div>
+        <div class="row">
+        {{#each (limit contents 8)}}
     
-    <div class="card">
-    <img src="images/featured-images/spotify.png" alt="spotify-image">
+    	<div class="card col-md-4 offset-md-4 left">
+    		<a href="jobs/{{this.id}}">
+        <img src="{{this.image_link}}" alt="google-image">
       <div class="container cad">
-        <h4 class="card-head"><b>iOS Developer</b></h4> 
-        <p><ion-icon name="briefcase"></ion-icon>Spotify
-            <ion-icon name="time"></ion-icon>Part Time</p>
+      	
+        <h4 class="card-head"><b>{{this.job_title}}</b></h4> 
+        <p><ion-icon name="briefcase"></ion-icon>{{this.company_name}}
+        <ion-icon name="time"></ion-icon>{{this.career_level}}</p>
+        </a>
       </div>
     </div>
-    
-    <div class="card">
-   <img src="images/featured-images/twitter-logo.png" alt="twitter-image">
-      <div class="container cad">
-        <h4 class="card-head"><b>Rails Engineer</b></h4> 
-        <p><ion-icon name="briefcase"></ion-icon>Twitter
-            <ion-icon name="time"></ion-icon>Full Time</p>
-      </div>
-    </div>
-    
-    <div class="card">
-		<img src="images/featured-images/cnn.png" alt="cnn-image">
- 
-      <div class="container cad">
-        <h4 class="card-head"><b>Golang Developer</b></h4> 
-        <p><ion-icon name="briefcase"></ion-icon>CNN
-            <ion-icon name="time"></ion-icon>Part Time</p>
-      </div>
-    </div>
-  </div>
+
+    {{/each}}
+    <!-- </div> -->
   <!---Right column--->
-  <div class="right">
-    <div class="card">
-      <img src="images/featured-images/instagram.png" alt="google-image">
-    <div class="container cad">
-      <h4 class="card-head"><b>Senior Devops Engineer</b></h4> 
-      <p><ion-icon name="briefcase"></ion-icon>Instagram
-      <ion-icon name="time"></ion-icon>Full Time</p>
-    </div>
-  </div>
-  
-  <div class="card">
-  <img src="images/featured-images/netflix.png" alt="spotify-image">
-    <div class="container cad">
-      <h4 class="card-head"><b>Full Stack Developer</b></h4> 
-      <p><ion-icon name="briefcase"></ion-icon>Netflix
-          <ion-icon name="time"></ion-icon>Full Time</p>
-    </div>
-  </div>
-  
-  <div class="card">
- <img src="images/featured-images/uber.png" alt="twitter-image">
-    <div class="container cad">
-      <h4 class="card-head"><b>Senior cloud Engineer</b></h4> 
-      <p><ion-icon name="briefcase"></ion-icon>Uber
-          <ion-icon name="time"></ion-icon>Part Time</p>
-    </div>
-  </div>
-  
-  <div class="card">
-<img src="images/featured-images/vimeo.png" alt="cnn-image">
-    <div class="container cad">
-      <h4 class="card-head"><b>Backend Engineer</b></h4> 
-      <p><ion-icon name="briefcase"></ion-icon>vimeo
-          <ion-icon name="time"></ion-icon>Full Time</p>
-    </div>
-  </div>
-  </div>
 </div>
+
 </div>
-   <p class="more-jobs"><a href="">Load more Listings <ion-icon name="arrow-forward"></ion-icon></a></p>       
+   <p class="more-jobs"><a href="/jobs">Load more Listings <ion-icon name="arrow-forward"></ion-icon></a></p>       
         
 </section>
 		<!--End of Featured job Section--->
-		
+	<!---	
 		<section id="job-posting">
 			<div class="job-header">
 				<h1>Job Postings</h1>
@@ -179,7 +124,7 @@
 			</div>
 		</section>
 	</div>
-
+-->
 	<!--- JOB LISTING MODAL -->
 	<div style="width: 100%;" class="modal fade" id="jobModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -218,7 +163,7 @@
 	{{> footer}}
 	<script src="https://js.stripe.com/v3/"></script>
 	<script>
-
+/*
 		let data = null;
 		function sort_jobs(array, input) {
 			input = input.toLowerCase();
@@ -242,7 +187,7 @@
 
 			return sorted;
 		}
-
+*/
 		function load_data(data, page) {
 			debugger;
 			const page_number = parseInt(page);
@@ -276,7 +221,7 @@
 
 			$("#content").html(jobs_html); // or some ajax content loading...
 		}
-
+		/*
 		$("#search-submit").click(function () {
 			load_page(0)
 		})
@@ -304,7 +249,7 @@
 			$("#job-link").attr("href", response.company_url);
 			$("#job-description").html(job_description_string);
 		});
-
+*/
 		function load_page(page) {
 
 			$("#overlay").addClass("overlay-block")
@@ -314,7 +259,7 @@
 			$("#overlay").hide();
 			$('html, body').animate({
 				scrollTop: $("#job-posting").offset().top
-			}, 1000);
+			}, 500);
 		}
 
 		$(function () {
@@ -328,7 +273,7 @@
 					// using `result.error.message`.
 				});
 			})
-
+/*
 			$.ajax({
 				url: "/jobs_api",
 				type: "get",
@@ -361,6 +306,7 @@
 				load_page(page_num);
 			});
 		});
+		*/
 	</script>
 	<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
 </body>
