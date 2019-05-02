@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,3 +52,59 @@
 </body>
 
 </html>
+||||||| merged common ancestors
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Payment was successful</title>
+
+    <style>
+        .payment-success {
+            height: 80vh;
+        }
+
+        .payment-success .card {
+            width: 400px;
+            height: 400px;
+        }
+
+        .card .rounded {
+            background: #25AE88;
+            height: 100px;
+            width: 100px;
+            border-radius: 50% !important;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        /* Vector */
+    </style>
+</head>
+
+<body>
+    {{> header}}
+    <div class="payment-success d-flex justify-content-center align-items-center">
+        <div class="card">
+            <div class="card-body ">
+                <div class="success-icon d-flex mt-3 justify-content-center">
+                    <a href="" class="rounded">
+                        <img src="images/tick.svg" class="img-fluid" width="50" alt="">
+                    </a>
+                </div>
+                <h5 class="font-weight-bold mt-5 text-center">Payment Successful</h5>
+                <div class="mt-5 d-flex justify-content-center">
+                    <a href="/" class="btn btn-custom px-5 py-2">Go to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{> footer}}
+</body>
+
+</html>
+>>>>>>> 14dac5c7ab58370a7d5d85974999b9ed64457f93

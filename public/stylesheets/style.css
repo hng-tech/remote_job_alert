@@ -3,6 +3,7 @@
 @import url("homepage.css");
 @import url("manage_jobs.css");
 @import url("unsubscribe.css");
+@import url("jobPage.css");
 
 html {
   scroll-behavior: smooth;
