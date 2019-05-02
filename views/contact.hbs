@@ -3,15 +3,16 @@
 
 <head>
     <title>{{title}}</title>
+    <link rel="stylesheet" href="/stylesheets/contact.css">
     <style>
         #contact {
-            
+
             padding: 15px 5px;
             background: #fff;
         }
 
         #contact>h1 {
-            
+
             color: #11144C;
             text-align: center;
             margin: 15px 0 30px;
@@ -24,7 +25,7 @@
         }
 
         #contact .row .contact-text i {
-            font-size: 30px;
+            font-size: 20px;
         }
 
         .contact-input input {
@@ -47,6 +48,7 @@
             border: none;
             margin-top: 15px;
         }
+
         .btn-primary[type="submit"]:hover {
             background: rgb(108, 108, 124);
             -webkit-transition: background 0.3s ease-in-out;
@@ -59,56 +61,217 @@
             border: none !important;
         }
 
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 15000px) {
             #contact .row {
-                padding: 30px;
+                padding: 20px;
+                width: 100%;
+            }
+        }
+
+        @media screen and (min-width:768) {
+            #contact .row {
+                padding-left: 50px;
+                width: 100%;
             }
         }
     </style>
 </head>
 
 <body>
-    {{> header }}
+    <div>
+        <div class="container">
+            {{#each errors}}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{msg}}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{/each}} {{#if emailError}}
+            <div class="alert alert-warning alert-dismissible fade show">
+                <strong>{{emailError}}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{/if}} {{#if success}}
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>{{success}}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{/if}}
+        </div>
+        <header id="header" class="">
 
-    <div id="contact" class="container">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                    <a class="navbar-brand" href="/">
+                        <img src="images/code2.png" class="img-fluid" height="40" width="40"> <span
+                            class="b-7">DevAlert</span>
+                    </a>
+                    <!--<button id="hamburger_menu" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>-->
+                    <div id="mobile_hamburger" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
 
-        <h1>Contact us</h1>
-        {{!-- WRITE ALL YOUR CONTACT-US CODE WITHIN --}}
-        <form action="/contact" method="post">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="contact-text">
-                        <i class="fa fa-home"></i>
-                        <h3>Country, State</h3>
-                        <p>Nigeria, Lagos</p>
-                        <i class="fa fa-mobile"></i>
-                        <h3>+234 812 3233</h3>
-                        <p>Mon to Fri 9am to 6 pm</p>
-                        <i class="fa fa-envelope"></i>
-                        <h3>Supports@DevAlert.com</h3>
-                        <p>Send us your query anytime!</p>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto xcv_link">
+                            <li class="nav-item">
+                                <a class="nav-link b-6 hover_lin" href="/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link b-6 hover_lin" href="/#job-posting">Jobs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link b-6 hover_lin" href="/about">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link b-6 hover_lin" href="/contact">Contact Us</a>
+                            </li>
+                        </ul>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="contact-input">
-                        <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
-                        <input type="email" name="email" class="form-control" placeholder="Enter email Address" required>
-                        <input type="subject" class="form-control" placeholder="Enter Subject" required>
+                </nav>
+            </div>
+        </header>
+
+        {{!-- REGISTER MODAL--}}
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="mt-5 font-weight-bold">Pay to an agent</h5>
+                        <form action="/pay" method="POST" class="mt-3">
+                            <div class="form-group">
+                                <label for="" class="my-0">Email</label>
+                                <input type="text" name="email" class="form-control my-0"
+                                    placeholder="johndoe@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="my-0">Phone number</label>
+                                <input type="tel" name="phoneNo" class="form-control my-0" placeholder="+234 7036836753"
+                                    minlength="11" pattern="[+]{0,1}[0-9\s]+" maxlength="16" required>
+                            </div>
+                            <input value="Pay with Paystack" type="submit" name="phone"
+                                class="btn btn-custom px-5 mt-4"></input>
+                        </form>
+                        <hr>
+                        <button id="buttonCheckout" class="btn btn-custom px-5 mt-4">Pay with Stripe</button>
                     </div>
+
                 </div>
-                <div class="col-lg-4">
-                    <div class="contact-message">
-                        <textarea name="message" id="" cols="30" rows="10" class="form-control" placeholder="Enter Message"></textarea>
-                        <button class="form-control btn btn-primary">SEND MESSAGE →</button>
+            </div>
+        </div>
+
+
+        <div id="contact" class="container py-0">
+
+            <div class="position-absolute vector-bg-1 d-none d-md-block"></div>
+
+            <div class="contact-body">
+                <div class="row py-3 py-md-5">
+                    <div class="col-md-6 text-center text-md-left">
+                        <h1 class="h3">Contact us</h1>
+
+                        <p class="pr-3 small text-secondary mb-3">We take our commitment to our users very seriously. If
+                            you need any help with using our plattform or Getting an agent to apply, Drop your message
+                            and get instant response.</p>
+
+                    </div>
+
+                    <div class="col-md-6 position-relative">
+                        <div class="px-4 py-4 card position-md-absolute" style="z-index:10000">
+                            <form action="/contact" method="POST">
+                                <h4 class="text-center mb-3">Tell us what you need</h4>
+                                <div class="contact-input">
+                                    <input type="text" name="name" class="form-control" placeholder="Enter your Name"
+                                        required>
+                                    <input type="email" name="email" class="form-control" placeholder="Enter your Email"
+                                        required>
+                                    <input type="text" name="subject" class="form-control" placeholder="Enter Subject"
+                                        required>
+                                </div>
+
+                                <div class="contact-message">
+                                    <textarea name="message" id="" cols="30" rows="6" class="form-control"
+                                        placeholder="Enter Message..."></textarea>
+                                    <button type="submit" class="form-control btn btn-primary">SEND MESSAGE →</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="contact-text mt-5 py-4">
+                            <div class="d-flex mb-4">
+                                <span class=" px-0">
+                                    <i class="fa mr-3 fa-home"></i>
+                                </span>
+
+                                <p class="h5">DevAlert <br>
+                                    Connecting developers to the world.
+                                </p>
+                            </div>
+
+                            <div class="d-flex mb-4">
+                                <span class="px-0">
+                                    <i class="fa fa-phone mr-3 fa-flip-horizontal"></i>
+                                </span>
+
+                                <p class="h5">+234 818 897 4303
+                                </p>
+                            </div>
+
+                            <div class="d-flex">
+
+                                <span class="">
+                                    <i class="fa mr-3 fa-envelope"></i>
+                                </span>
+
+
+                                <p class="h5">
+                                    <h3></h3>supports@devalert.com
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="position-absolute d-none d-md-block" style="left: 0; right: 0">
+                <div class="position-relative py-md-5">
+                    <div class="vector-bg-2 position-absolute" style="top: -50px">
                     </div>
                 </div>
             </div>
-        </form>
 
+            <div class="spacing py-2 d-none d-md-block" style="height: 23vw;"></div>
 
-        {{!-- WRITE ALL YOUR CONTACT-US CODE WITHIN --}}
+            <div class="py-4 pt-md-2 pb-md-4 mb-md-5 px-md-1 px-lg-5 cta">
+                <p class="text-center text-md-left">Try DevAlert Now</p>
+                <div class="py-2 row mx-0 justify-content-center text-center text-md-left justify-content-md-between">
+                    <div class="col-md-7 px-0">
+                        <h4 class="h3">Start receiving alerts and mails on the juiciest remote job offers</h4>
+                    </div>
+                    <div class="ml-md-auto mx-md-auto ">
+                        <a href="/" class="btn btn-primary">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    </div>
-
-    {{> footer}}
+        {{> footer}}
 </body>
