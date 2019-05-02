@@ -3,7 +3,7 @@ const validateQueryText = require("../validation/controller");
 const fetch = require("node-fetch");
 const { sendMailForRemoteJob } = require("./user");
 const userModel = require("../models/user");
-const agentModel = require("../models/agent");
+const agentModel = require("../models/newAgent");
 
 const Jobs = {
   async fetchData(req, res) {
