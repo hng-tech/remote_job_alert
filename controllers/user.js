@@ -82,7 +82,7 @@ async function sendMailForRemoteJob() {
       .on('data', async function(user) {
         const html = template({ jobs, email: user.email });
         const data = {
-          from: 'Devalert <noreply@devalert.com>',
+          from: 'Devalert Team <info@devalert.com>',
           to: user.email,
           subject: 'New Remote job Alert! ',
           html: html.replace(/{{email}}/, user.email)
