@@ -1,4 +1,4 @@
-At its core, DevAlert is a remote job search platform but it's actually much more than that. It does everything you'd expect from your fully-fledged remote job platform and more. We created DevAlert with the intention of designing it to be a easy way to get remote job opportunities for free to ease the stress of applying for jobs by connecting you with credible and reliable agents who are ready to help you apply for jobs for a small fee.
+At its core, DevAlert is a remote job search platform but it is actually much more than that. It does everything you'd expect from your fully-fledged remote job platform and more. We created DevAlert with the intention of designing it to be a easy way to get remote job opportunities for free to ease the stress of applying for jobs by connecting you with credible and reliable agents who are ready to help you apply for jobs for a small fee.
 
 THE PROBLEM ❓
 Existing Remote Job search platforms, lack essential features such as targeted notifications, credible vacancies being posted or charge a lot of money and may sometimes even present you with incapable hands. After dealing with this problem ourselves for years, we decided it was time for someone to step in and pick up from where the others dropped the ball.
@@ -12,5 +12,5 @@ THE ROADMAP 🎯
 We have been and continue to work day and night to perfect and improve DevAlert so you'll be pleased to hear we have some exciting new features lined up that will be rolling out in the months and weeks to come. 
 
 WE NEED YOU 🙏
-I can't wait to hear what you have to say about DevAlert. Learn more on our website and make sure to subscribe for our notifications.
+I cannot wait to hear what you have to say about DevAlert. Learn more on our website and make sure to subscribe for our notifications.
 

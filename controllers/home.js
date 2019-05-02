@@ -33,7 +33,6 @@ class Home {
   static admin(req, res, next) {
     res.render('admin');
   }
-
   //Render Job listing
   static get_job_page(req, res, next){
       res.render('jobPage' , { title : 'Job Listing' })
