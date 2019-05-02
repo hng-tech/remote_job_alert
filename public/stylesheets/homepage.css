@@ -514,7 +514,9 @@
 /*Styling for featured jobs section*/
 #homepage #Featured-jobs .featured-jobs-header h1{
   color: #11144c;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 42px;
   margin-bottom: 30px;
 }
 
@@ -530,7 +532,8 @@
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   cursor: pointer;
-  transform:scale(1.1)
+  transform:scale(1.1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .container {
@@ -538,9 +541,12 @@
   float: left;
 }
 .card img {
-    width: 50px;
-    height: 45px;
-    margin: 50px 0 10px 20px;
+    width: 38px;
+    height: 38px;
+    margin: 50px 15px 10px 40px;
+    vertical-align: center;
+    
+
 }
 .row {  
 display: flex;
@@ -560,15 +566,26 @@ a:link {
 }
 
 a:hover {
-  
+  transition: color 1s ease, transform 1s ease;
+  transform:scale(1.1);
 }
 
 .container p {
-  color: #000;
   padding-top: 15px;
+  text-align: left;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+
+color: #6F7484;
 }
 .card-head {
   margin-top: 25px;
+  text-align: left;
+  color:  #11144C;
+  font-size: 18px;
+  line-height: 21px;
 }
 /*Responsive styling when screen is less than 700px */
 @media screen and (max-width: 700px) {

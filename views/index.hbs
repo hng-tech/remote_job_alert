@@ -31,9 +31,9 @@
 								</p>
 								<form action="/email-subscription" method="POST">
 									<div class="input-group">
-										<input type="email" class="form-control" id="text-area" placeholder="Email" name="email" required>
+										<input type="email" class="form-control" placeholder="Email" name="email">
 										<div class="input-group-append">
-											<button class="btn subscribe" type="submit" id="subscribe">Subscribe</button>
+											<button class="btn subscribe" type="submit">Subscribe</button>
 										</div>
 									</div>
 								</form>
@@ -51,7 +51,7 @@
 				<div class="pay-header">
 					<h1>Pay an agent to apply</h1>
 					<p>Secure the job faster and easier.
-						<br />Let an agent help you apply to get more probability of success
+						<br />Let an agent help you apply to get more probability of sucess
 					</p>
 					<button data-toggle="modal" class="btn btn-custom" data-target="#registerModal">
 						Contact Agent
@@ -95,8 +95,8 @@
     </div>
     
     <div class="card">
-		<div class="container"><img src="images/featured-images/cnn.png" alt="cnn-image">
-  </div>
+		<img src="images/featured-images/cnn.png" alt="cnn-image">
+ 
       <div class="container">
         <h4 class="card-head"><b>Golang Developer</b></h4> 
         <p><ion-icon name="briefcase"></ion-icon>CNN
@@ -153,7 +153,6 @@
 			<div class="job-header">
 				<h1>Job Postings</h1>
 				<div class="input-group input-group-search">
-					<div class="search">
 					<input id="search-text" value="" type="text" class="form-control" placeholder="Search">
 					<div class="input-group-btn">
 						<button class="btn btn-default" id="search-submit" type="submit">
@@ -161,9 +160,7 @@
 						</button>
 						<button class="btn btn-default" id="search-clear" type="submit">
 							<i class="fa fa-times"></i>
-							
 						</button>
-						</div>
 					</div>
 				</div>
 
@@ -245,22 +242,6 @@
 
 			return sorted;
 		}
-		
-
-			$(document).ready(function(){
-    			$('#search-text').keypress(function(e){
-      				if(e.keyCode==13)
-      				$('#search-submit').click();
-    			});
-			});
-
-			$(document).ready(function(){
-    			$('#text-area').keypress(function(e){
-      				if(e.keyCode==13)
-      				$('#subscribe').click();
-    			});
-			});
-
 
 		function load_data(data, page) {
 			debugger;
