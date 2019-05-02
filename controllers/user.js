@@ -4,6 +4,7 @@ const Job = require('../models/jobs');
 const path = require('path');
 const hbs = require('handlebars');
 const fs = require('fs');
+const fetch = require('node-fetch');
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.zoho.com',
@@ -68,7 +69,12 @@ async function sendMail(req, res, next) {
 async function sendMailForRemoteJob() {
   try {
     const last7days = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-    const jobs = await Job.find({ createdAt: { $gte: last7days } });
+    let data = await fetch(
+      'https://jobs.github.com/positions.json?location=remote'
+    );
+    let jobs = await data.json();
+    jobs = jobs.filter(job => new Date(job.created_at) >= last7days);
+
     if (jobs.length === 0) {
       return;
     }
