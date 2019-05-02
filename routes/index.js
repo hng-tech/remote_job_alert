@@ -64,6 +64,15 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
+//successful payment
+router.get('/successful-payment', function(req, res) {
+  res.render('payment_success');
+});
+
+router.get('/payment-failed', function(req, res) {
+  res.render('payment_failed');
+});
+
 // Manage jobs page
 // Only authorised persons can access this page
 router.get('/managejobs', function(req, res, next) {
