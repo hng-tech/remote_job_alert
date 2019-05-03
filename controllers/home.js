@@ -58,6 +58,11 @@ class Home {
     res.render('job_details', { title: 'Job Details' });
   }
 
+  // Render choose agent page
+  static chooseAgent(req, res, next){
+    res.render('choose_agent', { title: 'Choose an Agent'});
+  }
+
   static managejobs(req, res, next) {
     res.render('manage_jobs', { title: 'Manage Jobs' });
   }
