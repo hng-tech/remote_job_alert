@@ -105,6 +105,10 @@ router.get('/successful-payment', function(req, res) {
   res.render('payment_success');
 });
 
+router.get('/job-preference', function(req, res){
+  res.render('jobPreference.hbs')
+});
+
 router.get('/payment-failed', function(req, res) {
   res.render('payment_failed');
 });
