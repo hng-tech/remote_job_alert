@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title }}</title>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Work+Sans"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="shortcut icon" href="images/code2.png" type="image/x-icon" />
+    <style>
+      /* * {
+  font-family: "Work Sans";
+} */
+
+.head {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 55px;
+}
+.inputField {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.button-group {
+  padding: 10px 0;
+}
+.button-group i {
+  margin-left: 10px;
+}
+.count-clear-drop-down {
+  padding: 6px 0;
+  margin-left: 35px;
+}
+.checkBoxes {
+  margin-left: 14px;
+  margin-top: 20px;
+}
+.custom-checkbox {
+  margin-left: 24px;
+}
+button[type="submit"] {
+  margin-top: 50px;
+  margin-left: 45%;
+  margin-bottom: 100px;
+}
+
+    </style>
+  </head>
+
+  <body>
+    {{>header}}
+
+    <div class="container">
+      <div class="head">
+        <h5><b>Hello Test One</b></h5>
+        <h1><b>Time to set your Job Preferences</b></h1>
+      </div>
+      
+
+      <form>
+          <div class="form-group row">
+            <label for="jobRoles" class="col-sm-2 col-form-label">Select your job role(s)</label>
+            <div class="inputField input-group col-sm-10">
+                <div class="button-group col-sm-10">
+                    <button type="button" class="btn btn-secondary btn-sm">FrontEnd <i class="fa fa-times"></i></button>
+                    <button type="button" class="btn btn-secondary btn-sm">Devops <i class="fa fa-times"></i></button>
+                    <button type="button" class="btn btn-secondary btn-sm">Fullstack <i class="fa fa-times"></i></button>
+                    <button type="button" class="btn btn-secondary btn-sm">UI/UX <i class="fa fa-times"></i></button>
+                </div>
+                <div class="count-clear-drop-down">
+                    <button type="button" class="btn btn-secondary btn-sm">4</button>
+                    <button class="btn" type="button"><i class="fa fa-times"></i></button>
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" type="button">Action</button>
+                        <button class="dropdown-item" type="button">Another action</button>
+                        <button class="dropdown-item" type="button">Something else here</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+          <div class="form-group row">
+              <label for="jobLevel" class="col-sm-2 col-form-label">Select your level(s)</label>
+              <div class="inputField input-group col-sm-10">
+                  <div class="button-group col-sm-10">
+                      <button type="button" class="btn btn-secondary btn-sm">Junior <i class="fa fa-times"></i></button>
+                      <button type="button" class="btn btn-secondary btn-sm">Intermediate <i class="fa fa-times"></i></button>
+                  </div>
+                  <div class="count-clear-drop-down">
+                      <button type="button" class="btn btn-secondary btn-sm">2</button>
+                      <button class="btn" type="button"><i class="fa fa-times"></i></button>
+                      <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#">Junior</a>
+                        <a class="dropdown-item" href="#">Intermediate</a>
+                        <a class="dropdown-item" href="#">Senior</a>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="form-group row">
+                <label for="jobType" class="col-sm-2 col-form-label">Select your job type(s)</label>
+                <div class="inputField input-group col-sm-10">
+                    <div class="button-group col-sm-10">
+                        <button type="button" class="btn btn-secondary btn-sm">Remote <i class="fa fa-times"></i></button>
+                        <button type="button" class="btn btn-secondary btn-sm">Fulltime <i class="fa fa-times"></i></button>
+                        <button type="button" class="btn btn-secondary btn-sm">Partly Remote <i class="fa fa-times"></i></button>
+                    </div>
+                    <div class="count-clear-drop-down">
+                        <button type="button" class="btn btn-secondary btn-sm">3</button>
+                        <button class="btn" type="button"><i class="fa fa-times"></i></button>
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                          <a class="dropdown-item" href="#">Remote</a>
+                          <a class="dropdown-item" href="#">Fulltime</a>
+                          <a class="dropdown-item" href="#">Partly Remote</a>
+                          <a class="dropdown-item" href="#">Part time</a>
+                          <a class="dropdown-item" href="#">Contract</a>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+
+
+
+              <div class="form-group row">
+                  <label for="jobLocation" class="col-sm-2 col-form-label">Select your job location(s)</label>
+                  <div class="inputField input-group col-sm-10">
+                      <div class="button-group col-sm-10">
+                          <button type="button" class="btn btn-secondary btn-sm">Nigeria <i class="fa fa-times"></i></button>
+                          <button type="button" class="btn btn-secondary btn-sm">Germany <i class="fa fa-times"></i></button>
+                          <button type="button" class="btn btn-secondary btn-sm">Rwanda <i class="fa fa-times"></i></button>
+                          <button type="button" class="btn btn-secondary btn-sm">Canada <i class="fa fa-times"></i></button>
+                          <button type="button" class="btn btn-secondary btn-sm">UK <i class="fa fa-times"></i></button>
+                          <i class="fa fa-ellipsis-h"></i>
+                      </div>
+                      <div class="count-clear-drop-down">
+                        <button type="button" class="btn btn-secondary btn-sm">5</button>
+                        <button class="btn" type="button"><i class="fa fa-times"></i></button>
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                          <a class="dropdown-item" href="#">Remote</a>
+                          <a class="dropdown-item" href="#">Fulltime</a>
+                          <a class="dropdown-item" href="#">Partly Remote</a>
+                          <a class="dropdown-item" href="#">Part time</a>
+                          <a class="dropdown-item" href="#">Contract</a>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+
+
+              <!-- Choose Pay Range          -->
+          <div class="form-group row">
+              <label for="payRange" class="col-sm-2 col-form-label">Choose pay range</label>
+              <select class="inputField custom-select col-sm-10" id="payRange">
+                  <option>10,000 - 100,000</option>
+                  <option>100,000 - 200,000</option>
+                  <option>200,000 - 300,000</option>
+              </select>
+          </div>
+
+                  <!-- Choose Update Type -->
+          <div class="form-group row">
+              <label for="updateType" class="col-sm-2 col-form-label">Choose update type</label>
+              <select class="inputField custom-select col-sm-10" id="updateType">
+                  <option>Daily</option>
+                  <option>Weekly</option>
+                  <option>Monthly</option>
+              </select>
+          </div>
+
+
+
+          <fieldset class="form-group row">
+              <label for="techStack" class="col-sm-2 col-form-label">Select your Tech Stack(s)</label>
+              
+              <div class="inputField input-group col-sm-10">
+                <div class="form-group row">
+                  <div class="input-group col-sm-12">
+                      <div class="button-group col-sm-10">
+                          <button type="button" class="btn btn-secondary btn-sm">FrontEnd <i class="fa fa-times"></i></button>
+                          <button type="button" class="btn btn-secondary btn-sm">Devops <i class="fa fa-times"></i></button>
+                          <button type="button" class="btn btn-secondary btn-sm">Fullstack <i class="fa fa-times"></i></button>
+                          <button type="button" class="btn btn-secondary btn-sm">UI/UX <i class="fa fa-times"></i></button>
+                      </div>
+                      <div class="count-clear-drop-down ">
+                          <button type="button" class="btn btn-secondary btn-sm">4</button>
+                          <button class="btn" type="button"><i class="fa fa-times"></i></button>
+                          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <button class="dropdown-item" type="button">Action</button>
+                              <button class="dropdown-item" type="button">Another action</button>
+                              <button class="dropdown-item" type="button">Something else here</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search row -->
+                <div class="input-group col-sm-12 search container-fluid">
+                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="button"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+
+                
+                <!-- Check boxes -->
+                <div class="checkBoxes form-group row col-sm-12">
+                  <div class="custom-control custom-checkbox col-sm-2">
+                      <label class="custom-control-label" for="javascript">
+                        <input type="checkbox" class="custom-control-input" id="javascript">Javascript</label><br>
+                      <label class="custom-control-label" for="react">
+                        <input type="checkbox" class="custom-control-input" id="react">React</label><br>
+                      <label class="custom-control-label" for="vueJs">
+                        <input type="checkbox" class="custom-control-input" id="vueJs">VueJs</label>
+                  </div>
+                  <div class="custom-control custom-checkbox col-sm-2">
+                      <label class="custom-control-label" for="php">
+                        <input type="checkbox" class="custom-control-input" id="php">PHP</label><br>
+                      <label class="custom-control-label" for="laravel">
+                        <input type="checkbox" class="custom-control-input" id="laravel">Laravel</label><br>
+                      <label class="custom-control-label" for="python">
+                        <input type="checkbox" class="custom-control-input" id="python">Python</label>
+                  </div>
+                  <div class="custom-control custom-checkbox col-sm-2">
+                      <label class="custom-control-label" for="go">
+                        <input type="checkbox" class="custom-control-input" id="go">Go</label><br>
+                      <label class="custom-control-label" for="ruby">
+                        <input type="checkbox" class="custom-control-input" id="ruby">Ruby</label><br>
+                      <label class="custom-control-label" for="flutter">
+                        <input type="checkbox" class="custom-control-input" id="flutter">Flutter</label>
+                  </div>
+                  <div class="custom-control custom-checkbox col-sm-2">
+                      <label class="custom-control-label" for="mongodb">
+                        <input type="checkbox" class="custom-control-input" id="mongodb">MongoDB</label><br>
+                      <label class="custom-control-label" for="react">
+                        <input type="checkbox" class="custom-control-input" id="react">React</label><br>
+                      <label class="custom-control-label" for="vueJs">
+                        <input type="checkbox" class="custom-control-input" id="vueJs">VueJs</label>
+                  </div>
+                  <div class="custom-control custom-checkbox col-sm-2">
+                      <label class="custom-control-label" for="javascript">
+                        <input type="checkbox" class="custom-control-input" id="javascript">Javascript</label><br>
+                      <label class="custom-control-label" for="react">
+                        <input type="checkbox" class="custom-control-input" id="react">React</label><br>
+                      <label class="custom-control-label" for="vueJs">
+                        <input type="checkbox" class="custom-control-input" id="vueJs">VueJs</label>
+                  </div>
+                  
+                  
+
+
+
+
+                </div>
+
+
+              </div>
+
+              
+                
+          </fieldset>
+
+
+
+          
+          <button type="submit" class="btn btn-primary">Save & Submit</button>
+        </form>
+    </div>
+
+    {{>footer}}
+
+    <!-- scripts -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
+

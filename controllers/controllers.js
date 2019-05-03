@@ -1,7 +1,9 @@
 const db = require("./promise").Db;
 const validateQueryText = require("../validation/controller");
 const fetch = require("node-fetch");
-const { sendMailForRemoteJob } = require("./user");
+const {
+  sendMailForRemoteJob
+} = require("./user");
 const userModel = require("../models/user");
 const agentModel = require("../models/newAgent");
 const Paystack = require('./paystack');
@@ -13,6 +15,14 @@ const Jobs = {
   async fetchData(req, res) {
     let data = await fetch("https://jobs.github.com/positions.json?location=remote");
     let main = await data.json();
+    if (req.query.country) {
+      const search = main.filter((country) => {
+        return country.location.indexOf(req.query.country) > -1;
+        // country.location = country.location.split(/,|;|-|\//);
+        // return _.includes(country.location, req.query.country);
+      });
+      return res.status(200).send(search);
+    }
     return res.status(200).json(main);
   },
   async fetchSingle(req, res) {
@@ -136,7 +146,7 @@ const Jobs = {
         usersCount,
         agentsCount,
         helpers: {
-          inc: function(index) {
+          inc: function (index) {
             index++;
             return index;
           },
@@ -165,8 +175,15 @@ const Jobs = {
       _id: req.params.job_id
     };
     try {
+
       let foundJob = await db.findOne(queryText);
-      return res.status(200).render("job_info_page_dummy", { content: foundJob });
+     
+      const stripeSession = await session;
+
+      return res.status(200).render("singleFeaturedJob", { 
+        content: foundJob,
+        sessionId: stripeSession.id
+      });
     } catch (error) {
       return res.status(400).send(error);
     }
@@ -189,7 +206,10 @@ const Jobs = {
       _id: req.params.job_id
     };
 
-    const { errors, isValid } = validateQueryText(req.body);
+    const {
+      errors,
+      isValid
+    } = validateQueryText(req.body);
 
     // Check Validation
     if (!isValid) {
@@ -227,7 +247,25 @@ const Jobs = {
     } catch (error) {
       return res.status(400).send(error);
     }
-  }
+  },
+  // API to return all countries and their slug for use in filtering
+  async fetchCountries(req, res) {
+    try {
+      const countries = await fetch('https://restcountries.eu/rest/v2/all');
+      const json = await countries.json();
+      const countryNames = await json.map(country => {
+        return {
+          name: country.name,
+          slug: country.alpha3Code
+        };
+      });
+      return res.status(200).send({
+        message: 'Countries returned successfully',
+        data: countryNames,
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
 };
-
 module.exports = Jobs;

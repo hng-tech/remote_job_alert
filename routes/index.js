@@ -13,6 +13,7 @@ const Subscription = require('../controllers/admin');
 const session = require('../controllers/stripe');
 const passport = require('passport');
 
+
 /* GET home page. */
 //router.get("/", Home.index);
 router.get('/', async function(req, res, next) {
@@ -106,6 +107,10 @@ router.get('/successful-payment', function(req, res) {
   res.render('payment_success');
 });
 
+router.get('/job-preference', function(req, res){
+  res.render('jobPreference.hbs')
+});
+
 router.get('/payment-failed', function(req, res) {
   res.render('payment_failed');
 });
@@ -178,6 +183,7 @@ router.post('/jobs', Jobs.create);
 router.get("/jobs", Jobs.get_api_jobs);
 
 /////////////////////////////////////////////////
+router.get('/jobs/featured/:job_id', Jobs.get_one);
 router.get('/jobs/:job_id', Jobs.fetchSingle);
 //router.get("/jobs/:job_id/edit", Jobs.edit);
 router.post('/jobs/:job_id', Jobs.update_job);
@@ -219,6 +225,7 @@ router.get('/unsubscribe/:email', UserController.unsubscribeUser);
 
 //contact
 router.post('/contact', UserController.sendContactAlert);
+
 
 /* THERE IS A PROBLEM WITH THE BELOW ROUTES, THEY ARE BREAKING THE SITE*/
 
