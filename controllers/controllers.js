@@ -10,6 +10,14 @@ const Jobs = {
   async fetchData(req, res) {
     let data = await fetch("https://jobs.github.com/positions.json?location=remote");
     let main = await data.json();
+    if (req.query.country) {
+      const search = main.filter((country) => {
+        return country.location.indexOf(req.query.country) > -1;
+        // country.location = country.location.split(/,|;|-|\//);
+        // return _.includes(country.location, req.query.country);
+      });
+      return res.status(200).send(search);
+    }
     return res.status(200).json(main);
   },
   async fetchSingle(req, res) {
@@ -171,6 +179,6 @@ const Jobs = {
     } catch (error) {
       return res.status(400).send(error);
     }
-  }
+  },
 };
 module.exports = Jobs;
