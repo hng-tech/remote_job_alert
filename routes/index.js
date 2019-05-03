@@ -3,15 +3,15 @@ var express = require('express');
 var Jobs = require('../controllers/controllers');
 var Agents = require('../controllers/agent');
 var router = express.Router();
-const UserController = require('../controllers/user');
-const Validation = require('../validation/email');
-const Paystack = require('../controllers/paystack');
-var Admin = require('../models/admin');
-var JobModel = require('../models/jobs');
-const Applicant = require('../controllers/applicant');
-const Subscription = require('../controllers/admin');
-const session = require('../controllers/stripe');
-var passport = require('passport');
+const UserController = require("../controllers/user");
+const Validation = require("../validation/email");
+const Paystack = require("../controllers/paystack");
+var Admin = require("../models/admin");
+var JobModel = require("../models/jobs");
+const Applicant = require("../controllers/applicant");
+const session = require("../controllers/stripe");
+const JobPreferenceController = require("../controllers/preference");
+var app = require("passport");
 /* GET home page. */
 //router.get("/", Home.index);
 router.get('/', async function(req, res, next) {
@@ -186,6 +186,10 @@ router.get('/jobs/:job_id', Jobs.fetchSingle);
 //router.get("/jobs/:job_id/edit", Jobs.edit);
 router.post('/jobs/:job_id', Jobs.update_job);
 router.get('/jobs/:job_id/delete', Jobs.cancel_job);
+
+//Job Preferences Route
+router.get('/jobpreferences', JobPreferenceController.preferences);
+router.post("/jobpreferences", JobPreferenceController.savePreference);
 
 //Agent Routes
 router.get('/agents', Agents.get_all_agents);
