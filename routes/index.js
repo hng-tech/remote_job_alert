@@ -11,7 +11,7 @@ var JobModel = require('../models/jobs');
 const Applicant = require('../controllers/applicant');
 const Subscription = require('../controllers/admin');
 const session = require('../controllers/stripe');
-var app = require('passport');
+var passport = require('passport');
 /* GET home page. */
 //router.get("/", Home.index);
 router.get('/', async function(req, res, next) {
