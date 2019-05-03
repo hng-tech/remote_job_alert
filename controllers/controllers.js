@@ -8,6 +8,7 @@ const Paystack = require('./paystack');
 const session = require('./stripe');
 const Applicant = require('./applicant');
 
+
 const Jobs = {
   async fetchData(req, res) {
     let data = await fetch("https://jobs.github.com/positions.json?location=remote");
@@ -137,7 +138,12 @@ const Jobs = {
           inc: function(index) {
             index++;
             return index;
-          }
+          },
+          limit: function (arr, limit) {
+          if (!Array.isArray(arr)) { return []; }
+            return arr.slice(0, limit);
+        }
+
         }
       });
     } catch (error) {
@@ -159,7 +165,7 @@ const Jobs = {
     };
     try {
       let foundJob = await db.findOne(queryText);
-      return res.status(200).render("/", { content: foundJob });
+      return res.status(200).render("job_info_page_dummy", { content: foundJob });
     } catch (error) {
       return res.status(400).send(error);
     }

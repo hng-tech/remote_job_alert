@@ -21,7 +21,18 @@ router.get('/', async function(req, res, next) {
     res.render('index', {
       title: 'Remote Job Alert',
       contents: jobs,
-      sessionId: stripeSession.id
+      sessionId: stripeSession.id,
+      helpers: {
+          inc: function(index) {
+            index++;
+            return index;
+          },
+          limit: function (arr, limit) {
+          if (!Array.isArray(arr)) { return []; }
+            return arr.slice(0, limit);
+        }
+
+        }
     });
   } catch (err) {
     console.log(err);
