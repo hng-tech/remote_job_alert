@@ -21,7 +21,18 @@ router.get('/', async function(req, res, next) {
     res.render('index', {
       title: 'Remote Job Alert',
       contents: jobs,
-      sessionId: stripeSession.id
+      sessionId: stripeSession.id,
+      helpers: {
+          inc: function(index) {
+            index++;
+            return index;
+          },
+          limit: function (arr, limit) {
+          if (!Array.isArray(arr)) { return []; }
+            return arr.slice(0, limit);
+        }
+
+        }
     });
   } catch (err) {
     console.log(err);
@@ -29,11 +40,16 @@ router.get('/', async function(req, res, next) {
   }
 });
 
+// Choose Agent Page
+router.get('/choose_agent', Home.chooseAgent);
+
 // GET About us page
 router.get('/about', Home.aboutUs);
 
 // Admin auth Page
 router.get('/admin', Home.admin);
+
+
 
 router.post('/admin', function(req, res, next) {
   if (req.body.username && req.body.password) {
@@ -51,17 +67,36 @@ router.post('/admin', function(req, res, next) {
         // delete res.session.error;
       } else {
         req.session.adminId = admin._id;
-        return res.redirect('/managejobs');
+        return res.redirect('/dashboard');
       }
     });
   }
+});
+
+//Authenticate Admin Login to Dashboard
+router.get('/dashboard', function (req, res, next) {
+  Admin.findById(req.session.adminId)
+    .exec(function (error, admin) {
+      if (error) {
+        return next(error);
+      } else {
+        if (admin === null) {
+          var err = new Error('Not authorized! Go back!');
+          err.status = 400;
+          res.redirect("/admin");
+        //  return next(err);
+        } else {
+          return next();
+        }
+      }
+    });
 });
 
 // Logout
 // This is generic and could be used anywhere
 router.get('/logout', function(req, res) {
   req.session.destroy();
-  req.logout();
+  //req.logout();
   res.redirect('/');
 });
 
@@ -112,6 +147,7 @@ router.get('/manageapplicants', function(req, res, next) {
     });
 });
 
+
 // GET Contact us page
 router.get('/contact', Home.contactUs);
 
@@ -156,8 +192,11 @@ router.post('/agents', Agents.create_agent);
 router.post('/pay', Paystack.pay);
 router.get('/invoice', Home.get_summary);
 //Dashboard Links
-router.get('/managejobs', Jobs.get_all);
-router.get('/manageapplicants', Applicant.get_all);
+router.get("/dashboard", Jobs.get_all);
+router.get("/manageapplicants", Applicant.get_all);
+router.get("/managejobs", Home.managejobs);
+router.get("/manageagents", Home.manageagents);
+router.get("/managesubscribers", Home.managesubscribers);
 
 //Deleting Applicant details
 router.get('/applicant/:applicant_id/delete', Applicant.cancel);
@@ -192,11 +231,77 @@ router.post('/contact', UserController.sendContactAlert);
 // // POST Job alerts subscription
 // router.post('/subscribe', Jobs.jobAlertSubscription);
 
-// router.get('/remote-jobs', Jobs.get_all)
-// router.post('/remote-jobs', Jobs.create);
-// router.get('/remote-jobs/:job_id', Jobs.get_one);
-// router.get('/remote-jobs/:job_id', Jobs.edit);
-// router.get('/remote-jobs/:job_id', Jobs.update_job);
-// router.get('/remote-jobs/:job_id', Jobs.cancel_job);
 
+/*FACEBOOK AUTH*/
+// GET Social Auth Page
+router.get("/auth", function (req, res, next){ 
+  res.status(200).render('auth') 
+});
+
+
+router.get('/profile', isLoggedIn, function(req, res) {
+        res.render('profile.hbs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+
+// route for facebook authentication and login
+  router.get('/auth/facebook', passport.authenticate('facebook', { 
+      scope : ['public_profile', 'email']
+    }));
+
+    // handle the callback after facebook has authenticated the user
+  router.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect : '/profile',
+            failureRedirect : '/auth'
+        }));
+
+    // route for logging out
+  router.get('/logout', function(req, res) {
+        req.logout();
+        res.redirect('/auth');
+    });
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the auth page
+    res.redirect('/auth');
+}
+// GOOGLE ROUTES =======================
+    // =====================================
+    // send to google to do the authentication
+    // profile gets us their basic information including their name
+    // email gets their emails
+    router.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+    //the callback after google has authenticated the user
+    router.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect : '/profile',
+        failureRedirect : '/auth'
+    }));
+
+
+router.get('/view_all_email_subscribers', Subscription.viewAllEmailSubscribers);
+router.get('/view_one_email_subscriber/:_id', Subscription.viewOneEmailSubscriber);
+router.get('/delete_one_email_subscriber/:_id', Subscription.DeleteOneEmailSubscriber);
+// router.get('/delete_all_email_subscribers', Subscription.DeleteAllEmailSubscribers); //CAUTION, IT'S WORKING
+router.post('/create_agent', Subscription.create_agent);
+router.post('/rate_an_agent/:_id', Subscription.rateAnAgent);
+router.get('/view_all_agents', Subscription.get_all_agents);
+router.get('/view_one_agent/:_id', Subscription.get_one_agent);
+router.get('/delete_one_agent/:_id', Subscription.DeleteOneAgent);
+// router.get('/delete_all_agents', Subscription.DeleteAllAgents);  //CAUTION, IT'S WORKING
+router.get('/invoice', Subscription.savePayment);
+router.get('/receipt/:id', Subscription.redirect);
+router.get('/view_all_payments', Subscription.view_all_payments);
+router.get('/view_one_payment/:_id', Subscription.view_one_payment);
+router.get('/delete_one_payment/:_id', Subscription.deleteOnePayment);
+// router.get('/delete_all_payments', Subscription.deleteAllPayments); //CAUTION, IT'S WORKING
 module.exports = router;

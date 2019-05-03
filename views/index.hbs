@@ -10,6 +10,7 @@
 	</style>
 </head>
 
+
 <body>
 	{{> header }}
 	<div id="overlay">
@@ -31,9 +32,9 @@
 								</p>
 								<form action="/email-subscription" method="POST">
 									<div class="input-group">
-										<input type="email" class="form-control" id="text-area" placeholder="Email" name="email" required>
+										<input type="email" class="form-control" placeholder="Email" name="email">
 										<div class="input-group-append">
-											<button class="btn subscribe" type="submit" id="subscribe">Subscribe</button>
+											<button class="btn subscribe" type="submit">Subscribe</button>
 										</div>
 									</div>
 								</form>
@@ -59,11 +60,44 @@
 				</div>
 			</div>
 		</section>
+
+<!---Featured job section-->
+		<section id="Featured-jobs">
+        <div class="featured-jobs-header">
+			<h1>Featured Jobs</h1>
+       
+       <!-- <div class="row"> -->
+			<!---Left column card-->
+        <div class="row">
+        {{#each (limit contents 8)}}
+    
+    	<div class="card col-md-4 offset-md-4 left">
+    		<a href="jobs/{{this.id}}">
+        <img src="{{this.image_link}}" alt="google-image">
+      <div class="container cad">
+      	
+        <h4 class="card-head"><b>{{this.job_title}}</b></h4> 
+        <p><ion-icon name="briefcase"></ion-icon>{{this.company_name}}
+        <ion-icon name="time"></ion-icon>{{this.career_level}}</p>
+        </a>
+      </div>
+    </div>
+
+    {{/each}}
+    <!-- </div> -->
+  <!---Right column--->
+</div>
+
+</div>
+   <p class="more-jobs"><a href="/jobs">Load more Listings <ion-icon name="arrow-forward"></ion-icon></a></p>       
+        
+</section>
+		<!--End of Featured job Section--->
+	<!---	
 		<section id="job-posting">
 			<div class="job-header">
 				<h1>Job Postings</h1>
 				<div class="input-group input-group-search">
-					<div class="search">
 					<input id="search-text" value="" type="text" class="form-control" placeholder="Search">
 					<div class="input-group-btn">
 						<button class="btn btn-default" id="search-submit" type="submit">
@@ -71,9 +105,7 @@
 						</button>
 						<button class="btn btn-default" id="search-clear" type="submit">
 							<i class="fa fa-times"></i>
-							
 						</button>
-						</div>
 					</div>
 				</div>
 
@@ -92,7 +124,7 @@
 			</div>
 		</section>
 	</div>
-
+-->
 	<!--- JOB LISTING MODAL -->
 	<div style="width: 100%;" class="modal fade" id="jobModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -131,7 +163,7 @@
 	{{> footer}}
 	<script src="https://js.stripe.com/v3/"></script>
 	<script>
-
+/*
 		let data = null;
 		function sort_jobs(array, input) {
 			input = input.toLowerCase();
@@ -155,23 +187,7 @@
 
 			return sorted;
 		}
-		
-
-			$(document).ready(function(){
-    			$('#search-text').keypress(function(e){
-      				if(e.keyCode==13)
-      				$('#search-submit').click();
-    			});
-			});
-
-			$(document).ready(function(){
-    			$('#text-area').keypress(function(e){
-      				if(e.keyCode==13)
-      				$('#subscribe').click();
-    			});
-			});
-
-
+*/
 		function load_data(data, page) {
 			const page_number = parseInt(page);
 			let offset_start = page_number * 9;
@@ -204,7 +220,7 @@
 
 			$("#content").html(jobs_html); // or some ajax content loading...
 		}
-
+		/*
 		$("#search-submit").click(function () {
 			load_page(0)
 		})
@@ -232,7 +248,7 @@
 			$("#job-link").attr("href", response.company_url);
 			$("#job-description").html(job_description_string);
 		});
-
+*/
 		function load_page(page) {
 
 			$("#overlay").addClass("overlay-block")
@@ -242,7 +258,7 @@
 			$("#overlay").hide();
 			$('html, body').animate({
 				scrollTop: $("#job-posting").offset().top
-			}, 1000);
+			}, 500);
 		}
 
 		$(function () {
@@ -256,7 +272,7 @@
 					// using `result.error.message`.
 				});
 			})
-
+/*
 			$.ajax({
 				url: "/jobs_api",
 				type: "get",
@@ -289,5 +305,7 @@
 				load_page(page_num);
 			});
 		});
+		*/
 	</script>
+	<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
 </body>
