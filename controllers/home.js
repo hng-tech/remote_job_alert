@@ -38,7 +38,6 @@ class Home {
       res.render('jobPage' , { title : 'Job Listing' })
   }
   // Render job details page
-  // TODO?
   static job_details(req, res, next) {
     res.render('job_details', { title: 'Job Details' });
   }
