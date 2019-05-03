@@ -384,7 +384,7 @@ class DbPreference {
 module.exports = {
   Db,
   DbApplicant,
-  DbPreference
+  DbPreference,
 	Subscribe,
 	AgentDb
 };
