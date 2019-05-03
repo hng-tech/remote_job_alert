@@ -127,6 +127,7 @@ const Jobs = {
     try {
       let foundJobs = await db.find(queryText);
       let usersCount = await userModel.countDocuments({});
+      
       return res.status(200).render("manage_jobs", {
         content: foundJobs,
         jobCount: foundJobs.length,
@@ -161,8 +162,15 @@ const Jobs = {
       _id: req.params.job_id
     };
     try {
+
       let foundJob = await db.findOne(queryText);
-      return res.status(200).render("job_info_page_dummy", { content: foundJob });
+     
+      const stripeSession = await session;
+
+      return res.status(200).render("singleFeaturedJob", { 
+        content: foundJob,
+        sessionId: stripeSession.id
+      });
     } catch (error) {
       return res.status(400).send(error);
     }
