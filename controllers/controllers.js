@@ -123,6 +123,7 @@ const Jobs = {
       return res.status(400).send(error);
     }
   },
+  
   async get_all(req, res) {
     const queryText = {};
     try {

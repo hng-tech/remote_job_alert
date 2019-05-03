@@ -11,7 +11,7 @@ var JobModel = require('../models/jobs');
 const Applicant = require('../controllers/applicant');
 const Subscription = require('../controllers/admin');
 const session = require('../controllers/stripe');
-//var app = require('passport');
+var app = require('passport');
 /* GET home page. */
 //router.get("/", Home.index);
 router.get('/', async function(req, res, next) {
@@ -147,6 +147,7 @@ router.get('/manageapplicants', function(req, res, next) {
     });
 });
 
+
 // GET Contact us page
 router.get('/contact', Home.contactUs);
 
@@ -226,12 +227,61 @@ router.post('/contact', UserController.sendContactAlert);
 // // POST Job alerts subscription
 // router.post('/subscribe', Jobs.jobAlertSubscription);
 
-// router.get('/remote-jobs', Jobs.get_all)
-// router.post('/remote-jobs', Jobs.create);
-// router.get('/remote-jobs/:job_id', Jobs.get_one);
-// router.get('/remote-jobs/:job_id', Jobs.edit);
-// router.get('/remote-jobs/:job_id', Jobs.update_job);
-// router.get('/remote-jobs/:job_id', Jobs.cancel_job);
+
+/*FACEBOOK AUTH*/
+// GET Social Auth Page
+router.get("/auth", function (req, res, next){ 
+  res.status(200).render('auth') 
+});
+
+
+router.get('/profile', isLoggedIn, function(req, res) {
+        res.render('profile.hbs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+
+// route for facebook authentication and login
+  router.get('/auth/facebook', passport.authenticate('facebook', { 
+      scope : ['public_profile', 'email']
+    }));
+
+    // handle the callback after facebook has authenticated the user
+  router.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect : '/profile',
+            failureRedirect : '/auth'
+        }));
+
+    // route for logging out
+  router.get('/logout', function(req, res) {
+        req.logout();
+        res.redirect('/auth');
+    });
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the auth page
+    res.redirect('/auth');
+}
+// GOOGLE ROUTES =======================
+    // =====================================
+    // send to google to do the authentication
+    // profile gets us their basic information including their name
+    // email gets their emails
+    router.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+    //the callback after google has authenticated the user
+    router.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect : '/profile',
+        failureRedirect : '/auth'
+    }));
 
 
 router.get('/view_all_email_subscribers', Subscription.viewAllEmailSubscribers);
