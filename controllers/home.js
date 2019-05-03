@@ -15,6 +15,11 @@ class Home {
     res.render('');
   }
 
+   // Render Job Listing page
+   static get_job_listing(req, res) {
+    res.render('job-listing', {title: 'Job Listing'});
+}
+
  // Render manage agents page
  static manageagents(req, res, next) {
     res.render('manage_agents');
