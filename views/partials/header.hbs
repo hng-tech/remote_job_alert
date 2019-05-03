@@ -23,6 +23,33 @@
 	</div>
 	{{/if}}
 </div>
+
+
+<div class="container">
+	{{#each errors}}
+	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		<strong>{{msg}}</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	{{/each}} {{#if paymentError}}
+	<div class="alert alert-warning alert-dismissible fade show">
+		<strong>{{paymentError}}</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	{{/if}} {{#if payment}}
+	<div class="alert alert-success alert-dismissible fade show">
+		<strong>{{payment}}</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	{{/if}}
+</div>
+
 <header id="header" class="">
 
 	<div class="container">
