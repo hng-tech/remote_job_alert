@@ -31,7 +31,7 @@ router.get('/', async function(req, res, next) {
           },
           limit: function (arr, limit) {
           if (!Array.isArray(arr)) { return []; }
-            return arr.slice(0, limit);
+            return arr.slice(0, limit); 
         }
 
         }
