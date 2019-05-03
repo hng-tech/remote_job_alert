@@ -40,11 +40,16 @@ router.get('/', async function(req, res, next) {
   }
 });
 
+// Choose Agent Page
+router.get('/choose_agent', Home.chooseAgent);
+
 // GET About us page
 router.get('/about', Home.aboutUs);
 
 // Admin auth Page
 router.get('/admin', Home.admin);
+
+
 
 router.post('/admin', function(req, res, next) {
   if (req.body.username && req.body.password) {
