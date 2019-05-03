@@ -9,6 +9,22 @@ class Home {
     res.render('about');
   }
 
+  // Dashboard
+  // Render dashboard page
+  static dashboard(req, res, next) {
+    res.render('');
+  }
+
+ // Render manage agents page
+ static manageagents(req, res, next) {
+    res.render('manage_agents');
+  }
+
+ // Render manage subscribers page
+ static managesubscribers(req, res, next) {
+    res.render('manage_subscribers');
+  }
+
   //User Pages
   // Render user-login page
   static userLogin(req, res, next) {
@@ -43,7 +59,7 @@ class Home {
   }
 
   static managejobs(req, res, next) {
-    res.render('manage-job', { title: 'Manage Jobs' });
+    res.render('manage_jobs', { title: 'Manage Jobs' });
   }
 
   static get_summary(req, res, next) {

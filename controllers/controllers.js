@@ -3,6 +3,7 @@ const validateQueryText = require("../validation/controller");
 const fetch = require("node-fetch");
 const { sendMailForRemoteJob } = require("./user");
 const userModel = require("../models/user");
+const agentModel = require("../models/newAgent");
 const Paystack = require('./paystack');
 const session = require('./stripe');
 const Applicant = require('./applicant');
@@ -126,10 +127,12 @@ const Jobs = {
     try {
       let foundJobs = await db.find(queryText);
       let usersCount = await userModel.countDocuments({});
-      return res.status(200).render("manage_jobs", {
+      let agentsCount = await agentModel.countDocuments({});
+      return res.status(200).render("admin_dashboard", {
         content: foundJobs,
         jobCount: foundJobs.length,
         usersCount,
+        agentsCount,
         helpers: {
           inc: function(index) {
             index++;

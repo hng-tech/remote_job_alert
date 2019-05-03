@@ -62,11 +62,14 @@ app.use(flash());
 
 //locals
 app.use(function(req, res, next) {
-  res.locals.success = req.flash('success');
-  res.locals.emailError = req.flash('emailError');
-  res.locals.errors = req.flash('errors');
-  next();
+	res.locals.success = req.flash('success');
+	res.locals.emailError = req.flash('emailError');
+	res.locals.errors = req.flash('errors');
+	res.locals.paymentError = req.flash('paymentError');
+	res.locals.payment = req.flash('payment');
+	next();
 });
+
 
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
