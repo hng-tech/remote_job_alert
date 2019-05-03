@@ -39,7 +39,7 @@ function getJobLocations() {
 	,"Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","United States Minor Outlying Islands","Uruguay"
 	,"Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"]; //Ref: https://gist.github.com/incredimike/1469814
 
-    return jobLocations;
+    return country_list;
 }
 
 function getJobStack() {
@@ -94,12 +94,12 @@ async function savePreference(req, res, next) {
 
 async function preferences(req, res, next) {
 	try {
-		var userId = "12"; //To be changed to get logged in user id from session
+		//var userId = "12"; //To be changed to get logged in user id from session
 
-		var userPreference = await DbPreference.find({ user_id: userId });
+		//var userPreference = await DbPreference.find({ user_id: userId });
 
-		res.render('job_preferences', {
-			current: userPreference,
+		res.render('jobPreference', {
+			//current: userPreference,
 			roles: getJobRoles(),
 			levels: getJobLevels(),
 			types: getJobTypes(),
