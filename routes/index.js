@@ -198,20 +198,15 @@ router.get("/manageapplicants", Applicant.get_all);
 router.get("/admin/managejobs", Home.managejobs);
 router.get("/admin/manage_payments",  function (req, res, next) {
   Admin.findById(req.session.adminId).exec(function(error, admin) {
-  console.log('12');
   if (error) {
-      console.log('hi1');
       return next(error);
   } else {
-      console.log('hi2');
       if (admin === null) {
-          console.log('hi3');
           var err = new Error('Not authorized! Go back!');
           err.status = 400;
           res.redirect('/admin');
           //  return next(err);
       } else {
-          console.log('hi1');
           return next();
       }
   }
@@ -219,14 +214,10 @@ router.get("/admin/manage_payments",  function (req, res, next) {
 }, Home.manage_payments);
 router.get("/admin/manageagents", function (req, res, next) {
   Admin.findById(req.session.adminId).exec(function(error, admin) {
-  console.log('12');
   if (error) {
-      console.log('hi1');
       return next(error);
   } else {
-      console.log('hi2');
       if (admin === null) {
-          console.log('hi3');
           var err = new Error('Not authorized! Go back!');
           err.status = 400;
           res.redirect('/admin');
@@ -241,20 +232,15 @@ router.get("/admin/manageagents", function (req, res, next) {
 Home.manageagents);
 router.get("/admin/managesubscribers", function (req, res, next) {
   Admin.findById(req.session.adminId).exec(function(error, admin) {
-  console.log('12');
   if (error) {
-      console.log('hi1');
       return next(error);
   } else {
-      console.log('hi2');
       if (admin === null) {
-          console.log('hi3');
           var err = new Error('Not authorized! Go back!');
           err.status = 400;
           res.redirect('/admin');
           //  return next(err);
       } else {
-          console.log('hi1');
           return next();
       }
   }
@@ -356,17 +342,17 @@ function isLoggedIn(req, res, next) {
 router.get('/view_all_email_subscribers', Subscription.viewAllEmailSubscribers);
 router.get('/view_one_email_subscriber/:_id', Subscription.viewOneEmailSubscriber);
 router.get('/delete_one_email_subscriber/:_id', Subscription.DeleteOneEmailSubscriber);
-// router.get('/delete_all_email_subscribers', Subscription.DeleteAllEmailSubscribers); //CAUTION, IT'S WORKING
+router.get('/delete_all_email_subscribers', Subscription.DeleteAllEmailSubscribers); //CAUTION, IT'S WORKING
 router.post('/create_agent', Subscription.create_agent);
 router.post('/rate_an_agent/:_id', Subscription.rateAnAgent);
 router.get('/view_all_agents', Subscription.get_all_agents);
 router.get('/view_one_agent/:_id', Subscription.get_one_agent);
 router.get('/delete_one_agent/:_id', Subscription.DeleteOneAgent);
-// router.get('/delete_all_agents', Subscription.DeleteAllAgents);  //CAUTION, IT'S WORKING
+router.get('/delete_all_agents', Subscription.DeleteAllAgents);  //CAUTION, IT'S WORKING
 router.get('/invoice', Subscription.savePayment);
 router.get('/receipt/:id', Subscription.redirect);
 router.get('/view_all_payments', Subscription.view_all_payments);
 router.get('/view_one_payment/:_id', Subscription.view_one_payment);
 router.get('/delete_one_payment/:_id', Subscription.deleteOnePayment);
-// router.get('/delete_all_payments', Subscription.deleteAllPayments); //CAUTION, IT'S WORKING
+router.get('/delete_all_payments', Subscription.deleteAllPayments); //CAUTION, IT'S WORKING
 module.exports = router;
