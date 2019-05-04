@@ -271,7 +271,7 @@ router.get('/profile', isLoggedIn, function(req, res) {
 function isLoggedIn(req, res, next) {
   // console.log('req is', req);
   // console.log('session id is', req.sessionID);
-    console.log('check login status');
+    // console.log('check login status');
     //if user is authenticated in the session, carry on
       if (req.sessionID)
         return next();
