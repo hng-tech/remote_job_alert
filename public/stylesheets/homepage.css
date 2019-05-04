@@ -515,35 +515,24 @@
     margin-bottom: 30px;
 }
 
-.card {
+.featureCad {
+    padding: 2px 16px;
+    float: left;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: opacity 2s ease, transform 2s ease;
     width: 480px;
     height: 140px;
     display: flex;
     flex-direction: row;
 }
 
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transform: scale(1.1);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.cad {
-    padding: 2px 16px;
-    float: left;
-}
-
-.card img {
+.featureCad img {
     width: 38px;
     height: 38px;
     margin: 50px 15px 10px 40px;
     vertical-align: center;
 }
 
-.row {
+.featureRow {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -568,12 +557,7 @@ a:link {
     text-decoration: none;
 }
 
-a:hover {
-    transition: color 1s ease, transform 1s ease;
-    transform: scale(1.1);
-}
-
-.cad p {
+.featureCad p {
     padding-top: 15px;
     text-align: left;
     font-style: normal;

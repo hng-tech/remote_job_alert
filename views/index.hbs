@@ -68,13 +68,13 @@
        
        <!-- <div class="row"> -->
 			<!---Left column card-->
-        <div class="row">
+        <div class="row featureRow">
         {{#each (limit contents 8)}}
     
-    	<div class="card col-md-4 offset-md-4 left">
+    	<div class="card featureCad col-md-4 offset-md-4 left">
     		<a href="jobs/featured/{{this.id}}">
         <img src="{{this.image_link}}" alt="google-image">
-      <div class="container cad">
+      <div class="container">
       	
         <h4 class="card-head"><b>{{this.job_title}}</b></h4> 
         <p><ion-icon name="briefcase"></ion-icon>{{this.company_name}}
@@ -249,7 +249,7 @@
 			$("#job-description").html(job_description_string);
 		});
 */
-		function load_page(page) {
+	/*	function load_page(page) {
 
 			$("#overlay").addClass("overlay-block")
 			load_data(data, page);
@@ -260,7 +260,7 @@
 				scrollTop: $("#job-posting").offset().top
 			}, 500);
 		}
-
+*/
 		$(function () {
 			var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
 			$("buttonCheckout").click(function () {
