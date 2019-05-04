@@ -34,9 +34,12 @@ router.post('/admin', function(req, res, next) {
   if (req.body.username && req.body.password) {
     Admin.authenticate(req.body.username, req.body.password, function (error, admin) {
       if (error || !admin) {
-        var err = new Error('Wrong username or password.');
-        err.status = 401;
+        // var err = new Error('Wrong username or password.');
+        // err.status = 401;
         // return next(err);
+        return res.status(401).json({
+                    message: 'Wrong username or password'
+                  });
         req.session.err;
         return res.redirect('/admin');
         // res.render('login', { error: req.session.error });
@@ -53,7 +56,7 @@ router.post('/admin', function(req, res, next) {
 // This is generic and could be used anywhere
 router.get('/logout', function(req, res){
   req.session.destroy();
-  req.logout();
+  // req.logout();
   res.redirect('/');
 });
 
