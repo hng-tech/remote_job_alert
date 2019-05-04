@@ -10,6 +10,8 @@ var flash = require('connect-flash');
 var MongoStore = require('connect-mongo')(session);
 require('dotenv').config();
 require('./schedule');
+const passport = require('passport');
+
 
 // The database setup
 // we should probable store the url in .env for security reasons.
@@ -32,7 +34,7 @@ db.on('error', console.error.bind(console, 'Database connection error:'));
 var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 
-var app = express();
+var app = express(); require('./config/passport')(passport);     //pass passport for configuration
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,6 +43,8 @@ app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
 
 app.set('view engine', 'hbs');
 
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -74,6 +78,10 @@ app.use(function(req, res, next) {
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
+
+
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   res.render('404');
@@ -90,4 +98,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+
 module.exports = app;
+// export default passport;

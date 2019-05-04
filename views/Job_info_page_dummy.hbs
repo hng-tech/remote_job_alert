@@ -1,0 +1,29 @@
+{{>header}}
+<h2>Job info (dummy) page </h2>
+<h3>Company</h3>
+{{#each content}}
+
+{{this.company_name}}
+
+
+{{/each}}
+<br/><h3>Job Title: </h3>
+{{#each content}}
+
+{{this.job_title}}
+
+
+{{/each}}
+<br/><h3>Job Description: </h3>
+{{#each content}}
+{{this.job_description}}
+{{/each}}
+<br/><h3>Pay Range</h3>
+{{#each content}}
+
+{{this.job_pay_min}} - {{this.job_pay_max}}
+
+
+{{/each}}
+
+{{>footer}}

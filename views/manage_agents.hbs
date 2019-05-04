@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>{{title}}</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="../stylesheets/sb-admin-2.min.css" rel="stylesheet">
+  <style type="text/css">
+    .sidebar{
+      background-color: #11122C;
+    }
+    .bg-blue{
+       background-color: #11122C;
+    }
+    .dashboard{
+      height:14vh;
+      width: 100%;
+      background-color: #11144C;
+      color: white;
+    }
+  </style>
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    {{> dashboard_nav }}
+
+<body class="admin_body">
+
+  <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content ">
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-center mb-4 dashboard">
+            <h1 class="h3 mb-0 text-blue-700">Manage Agents</h1>
+          </div>
+          
+         <div class="container-fluid">
+           <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <p class="mb-4 text-gray-800">This is the Manage Agents page for DevAlert</p>
+            <button class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-trash fa-sm text-white-50" data-toggle="modal" data-target="#createJobModal" ></i> Delete all agents</button>
+          </div>
+          <div class="card shadow mb-4">
+            <div class="card-header py-3 bg-blue">
+              <h6 class="m-0 font-weight-bold text-white">Agent's Table</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>S/N</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Email</th>
+                      <th>Phone Number</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody">
+                    <tr>
+                      
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+
+    <script>
+		// script for getting agents
+     var i= 1
+    function load_data() {
+			$.ajax({
+				url: "/view_all_agents",
+				async: false,
+				dataType: 'JSON',
+				success: function (subscribers) {
+					var table = document.getElementById('tbody');
+          subscribers.data.forEach(
+            function(data){
+              var tr = document.createElement('tr');
+                                  tr.innerHTML =  '<tr><td>' 
+                                                + i++
+                                                + '</td><td>'
+                                                + data.first_name
+                                                + '</td><td>'
+                                                + data.last_name
+                                                + '</td><td>'
+                                                + data.email
+                                                + '</td><td>'
+                                                + data.phone_number
+                                                + '</td><td>'                                               
+                                               + '<a href="/delete_one_email_subscriber/:_{{this.id}}" class="btn br-0 btn-danger btn-sm t-11"><i class="fa fa-trash"></i> Delete</a>'
+                                                + '</td></tr>'
+                                     table.appendChild(tr);
+            }
+          )
+				}
+			});
+      
+		}
+
+    $(function () {
+			  load_data();
+			}); 
+  </script>
+  <script src="js/sb-admin-2.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+</body>
+</html>
