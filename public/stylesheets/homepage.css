@@ -516,13 +516,8 @@
 }
 
 .featureCad {
-    padding: 2px 16px;
     float: left;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    width: 480px;
-    height: 140px;
-    display: flex;
-    flex-direction: row;
 }
 
 .featureCad img {
@@ -532,11 +527,13 @@
     vertical-align: center;
 }
 
-.featureRow {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0 -5px;
+.featureCad p {
+    text-align: left;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #6F7484;
 }
 
 .left {
@@ -555,16 +552,6 @@
 
 a:link {
     text-decoration: none;
-}
-
-.featureCad p {
-    padding-top: 15px;
-    text-align: left;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 16px;
-    color: #6F7484;
 }
 
 .card-head {
