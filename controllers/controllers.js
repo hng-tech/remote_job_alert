@@ -11,7 +11,6 @@ const Paystack = require('./paystack');
 const session = require('./stripe');
 const Applicant = require('./applicant');
 
-
 const Jobs = {
   async fetchData(req, res) {
     let data = await fetch("https://jobs.github.com/positions.json?location=remote");
@@ -138,7 +137,8 @@ const Jobs = {
   async get_all(req, res) {
     const queryText = {};
     try {
-      let foundJobs = await db.find(queryText);
+      let data = await fetch("https://jobs.github.com/positions.json?location=remote");
+      let foundJobs = await data.json();
       let usersCount = await userModel.countDocuments({});
       let agentsCount = await agentModel.countDocuments({});
       let paymentsCount = await paymentModel.countDocuments({});
