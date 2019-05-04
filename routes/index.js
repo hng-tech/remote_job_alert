@@ -11,7 +11,7 @@ var JobModel = require('../models/jobs');
 const Applicant = require('../controllers/applicant');
 const Subscription = require('../controllers/admin');
 const session = require('../controllers/stripe');
-const passport = require('passport');
+var passport = require('passport');
 
 /* GET home page. */
 //router.get("/", Home.index);
@@ -30,7 +30,7 @@ router.get('/', async function(req, res, next) {
           },
           limit: function (arr, limit) {
           if (!Array.isArray(arr)) { return []; }
-            return arr.slice(0, limit); 
+            return arr.slice(0, limit);
         }
 
         }
@@ -182,7 +182,6 @@ router.post('/jobs', Jobs.create);
 router.get("/jobs", Jobs.get_api_jobs);
 
 /////////////////////////////////////////////////
-router.get('/jobs/featured/:job_id', Jobs.get_one);
 router.get('/jobs/:job_id', Jobs.fetchSingle);
 //router.get("/jobs/:job_id/edit", Jobs.edit);
 router.post('/jobs/:job_id', Jobs.update_job);
@@ -196,8 +195,8 @@ router.get('/invoice', Home.get_summary);
 //Dashboard Links
 router.get("/dashboard", Jobs.get_all);
 router.get("/manageapplicants", Applicant.get_all);
-router.get("/managejobs", Home.managejobs);
-router.get("/manage_payments",  function (req, res, next) {
+router.get("/admin/managejobs", Home.managejobs);
+router.get("/admin/manage_payments",  function (req, res, next) {
   Admin.findById(req.session.adminId).exec(function(error, admin) {
   console.log('12');
   if (error) {
@@ -218,7 +217,7 @@ router.get("/manage_payments",  function (req, res, next) {
   }
 })
 }, Home.manage_payments);
-router.get("/manageagents", function (req, res, next) {
+router.get("/admin/manageagents", function (req, res, next) {
   Admin.findById(req.session.adminId).exec(function(error, admin) {
   console.log('12');
   if (error) {
@@ -240,7 +239,7 @@ router.get("/manageagents", function (req, res, next) {
 })
 },
 Home.manageagents);
-router.get("/managesubscribers", function (req, res, next) {
+router.get("/admin/managesubscribers", function (req, res, next) {
   Admin.findById(req.session.adminId).exec(function(error, admin) {
   console.log('12');
   if (error) {
