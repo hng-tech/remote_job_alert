@@ -11,7 +11,9 @@ var JobModel = require('../models/jobs');
 const Applicant = require('../controllers/applicant');
 const Subscription = require('../controllers/admin');
 const session = require('../controllers/stripe');
-var passport = require('passport');
+const passport = require('passport');
+
+
 /* GET home page. */
 //router.get("/", Home.index);
 router.get('/', async function(req, res, next) {
@@ -29,7 +31,7 @@ router.get('/', async function(req, res, next) {
           },
           limit: function (arr, limit) {
           if (!Array.isArray(arr)) { return []; }
-            return arr.slice(0, limit);
+            return arr.slice(0, limit); 
         }
 
         }
