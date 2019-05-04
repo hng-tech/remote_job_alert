@@ -11,7 +11,7 @@ var JobModel = require('../models/jobs');
 const Applicant = require('../controllers/applicant');
 const Subscription = require('../controllers/admin');
 const session = require('../controllers/stripe');
-const passport = require('passport');
+var passport = require('passport');
 
 /* GET home page. */
 //router.get("/", Home.index);
@@ -106,6 +106,10 @@ router.get('/successful-payment', function(req, res) {
   res.render('payment_success');
 });
 
+router.get('/job-preference', function(req, res){
+  res.render('jobPreference.hbs')
+});
+
 router.get('/payment-failed', function(req, res) {
   res.render('payment_failed');
 });
@@ -191,9 +195,72 @@ router.get('/invoice', Home.get_summary);
 //Dashboard Links
 router.get("/dashboard", Jobs.get_all);
 router.get("/manageapplicants", Applicant.get_all);
-router.get("/managejobs", Home.managejobs);
-router.get("/manageagents", Home.manageagents);
-router.get("/managesubscribers", Home.managesubscribers);
+router.get("/admin/managejobs", Home.managejobs);
+router.get("/admin/manage_payments",  function (req, res, next) {
+  Admin.findById(req.session.adminId).exec(function(error, admin) {
+  console.log('12');
+  if (error) {
+      console.log('hi1');
+      return next(error);
+  } else {
+      console.log('hi2');
+      if (admin === null) {
+          console.log('hi3');
+          var err = new Error('Not authorized! Go back!');
+          err.status = 400;
+          res.redirect('/admin');
+          //  return next(err);
+      } else {
+          console.log('hi1');
+          return next();
+      }
+  }
+})
+}, Home.manage_payments);
+router.get("/admin/manageagents", function (req, res, next) {
+  Admin.findById(req.session.adminId).exec(function(error, admin) {
+  console.log('12');
+  if (error) {
+      console.log('hi1');
+      return next(error);
+  } else {
+      console.log('hi2');
+      if (admin === null) {
+          console.log('hi3');
+          var err = new Error('Not authorized! Go back!');
+          err.status = 400;
+          res.redirect('/admin');
+          //  return next(err);
+      } else {
+          console.log('hi1');
+          return next();
+      }
+  }
+})
+},
+Home.manageagents);
+router.get("/admin/managesubscribers", function (req, res, next) {
+  Admin.findById(req.session.adminId).exec(function(error, admin) {
+  console.log('12');
+  if (error) {
+      console.log('hi1');
+      return next(error);
+  } else {
+      console.log('hi2');
+      if (admin === null) {
+          console.log('hi3');
+          var err = new Error('Not authorized! Go back!');
+          err.status = 400;
+          res.redirect('/admin');
+          //  return next(err);
+      } else {
+          console.log('hi1');
+          return next();
+      }
+  }
+})
+}, 
+Home.managesubscribers);
 
 //Deleting Applicant details
 router.get('/applicant/:applicant_id/delete', Applicant.cancel);
@@ -219,6 +286,7 @@ router.get('/unsubscribe/:email', UserController.unsubscribeUser);
 
 //contact
 router.post('/contact', UserController.sendContactAlert);
+
 
 /* THERE IS A PROBLEM WITH THE BELOW ROUTES, THEY ARE BREAKING THE SITE*/
 
