@@ -4,16 +4,27 @@ const Job = require('../models/jobs');
 const path = require('path');
 const hbs = require('handlebars');
 const fs = require('fs');
-const sgMail = require('@sendgrid/mail');
+const fetch = require('node-fetch');
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const transporter = nodemailer.createTransport({
+  host: 'smtp.zoho.com',
+  port: 587,
+  auth: {
+    user: process.env.ZOHO_USER,
+    pass: process.env.ZOHO_PASS
+  }
+});
+
 async function unsubscribeUser(req, res, next) {
   try {
-    await User.deleteOne({ email: req.params.email });
-    req.flash(
-      'success',
-      'You successfully unsubscribed from DevAlert NewsLetter'
-    );
+    const email = req.params.email;
+
+    const user = await User.findOne({ email });
+
+    if (user) {
+      await User.deleteOne({ email });
+      return res.redirect('/unsubscribe_success');
+    }
     res.redirect('/');
   } catch (err) {
     console.error(err);
@@ -26,7 +37,6 @@ async function sendMail(req, res, next) {
     const { email } = req.body;
     const user = await User.findOne({ email });
     if (user) {
-      console.log(user);
       req.flash('emailError', 'Email already subscribed');
       return res.redirect('/');
     }
@@ -41,13 +51,13 @@ async function sendMail(req, res, next) {
       .toString()
       .replace(/{{email}}/, email);
     const data = {
-      from: 'Devalert <noreply@devalert.com>',
+      from: 'Devalert Team <info@devalert.me>',
       to: email,
-      subject: 'Devalert Subscription',
+      subject: 'Devalert Remote Job Alert',
       html
     };
-    sgMail.send(data);
 
+    await transporter.sendMail(data);
     req.flash('success', 'Email subscription was successful');
     res.redirect('/');
   } catch (err) {
@@ -59,7 +69,12 @@ async function sendMail(req, res, next) {
 async function sendMailForRemoteJob() {
   try {
     const last7days = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-    const jobs = await Job.find({ createdAt: { $gte: last7days } });
+    let data = await fetch(
+      'https://jobs.github.com/positions.json?location=remote'
+    );
+    let jobs = await data.json();
+    jobs = jobs.filter(job => new Date(job.created_at) >= last7days);
+
     if (jobs.length === 0) {
       return;
     }
@@ -73,12 +88,12 @@ async function sendMailForRemoteJob() {
       .on('data', async function(user) {
         const html = template({ jobs, email: user.email });
         const data = {
-          from: 'Devalert <noreply@devalert.com>',
+          from: 'Devalert Team <info@devalert.com>',
           to: user.email,
           subject: 'New Remote job Alert! ',
           html: html.replace(/{{email}}/, user.email)
         };
-        sgMail.send(data);
+        await transporter.sendMail(data);
       })
       .on('end', function() {
         console.log('Done!');
@@ -99,12 +114,20 @@ async function sendContactAlert(req, res, next) {
       .toString()
       .replace(/{{name}}/, name);
     const data = {
-      from: 'Devalert <supports@devalert.com>',
+      from: 'Devalert <supports@devalert.me>',
       to: email,
       subject: 'Contact Us - DevAlert',
       html
     };
-    sgMail.send(data);
+    const support = {
+      from: 'info@devalert.me',
+      to: 'supports@devalert.me',
+      subject: subject + ' - ' + email,
+      html: `<h3>Sent from ${email} via contact page</h3>
+      <p style="font-size:17px; font-weight:bold;">${message}</p>`
+    };
+    await transporter.sendMail(data);
+    await transporter.sendMail(support);
 
     req.flash(
       'success',
