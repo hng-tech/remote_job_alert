@@ -264,7 +264,7 @@ router.get('/profile', isLoggedIn, function(req, res) {
     // route for logging out
   router.get('/logout', function(req, res) {
         req.logout();
-        res.render('/logout');
+        res.render('/');
     });
 
 // route middleware to make sure a user is logged in
