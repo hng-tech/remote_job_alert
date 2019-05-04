@@ -101,7 +101,7 @@
           <div class="nrm-wrapper">
             <div>
               <div>
-                <h5>Subscriber's id : {{this.id}}</h5>
+                <h5>Subscriber's id : {{this._id}}</h5>
               </div>
             </div>
           </div>
@@ -129,8 +129,8 @@
                                                 + '</td><td>'
                                                 + data.email
                                                 + '</td><td>'                                               
-                                               + '<button class="ViewBtn btn br-0 btn-dark btn-sm t-11 mr-2" data-id=' + data.id +' data-toggle="modal" data-target="#ViewJob"><i class="fa fa-eye"></i> View</button>'
-                                               + '<a href="/delete_one_email_subscriber/:_{{this.id}}" class="btn br-0 btn-danger btn-sm t-11"><i class="fa fa-trash"></i> Delete</a>'
+                                               + '<button class="ViewBtn btn br-0 btn-dark btn-sm t-11 mr-2" data-id=' + data._id +' data-toggle="modal" data-target="#ViewJob"><i class="fa fa-eye"></i> View</button>'
+                                               + '<a href="/delete_one_email_subscriber/:_{{this._id}}" class="btn br-0 btn-danger btn-sm t-11"><i class="fa fa-trash"></i> Delete</a>'
                                                 + '</td></tr>'
                                      table.appendChild(tr);
             }

@@ -13,7 +13,6 @@ const Subscription = require('../controllers/admin');
 const session = require('../controllers/stripe');
 const passport = require('passport');
 
-
 /* GET home page. */
 //router.get("/", Home.index);
 router.get('/', async function(req, res, next) {
@@ -198,8 +197,71 @@ router.get('/invoice', Home.get_summary);
 router.get("/dashboard", Jobs.get_all);
 router.get("/manageapplicants", Applicant.get_all);
 router.get("/managejobs", Home.managejobs);
-router.get("/manageagents", Home.manageagents);
-router.get("/managesubscribers", Home.managesubscribers);
+router.get("/manage_payments",  function (req, res, next) {
+  Admin.findById(req.session.adminId).exec(function(error, admin) {
+  console.log('12');
+  if (error) {
+      console.log('hi1');
+      return next(error);
+  } else {
+      console.log('hi2');
+      if (admin === null) {
+          console.log('hi3');
+          var err = new Error('Not authorized! Go back!');
+          err.status = 400;
+          res.redirect('/admin');
+          //  return next(err);
+      } else {
+          console.log('hi1');
+          return next();
+      }
+  }
+})
+}, Home.manage_payments);
+router.get("/manageagents", function (req, res, next) {
+  Admin.findById(req.session.adminId).exec(function(error, admin) {
+  console.log('12');
+  if (error) {
+      console.log('hi1');
+      return next(error);
+  } else {
+      console.log('hi2');
+      if (admin === null) {
+          console.log('hi3');
+          var err = new Error('Not authorized! Go back!');
+          err.status = 400;
+          res.redirect('/admin');
+          //  return next(err);
+      } else {
+          console.log('hi1');
+          return next();
+      }
+  }
+})
+},
+Home.manageagents);
+router.get("/managesubscribers", function (req, res, next) {
+  Admin.findById(req.session.adminId).exec(function(error, admin) {
+  console.log('12');
+  if (error) {
+      console.log('hi1');
+      return next(error);
+  } else {
+      console.log('hi2');
+      if (admin === null) {
+          console.log('hi3');
+          var err = new Error('Not authorized! Go back!');
+          err.status = 400;
+          res.redirect('/admin');
+          //  return next(err);
+      } else {
+          console.log('hi1');
+          return next();
+      }
+  }
+})
+}, 
+Home.managesubscribers);
 
 //Deleting Applicant details
 router.get('/applicant/:applicant_id/delete', Applicant.cancel);
