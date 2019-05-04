@@ -10,7 +10,7 @@ module.exports = {
     'googleAuth' : {
         'clientID'      : '470798273027-o4tff9ertang77i8rpammg6quoouapia.apps.googleusercontent.com',
         'clientSecret'  : 'fkyK2lsyDWXxhunGSlYRU1ph',
-        'callbackURL'   : 'http://devalert.me/auth/google/callback'
+        'callbackURL'   : 'https://devalert.me/auth/google/callback'
     }
 
 };

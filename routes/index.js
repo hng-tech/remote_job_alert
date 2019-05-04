@@ -11,7 +11,7 @@ var JobModel = require('../models/jobs');
 const Applicant = require('../controllers/applicant');
 const Subscription = require('../controllers/admin');
 const session = require('../controllers/stripe');
-var passport = require('passport');
+const passport = require('passport');
 
 /* GET home page. */
 //router.get("/", Home.index);
@@ -30,7 +30,7 @@ router.get('/', async function(req, res, next) {
           },
           limit: function (arr, limit) {
           if (!Array.isArray(arr)) { return []; }
-            return arr.slice(0, limit);
+            return arr.slice(0, limit); 
         }
 
         }
@@ -182,6 +182,7 @@ router.post('/jobs', Jobs.create);
 router.get("/jobs", Jobs.get_api_jobs);
 
 /////////////////////////////////////////////////
+router.get('/jobs/featured/:job_id', Jobs.get_one);
 router.get('/jobs/:job_id', Jobs.fetchSingle);
 //router.get("/jobs/:job_id/edit", Jobs.edit);
 router.post('/jobs/:job_id', Jobs.update_job);
