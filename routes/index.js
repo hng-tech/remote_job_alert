@@ -248,27 +248,35 @@ router.get('/profile', isLoggedIn, function(req, res) {
     }));
 
     // handle the callback after facebook has authenticated the user
+  // router.get('/auth/facebook/callback',
+  //       passport.authenticate('facebook', {
+  //           successRedirect : '/profile',
+  //           failureRedirect : '/'
+  //       }));
   router.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect : '/profile',
-            failureRedirect : '/auth'
-        }));
+    passport.authenticate('facebook',{
+        failureRedirect : '/auth'}),
+        (req, res)=>{
+          console.log("facebook login successful, redirecting to profile")
+          res.redirect('/profile');
+        });
 
     // route for logging out
   router.get('/logout', function(req, res) {
         req.logout();
-        res.redirect('/auth');
+        res.render('/logout');
     });
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
     // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-        return next();
-
+    if (req.isAuthenticated()) {
+        return next()
+    } else {
     // if they aren't redirect them to the auth page
     res.redirect('/auth');
+    }
 }
 // GOOGLE ROUTES =======================
     // =====================================
