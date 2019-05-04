@@ -269,14 +269,14 @@ router.get('/profile', isLoggedIn, function(req, res) {
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated()) {
-        return next()
-    } else {
+  // console.log('req is', req);
+  // console.log('session id is', req.sessionID);
+    console.log('check login status');
+    //if user is authenticated in the session, carry on
+      if (req.sessionID)
+        return next();
     // if they aren't redirect them to the auth page
     res.redirect('/auth');
-    }
 }
 // GOOGLE ROUTES =======================
     // =====================================
