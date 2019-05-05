@@ -77,13 +77,14 @@
         {{#each (limit contents 8)}}
     
     	<div class="card featureCad col-md-4 offset-md-4 left">
-    		<a href="jobs/featured/{{this.id}}">
+    		<a href="/jobs/featured/{{this.id}}">
         <img src="{{this.image_link}}" alt="google-image">
       	
         <h4 class="card-head"><b>{{this.job_title}}</b></h4> 
         <p><ion-icon name="briefcase"></ion-icon>{{this.company_name}}
         <ion-icon name="time"></ion-icon>{{this.career_level}}</p>
-        <span id="min_pay">{{this.job_pay_min}}</span>
+        <input type="hidden" id="min_pay_val" class="min_pay_val" value="{{this.job_pay_min}}">
+        <span id="min_pay" class="min_pay">{{this.job_pay_min}}</span>
         <span id="max_pay">{{this.job_pay_max}}</span>
         </a>
       </div>
@@ -167,52 +168,48 @@
 	</div>
 	{{> footer}}
 	<script src="https://js.stripe.com/v3/"></script>
-	<script type="text/javascript" src="http://openexchangerates.github.io/money.js/money.js"></script>
 	<script>
-	$(document).ready(function(){
-      fx.settings = {
-        from : "USD"
-      };
-      $.getJSON(
-    	// NB: using Open Exchange Rates here, but you can use any source!
-        'https://openexchangerates.org/api/latest.json?app_id=0a1054b5525b4971af921eedf8c5bea0',
-        function(data) {
-            // Check money.js has finished loading:
-            if ( typeof fx !== "undefined" && fx.rates ) {
-                fx.rates = data.rates;
-                fx.base = data.base;
-            } else {
-                // If not, apply to fxSetup global:
-                var fxSetup = {
-                    rates : data.rates,
-                    base : data.base
-                }
-            }
-        }
-    );
-    let convert_to_usd = fx.convert(min_pay, {to: "USD"});
-    let convert_to_ngn = fx.convert(min_pay, {to: "NGN"});
-    let convert_to_cad = fx.convert(min_pay, {to: "CAD"});
+	let i = 1;
+	$.ajax({
+    url: '/jobs_json',
+    dataType: 'json',
+    success: function(jobData){
+    	for (i=1;i<jobData.length;i++){
 
-    $("#converter").change(function() {
-  	if ($(this).val() == "USD") {
-  		// Load exchange rates data via AJAX:
-  		let min_pay = $("#min_pay").html();
-  		let dollarMoney = "&#36" + convert_to_usd;
-    	$("#min_pay").html(dollarMoney);
-  		
-  	} else if ($(this).val() == "NGN") {
-  		let min_pay = $("#min_pay").html();
-  		let naijaMoney = "&#8358;" + convert_to_ngn;
-  		$("#min_pay").html(naijaMoney);
-  	} else if ($(this).val() == "CAD") {
-  		let min_pay = $("#min_pay").html();
-  		let canadaMoney = "D" + convert_to_cad;
-  		$("#min_pay").html(canadaMoney);
-  	}
-	})
+    		let min_pay = jobData.job_pay_min[i];
+    		let max_pay = jobData.job_pay_max[i];
+
+    		$("#converter").change(function() {
+		let currency = $("#converter").val()
+		let url = "https://free.currconv.com/api/v7/convert?compact=ultra&apiKey=c02d6cdb83411b104639&q=USD_"+currency;
+
+		fetch(url)
+		.then((resp) => resp.json())
+		.then(function(data){
+		console.log(data);
+
+  		if ($("#converter").val()) {
+		prameter = "USD_" + currency;
+		console.log(prameter);
+
+		let converted_unit = data["USD_" + currency];
+		console.log(data["USD_" + currency]);
+
+		let converted = Math.ceil(converted_unit * min_pay);
+		$("#min_pay").html(converted);
+
+	}
+})
 });
-    ;
+
+    	}
+    }
+});
+	
+		
+
+	
+	
 
 
 		$(function () {
