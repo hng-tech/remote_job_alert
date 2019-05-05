@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ title }}</title>
+    <title>Job Preference Page</title>
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       crossorigin="anonymous"
@@ -50,6 +50,7 @@ section {
 }
 .field {
   display: flex;
+  flex-direction: row-reverse;
   width: 80%;
   background: #ffffff;
   border: 1px solid #cccccc;
@@ -82,12 +83,13 @@ button i {
   margin: 14px;
   flex-wrap: wrap;
 }
-/* .inputButtons button {
-  padding: 2px;
-} */
+.inputButtons button {
+  margin-bottom: 5px;
+}
 .inputControls {
   width: 15%;
   margin: 14px;
+  order: -1;
 }
 .inputControls button {
   background: #11144c;
@@ -123,8 +125,13 @@ button i {
   display: flex;
   width: 100%;
 }
+.stack-field,
+.stack-search {
+  flex-direction: row-reverse;
+}
 .stack-search {
   display: flex;
+  flex-direction: row-reverse;
   border: 1px solid #cccccc;
   border-right-color: #ffffff;
   border-left-color: #ffffff;
@@ -134,6 +141,13 @@ button i {
   width: 90%;
   margin: 19px;
 }
+.text input {
+  background: white;
+  border: 0px;
+}
+.search-button {
+  order: -1;
+}
 .search-button i {
   font-size: 24px;
   color: #11144c;
@@ -141,14 +155,15 @@ button i {
   margin: 15px;
   color: #bebcbc;
 }
-
-.checkboxes,
-.stack-check label {
-  width: 20%;
+.stack-check {
+  padding: 10px;
+}
+.checkboxes {
+  margin-left: 35px;
 }
 .pay-text,
 .update-text {
-  width: 92%;
+  width: 93%;
   font-size: 16px;
   line-height: 20px;
   /* or 125% */
@@ -157,7 +172,8 @@ button i {
   color: #11144c;
 }
 .inputControls-2 {
-  width: 8%;
+  order: -1;
+  width: 7%;
   margin: 20px;
 }
 
@@ -166,15 +182,18 @@ button i {
   color: #11144c;
   padding-left: 10px;
 }
+#submit {
+  display: flex;
+  justify-content: center;
+}
 .submit {
   background: #11144c;
   border-radius: 5px;
   width: 348px;
   height: 77px;
-  margin-left: 40%;
   margin-top: 90px;
   margin-bottom: 200px;
-  margin-right: 40%;
+  border: 0px;
 }
 #submit-text {
   font-family: Work Sans;
@@ -186,6 +205,66 @@ button i {
 
   color: #ffffff;
 }
+
+ /* Large devices (desktops, 992px and up) */
+@media (max-width: 992px) { 
+  .inputControls, .inputControls-2 {
+    width: 30px;
+  }
+  .inputControls button, .inputControls-2 button {
+    margin-bottom: 5px;
+  }
+  
+  .inputButtons {
+    width: 90%;
+  }
+ }
+
+ /* Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) { 
+  .inputControls, .inputControls-2 {
+    width: 7%;
+  }
+  .inputControls button, .inputControls-2 button {
+    margin-bottom: 5px;
+  }
+  .inputButtons {
+    width: 93%;
+  }
+ }
+
+ /* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) { 
+  section {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  .label, .field, .stack {
+    width: 100%;
+  }
+  .label {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .inputControls, .inputControls-2 {
+    width: 10%;
+  }
+  .inputControls button, .inputControls-2 button {
+    margin-bottom: 5px;
+  }
+  .inputButtons {
+    width: 90%;
+  }
+  .submit {
+    width: 200px;
+    height:50px;
+    margin-top: 45px;
+    margin-bottom: 100px;
+  }
+  #submit-text {
+    font-size: 15px;
+  }
+ }
 
     </style>
   </head>
@@ -365,7 +444,7 @@ button i {
             <!-- Stack Search -->
             <div class="stack-search">
               <div class="text">
-                <input type="text" size="50" placeholder="Search" />
+                <input type="text" size="15" placeholder="Search" />
               </div>
               <div class="search-button">
                 <i class="fa fa-search"></i>
@@ -374,24 +453,30 @@ button i {
             <!-- Stack Ckeckboxes -->
             <div class="stack-check">
               <div class="checkboxes">
-                <label class="custom-control-label" for="vueJs">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="vueJs"
-                />VueJs</label
-              >
+                <label class="checkbox">One
+                  <input type="checkbox" checked="checked">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container">One
+                  <input type="checkbox" checked="checked">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container">One
+                  <input type="checkbox" checked="checked">
+                  <span class="checkmark"></span>
+                </label>
+                    
+                    
               </div>
               
               
             </div>
           </div>
         </section>
-      </main>
-
-      <main>
+        <div></div>
+      
         <!-- Pay Range -->
-        <section class="container">
+        <section class="">
             <div class="label" for="payRange">Choose pay range</div>
             <div class="field">
                 <div class="pay-text" id="payRange">
@@ -418,14 +503,18 @@ button i {
           </section>
           
           <!-- Button trigger modal -->
-        <button
-          type="button"
-          class="submit"
-          data-toggle="modal"
-          data-target="#exampleModalCenter"
-        ><span id="submit-text">
-          Save & Submit</span>
-        </button>
+          <div id="submit">
+            <button
+            type="button"
+            class="submit"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          ><span id="submit-text">
+            Save & Submit</span>
+          </button>
+          </div>
+        
+
       </main>
       <!-- Modal -->
       <div
