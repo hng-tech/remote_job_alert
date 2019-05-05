@@ -37,9 +37,11 @@ const Subscription = {
 		const { _id } = req.params;
 		try {
 			let Subscribers = await Subscribe.findOneAndDelete({_id});
-			return res.status(200).json({
-				data: `${Subscribers.email} successfully deleted`,
-			});
+			// data: `${Subscribers.email} successfully deleted`,
+			// return res.status(200).json({
+				// });
+				req.flash('adminSuccess', 'Subscriber deleted successfully');
+					return res.redirect('/admin/managesubscribers');
 		} catch (error) {
 			return res.status(500).json(error);
 		}
@@ -48,9 +50,11 @@ const Subscription = {
 	async DeleteAllEmailSubscribers(req, res) {
 		try {
 			await Subscribe.drop();
-			return res.status(200).json({
-				data: `All subscribers successfully deleted`,
-			});
+			// return res.status(200).json({
+			// 	data: `All subscribers successfully deleted`,
+			// });
+			req.flash('adminSuccess', 'All Subscribers deleted successfully');
+					return res.redirect('/admin/managesubscribers');
 		} catch (error) {
 			return res.status(500).json(error);
 		}
@@ -153,9 +157,11 @@ const Subscription = {
 		const { _id } = req.params;
 		try {
 			let Agnt = await Agent1.findOneAndDelete({ _id: _id });
-			return res.status(200).json({
-				data: `${Agnt.first_name} ${Agnt.last_name} successfully deleted`,
-			});
+			// return res.status(200).json({
+			// 	data: `${Agnt.first_name} ${Agnt.last_name} successfully deleted`,
+			// });
+			req.flash('adminSuccess', 'Agent deleted Successfully');
+					return res.redirect('/admin/manageagents');
 		} catch (error) {
 			return res.status(500).json(error);
 		}
@@ -165,9 +171,11 @@ const Subscription = {
 		try {
 			// await Agent1.remove();
 			await Agent1.drop();
-			return res.status(200).json({
-				data: `All agents successfully deleted`,
-			});
+			// return res.status(200).json({
+			// 	data: `All agents successfully deleted`,
+			// });
+			req.flash('adminSuccess', 'All Agents deleted Successfully');
+					return res.redirect('/admin/manageagents');
 		} catch (error) {
 			return res.status(500).json(error);
 		}
@@ -253,9 +261,11 @@ const Subscription = {
 		const { _id } = req.params;
 		try {
 			let Payment1 = await Payment.findOneAndDelete({ _id: _id });
-			return res.status(200).json({
-				data: `${Payment1.email} and related data successfully deleted`,
-			});
+			// return res.status(200).json({
+			// 	data: `${Payment1.email} and related data successfully deleted`,
+			// });
+			req.flash('adminSuccess', 'Payment deleted Successfully');
+				return res.redirect('/admin/manage_payments');
 		} catch (error) {
 			return res.status(500).json(error);
 		}
@@ -265,9 +275,11 @@ const Subscription = {
 		try {
 			// await Payment.remove();
 			await Payment.drop();
-			return res.status(200).json({
-				data: `All payments successfully deleted`,
-			});
+			// return res.status(200).json({
+			// 	data: `All payments successfully deleted`,
+			// });
+			req.flash('adminSuccess', 'All Payments deleted Successfully');
+					return res.redirect('/admin/manage_payments');
 		} catch (error) {
 			return res.status(500).json(error);
 		}
