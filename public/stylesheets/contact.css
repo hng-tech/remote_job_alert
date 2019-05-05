@@ -7,6 +7,9 @@ header#header {
     padding-right: 0;
 }
 
+.card{
+    min-width: -webkit-fill-available;
+}
 
 
 header nav ul.navbar-nav {
@@ -99,4 +102,31 @@ header nav ul.navbar-nav li {
 .navbar-light .navbar-nav a.nav-link {
     color: #ffffff;
 }
+}
+@media (max-width:767px) {
+    .yoko{
+        margin-left: 25px;
+    }
+    .termy{
+        margin-left: 15px;
+        width: 100%;
+    }
+    .las{
+        padding-left: 35px;
+    }
+    div.cta {
+        background-color: #e5e6f7;
+        padding-left: 0rem !important;
+    }
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 820px){
+    .cta{
+        margin-left:20px;
+    }
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 5000px){
+    .text-md-left {
+        text-align: left!important;
+        padding-left: 19px;
+    }
 }

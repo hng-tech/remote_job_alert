@@ -6,10 +6,10 @@ const {
 } = require("./user");
 const userModel = require("../models/user");
 const agentModel = require("../models/newAgent");
+const paymentModel = require("../models/payment");
 const Paystack = require('./paystack');
 const session = require('./stripe');
 const Applicant = require('./applicant');
-
 
 const Jobs = {
   async fetchData(req, res) {
@@ -137,14 +137,17 @@ const Jobs = {
   async get_all(req, res) {
     const queryText = {};
     try {
-      let foundJobs = await db.find(queryText);
+      let data = await fetch("https://jobs.github.com/positions.json?location=remote");
+      let foundJobs = await data.json();
       let usersCount = await userModel.countDocuments({});
       let agentsCount = await agentModel.countDocuments({});
+      let paymentsCount = await paymentModel.countDocuments({});
       return res.status(200).render("admin_dashboard", {
         content: foundJobs,
         jobCount: foundJobs.length,
         usersCount,
         agentsCount,
+        paymentsCount,
         helpers: {
           inc: function (index) {
             index++;
