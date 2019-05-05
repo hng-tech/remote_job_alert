@@ -11,6 +11,7 @@ var MongoStore = require('connect-mongo')(session);
 require('dotenv').config();
 require('./schedule');
 const passport = require('passport');
+const fx = require('money');
 
 
 // The database setup
