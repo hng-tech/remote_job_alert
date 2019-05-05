@@ -131,7 +131,7 @@ async function sendContactAlert(req, res, next) {
 
     req.flash(
       'success',
-      'Your message was sent. Our support would reply within 24 hours.'
+      'Your message has been delivered successfully and would be processed. Thank you.'
     );
     res.redirect('/contact');
   } catch (err) {
