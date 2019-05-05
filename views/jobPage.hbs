@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>{{title}}</title>
+  <title>Jobs</title>
 
   <style type="text/css">
     .ci-body {
@@ -12,7 +12,7 @@
     }
 
     /* Page Title*/
-    #ci-header h1 {
+    .ci-body #ci-header h1 {
       font-style: normal;
       font-weight: 600;
       font-size: 36px;
@@ -24,30 +24,43 @@
     }
 
 
+    .ci-breadcrumb {
+      background-color: #66000000;
+    }
+
+    .ci-bread {
+      padding-top: 10px;
+    }
+
     /* category*/
 
-    .main-title {
+    .ci-body .main-title {
       color: #11144c !important;
       font-weight: bold;
     }
 
+    .ci-form-group {
+      padding-bottom: 7px;
+    }
 
-    .list-group a {
+    .ci-body .list-group a {
       color: #222222;
       padding-bottom: 5px;
+      font-size: 16px;
     }
 
-    .list-group {
+    .ci-body .list-group {
       border: 1px solid #c4c4c4;
       margin-bottom: 10px;
+      box-shadow: 2px 7px 12px 10px #f3f3f3;
     }
 
 
-    .list-group-item {
+    .ci-body .list-group-item {
       border: none !important;
     }
 
-    .ci-last {
+    .ci-body .ci-last {
       margin-bottom: 15px;
     }
 
@@ -56,25 +69,28 @@
 
 
     /* Filter Bar*/
-    .form-control {
-      background: url(../img/search.png);
-      background-repeat: no-repeat;
-      background-position: right;
-      background-origin: content-box;
-
+    /*.form-control{
+                background:  url(../img/search.png);
+                background-repeat: no-repeat;
+                background-position: right;
+                background-origin: content-box;
+              }*/
+    /*Filter Bar*/
+    .ci-body .bg-deep {
+      background-color: #11144C !important;
+      cursor: pointer;
     }
+
+    .ci-body i.search-white {
+      color: white;
+      cursor: pointer;
+    }
+
 
 
 
     /* Job role*/
     .ci-btn-secondary {
-      background-color: #66000000;
-      border: 1px solid #c4c4c4;
-      margin-left: 0px;
-      width: 17vw;
-    }
-
-    .ci-location-filter {
       background-color: #66000000;
       border: 1px solid #c4c4c4;
       margin-left: 0px;
@@ -108,12 +124,16 @@
     }
 
 
+    .ci-pay-range {
+      color: #85bb65;
+    }
 
     /* job list view*/
 
     .ci-logo {
-      height: 62px;
-      width: 62px;
+      height: 72px !important;
+      width: 72px !important;
+      margin-top: 7px !important;
     }
 
 
@@ -122,34 +142,31 @@
       padding-bottom: 10px;
       border: 1px solid #c4c4c4;
       margin-bottom: 10px;
-
+      box-shadow: 0px 0px 10px 10px #f3f3f3;
+      background-color: #fff;
+      /*min-height: 300px;*/
+      position: relative;
 
 
     }
 
-    .card {
+    .ci-body .card {
       border: none !important;
-
-    }
-
-    .active {
-      background: #11144C !important;
-      color: #fff !important;
+      /*height: 160px;*/
     }
 
 
 
     /* Read more button*/
-    #main .ci-btn {
+    .ci-body #main .ci-btn {
       text-decoration: none;
       padding: 0.7rem;
       text-transform: uppercase;
       color: #000000;
       border: 1px solid #109CF1;
-      font-family: Roboto;
       font-style: normal;
       font-weight: 500;
-      font-size: 10px;
+      font-size: 16px;
       line-height: 16px;
     }
 
@@ -161,14 +178,19 @@
     }
 
 
-    .ci-position {
-      margin-top: 70px;
-      padding-left: 100px;
+    /*.ci-position{
+                
+                margin-top: 70px;
+                margin-left: 100px;
+              }*/
+    .ci-pos {
+      position: absolute;
+      bottom: 0;
     }
 
 
     .ci-title {
-      padding-left: 40px;
+      padding-left: 90px;
 
     }
 
@@ -180,10 +202,9 @@
 
     .ci-title span {
       color: #222222;
-      font-family: Fira Sans;
       font-style: normal;
       font-weight: normal;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 28px;
       opacity: 0.7;
     }
@@ -191,8 +212,7 @@
 
     .ci-company {
       margin-top: 10px;
-      font-size: 18px;
-      font-family: Fira Sans;
+      font-size: 16px;
       font-style: normal;
       font-weight: normal;
       color: #222222;
@@ -204,12 +224,15 @@
     /*Pagination*/
 
     .ci-nav {
+      padding-top: 10px;
       margin-bottom: 70px;
+      display: flex;
     }
 
 
     .ci-pagination {
-      justify-content: center;
+      margin: auto;
+
     }
 
     .page-link {
@@ -220,25 +243,19 @@
 
     @media (max-width: 1173px) {
 
-      .ci-position {
-        margin-top: 145px;
-        padding-left: 90px;
-      }
-
-      .list-group {
-        border: 1.5px solid #f4f4f4;
+      .ci-body .list-group {
+        border: 1.5px solid #c4c4c4;
         margin-bottom: 10px;
       }
 
-      .card {
+      .ci-body .card {
         border: none !important;
-        height: 230px;
+        /*height: 230px;*/
       }
 
       .ci-company {
         margin-top: 50px;
-        font-size: 18px;
-        font-family: Fira Sans;
+        font-size: 16px;
         font-style: normal;
         font-weight: normal;
         color: #222222;
@@ -246,10 +263,6 @@
         line-height: 28px;
       }
 
-      .ci-position {
-        margin-top: 150px;
-        padding-left: 100px;
-      }
 
 
     }
@@ -257,14 +270,15 @@
     @media (max-width: 992px) {
 
       .ci-logo {
-        padding-left: 20px;
-        height: 62px;
-        width: 62px;
+        height: 72px !important;
+        width: 72px !important;
+        margin-top: 10px !important;
       }
 
-      .ci-position {
-        margin-top: 140px;
-        padding-left: 0px;
+
+      .ci-title {
+        padding-left: 100px;
+
       }
 
       .ci-nav {
@@ -272,9 +286,10 @@
         margin-bottom: 70px;
       }
 
-      .list-group {
+      .ci-body .list-group {
         border: 1.5px solid #f4f4f4;
         margin-bottom: 10px;
+        box-shadow: 2px 7px 12px 10px #f3f3f3;
       }
 
 
@@ -295,22 +310,14 @@
         width: 19.5vw;
       }
 
-      .ci-location-filter {
-        background-color: #66000000;
-        border: 1px solid #f4f4f4;
-        margin-left: 0px;
-        width: 19.5vw;
-      }
-
-      .card {
+      .ci-body .card {
         border: none !important;
-        height: 230px;
+        /*height: 230px;*/
       }
 
       .ci-company {
         margin-top: 40px;
-        font-size: 18px;
-        font-family: Fira Sans;
+        font-size: 16px;
         font-style: normal;
         font-weight: normal;
         color: #222222;
@@ -318,25 +325,50 @@
         line-height: 28px;
       }
 
-      .ci-position {
-        margin-top: 150px;
-        padding-left: 20px;
-      }
+
 
     }
+
+    @media (max-width: 766px) {
+      .ci-pos {
+        position: relative;
+        width: 100%;
+        bottom: 0;
+      }
+    }
+
+    @media (max-width: 776px) {
+
+      .ci-title {
+        padding-left: 100px;
+
+      }
+    }
+
 
 
     @media (max-width: 750px) {
 
       .ci-logo {
-        padding-left: 20px;
-        height: 62px;
-        width: 62px;
+        height: 72px !important;
+        width: 72px !important;
+        margin-top: 10px !important;
+      }
+
+      .ci-pos {
+        position: relative;
+        width: 80% !important;
+        bottom: 0;
+      }
+
+
+      .ci-pay-range {
+        padding-top: 10px;
       }
 
       .ci-position {
-        margin-top: 40px;
-        padding-left: 30px;
+
+        padding-left: 50px;
       }
 
       .ci-nav {
@@ -344,20 +376,22 @@
         margin-bottom: 70px;
       }
 
-      .card {
-        border: none !important;
-        height: 340px;
+      .ci-search {
+        padding-top: 10px;
+      }
+
+      .btn-outline-primary {
+        width: 100%;
       }
 
       .ci-title {
-        padding-left: 40px;
+        padding-left: 50px;
       }
 
 
       .ci-company {
         margin-top: 20px;
-        font-size: 18px;
-        font-family: Fira Sans;
+        font-size: 16px;
         font-style: normal;
         font-weight: normal;
         color: #222222;
@@ -376,19 +410,7 @@
         width: 84.5vw;
       }
 
-      .ci-location-filter {
-        background-color: #66000000;
-        border: 1px solid #f4f4f4;
-        margin-left: 0px;
-        width: 84.5vw;
-      }
 
-      .ci-title h3 {
-        color: #11144c;
-        font-weight: 600;
-        font-size: 18px;
-
-      }
     }
   </style>
 </head>
@@ -403,9 +425,19 @@
 
   {{> header }}
 
+
+  <div class="container ci-bread">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb ci-breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Job Page</li>
+      </ol>
+    </nav>
+  </div>
+
   <header id="ci-header">
     <div class="container">
-      <h1>Job Posting</h1>
+      <h1>Remote Developer Job</h1>
     </div>
   </header>
 
@@ -417,22 +449,21 @@
       <div class="row">
         <div class="col-md-3 col-sm-12">
           <div class="row">
-            <div class="col-md-3 col-sm-12">
-              <div class="dropdown">
-                <button class="btn ci-btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Select Job role
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+            <div class="col-md-12 col-sm-12">
+              <div class="form-group ci-form-group">
+                <select id="inputState" class="form-control">
+                  <option selected>Choose Location</option>
+                  <option>Canada</option>
+                  <option>Germany</option>
+                  <option>India</option>
+                  <option>Nigeria</option>
+                  <option>UK</option>
+                  <option>US</option>
+                </select>
               </div>
             </div>
 
           </div>
-          <br>
           <div class="list-group">
             <a href="#" class="list-group-item  main-title">Job Category </a>
             <a href="/" class="list-group-item">All Jobs</a>
@@ -452,34 +483,30 @@
           </div>
         </div>
 
+
+
         <div class="col-md-9">
           <!-- Job Listing -->
+
           <div class="row">
-            <div class="col-md-4 col-sm-12">
-              <div class="dropdown">
-                <button class="btn ci-location-filter dropdown-toggle" type="button" id="dropdownMenuButton"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Location
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+            <div class="col-md-12 col-sm-12 ci-search">
+              <div class="input-group mb-4">
+                <input id="searchInput" type="search" class="form-control"
+                  placeholder="Search with Keyword, Location, company">
+                <div class="input-group-prepend">
+                  <div class="input-group-text bg-deep" id="searchButton"><i class="fa fa-search search-white"></i>
+                  </div>
                 </div>
               </div>
-              <br>
-            </div>
 
-            <div class="col-md-8 col-sm-12">
-              <input class="form-control" type="text" placeholder="Search with Keyword, Location, company">
-              <br>
             </div>
-
           </div>
+
+
 
           <div class="">
             <div class="">
-              <div class="col-md-12 ci-card">
+              <div class="col-md-12 ci-card" id="jobTable">
                 <div class="">
                   <h3 class="ci-head">ALL JOBS</h3>
                   <div class="dropdown ci-option">
@@ -496,7 +523,7 @@
                 </div>
 
                 {{# each content}}
-                <div class="ci-card">
+                <div class="ci-card" id="contentCard">
                   <div class="card">
                     <div class="card-body">
                       <div class="row">
@@ -504,11 +531,14 @@
                           <img class="ci-logo" src="{{this.company_logo}}" width="32" height="32">
                         </div>
                         <div class="col-md-7 ci-title">
-                          <h3>{{this.title}} <br><span class="ci-job-nature">{{this.type}}</span></h3>
+                          <a href="jobs/{{this.id}}">
+                            <h3>{{this.title}} <br><span class="ci-job-nature">{{this.type}}</span></h3>
+                          </a>
                           <h4 class="ci-company">{{this.company}}</h4>
                         </div>
                         <div class="col-md-4 ci-position">
-                          <a href="jobs/{{this.custom_url}}" class="ci-btn">Read More</a>
+                          <p class="ci-pay-range">Pay Range</p>
+                          <a href="jobs/{{this.id}}" class="btn btn-outline-primary ci-pos">Read More</a>
                         </div>
                       </div>
                     </div>
@@ -536,8 +566,8 @@
                     {{#if buttons.next}}
                     <li class="page-item ci-page-item">
                       <a class="page-link" href="jobs?page={{buttons.next}}" aria-label="Next">
-                      <span aria-hidden="true"></span>
-                      <span>Next</span>
+                        <span aria-hidden="true"></span>
+                        <span>Next</span>
                       </a>
                     </li>
                     {{/if}}
@@ -556,9 +586,28 @@
     </div>
   </section>
   {{> footer}}
+  <script>
+
+    $(document).ready(function () {
+      $("#searchButton").on("click", function () {
+        let value = $("#searchInput").val().toLowerCase();
+        $("#jobTable #contentCard").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+      $("#searchInput").on("keypress", function (e) {
+        if (e.which === 13) {
+          let value = $(this).val().toLowerCase();
+          $("#jobTable #contentCard").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        }
+      });
+    });
+  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="js/bootstrap.bundle.min"></script>
-  <script src="js/bootstrap.min.js"></script>
+  {{!-- <script src="js/bootstrap.bundle.min"></script>
+  <script src="js/bootstrap.min.js"></script> --}}
 
 </body>
 

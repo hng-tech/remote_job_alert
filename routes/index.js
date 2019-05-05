@@ -11,8 +11,7 @@ var JobModel = require('../models/jobs');
 const Applicant = require('../controllers/applicant');
 const Subscription = require('../controllers/admin');
 const session = require('../controllers/stripe');
-const passport = require('passport');
-
+var passport = require('passport');
 
 /* GET home page. */
 //router.get("/", Home.index);
@@ -31,7 +30,7 @@ router.get('/', async function(req, res, next) {
           },
           limit: function (arr, limit) {
           if (!Array.isArray(arr)) { return []; }
-            return arr.slice(0, limit); 
+            return arr.slice(0, limit);
         }
 
         }
@@ -160,7 +159,7 @@ router.get('/contact', Home.contactUs);
 
 //Routes for user pages
 // GET User Login page
-//router.get("/user-login", Home.userLogin);
+router.get("/user-login", Home.userLogin);
 
 // GET User Signup page
 //router.get("/user-signup", Home.userSignup);
@@ -172,6 +171,7 @@ router.get('/faqs', Home.faqs);
 router.get('/job_details', Home.job_details);
 
 //Job Routes
+//open DB Jobs endpoint
 router.get('/jobs_json', Jobs.get_all_json);
 router.get('/jobs_json/:job_id', Jobs.get_one_json);
 router.get('/jobs_api', Jobs.fetchData);
@@ -179,7 +179,7 @@ router.get('/jobs_api/:slug', Jobs.fetchSingle);
 
 /* There is an Error in this route, it is crashing the server */
 //router.post('/jobs', Jobs.validate('create'), Jobs.create);
-router.post('/jobs', Jobs.create);
+router.post('/dashboard', Jobs.create);
 router.get("/jobs", Jobs.get_api_jobs);
 
 /////////////////////////////////////////////////
@@ -197,9 +197,58 @@ router.get('/invoice', Home.get_summary);
 //Dashboard Links
 router.get("/dashboard", Jobs.get_all);
 router.get("/manageapplicants", Applicant.get_all);
-router.get("/managejobs", Home.managejobs);
-router.get("/manageagents", Home.manageagents);
-router.get("/managesubscribers", Home.managesubscribers);
+router.get("/admin/managejobs", Home.managejobs);
+router.get("/admin/manage_payments",  function (req, res, next) {
+  Admin.findById(req.session.adminId).exec(function(error, admin) {
+  if (error) {
+      return next(error);
+  } else {
+      if (admin === null) {
+          var err = new Error('Not authorized! Go back!');
+          err.status = 400;
+          res.redirect('/admin');
+          //  return next(err);
+      } else {
+          return next();
+      }
+  }
+})
+}, Home.manage_payments);
+router.get("/admin/manageagents", function (req, res, next) {
+  Admin.findById(req.session.adminId).exec(function(error, admin) {
+  if (error) {
+      return next(error);
+  } else {
+      if (admin === null) {
+          var err = new Error('Not authorized! Go back!');
+          err.status = 400;
+          res.redirect('/admin');
+          //  return next(err);
+      } else {
+          console.log('hi1');
+          return next();
+      }
+  }
+})
+},
+Home.manageagents);
+router.get("/admin/managesubscribers", function (req, res, next) {
+  Admin.findById(req.session.adminId).exec(function(error, admin) {
+  if (error) {
+      return next(error);
+  } else {
+      if (admin === null) {
+          var err = new Error('Not authorized! Go back!');
+          err.status = 400;
+          res.redirect('/admin');
+          //  return next(err);
+      } else {
+          return next();
+      }
+  }
+})
+}, 
+Home.managesubscribers);
 
 //Deleting Applicant details
 router.get('/applicant/:applicant_id/delete', Applicant.cancel);
@@ -255,25 +304,33 @@ router.get('/profile', isLoggedIn, function(req, res) {
     }));
 
     // handle the callback after facebook has authenticated the user
+  // router.get('/auth/facebook/callback',
+  //       passport.authenticate('facebook', {
+  //           successRedirect : '/profile',
+  //           failureRedirect : '/'
+  //       }));
   router.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect : '/profile',
-            failureRedirect : '/auth'
-        }));
+    passport.authenticate('facebook',{
+        failureRedirect : '/auth'}),
+        (req, res)=>{
+          console.log("facebook login successful, redirecting to profile")
+          res.redirect('/profile');
+        });
 
     // route for logging out
   router.get('/logout', function(req, res) {
         req.logout();
-        res.redirect('/auth');
+        res.render('/');
     });
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
+  // console.log('req is', req);
+  // console.log('session id is', req.sessionID);
+    // console.log('check login status');
+    //if user is authenticated in the session, carry on
+      if (req.sessionID)
         return next();
-
     // if they aren't redirect them to the auth page
     res.redirect('/auth');
 }
@@ -295,17 +352,17 @@ function isLoggedIn(req, res, next) {
 router.get('/view_all_email_subscribers', Subscription.viewAllEmailSubscribers);
 router.get('/view_one_email_subscriber/:_id', Subscription.viewOneEmailSubscriber);
 router.get('/delete_one_email_subscriber/:_id', Subscription.DeleteOneEmailSubscriber);
-// router.get('/delete_all_email_subscribers', Subscription.DeleteAllEmailSubscribers); //CAUTION, IT'S WORKING
+router.get('/delete_all_email_subscribers', Subscription.DeleteAllEmailSubscribers); //CAUTION, IT'S WORKING
 router.post('/create_agent', Subscription.create_agent);
 router.post('/rate_an_agent/:_id', Subscription.rateAnAgent);
 router.get('/view_all_agents', Subscription.get_all_agents);
 router.get('/view_one_agent/:_id', Subscription.get_one_agent);
 router.get('/delete_one_agent/:_id', Subscription.DeleteOneAgent);
-// router.get('/delete_all_agents', Subscription.DeleteAllAgents);  //CAUTION, IT'S WORKING
+router.get('/delete_all_agents', Subscription.DeleteAllAgents);  //CAUTION, IT'S WORKING
 router.get('/invoice', Subscription.savePayment);
 router.get('/receipt/:id', Subscription.redirect);
 router.get('/view_all_payments', Subscription.view_all_payments);
 router.get('/view_one_payment/:_id', Subscription.view_one_payment);
 router.get('/delete_one_payment/:_id', Subscription.deleteOnePayment);
-// router.get('/delete_all_payments', Subscription.deleteAllPayments); //CAUTION, IT'S WORKING
+router.get('/delete_all_payments', Subscription.deleteAllPayments); //CAUTION, IT'S WORKING
 module.exports = router;

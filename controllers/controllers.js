@@ -6,10 +6,20 @@ const {
 } = require("./user");
 const userModel = require("../models/user");
 const agentModel = require("../models/newAgent");
+const paymentModel = require("../models/payment");
 const Paystack = require('./paystack');
 const session = require('./stripe');
 const Applicant = require('./applicant');
 
+function search_common(needle, haystack){
+  let key_languages = "";
+  for (let i = 0; i < haystack.length; i++){
+    if (needle.includes(haystack[i])){
+      key_languages += haystack[i] + " ";
+    }
+  }
+  return key_languages;
+}
 
 const Jobs = {
   async fetchData(req, res) {
@@ -61,21 +71,36 @@ const Jobs = {
 
       let main = await data.json();
 
-      let similar_data_query = "https://jobs.github.com/positions.json?description=" + encodeURIComponent(main.title.slice(0, 10));
+      let similar_data_query = "https://jobs.github.com/positions.json?description=" + encodeURIComponent(main.title.replace(/[^a-zA-Z-_]/g, ' ').slice(0, 10));
 
       let similar_data = await fetch(similar_data_query);
 
       let sub_data = await similar_data.json();
 
-      sub_data = sub_data.sort().slice(0, 3)
+      sub_data = sub_data.filter(function (job) {
+        if (job.id !== main.id) {
+          job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+          return job;
+        }
+      }).slice(0, 3);
 
-      let summary = main.description.slice(0, main.description.indexOf("</p>", 450));
+      let common_tech = ["python", "es6", "ruby", "c#", "java", " C ", "C++", "php", "javascript", "css", "html", "swift", "git", "azure", "docker", "sql", "asp.net", ".net", "asp", "rest"];
+      
+      let key_tech = search_common(main.description.toLowerCase(), common_tech);
+
+      let summary = main.description.slice(0, main.description.indexOf("</p>", 50));
+
+      main.description = main.description.slice(summary.length);
 
       const stripeSession = await session;
+
+      // some jobs have no image
+      main.company_logo = (!main.company_logo) ? "/images/no_job_image.jpg" : main.company_logo;
 
       return res.status(200).render('singleJob', {
         content: main,
         summary: summary,
+        keytech: key_tech,
         title: main.title,
         similar_jobs: sub_data,
         sessionId: stripeSession.id
@@ -152,42 +177,46 @@ const Jobs = {
       job_title: req.body.job_title,
       job_link: req.body.job_link,
       employer_email: req.body.email,
+      slug: req.body.slug,
       job_pay_min: req.body.minimum_salary,
       job_pay_max: req.body.maximum_salary,
-      career_level: req.body.career_level,
+      job_type: req.body.job_type,
       location: req.body.location,
       job_description: req.body.job_description,
       image_link: req.body.image_link
     };
     try {
       let createdJob = await db.create(queryText);
-      sendMailForRemoteJob(createdJob);
-      return res.status(201).redirect("/managejobs");
+     // sendMailForRemoteJob(createdJob);
+      return res.status(201).redirect("/admin/managejobs");
     } catch (error) {
       return res.status(400).send(error);
     }
   },
-  
+
   async get_all(req, res) {
     const queryText = {};
     try {
-      let foundJobs = await db.find(queryText);
+      let data = await fetch("https://jobs.github.com/positions.json?location=remote");
+      let foundJobs = await data.json();
       let usersCount = await userModel.countDocuments({});
       let agentsCount = await agentModel.countDocuments({});
+      let paymentsCount = await paymentModel.countDocuments({});
       return res.status(200).render("admin_dashboard", {
         content: foundJobs,
         jobCount: foundJobs.length,
         usersCount,
         agentsCount,
+        paymentsCount,
         helpers: {
           inc: function (index) {
             index++;
             return index;
           },
           limit: function (arr, limit) {
-          if (!Array.isArray(arr)) { return []; }
+            if (!Array.isArray(arr)) { return []; }
             return arr.slice(0, limit);
-        }
+          }
 
         }
       });
@@ -211,10 +240,10 @@ const Jobs = {
     try {
 
       let foundJob = await db.findOne(queryText);
-     
+
       const stripeSession = await session;
 
-      return res.status(200).render("singleFeaturedJob", { 
+      return res.status(200).render("singleFeaturedJob", {
         content: foundJob,
         sessionId: stripeSession.id
       });

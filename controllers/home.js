@@ -17,13 +17,18 @@ class Home {
 
  // Render manage agents page
  static manageagents(req, res, next) {
-    res.render('manage_agents');
+    res.render('manage_agents', { title: 'Manage Agents' });
   }
 
  // Render manage subscribers page
  static managesubscribers(req, res, next) {
-    res.render('manage_subscribers');
+    res.render('manage_subscribers', { title: 'Manage Subscribers' });
   }
+
+   // Render manage payment page
+ static manage_payments(req, res, next) {
+  res.render('manage_payments', { title: 'Manage Payment' });
+}
 
   //User Pages
   // Render user-login page
