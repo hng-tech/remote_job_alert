@@ -64,15 +64,30 @@
 
         @media screen and (max-width: 15000px) {
             #contact .row {
-                padding: 20px;
-                width: 100%;
+                padding: 2em;
+                margin: 5vh 0 10vh 0;
+
+                /*width: 100%; 
+                it's not a good practice to specify padding & width together 
+                and instead of a width of 100%, wrap the contents in a container*/
             }
         }
 
         @media screen and (min-width:768) {
             #contact .row {
-                padding-left: 50px;
-                width: 100%;
+                width: 100vw;
+
+            }
+
+            .custom-cta {
+                padding-left: 0rem !important;
+                text-align: center !important;
+            }
+        }
+
+        @media screen and (max-width: 414px) {
+            .custom-cta {
+                background-color: #e5e6f7;
             }
         }
     </style>
@@ -264,17 +279,19 @@
 
             <div class="spacing py-2 d-none d-md-block" style="height: 20vw;"></div>
 
-            <div class="py-4 pt-md-2 pb-md-4 mb-md-5 px-md-1 px-lg-5 cta" style="padding-left: 8rem ">
-                <p class="text-center text-md-left">Try DevAlert Now</p>
+            <div class="px-lg-5 custom-cta" style="padding: 1em">
                 <div class="py-2 row mx-0 justify-content-center text-center text-md-left justify-content-md-between">
                     <div class="col-md-7 px-0">
-                        <h4 class="h3">Start receiving alerts and mails on the juiciest remote job offers</h4>
+                        <p class=" text-center text-md-left">Try DevAlert Now</p>
+                        <h4 class="h3">Start receiving alerts and mails on the juiciest remote job offers
+                        </h4>
                     </div>
                     <div class="ml-md-auto mx-md-auto ">
                         <a href="/" class="btn btn-primary active">GET STARTED</a>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
         {{> footer}}
