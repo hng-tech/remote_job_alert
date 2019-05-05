@@ -158,8 +158,7 @@ router.get('/contact', Home.contactUs);
 
 
 //Routes for user pages
-// GET User Login page
-router.get("/user-login", Home.userLogin);
+
 
 // GET User Signup page
 //router.get("/user-signup", Home.userSignup);
@@ -288,17 +287,14 @@ router.get('/unsubscribe/:email', UserController.unsubscribeUser);
 router.post('/contact', UserController.sendContactAlert);
 
 
-/* THERE IS A PROBLEM WITH THE BELOW ROUTES, THEY ARE BREAKING THE SITE*/
-
-// GET Job list page
-// router.get('/jobs', Jobs.index);
-
-// // POST Job alerts subscription
-// router.post('/subscribe', Jobs.jobAlertSubscription);
 
 
 /*FACEBOOK AUTH*/
 // GET Social Auth Page
+
+// GET User Login page
+router.get("/user-login", Home.userLogin);
+
 router.get("/auth", function (req, res, next){ 
   res.status(200).render('auth') 
 });
