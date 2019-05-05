@@ -49,85 +49,17 @@ input[type=text]:focus {
 }
 
 
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: opacity 2s ease, transform 2s ease;
-    width: 480px;
-    height: 140px;
-    display: flex;
-    flex-direction: row;
-}
-
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transform: scale(1.1);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.cad-3 {
-    padding: 2px 16px;
-    float: left;
-}
-
-.card img {
-    width: 38px;
-    height: 38px;
-    margin: 50px 15px 10px 40px;
-    vertical-align: center;
-}
-
-.row-3 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0 -5px;
-}
-
-.left {
-    margin: 0 5px;
-}
-
-.right {
-    margin: 0 5px;
-}
-
 .more-jobs {
     text-align: center;
     color: #11144c;
     font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
-a:link {
-    text-decoration: none;
-}
-
-a:hover {
-    transition: color 1s ease, transform 1s ease;
-    transform: scale(1.1);
-}
-
-.cad-3 p {
-    padding-top: 15px;
-    text-align: left;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 16px;
-    color: #6F7484;
-}
 #Featured-jobs p {
  padding-top: 10px;
 }
-
-.card-head {
-    margin-top: 25px;
-    text-align: left;
-    color: #11144C;
-    font-size: 18px;
-    line-height: 21px;
-}
-
 
 /*Responsive styling when screen is less than 700px */
 
@@ -198,35 +130,37 @@ a:hover {
 		<section id="Featured-jobs">
         <div class="featured-jobs-header">
 			<h1>Featured Jobs</h1>
+		</div>
         <div class="filter-1">
             <form class="featured-form">
               <input type="text" name="search" placeholder="Enter language job of interest...">
             </form>
+         </div>
        <!-- <div class="row"> -->
 			<!---Left column card-->
-        <div class="row-3">
+        <div class="row" style="justify-content: center">
         {{#each (limit contents 8)}}
     
-    	<div class="card featureCad col-md-4 offset-md-4 left">
+    	<div class="card featureCad col-md-4 offset-md-4 left" style="padding-bottom: 20px">
+    	<div class="container">
     		<a href="/jobs/featured/{{this.id}}">
         <img src="{{this.image_link}}" alt="google-image">
-      <div class="container cad-3">
-      	
         <h4 class="card-head"><b>{{this.job_title}}</b></h4> 
         <p><ion-icon name="briefcase"></ion-icon>{{this.company_name}}
         <ion-icon name="time"></ion-icon>{{this.career_level}}</p>
         <input type="hidden" id="min_pay_val" class="min_pay_val" value="{{this.job_pay_min}}">
-        <span id="min_pay" class="min_pay">{{this.job_pay_min}}</span>
+        <span id="min_pay" class="min_pay">{{this.job_pay_min}} -- </span>
         <span id="max_pay">{{this.job_pay_max}}</span>
         </a>
-      </div>
+    </div>
+</div>
 
     {{/each}}
     <!-- </div> -->
   <!---Right column--->
 </div>
 
-</div>
+
    <p class="more-jobs"><a href="/jobs">View more jobs <ion-icon name="arrow-forward"></ion-icon></a></p>       
         
 </section>

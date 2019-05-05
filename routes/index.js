@@ -179,7 +179,7 @@ router.get('/jobs_api/:job_id', Jobs.fetchSingle);
 
 /* There is an Error in this route, it is crashing the server */
 //router.post('/jobs', Jobs.validate('create'), Jobs.create);
-router.post('/jobs', Jobs.create);
+router.post('/dashboard', Jobs.create);
 router.get("/jobs", Jobs.get_api_jobs);
 
 /////////////////////////////////////////////////
