@@ -34,12 +34,11 @@
 </head>
 
 <body id="page-top">
-
   <!-- Page Wrapper -->
   <div id="wrapper">
-
     <!-- Sidebar -->
     {{> dashboard_nav }}
+
 
 <body class="admin_body">
 
@@ -53,9 +52,10 @@
           </div>
           
          <div class="container-fluid">
+           {{> adminMessage }}
            <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <p class="mb-4 text-gray-800">This is the Manage Subscribers page for DevAlert</p>
-            <button class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-trash fa-sm text-white mr2" data-toggle="modal" data-target="#createJobModal" ></i> Delete All Subscribers</button>
+            <button class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" onclick="DeleteAll()"><i class="fas fa-trash fa-sm text-white mr2" data-toggle="modal" data-target="#createJobModal" ></i>Delete All Subscribers</button>
           </div>
           <div class="card shadow mb-4">
             <div class="card-header py-3 bg-blue">
@@ -129,8 +129,9 @@
                                                 + '</td><td>'
                                                 + data.email
                                                 + '</td><td>'                                               
-                                               + '<button class="ViewBtn btn br-0 btn-dark btn-sm t-11 mr-2" data-id=' + data._id +' data-toggle="modal" data-target="#ViewJob"><i class="fa fa-eye"></i> View</button>'
-                                               + '<a href="/delete_one_email_subscriber/:_{{this._id}}" class="btn br-0 btn-danger btn-sm t-11"><i class="fa fa-trash"></i> Delete</a>'
+                                               {{!-- + '<button class="ViewBtn btn br-0 btn-dark btn-sm t-11 mr-2" data-id=' + data._id +' data-toggle="modal" data-target="#ViewJob"><i class="fa fa-eye"></i> View</button>' --}}
+                                               {{!-- + `<a href="/delete_one_email_subscriber/${data._id}" id="del" class="btn br-0 btn-danger btn-sm t-11"><i class="fa fa-trash"></i> Delete</a>` --}}
+                                              + `<button class="btn br-0 btn-danger btn-sm t-11" onclick="Delete('${data._id}')"><i class="fa fa-trash"></i> Delete</button>`
                                                 + '</td></tr>'
                                      table.appendChild(tr);
             }
@@ -145,6 +146,24 @@
 			});
   </script>
   <script src="js/sb-admin-2.min.js"></script>
+   <script>
+                    function Delete(id) {
+                      if (confirm("This will delete the subscribers permanently")) {
+                          location.href = `/delete_one_email_subscriber/${id}`;
+                      } else {
+                          txt = "You pressed Cancel!";
+                      }
+                    }
+
+                    function DeleteAll() {
+                      if (confirm("This will delete the All Subscribers Permanently")) {
+                          location.href = `/delete_all_email_subscribers`;
+                      } else {
+                          txt = "You pressed Cancel!";
+                      }
+                    }
+                </script>
   <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+  
 </body>
 </html>
