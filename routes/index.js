@@ -175,7 +175,7 @@ router.get('/job_details', Home.job_details);
 router.get('/jobs_json', Jobs.get_all_json);
 router.get('/jobs_json/:job_id', Jobs.get_one_json);
 router.get('/jobs_api', Jobs.fetchData);
-router.get('/jobs_api/:job_id', Jobs.fetchSingle);
+router.get('/jobs_api/:slug', Jobs.fetchSingle);
 
 /* There is an Error in this route, it is crashing the server */
 //router.post('/jobs', Jobs.validate('create'), Jobs.create);

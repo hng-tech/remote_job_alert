@@ -29,7 +29,31 @@ const Jobs = {
     // I'll be making use of this thank you very much. 
 
     // @Albert, Welcome home!
-    let id = req.params.job_id;
+
+    //I'm doing your work @Albert, just thank me later abeg.
+    let slug = req.params.slug
+    let allData = await fetch("https://jobs.github.com/positions.json?location=remote");
+    let allMain = await allData.json();
+
+    //@Ayo this is why I said you should make them constant variables, I'm tired of calling. 
+    allMain.forEach(element => {
+      let title = element.title;
+      let company = element.company;
+      let url = title + ' ' + company;
+      let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\'\|\@\%\&\*]/g;
+      let custom_url = url.toLowerCase().replace(regex, '-');
+      element.custom_url = custom_url;
+    });
+    //Get the id of the slug that was just formed
+    allMain.forEach(element => {
+      if (slug == element.custom_url) {
+         id = element.id;
+         key = indexOf(element)
+      }
+      // else {
+      //   continue;
+      // }
+    });
 
 
     try {
@@ -64,6 +88,15 @@ const Jobs = {
     let data = await fetch("https://jobs.github.com/positions.json?location=remote");
     let main = await data.json();
 
+    //FE come and take your work ;(
+    main.forEach(element => {
+      let title = element.title;
+      let company = element.company;
+      let url = title + ' ' + company;
+      let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\'\|\@\%\&\*]/g;
+      let custom_url = url.toLowerCase().replace(regex, '-');
+      element.custom_url = custom_url;
+    });
     // So your narcissistic a$$ can change it easily
     let jobs_per_page = 7;
 
@@ -90,9 +123,10 @@ const Jobs = {
         next: (page === pages) ? false : page + 1,
       },
 
-      // we all need helpers. Baba God hear me out
-      helpers: {
 
+      // we all need helpers. Baba God hear me out
+      helpers: 
+      {
         // this helps with displaying the page links, I guess
         populate_links: function () {
           links = "";
