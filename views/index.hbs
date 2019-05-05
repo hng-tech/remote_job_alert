@@ -7,6 +7,139 @@
 		.view-more {
 			cursor: pointer !important;
 		}
+		/*Styling for featured jobs section*/
+
+#homepage #Featured-jobs .featured-jobs-header h1 {
+    color: #11144c;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 42px;
+    margin-bottom: 30px;
+}
+.filter-1 {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding-bottom: 15px;
+
+}
+.featured-form {
+padding-right: 5px;
+padding-bottom: 8px;
+}
+
+input[type=text] {
+  width: 200px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('images/featured-images/icons8-search-26.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 100%;
+}
+
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: opacity 2s ease, transform 2s ease;
+    width: 480px;
+    height: 140px;
+    display: flex;
+    flex-direction: row;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transform: scale(1.1);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.cad-3 {
+    padding: 2px 16px;
+    float: left;
+}
+
+.card img {
+    width: 38px;
+    height: 38px;
+    margin: 50px 15px 10px 40px;
+    vertical-align: center;
+}
+
+.row-3 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 -5px;
+}
+
+.left {
+    margin: 0 5px;
+}
+
+.right {
+    margin: 0 5px;
+}
+
+.more-jobs {
+    text-align: center;
+    color: #11144c;
+    font-weight: bold;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    transition: color 1s ease, transform 1s ease;
+    transform: scale(1.1);
+}
+
+.cad-3 p {
+    padding-top: 15px;
+    text-align: left;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #6F7484;
+}
+#Featured-jobs p {
+ padding-top: 10px;
+}
+
+.card-head {
+    margin-top: 25px;
+    text-align: left;
+    color: #11144C;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+
+/*Responsive styling when screen is less than 700px */
+
+@media screen and (max-width: 700px) {
+    .row {}
+    .card {}
+}
+
+
+/*End of Styling for featured jobs section*/
+
+
 	</style>
 </head>
 
@@ -27,7 +160,7 @@
 							<div class="col-sm-12 col-md-6 intro-text">
 								<h4>The remote life</h4>
 								<h1>Subscribe to receive remote developer jobs.</h1>
-								<p>Built by Africans for the World. Let us help you get that dream remote job you’re
+								<p>Let us help you get that dream remote job you’re
 									perfect for
 								</p>
 								<form action="/email-subscription" method="POST">
@@ -62,19 +195,22 @@
 		</section>
 
 <!---Featured job section-->
-		<section id="Featured-jobs" >
+		<section id="Featured-jobs">
         <div class="featured-jobs-header">
 			<h1>Featured Jobs</h1>
-       
+        <div class="filter-1">
+            <form class="featured-form">
+              <input type="text" name="search" placeholder="Enter language job of interest...">
+            </form>
        <!-- <div class="row"> -->
 			<!---Left column card-->
-        <div class="row">
+        <div class="row-3">
         {{#each (limit contents 8)}}
     
     	<div class="card col-md-4 offset-md-4 left">
     		<a href="jobs/featured/{{this.id}}">
         <img src="{{this.image_link}}" alt="google-image">
-      <div class="container cad">
+      <div class="container cad-3">
       	
         <h4 class="card-head"><b>{{this.job_title}}</b></h4> 
         <p><ion-icon name="briefcase"></ion-icon>{{this.company_name}}
@@ -89,11 +225,12 @@
 </div>
 
 </div>
-   <p class="more-jobs"><a href="/jobs">Load more Listings <ion-icon name="arrow-forward"></ion-icon></a></p>       
+   <p class="more-jobs"><a href="/jobs">View more jobs <ion-icon name="arrow-forward"></ion-icon></a></p>       
         
 </section>
 		<!--End of Featured job Section--->
-	<!---	
+
+<!---	
 		<section id="job-posting">
 			<div class="job-header">
 				<h1>Job Postings</h1>

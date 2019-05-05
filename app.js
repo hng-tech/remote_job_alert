@@ -70,7 +70,9 @@ app.use(function(req, res, next) {
 	res.locals.emailError = req.flash('emailError');
 	res.locals.errors = req.flash('errors');
 	res.locals.paymentError = req.flash('paymentError');
-	res.locals.payment = req.flash('payment');
+  res.locals.payment = req.flash('payment');
+  res.locals.adminError = req.flash('adminError');
+	res.locals.adminSuccess = req.flash('adminSuccess');
 	next();
 });
 

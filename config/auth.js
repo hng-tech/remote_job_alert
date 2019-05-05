@@ -10,7 +10,11 @@ module.exports = {
     'googleAuth' : {
         'clientID'      : '470798273027-o4tff9ertang77i8rpammg6quoouapia.apps.googleusercontent.com',
         'clientSecret'  : 'fkyK2lsyDWXxhunGSlYRU1ph',
-        'callbackURL'   : 'https://devalert.me/auth/google/callback'
+        'callbackURL'   : 'http://localhost:3020/auth/google/callback',
+        'profileFields' : ['id', 'email', 'name']
     }
 
 };
+
+// 'https://devalert.me/auth/google/callback'
+// 'http://localhost:3020/auth/facebook/callback'
