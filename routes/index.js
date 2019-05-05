@@ -171,6 +171,7 @@ router.get('/faqs', Home.faqs);
 router.get('/job_details', Home.job_details);
 
 //Job Routes
+//open DB Jobs endpoint
 router.get('/jobs_json', Jobs.get_all_json);
 router.get('/jobs_json/:job_id', Jobs.get_one_json);
 router.get('/jobs_api', Jobs.fetchData);
@@ -178,10 +179,11 @@ router.get('/jobs_api/:job_id', Jobs.fetchSingle);
 
 /* There is an Error in this route, it is crashing the server */
 //router.post('/jobs', Jobs.validate('create'), Jobs.create);
-router.post('/jobs', Jobs.create);
+router.post('/dashboard', Jobs.create);
 router.get("/jobs", Jobs.get_api_jobs);
 
 /////////////////////////////////////////////////
+router.get('/jobs/featured/:job_id', Jobs.get_one);
 router.get('/jobs/:job_id', Jobs.fetchSingle);
 //router.get("/jobs/:job_id/edit", Jobs.edit);
 router.post('/jobs/:job_id', Jobs.update_job);
