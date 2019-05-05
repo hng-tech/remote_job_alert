@@ -143,17 +143,18 @@ const Jobs = {
       job_title: req.body.job_title,
       job_link: req.body.job_link,
       employer_email: req.body.email,
+      slug: req.body.slug,
       job_pay_min: req.body.minimum_salary,
       job_pay_max: req.body.maximum_salary,
-      career_level: req.body.career_level,
+      job_type: req.body.job_type,
       location: req.body.location,
       job_description: req.body.job_description,
       image_link: req.body.image_link
     };
     try {
       let createdJob = await db.create(queryText);
-      sendMailForRemoteJob(createdJob);
-      return res.status(201).redirect("/managejobs");
+     // sendMailForRemoteJob(createdJob);
+      return res.status(201).redirect("/admin/managejobs");
     } catch (error) {
       return res.status(400).send(error);
     }
