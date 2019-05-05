@@ -415,42 +415,24 @@
   <section id="main">
     <div class="container">
       <div class="row">
-        <div class="col-md-4 col-sm-12">
-          <div class="dropdown">
-            <button class="btn ci-btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Select Job role
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-12">
-          <div class="dropdown">
-            <button class="btn ci-location-filter dropdown-toggle" type="button" id="dropdownMenuButton"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Location
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </div>
-          <br>
-        </div>
-      
-        <div class="col-md-4 col-sm-12">
-          <input class="form-control" type="text" placeholder="Search with Keyword, Location, company">
-          <br>
-        </div>
-      
-      </div>
-      <div class="row">
         <div class="col-md-3 col-sm-12">
+          <div class="row">
+            <div class="col-md-3 col-sm-12">
+              <div class="dropdown">
+                <button class="btn ci-btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Select Job role
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <br>
           <div class="list-group">
             <a href="#" class="list-group-item  main-title">Job Category </a>
             <a href="/" class="list-group-item">All Jobs</a>
@@ -472,7 +454,28 @@
 
         <div class="col-md-9">
           <!-- Job Listing -->
-      
+          <div class="row">
+            <div class="col-md-4 col-sm-12">
+              <div class="dropdown">
+                <button class="btn ci-location-filter dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Location
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+              <br>
+            </div>
+
+            <div class="col-md-8 col-sm-12">
+              <input class="form-control" type="text" placeholder="Search with Keyword, Location, company">
+              <br>
+            </div>
+
+          </div>
 
           <div class="">
             <div class="">
@@ -505,7 +508,7 @@
                           <h4 class="ci-company">{{this.company}}</h4>
                         </div>
                         <div class="col-md-4 ci-position">
-                          <a href="jobs/{{this.id}}" class="ci-btn">Read More</a>
+                          <a href="jobs/{{this.custom_url}}" class="ci-btn">Read More</a>
                         </div>
                       </div>
                     </div>
