@@ -38,6 +38,10 @@
     margin-top: 2em
 }
 
+.br-0{
+    border-radius: 0
+}
+
 .p_para{
     line-height: 30px;
     padding: 3em 6em 0;
