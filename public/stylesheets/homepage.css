@@ -86,9 +86,9 @@
 }
 
 #homepage main #intro .intro-text form button:hover {
-    background: white;
+    background:#11144c;
     border-radius: 6px;
-    color: #11144c;
+    color: #fff;
     font-weight: 600;
     border: 1px solid #11144c;
 }
