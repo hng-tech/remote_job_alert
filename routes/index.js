@@ -20,7 +20,7 @@ router.get('/', async function(req, res, next) {
     const stripeSession = await session;
     const jobs = await JobModel.find();
     res.render('index', {
-      title: 'Remote Job Alert',
+      title: 'DevAlert | Home',
       contents: jobs,
       sessionId: stripeSession.id,
       helpers: {
@@ -288,6 +288,8 @@ router.post('/contact', UserController.sendContactAlert);
 
 // GET User Login page
 router.get("/user-login", Home.userLogin);
+
+router.get("/register", Home.register);
 
 router.get("/auth", function (req, res, next){ 
   res.status(200).render('auth') 

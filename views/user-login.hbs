@@ -1,110 +1,193 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> DevAlert - login</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-    crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <title>{{title}}</title>
     <style>
-        body{
-            margin:0;
-            font-family: Montserrat;
+      
+      body{
+          margin:0;
+          font-family: Montserrat;
         }
         .main{
-            height: 100vh;
-            background-image: url("/images/achievement-adult-business-1243524.png");
-            background-color: rgba(17, 20, 76, 0.75);
-            background-blend-mode: lighten;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
             display: flex;
-            justify-content: center;
-            align-items: center
-
-            
-        }
-        .main h3{
-            text-align: center;
-            font-weight: 500
+            height: 100vh;
         }
 
-        .main p{
-            text-align: center;
-            color: #222;
-            font-weight: 200;
-            font-size: 10px;
-        }
-
-        .main h6{
-            font-size: 12px;
-            bottom: 0
-        }
-        .main img{
-            width: 20%;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.25);
-            border-radius: 10px;
-            margin-bottom: 1.2em;
-        }
-        .main-inner{
-            background-color: #eee;
-            height: auto;
-            width: 45%;
-            border-radius: 10px;
-            padding-left: 4rem;
-            padding-right: 4rem;
-            padding-bottom: 1rem;
-            padding-top: 2rem;
-            box-shadow: 0px 30px 60px rgba(0, 0, 0, 1);
-        }
-
-        .btns{
-            display: flex; 
+        .left{
+            height: 100vh;
+            background-color: #fff;
+            width: 50%;
+            display: flex;
             flex-direction: column;
             align-items: center;
+            color: #11144C;
+            padding:5% 10% 
+        }
+        form{
+            width: 100%
+        }
+        .left h1{
+            font-size: 68px;
+            font-weight: 700;
+            text-align: center;
         }
 
-        .main-inner hr{
-            padding-top: 2px;
-            box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.25);
+        .left label{
+            font-size: 14px;
+            font-weight: 600;
+        }
 
+        .form-control{
+            height: 40px;
+            border: 1px solid rgba(17, 20, 76, 0.4);
+        }
+
+        .form-group{
+            padding-top: 5%;
         }
 
         .btn{
-            width: 60%;
-            color: #eee!important;
+            background-color:  #11144C;
+            color: #fff;
+            width:100%;
+            height: 40px;
+            font-size: 18px;
+            margin-top: 6%
+        }
+        .btn:hover{
+          color: #11144C;
+          background-color: #fff;
+          border:1px solid #11144C;
+        }
+        form h5{
+            text-align: center;
+            padding-top:10%
+        }
+        form a{
+            color: #11144C;
+            font-size: 14px;
+            font-weight: 600;
         }
 
-        .googlebtn{
-            background-color: #DB4437;
-            margin-bottom: 3em;
+        .right{
+            height: 100vh;
+            background-image: url("images/achievement-adult-business-1243524.png");
+            background-color: rgba(17, 20, 76, 0.75);
+            background-blend-mode: darken;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
         }
 
-        .facebookbtn{
-            background-color: darkblue
+        .box{
+            padding: 4% 5%;
+            text-align: center;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.25);
+            color: #11144C;
+            font-size:64px
+        }
+
+        .right h1{
+            margin: 0;
+            padding:0;
+            padding-top:5%;
+            font-size: 38px;
+            font-weight: 700
+        }
+
+        .right h3{
+            padding:5%;
+            font-size: 25px;
+            font-weight: 500
+        }
+
+        @media screen and (max-width: 411px){
+            .right{
+                display: none;
+                width: 0%;
+            }
+            .right h1{
+                font-size: 28px;
+            }
+            
+            .left{
+                /* width: 100%; */
+                min-width: 100%;
+                /* border: 1px solid #11144C; */
+                background-image: url("images/achievement-adult-business-1243524.png");
+                background-color: rgba(17, 20, 76, 0.3);
+                background-blend-mode: saturation;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            form{
+                width: 80%
+            }
+            .right h3{
+                font-size: 24px;
+                width: 70%
+            }
+
+            .form-control{
+                height: 30px;
+                box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.25);
+            }
+
+            .btn{
+                height: 30px;
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 1024px){ 
+            .left{
+                justify-content: center;
+                width:70%
+            }
+            .left h3{
+                text-align: center
+            }
+            .right h3{
+                margin-top: 10%;
+                text-align: center;
+            }
+            
         }
     </style>
 </head>
 <body>
     <div class="main">
-        <div class="main-inner">
-            <img src="/images/logo.jpg" alt="DevAlert logo">
-            <h3>Login / Register with: </h3>
-            <p>with</p>
-            <hr>
-            <div class="btns">  
-                <a href="/auth/facebook" class="btn mb-2 facebookbtn"><i class="fab fa-facebook mr-2"></i> Facebook</a>
-                <p class="mb-0">or</p>
-                <a href="/auth/google" class="btn googlebtn mt-2 "><i class="fab fa-google mr-2"></i> Google </a>
+            <div class="left">
+                <h1>Sign In</h1>
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control">
+                    </div>
+                    <button class="btn">LOGIN</button>
+                    <h5><a href="">Don't have an account? Create one now</a></h5>
+                </form>
             </div>
-            <h6>By Registering or Logging in, you can control the frequency of your mail. Choose the kind of mail you want to receive and rate agents</h6>
+            <div class="right">
+                <div class="box"><i class="fa fa-code"></i></div>
+                <h1>DevAlert</h1>
+                <h3>Connecting Africa to the World</h3>
+            </div>
         </div>
     </div>
 </body>
