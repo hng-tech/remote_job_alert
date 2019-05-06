@@ -80,6 +80,11 @@
         .btn{
             width: 60%;
             color: #eee!important;
+            transition:0.3s
+        }
+
+        .btn:hover{
+            background-color: transparent;
         }
 
         .googlebtn{
@@ -87,9 +92,56 @@
             margin-bottom: 3em;
         }
 
+        .googlebtn:hover{
+            color: #DB4437!important;
+            border-color: #DB4437;
+        }
+
         .facebookbtn{
             background-color: darkblue
         }
+        .facebookbtn:hover{
+            border-color: darkblue;
+            color: darkblue!important;
+        }
+
+        @media screen and (max-width: 1024px){
+            .main-inner{
+                width: 65%
+            }
+
+            .main-inner h6{
+                font-size: 16px;
+            }
+        }
+
+        @media screen and (max-width: 768px){
+            .main-inner h6{
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 414px){
+            .main-inner{
+                width: 80%
+            }
+
+            .main-inner h3{
+                font-size: 24px;
+            }
+
+            .main-inner img{
+                width: 40%
+            }
+
+            .main-inner h6{
+                font-size: 12px;
+            }
+
+            .btn{
+                width: 200px
+            }
+}
     </style>
 </head>
 <body>
