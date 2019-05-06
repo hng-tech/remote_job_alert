@@ -32,18 +32,15 @@ const jobSchema = new Schema(
       type: Number,
       min: 0
     },
-    // job_pay_range: {
-    //   currency: { type: String },
-    //   range: {
-    //     min: { type: Number, min: 0 },
-    //     max: { type: Number, min: 0 }
-    //   }
-    // },
     employer_email: {
       type: String,
       required: false
     },
-    career_level: {
+    slug:{
+      type: String,
+      required: false
+    },
+    job_type: {
       type: String,
       required: false
     },
@@ -66,6 +63,5 @@ const jobSchema = new Schema(
     timestamps: true
   }
 );
-//jobSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model("Job", jobSchema);

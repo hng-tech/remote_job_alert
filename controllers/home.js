@@ -1,12 +1,12 @@
 class Home {
   // Render homepage
   static index(req, res, next) {
-    res.render('index', { title: 'Remote Job Alert' });
+    res.render('index', { title: 'DevAlert | Home' });
   }
 
   // Render about us page
   static aboutUs(req, res, next) {
-    res.render('about');
+    res.render('about' , { title: 'DevAlert | About Us' });
   }
 
   // Dashboard
@@ -17,13 +17,18 @@ class Home {
 
  // Render manage agents page
  static manageagents(req, res, next) {
-    res.render('manage_agents');
+    res.render('manage_agents', { title: 'Manage Agents' });
   }
 
  // Render manage subscribers page
  static managesubscribers(req, res, next) {
-    res.render('manage_subscribers');
+    res.render('manage_subscribers', { title: 'Manage Subscribers' });
   }
+
+   // Render manage payment page
+ static manage_payments(req, res, next) {
+  res.render('manage_payments', { title: 'Manage Payment' });
+}
 
   //User Pages
   // Render user-login page
@@ -32,8 +37,8 @@ class Home {
   }
 
   // Render user-signup page
-  static userSignup(req, res, next) {
-    res.render('user-signup');
+  static register(req, res, next) {
+    res.render('register');
   }
 
   //Render contact details page

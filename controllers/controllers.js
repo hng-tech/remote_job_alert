@@ -1,3 +1,5 @@
+/*jshint esversion: 8 */
+
 const db = require("./promise").Db;
 const validateQueryText = require("../validation/controller");
 const fetch = require("node-fetch");
@@ -5,16 +7,66 @@ const {
   sendMailForRemoteJob
 } = require("./user");
 const userModel = require("../models/user");
+const validateRegisteredUser = require("../validation/registeredUser");
+const registeredUsers = require("../models/registeredUsers");
 const agentModel = require("../models/newAgent");
+const paymentModel = require("../models/payment");
 const Paystack = require('./paystack');
 const session = require('./stripe');
 const Applicant = require('./applicant');
 
+// Null placeholder till promise returns a value
+var remote_jobs = null;
+
+// trick function to store Promise value
+function load_data(data) {
+  remote_jobs = data;
+}
+
+// Get all the data
+const getData = async () => {
+  try {
+    const response = await fetch("https://jobs.github.com/positions.json?location=remote");
+    const json = await response.json();
+    
+    // Parse and produce unique slug -- custom-url
+    json.forEach(element => {
+      let title = element.title;
+      let company = element.company;
+      let url = title + ' ' + company;
+      let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\'\|\@\%\&\*]/g;
+      let custom_url = url.toLowerCase().replace(regex, '-');
+      element.custom_url = custom_url;
+    });
+
+    // sneak and load up our global variable
+    load_data(json);
+
+  } catch (error) {
+    // catch @Prismatic. He's an error
+    console.log(error);
+  }
+};
+
+// fire! Promise fire!
+getData();
+
+// searches for common needles in a an array. Don't touch
+function search_common(needle, haystack) {
+  let key_languages = "";
+  for (let i = 0, n = haystack.length; i < n; i++) {
+    if (needle.includes(haystack[i])) {
+      key_languages += haystack[i] + ", ";
+    }
+  }
+  return key_languages;
+}
 
 const Jobs = {
   async fetchData(req, res) {
-    let data = await fetch("https://jobs.github.com/positions.json?location=remote");
-    let main = await data.json();
+    
+    let main = JSON.parse(JSON.stringify(remote_jobs));
+
     if (req.query.country) {
       const search = main.filter((country) => {
         return country.location.indexOf(req.query.country) > -1;
@@ -25,34 +77,186 @@ const Jobs = {
     }
     return res.status(200).json(main);
   },
+
+  async create_registered_user(req, res) {
+		const { errors, isValid } = validateRegisteredUser(req.body);
+
+		// Check Validation
+		if (!isValid) {
+			return res.status(400).json(errors);
+		}
+
+		const queryText = {
+			first_name: req.body.first_name,
+			last_name: req.body.last_name,
+			email: req.body.email,
+			phone_number: req.body.phone_number,
+			prefered_job_role: req.body.prefered_job_role,
+			prefered_job_level: req.body.prefered_job_level,
+			prefered_job_type: req.body.prefered_job_type,
+			prefered_job_location: req.body.prefered_job_location,
+			prefered_job_stack: req.body.prefered_job_stack,
+			prefered_update_type: req.body.prefered_update_type,
+			prefered_update: req.body.prefered_update,
+			created_At: Date.now()
+		};
+		try {
+			let user = await registeredUsers.create(queryText);
+			return res.status(200).json({
+				status: 'success',
+				message: user,
+			});
+		} catch (error) {
+			return res.status(500).send(error);
+		}
+	},
+
+  async view_all_registered_users(req, res) {
+    try {
+      let users = await registeredUsers.find();
+      return res.status(200).json(users);
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+
+  async update_registered_user(req, res) {
+    const { _id } = req.params;
+		const { errors, isValid } = validateRegisteredUser(req.body);
+
+		// Check Validation
+		if (!isValid) {
+			return res.status(400).json(errors);
+		}
+
+		const queryText = {
+			first_name: req.body.first_name,
+			last_name: req.body.last_name,
+			email: req.body.email,
+			phone_number: req.body.phone_number,
+			prefered_job_role: req.body.prefered_job_role,
+			prefered_job_level: req.body.prefered_job_level,
+			prefered_job_type: req.body.prefered_job_type,
+			prefered_job_location: req.body.prefered_job_location,
+			prefered_job_stack: req.body.prefered_job_stack,
+			prefered_update_type: req.body.prefered_update_type,
+			prefered_update: req.body.prefered_update,
+			created_At: Date.now()
+		};
+		try {
+
+			let user = await registeredUsers.findOneAndUpdate(_id, queryText)
+			return res.status(200).json({
+				status: 'success',
+				message: user,
+			});
+		} catch (error) {
+			return res.status(500).send(error);
+		}
+	},
+
+  async fetchPreferredJobs(req, res) {
+    try {
+    const { _id } = req.params; 
+    let registeredUser = await registeredUsers.findOne({ _id: _id });
+    if (registeredUser != null) {
+      let RoleData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_role}&location=remote`);
+      let LevelData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_level}&location=remote`);
+      let TypeData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_type}&location=remote`);
+      let LocationData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_location}&location=remote`);
+      let StackData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_stack}&location=remote`);
+      let RoleJobs = await RoleData.json();
+      let LevelJobs = await LevelData.json();
+      let TypeJobs = await TypeData.json();
+      let LocationJobs = await LocationData.json();
+      let StackJobs = await StackData.json();
+      let TotalJobs = RoleJobs.concat(LevelJobs, TypeJobs, LocationJobs, StackJobs);
+    // sendPreferedMailForRemoteJob(RoleJobs, registeredUser);
+
+      return res.status(200).json({
+        TotalRoleJobs:  Object.keys(RoleJobs).length,
+        TotalLevelJobs:  Object.keys(LevelJobs).length,
+        TotalTypeJobs:  Object.keys(TypeJobs).length,
+        TotalLocationJobs:  Object.keys(LocationJobs).length,
+        TotalStackJobs:  Object.keys(StackJobs).length,
+        TotalJobsCount:  Object.keys(TotalJobs).length,
+        RoleJobs: RoleJobs,
+        LevelJobs: LevelJobs,
+        TypeJobs: TypeJobs,
+        LocationJobs: LocationJobs,
+        StackJobs: StackJobs,
+        TotalJobs: TotalJobs,
+      });
+    }
+      return res.status(400).json({
+        status: "invalid input",
+        message: "no such user",
+      });
+    }
+    catch (error) {
+      console.log(error)
+      return res.status(400).send(error);
+    }
+  },
+
   async fetchSingle(req, res) {
-    // I'll be making use of this thank you very much. 
 
-    // @Albert, Welcome home!
-    let id = req.params.job_id;
-
+    let slug = req.params.slug
+    let single_job = null;
 
     try {
-      let data = await fetch("https://jobs.github.com/positions/" + id + ".json");
+      
+      let main = JSON.parse(JSON.stringify(remote_jobs));
 
-      let main = await data.json();
+      for (let i = 0; i < main.length; i++){
+        if (slug == main[i].custom_url) {
+          single_job = main[i];
+          break;
+        }
+      };
 
-      let similar_data_query = "https://jobs.github.com/positions.json?description=" + encodeURIComponent(main.title.slice(0, 10));
+      let common_tech = ["python", "es6", "ruby", "c#", "java ", " C ", "c++", "php", "javascript", "css", "html", "swift", "git", "azure", "docker", "sql", "asp.net", ".net", "asp", "rest", "react", "ios", "android", "vagrant", "trello", " R ", "Linux", "Angular", "Node"];
 
-      let similar_data = await fetch(similar_data_query);
+      let key_tech = search_common(single_job.description.toLowerCase(), common_tech);
 
-      let sub_data = await similar_data.json();
+      let sortquery = key_tech.trim().split(", ");
 
-      sub_data = sub_data.sort().slice(0, 3)
+      for (let i = 0; i < sortquery.length; i++){
+        main.sort(function (a, b) {
+          var A = a.description, B = b.description;
+          if (A.includes(sortquery[i])) {
+            return 1;
+          } else if (B.includes(sortquery[i])) {
+            return -1;
+          }
+        });
+      }
 
-      let summary = main.description.slice(0, main.description.indexOf("</p>", 450));
+      let sub_data = main.filter(function (job) {
+        if (job.id !== single_job.id) {
+          job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+          let url = job.title + ' ' + job.company;
+          let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\'\|\@\%\&\*]/g;
+          let custom_url = url.toLowerCase().replace(regex, '-');
+          job.custom_url = custom_url;
+          return job;
+        }
+      }).slice(0, 3);
+
+      let summary = single_job.description.slice(0, single_job.description.indexOf("</p>", 100));
+
+      single_job.description = single_job.description.slice(summary.length);
 
       const stripeSession = await session;
 
+      // some jobs have no image
+      single_job.company_logo = (!single_job.company_logo) ? "/images/no_job_image.jpg" : single_job.company_logo;
+
       return res.status(200).render('singleJob', {
-        content: main,
+        content: single_job,
         summary: summary,
-        title: main.title,
+        keytech: key_tech + "...",
+        title: single_job.title,
         similar_jobs: sub_data,
         sessionId: stripeSession.id
       })
@@ -61,8 +265,13 @@ const Jobs = {
     }
   },
   async get_api_jobs(req, res) {
-    let data = await fetch("https://jobs.github.com/positions.json?location=remote");
-    let main = await data.json();
+
+    let main = JSON.parse(JSON.stringify(remote_jobs));
+
+    main.slice().map(function (job) {
+      job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+      return job;
+    });
 
     // So your narcissistic a$$ can change it easily
     let jobs_per_page = 7;
@@ -98,9 +307,9 @@ const Jobs = {
           links = "";
           for (let i = 0; i < pages; i++) {
             if (page == i + 1)
-              links += `<li class="page-item active"><a class="page-link" href="jobs?page=${i+1}">${i+1}</a></li>`
+              links += `<li class="page-item active"><a class="page-link" href="jobs?page=${i + 1}">${i + 1}</a></li>`
             else
-              links += `<li class="page-item"><a class="page-link" href="jobs?page=${i+1}">${i+1}</a></li>`
+              links += `<li class="page-item"><a class="page-link" href="jobs?page=${i + 1}">${i + 1}</a></li>`
           }
           return links;
         },
@@ -118,42 +327,46 @@ const Jobs = {
       job_title: req.body.job_title,
       job_link: req.body.job_link,
       employer_email: req.body.email,
+      slug: req.body.slug,
       job_pay_min: req.body.minimum_salary,
       job_pay_max: req.body.maximum_salary,
-      career_level: req.body.career_level,
+      job_type: req.body.job_type,
       location: req.body.location,
       job_description: req.body.job_description,
       image_link: req.body.image_link
     };
     try {
       let createdJob = await db.create(queryText);
-      sendMailForRemoteJob(createdJob);
-      return res.status(201).redirect("/managejobs");
+     // sendMailForRemoteJob(createdJob);
+      return res.status(201).redirect("/admin/managejobs");
     } catch (error) {
       return res.status(400).send(error);
     }
   },
-  
+
   async get_all(req, res) {
     const queryText = {};
     try {
-      let foundJobs = await db.find(queryText);
+      let data = await fetch("https://jobs.github.com/positions.json?location=remote");
+      let foundJobs = await data.json();
       let usersCount = await userModel.countDocuments({});
       let agentsCount = await agentModel.countDocuments({});
+      let paymentsCount = await paymentModel.countDocuments({});
       return res.status(200).render("admin_dashboard", {
         content: foundJobs,
         jobCount: foundJobs.length,
         usersCount,
         agentsCount,
+        paymentsCount,
         helpers: {
           inc: function (index) {
             index++;
             return index;
           },
           limit: function (arr, limit) {
-          if (!Array.isArray(arr)) { return []; }
+            if (!Array.isArray(arr)) { return []; }
             return arr.slice(0, limit);
-        }
+          }
 
         }
       });
@@ -177,10 +390,10 @@ const Jobs = {
     try {
 
       let foundJob = await db.findOne(queryText);
-     
+
       const stripeSession = await session;
 
-      return res.status(200).render("singleFeaturedJob", { 
+      return res.status(200).render("singleFeaturedJob", {
         content: foundJob,
         sessionId: stripeSession.id
       });

@@ -2,26 +2,47 @@
 <html lang="en">
 
 <head>
-  <title>DevAlert Admin Dashboard</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Manage Applicants</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="stylesheets/sb-admin-2.min.css" rel="stylesheet">
+  <style type="text/css">
+    .sidebar {
+      background-color: #11122C;
+    }
+
+    .bg-blue {
+      background-color: #11122C;
+    }
+
+    .dashboard {
+      height: 14vh;
+      width: 100%;
+      background-color: #11144C;
+      color: white;
+    }
+  </style>
 </head>
 
-<body class="admin_body">
-  <div id="sidebar">
-    <div class="sidebar-wrapper">
+<body id="page-top">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
 
-      <div class="menu mt-5">
-        <ul>
-          <li>
-            <a href="/managejobs">
-              <i class="fas fa-home"></i> Dashboard</a>
-            <a href="/manageapplicants">
-              <i class="fas fa-link"></i> Applicants </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="page-content">
+    <!-- Sidebar -->
+    {{> dashboard_nav }}
+    <div id="content-wrapper" class="d-flex flex-column">
+      {{!-- <div class="page-content">
     <div class="fixed-header p-3">
       <i class="fas fa-bars dash_bar"></i>
     </div>
@@ -30,7 +51,7 @@
         <div class="mb-3">
           <div class="row">
             <div class="col-md-4 mb-md-0 mb-3 text-center">
-              <div class="bg-white p-3 shadow-sm">
+              {{!-- <div class="bg-white p-3 shadow-sm">
                 <h5 class="t-2 text-info">{{usersCount}}</h5>
                 <span class="b-6">Email Subscribers</span>
               </div>
@@ -46,10 +67,10 @@
                 <h5 class="t-2 text-info">3</h5>
                 <span class="b-6">Total Agents</span>
               </div>
-            </div>
+            </div> 
           </div>
         </div>
-        <div class="card">
+        <div class="card-body">
           <div class="card-header">
             <h4 class="card-title">Applicants List</h4>
             <a class="heading-elements-toggle">
@@ -68,6 +89,21 @@
                   </a>
                 </li>
               </ul>
+            </div>
+          </div> --}}
+      <div id="content ">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-center mb-4 dashboard">
+          <h1 class="h3 mb-0 text-blue-700">Manage Applicants</h1>
+        </div>
+
+        <div class="container-fluid">
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <p class="mb-4 text-gray-800">This is the manageapplicants page for DevAlert</p>
+          </div>
+          <div class="card shadow mb-4">
+            <div class="card-header py-3 bg-blue">
+              <h6 class="m-0 font-weight-bold text-white">Applicant List</h6>
             </div>
           </div>
           <div class="card-body">
@@ -115,7 +151,8 @@
 
   <!-- Create Job Modal-->
   <form action="/jobs" method="POST">
-    <div class="modal fade" id="createJobModal" tabindex="-1" role="dialog" aria-labelledby="createJobModalLabel" aria-hidden="true">
+    <div class="modal fade" id="createJobModal" tabindex="-1" role="dialog" aria-labelledby="createJobModalLabel"
+      aria-hidden="true">
       <div class="modal-dialog " role="document">
         <div class="modal-content">
           <div class="modal-header bg-light">
@@ -141,12 +178,14 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <input type="number" class="form-control br-0" name="minimum_salary" placeholder="Minimum Salary" required>
+                    <input type="number" class="form-control br-0" name="minimum_salary" placeholder="Minimum Salary"
+                      required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <input type="number" class="form-control br-0" name="maximum_salary" placeholder="Maximum Salary" required>
+                    <input type="number" class="form-control br-0" name="maximum_salary" placeholder="Maximum Salary"
+                      required>
                   </div>
                 </div>
               </div>
@@ -174,7 +213,8 @@
                 </div>
               </div>
               <div class="form-group">
-                <textarea id="" cols="30" rows="4" name="job_description" placeholder="Job Description" class="form-control br-0" required></textarea>
+                <textarea id="" cols="30" rows="4" name="job_description" placeholder="Job Description"
+                  class="form-control br-0" required></textarea>
               </div>
               <div class="form-group">
                 <input type="text" name="image_link" class="form-control br-0" placeholder="Enter Image link">
@@ -196,7 +236,8 @@
 
   <!-- View Applicant Modal-->
   {{# each content}}
-  <div class="modal fade" id="b{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="viewJobModalLabel" aria-hidden="true">
+  <div class="modal fade" id="b{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="viewJobModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog " role="document">
       <div class="modal-content">
         <div class="modal-header ">
@@ -256,9 +297,12 @@
     </div>
   </div>
   </div>
+  </div>
+  </div>
+  </div>
   {{/each}}
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
+  {{!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script> --}}
   <script>
     $(document).ready(() => {
       $('.dash_bar').click(e => {
@@ -268,4 +312,8 @@
       })
     })
   </script>
+  <script src="js/sb-admin-2.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 </body>
+
+</html>
