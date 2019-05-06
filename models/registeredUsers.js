@@ -38,6 +38,10 @@ const RegisteredUsersSchema = new Schema({
         type: String,
         required: false
     },
+    prefered_update: {
+        type: String,
+        required: false
+    },
     created_At: {
         type: Date,
         required: true
