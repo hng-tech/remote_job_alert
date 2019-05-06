@@ -37,8 +37,8 @@ class Home {
   }
 
   // Render user-signup page
-  static userSignup(req, res, next) {
-    res.render('user-signup');
+  static register(req, res, next) {
+    res.render('register');
   }
 
   //Render contact details page
