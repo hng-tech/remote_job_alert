@@ -35,7 +35,7 @@
 
 .unsub_smiley img{
     height: 150px;
-    margin-top: 4em
+    margin-top: 2em
 }
 
 .p_para{
@@ -110,15 +110,23 @@
     .kl__3{
         padding-top: 1.4em !important
     }
+    .he__bv{
+        font-size: 1.4em
+    }
+    .unsub_btn{
+        padding: 0.4em .5em;
+        font-size: 93%;
+    }
 }
 @media(max-width: 380px){
     .p3_ui{
-        font-size: 88%
+        font-size: 85%
     }
     .he__bv{
-        font-size: 1.3em
+        font-size: 1.2em
     }
     .unsub_btn{
-        padding: 0.3em .5em
+        padding: 0.3em .5em;
+        font-size: 90%;
     }
 }
