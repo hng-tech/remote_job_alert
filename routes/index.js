@@ -101,13 +101,7 @@ router.get('/dashboard', function (req, res, next) {
 // This is generic and could be used anywhere
 router.get('/logout', function(req, res) {
   req.session.destroy();
-<<<<<<< HEAD
-  // req.logout();
-||||||| merged common ancestors
   req.logout();
-=======
-  //req.logout();
->>>>>>> 037bcdabd921dd40b0a50f42bfdf30c76ee5baaa
   res.redirect('/');
 });
 
