@@ -165,7 +165,22 @@ async function sendPreferedMailForRemoteJob(jobs, user) {
       .on('end', function() {
         console.log('Done!');
       });
-  } catch (err) {
+  }
+  catch (err) {
+    console.err(err);
+  }
+}
+function addArrayMails() {
+  try {
+    const emailArray = require('../latest.js');
+    let emails = emailArray.emails;
+
+    emails.forEach(email => {
+      User.create(email)
+    });
+
+  }
+  catch (err) {
     console.error(err);
   }
 }
@@ -175,5 +190,6 @@ module.exports = {
   sendMail,
   sendMailForRemoteJob,
   sendContactAlert,
-  sendPreferedMailForRemoteJob
+  sendPreferedMailForRemoteJob,
+  addArrayMails
 };

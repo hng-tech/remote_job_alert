@@ -160,8 +160,6 @@ router.get('/contact', Home.contactUs);
 //Routes for user pages
 
 
-// GET User Signup page
-//router.get("/user-signup", Home.userSignup);
 
 // GET FAQS us page
 router.get('/faqs', Home.faqs);
@@ -183,7 +181,7 @@ router.get("/jobs", Jobs.get_api_jobs);
 
 /////////////////////////////////////////////////
 router.get('/jobs/featured/:job_id', Jobs.get_one);
-router.get('/jobs/:job_id', Jobs.fetchSingle);
+router.get('/jobs/:slug', Jobs.fetchSingle);
 //router.get("/jobs/:job_id/edit", Jobs.edit);
 router.post('/jobs/:job_id', Jobs.update_job);
 router.get('/jobs/:job_id/delete', Jobs.cancel_job);
@@ -289,12 +287,9 @@ router.post('/contact', UserController.sendContactAlert);
 // GET User Login page
 router.get("/user-login", Home.userLogin);
 
-router.get("/register", Home.register);
-
-router.get("/auth", function (req, res, next){ 
-  res.status(200).render('auth') 
-});
-
+// router.get("/auth", function (req, res, next){ 
+//   res.status(200).render('auth') 
+// });
 
 router.get('/job-preference', isLoggedIn, function(req, res) {
         res.render('jobPreference.hbs', {
@@ -312,19 +307,14 @@ router.get('/job-preference', isLoggedIn, function(req, res) {
     passport.authenticate('facebook',{
         failureRedirect : '/user-login'}),
         (req, res)=>{
-          console.log("facebook login successful, redirecting to profile")
+          console.log("facebook login successful, redirecting to job Preference")
           res.redirect('/job-preference');
         });
 
-    // route for logging out
-  router.get('/logout', function(req, res) {
-        req.logout();
-        res.render('/');
-    });
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-  // console.log('req is', req);
+    console.log('req is', req);
   // console.log('session id is', req.sessionID);
     // console.log('check login status');
     //if user is authenticated in the session, carry on

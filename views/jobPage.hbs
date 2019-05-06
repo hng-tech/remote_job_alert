@@ -346,14 +346,12 @@
 
               @media (max-width: 767px){
 
-                   .ci-logo{
-                  height: 70%!important;
-                  width: 30%!important;
+                .ci-body  .ci-logo{
+                  height: 15%!important;
+                  width: 40%!important;
                   margin-top: 10px!important;
                   bottom: 0!important;
                 }
-
-
                     .ci-pos{
                     position: relative;
                     width: 80%;
@@ -377,9 +375,9 @@
 
               @media (max-width: 750px){
 
-                .ci-logo{
-                  height: 70%!important;
-                  width: 30%!important;
+              .ci-body  .ci-logo{
+                  height: 15%!important;
+                  width: 50%!important;
                   margin-top: 10px!important;
                   bottom: 0!important;
                 }
@@ -457,7 +455,7 @@
   <div class="container ci-bread">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb ci-breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Job Page</li>
           </ol>
         </nav>
@@ -510,10 +508,11 @@
 
           <div class="row">
              <div class="col-md-12 col-sm-12 ci-search">
-                 <div class="input-group mb-4">
-                    <input  type="search" class="form-control"  placeholder="Search with Keyword, Location, company">
-                  <div class="input-group-prepend">
-                      <div class="input-group-text bg-deep"><i class="fa fa-search search-white"></i></div>
+                <div class="input-group mb-4">
+                <input id="searchInput" type="search" class="form-control"
+                  placeholder="Search with Keyword, Location, company">
+                <div class="input-group-prepend">
+                  <div class="input-group-text bg-deep" id="searchButton"><i class="fa fa-search search-white"></i>
                   </div>
                  </div>
                 
@@ -524,7 +523,7 @@
 
           <div class="">
             <div class="">
-              <div class="col-md-12 ci-card">
+              <div class="col-md-12 ci-card" id="jobTable">
                 <div class="">
                   <h3 class="ci-head">ALL JOBS</h3>
                   <div class="dropdown ci-option">
@@ -541,20 +540,20 @@
                 </div>
 
                 {{# each content}}
-                <div class="ci-card">
+                <div class="ci-card " id="contentCard">
                   <div class="card">
                     <div class="card-body">
                       <div class="row">
                         <div class="col-md-1 col-sm-12">
-                          <img class="ci-logo" src="{{this.company_logo}}" width="32" height="32">
+                          <img class="ci-logo" src="{{this.company_logo}}">
                         </div>
                         <div class="col-md-7 ci-title">
-                         <a href="jobs/{{this.id}}"><h3>{{this.title}} <br><span class="ci-job-nature">{{this.type}}</span></h3></a> 
+                         <a href="jobs/{{this.custom_url}}"><h3>{{this.title}} <br><span class="ci-job-nature">{{this.type}}</span></h3></a> 
                           <h4 class="ci-company">{{this.company}}</h4>
                         </div>
                         <div class="col-md-4 ci-position">
                           <p class="ci-pay-range">Pay Range</p>
-                          <a href="jobs/{{this.custom_url}}" class="btn btn-outline-primary ci-pos">Read More</a>
+                          <a href="/jobs/{{this.custom_url}}" class="btn btn-outline-primary ci-pos">Read More</a>
                         </div>
                       </div>
                     </div>
@@ -602,10 +601,31 @@
     </div>
   </section>
   {{> footer}}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="js/bootstrap.bundle.min"></script>
-  <script src="js/bootstrap.min.js"></script>
 
+  <script>
+     $(document).ready(function () {
+      $("#searchButton").on("click", function () {
+        let value = $("#searchInput").val().toLowerCase();
+        $("#jobTable #contentCard").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+      $("#searchInput").on("keypress", function (e) {
+        if (e.which === 13) {
+          let value = $(this).val().toLowerCase();
+          $("#jobTable #contentCard").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        }
+      });
+    });
+  </script>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  {{!-- <script src="js/bootstrap.bundle.min"></script>
+  <script src="js/bootstrap.min.js"></script> --}}
 </body>
 
 </html>
