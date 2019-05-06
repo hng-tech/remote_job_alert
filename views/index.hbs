@@ -27,7 +27,7 @@
     font-weight: 600;
     font-size: 36px;
     line-height: 42px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 .filter-1 {
 	display: flex;
@@ -42,19 +42,23 @@ padding-right: 5px;
 padding-bottom: 8px;
 }
 
+select {
+  height: 50px;
+  line-height: 50px;
+  font-size: 12pt;
+       }
+
 input[type=text] {
-  width: 200px;
+  width: 100%;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
   background-color: white;
-  background-image: url('images/featured-images/icons8-search-26.png');
   background-position: 10px 10px; 
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
+
 }
 
 input[type=text]:focus {
@@ -143,9 +147,18 @@ input[type=text]:focus {
 		</div>
         <div class="filter-1">
             <form class="featured-form">
-              <input type="text" name="search" placeholder="Enter language job of interest...">
+              <input type="text" name="search" placeholder="Enter language to filter jobs...">
             </form>
+						            <!--select currency-->
+            <select name="currency">
+                <option value="NAI">🇳🇬&emsp;₦&emsp;NAI&emsp;💶</option>			
+                <option value="EUR">🇪🇺&emsp;€&emsp;EUR&emsp;💶</option>
+                <option value="GBP">🇬🇧&emsp;£&emsp;GBP&emsp;💷</option>
+                <option value="USD">🇺🇸&emsp;$&emsp;USD&emsp;💵</option>
+                 <option value="YEN">🇯🇵&emsp;¥&emsp;YEN&emsp;💴</option>
+                         </select>
          </div>
+				 
        <!-- <div class="row"> -->
 			<!---Left column card-->
         <div class="row col-sm-12 marow" style="justify-content: center">
@@ -156,7 +169,8 @@ input[type=text]:focus {
     		<a href="/jobs/featured/{{this.id}}">
         <img src="{{this.image_link}}" alt="google-image">
         <h4 class="card-head"><b>{{this.job_title}}</b></h4> 
-        <p><ion-icon name="briefcase"></ion-icon>{{this.company_name}}
+				<p class="job-brief"><b>We are recruiting for the role of a full stack developer.....</b><br><b>Stack:</b> JavaScript || React || HTML.</p> 
+				<p><ion-icon name="briefcase"></ion-icon>{{this.company_name}}
         <ion-icon name="time"></ion-icon>{{this.career_level}}</p>
         <input type="hidden" id="min_pay_val" class="min_pay_val" value="{{this.job_pay_min}}">
         <span id="min_pay" class="min_pay">{{this.job_pay_min}} -- </span>
