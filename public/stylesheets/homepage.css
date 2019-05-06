@@ -515,16 +515,25 @@
     margin-bottom: 30px;
 }
 
-.cad {
-    padding: 2px 16px;
+.featureCad {
     float: left;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.card img {
+.featureCad img {
     width: 38px;
     height: 38px;
     margin: 50px 15px 10px 40px;
     vertical-align: center;
+}
+
+.featureCad p {
+    text-align: left;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #6F7484;
 }
 
 .left {
@@ -543,16 +552,6 @@
 
 a:link {
     text-decoration: none;
-}
-
-.cad p {
-    padding-top: 15px;
-    text-align: left;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 16px;
-    color: #6F7484;
 }
 
 .card-head {

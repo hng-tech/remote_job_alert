@@ -9,6 +9,9 @@ const fetch = require('node-fetch');
 const transporter = nodemailer.createTransport({
   host: 'smtp.zoho.com',
   port: 587,
+  secure: false,
+  ignoreTLS:true,
+  requireTLS:false,
   auth: {
     user: process.env.ZOHO_USER,
     pass: process.env.ZOHO_PASS
@@ -131,7 +134,7 @@ async function sendContactAlert(req, res, next) {
 
     req.flash(
       'success',
-      'Your message was sent. Our support would reply within 24 hours.'
+      'Your message has been delivered successfully and would be processed. Thank you.'
     );
     res.redirect('/contact');
   } catch (err) {

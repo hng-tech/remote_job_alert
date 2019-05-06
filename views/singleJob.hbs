@@ -1,7 +1,127 @@
 <head>
-    <title>DevAlert - {{title}} </title>
+    <title>DevAlert Remote Job - {{title}} </title>
 
     <style type="text/css">
+         .shorten-link {
+                margin-right: auto;
+                margin-left: auto;
+            }
+        
+        em,
+        strong {
+            padding: 2px 5px;
+            margin: 4px;
+            color: #ffffff;
+            font-weight: 800;
+        }
+
+        div em,
+        div strong {
+            background: #11144c;
+        }
+
+        div li em,
+        div li strong {
+            background: purple;
+        }
+
+        .title-header {
+            text-transform: uppercase;
+            background: #11144C;
+            color: #ffffff;
+        }
+
+        #breadcrumbs ul {
+            display: flex;
+            /* A key part of our menu, displays items side by side, and allows reversing them */
+            flex-direction: row-reverse;
+            /* Reverse the items */
+        }
+
+        /* Background container */
+        #breadcrumbs-container {
+            height: 200px;
+            background-color: #CEE3F8;
+        }
+
+        /* Menu container */
+        #breadcrumbs {
+            display: inline-block;
+            /* The menu will have width as needed, not 100% */
+            position: relative;
+            left: 0;
+            top: 50%;
+            transform: translate(0, -50%);
+            font-family: Helvetica, sans-serif;
+            font-size: 12px;
+            line-height: 1em;
+            border-radius: 2px;
+            /* Little curvature in the borders */
+            overflow: hidden;
+            /* Hide everything that overflows, like shadows */
+        }
+
+        /* Icons */
+        #breadcrumbs i {
+            transform: scale(1.4);
+        }
+
+        /* Menu */
+        #breadcrumbs ul {
+            display: flex;
+            /* A key part of our menu, displays items side by side, and allows reversing them */
+            flex-direction: row-reverse;
+            /* Reverse the items */
+            /* Reset styles, overwrite browser defaults */
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #breadcrumbs ul li {
+            margin: 0;
+        }
+
+        #breadcrumbs ul li a {
+            display: inline-block;
+            font-family: sans-serif;
+            font-size: 0.8em;
+            font-weight: 600;
+            padding: 12px 30px 12px 45px;
+            /* Adjusting padding to get the proper space */
+            margin-left: -20px;
+            /* Pull the items to the left, so the rounded right side will get over them */
+            color: white;
+            background-color: #11144C;
+            text-decoration: none;
+            text-transform: uppercase;
+            border-radius: 0 100px 100px 0;
+            /* Get the right side rounded */
+            box-shadow: 0 0 20px rgba(128, 128, 128, 0.4);
+            /* Apply the shadow */
+        }
+
+        /* Hover event */
+        #breadcrumbs ul li:hover a {
+            background-color: #11144C;
+        }
+
+        /* Remove the shadow for first item, last in the right side when it gets reversed */
+        #breadcrumbs ul li:first-child a {
+            box-shadow: none;
+        }
+
+        /* Active item is a bit different */
+        #breadcrumbs ul li.active a {
+            color: #11144C;
+            background-color: #EEF5FF;
+        }
+
+        /* Remove the shadow for the active's next item, to match the design more accurately */
+        #breadcrumbs ul li.active+li a {
+            box-shadow: none;
+        }
+
         /* line 1, ../New folder (2)/mystyle.scss */
         #single-job {
             width: 100%;
@@ -18,14 +138,24 @@
             margin-bottom: 5px;
         }
 
+        #single-job .single-job-top .job-head {}
+
         /* line 14, ../New folder (2)/mystyle.scss */
         #single-job .single-job-top .job-head .job-img-container {
             width: 100%;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: .2px 1.5px 4px .2px #eeeeee;
         }
 
         /* line 18, ../New folder (2)/mystyle.scss */
         #single-job .single-job-top .job-head .job-img-container img {
-            width: 50%;
+            width: 130px;
+            box-shadow: .2px 1.5px 4px .2px #eeeeee;
+            vertical-align: middle;
+            display: inline-block;
         }
 
         /* line 23, ../New folder (2)/mystyle.scss */
@@ -48,7 +178,7 @@
 
         /* line 39, ../New folder (2)/mystyle.scss */
         #single-job .single-job-top .job-summary {
-            color: #666666;
+            color: #000000;
         }
 
         /* line 40, ../New folder (2)/mystyle.scss */
@@ -56,7 +186,7 @@
             font-family: "Work Sans", sans-serif;
             font-style: normal;
             font-weight: 700;
-            font-size: 2em;
+            font-size: 1.5em;
             color: #11144C;
         }
 
@@ -83,7 +213,7 @@
 
         /* line 68, ../New folder (2)/mystyle.scss */
         #single-job .single-job-body p {
-            color: #666666;
+            color: #000000;
         }
 
         /* line 74, ../New folder (2)/mystyle.scss */
@@ -95,7 +225,7 @@
         /* line 78, ../New folder (2)/mystyle.scss */
         #single-job .single-job-bottom .more-jobs-section {
             font-size: 16px;
-            box-shadow: 0 1px 2px .2px #666666;
+            box-shadow: 0 1px 2px .2px #eeeeee;
         }
 
         /* line 83, ../New folder (2)/mystyle.scss */
@@ -111,7 +241,7 @@
 
         /* line 91, ../New folder (2)/mystyle.scss */
         #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job {
-            box-shadow: .2px 1.5px 4px .2px #666666;
+            box-shadow: .2px 1.5px 4px .2px #eeeeee;
             padding: 15px 5px;
             margin: 30px 0;
             border: 0.5px solid rgba(6, 6, 6, 0.1);
@@ -120,41 +250,51 @@
             flex-direction: row;
             justify-content: flex-start;
             align-items: center;
+            min-height: 130px;
         }
 
         /* line 102, ../New folder (2)/mystyle.scss */
         #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-image {
             max-width: 120px;
             padding: 10px;
+            box-shadow: .2px 1.5px 4px .2px #eeeeee;
             text-align: center;
+            min-width: 100px;
         }
 
         /* line 107, ../New folder (2)/mystyle.scss */
         #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-image img {
-            width: 80%;
+            width: 80px;
         }
 
         /* line 112, ../New folder (2)/mystyle.scss */
         #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-body {
             margin-left: 10px;
+            text-align: left;
+            color: #000000;
+            flex-grow: 2;
         }
 
         /* line 115, ../New folder (2)/mystyle.scss */
         #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-body h4 {
-            font-size: 1.5em;
+            font-size: 1em;
             color: #11144c;
             display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 400px;
         }
 
         /* line 121, ../New folder (2)/mystyle.scss */
         #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-body p {
             margin-bottom: 2px;
+            font-size: .7em;
+            font-weight: 200;
         }
 
         /* line 126, ../New folder (2)/mystyle.scss */
         #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-link {
-            align-self: flex-end;
-            margin-bottom: 10px;
             margin-right: 10px;
             margin-left: auto;
         }
@@ -175,6 +315,7 @@
         /* line 148, ../New folder (2)/mystyle.scss */
         #single-job .single-job-bottom .hire-agent {
             font-size: 16px;
+            box-shadow: .2px 1.5px 4px .2px #eeeeee;
         }
 
         /* line 152, ../New folder (2)/mystyle.scss */
@@ -213,6 +354,24 @@
         }
 
         @media (max-width: 768px) {
+
+            .input-group.input-group-lg {
+                width: 90%;
+            }
+
+            .pay-buttons>button,
+            .pay-buttons>input {
+                width: 80%;
+            }
+
+            #single-job .single-job-bottom .hire-agent .form-box form .pay-buttons {
+                width: 100% !important;
+                flex-direction: column !important;
+            }
+
+            .title-header {
+                font-size: 1.4em;
+            }
 
             /* line 191, ../New folder (2)/mystyle.scss */
             #single-job .single-job-top .job-head {
@@ -276,9 +435,35 @@
             #single-job .single-job-bottom .hire-agent {
                 margin-top: 30px;
             }
+
+            #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-body h4 {
+                max-width: 225px;
+            }
         }
 
         @media (max-width: 468px) {
+
+            .shorten-link a {
+                display: inline-block;
+                max-width: 320px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .shorten-link a {
+                max-width: 320px !important;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .title-header {
+                font-size: 1em;
+            }
+
+            #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-body h4 {
+                max-width: 225px;
+            }
 
             /* line 265, ../New folder (2)/mystyle.scss */
             #single-job .single-job-top .job-head {
@@ -287,13 +472,95 @@
 
             /* line 269, ../New folder (2)/mystyle.scss */
             #single-job .single-job-top .job-head .job-img-container img {
-                width: 60px;
+                width: 130px;
             }
 
-            /* line 287, ../New folder (2)/mystyle.scss */
-            #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-link>a {
-                font-size: 10px !important;
+            .subscribe-text {
+                font-size: 20px;
             }
+        }
+
+        @media (max-width: 992px) {
+
+            .title-header {
+                font-size: 1.8em;
+            }
+
+            .input-group.input-group-lg,
+            .pay-buttons>button,
+            .pay-buttons>input {
+
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .input-group.input-group-lg {
+                width: 70%;
+            }
+
+            .pay-buttons>button,
+            .pay-buttons>input {
+                width: 40%;
+            }
+
+            #single-job .single-job-bottom .hire-agent .form-box form .pay-buttons {
+                flex-direction: row;
+                margin: 0 auto;
+                justify-content: space-evenly;
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .input-group.input-group-lg {
+                width: 100%;
+            }
+
+            /* line 126, ../New folder (2)/mystyle.scss */
+            #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-link {
+                align-self: center;
+                justify-self: center;
+                margin: 10px 30px;
+                width: 100%;
+            }
+
+            #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-image {
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-body {
+                text-align: center;
+            }
+
+            #breadcrumbs ul li a {
+                display: inline-block;
+                font-family: sans-serif;
+                font-size: 0.8em;
+                font-weight: 500;
+                padding: 7px 15px 7px 30px;
+                /* Adjusting padding to get the proper space */
+                margin-left: -20px;
+                /* Pull the items to the left, so the rounded right side will get over them */
+                color: white;
+                background-color: #11144C;
+                text-decoration: none;
+                font-size: 1em;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 180px;
+            }
+
+            .title-header {
+                font-size: 1.5em;
+            }
+
+            #single-job .single-job-bottom .more-jobs-section .more-jobs h4 {
+                font-size: 16px;
+            }
+
         }
     </style>
 </head>
@@ -303,24 +570,41 @@
 {{!-- All content goes here  --}}
 <div id="single-job">
     <div class="container">
+        <div class="breadcrumbs-container">
+            <div id="breadcrumbs">
+                <ul>
+                    <li class="active"><a href="#">{{content.title}}</a></li>
+                    <li><a href="/jobs">Jobs</a></li>
+                    <li><a href="/"><i class="d-xs-none fa fa-home"></i> &nbsp; Home</a></li>
+                </ul>
+            </div>
+        </div>
+        <h1 class="title-header mt-2 mb-2 p-1 pl-2">{{content.title}}</h1>
         <div class="single-job-top">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 job-head">
                     <div class="job-img-container">
-                        <img class="img-fluid" src="{{content.company_logo}}" alt="{{content.company_logo}}" />
+                        <img class="img-fluid" src="{{content.company_logo}}" alt="{{content.title}}" />
                     </div>
                     <div class="job-quick-details mt-4">
-                        <p>{{content.type}}&nbsp;{{content.title}}</p>
+                        <p>{{content.type}}&nbsp;-&nbsp;{{content.title}}</p>
                         <p>At {{content.company}}</p>
-                        <p>Location: {{content.location}}</p>
-                        <p style="font-size: 10px;">Since: <span>{{content.created_at}}</span></p>
+                        <p style="color: black;">Our experienced and connected agents will apply on your behalf to boost your chances.</p>
                         <a class="btn mt-4" href="#hire-form">Apply Now</a>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 job-summary">
-                    <h3>JOB SUMMARY</h3>
+                <div class="d-md-none col-lg-1"></div>
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 job-summary">
+                    <p class="text-xs-center p-1" style="display: inline; background: #11144C; color: white;">Work from anywhere</p><br/>
+                    <i class="m-1">Apply through us and get your dream remote job today.</i>
+                    <br /><br/>
+                    <h3>REMOTE JOB SUMMARY</h3>
+                    <p style="text-transform: capitalize;">Key Technologies: {{{keytech}}}</p>
                     <p>
                         {{{summary}}}
+                        <p>Location: {{content.location}}</p>
+                        <p style="font-size: 14px;">Since: <span>{{content.created_at}}</span></p>
+                    </p>
                 </div>
             </div>
         </div>
@@ -329,17 +613,34 @@
             <h3>FULL DESCRIPTION</h3>
             {{{content.description}}}
             <h3>Want to Apply directly?</h3>
-            {{{content.how_to_apply}}}
+            <div class="row shorten-link">
+                <p>{{{content.how_to_apply}}}</p>
+            </div>
         </div>
+        <br>
+        <br>
+        <div class="col-sm-12 col-md-6 intro-text mr-auto ml-auto">
+            <h3 class="subscribe-text">Get on board. Subscribe to receive alerts on similar remote jobs like this for free.</h3>
+            <form action="/email-subscription" method="POST">
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Email" name="email">
+                    <div class="input-group-append">
+                        <button class="btn subscribe" style="color: white; background-color:#11144C"
+                            type="submit">Subscribe</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br />
         <div class="single-job-bottom">
             <div class="row">
                 <div class="col-md-12 col-lg-6 more-jobs-section">
                     <div class="more-jobs">
-                        <h4>SIMILAR JOBS YOU MAY LIKE</h4>
+                        <h4>SIMILAR REMOTE JOBS YOU MAY LIKE</h4>
                         {{# each similar_jobs}}
                         <div class="more-job">
                             <div class="more-job-image">
-                                <img class="img-fluid" src="{{this.company_logo}}">
+                                <img class="img-fluid" alt="{{this.title}}" src="{{this.company_logo}}">
                             </div>
                             <div class="more-job-body">
                                 <h4>{{this.title}}</h4>
@@ -347,16 +648,18 @@
                                 <p>Company: {{this.company}}</p>
                             </div>
                             <div class="more-job-link">
-                                <a href="/jobs/{{this.id}}" class="btn btn-sm">Read
-                                    More</a>
+                                <a href="/jobs/{{this.id}}" class="btn btn-sm">Apply</a>
                             </div>
                         </div>
                         {{/each}}
                     </div>
                 </div>
-                <div id="hire-form" class="col-md-12 col-lg-6 hire-agent">
+                <div class="hidden-md col-lg-1"></div>
+                <div id="hire-form" class="col-md-12 col-lg-5 hire-agent">
                     <div class="form-box">
                         <h4>HIRE AN AGENT NOW</h4>
+                        <p class="text-center">Pay an agent to Apply on your behalf.<br />Increase your chances by 70%.
+                        </p>
                         <form method="POST" action="/pay">
                             <div class="input-group input-group-lg mb-4">
                                 <div class="input-group-prepend">
@@ -380,12 +683,18 @@
                                 <button id="buttonCheckout" class="btn btn-custom px-2 mt-4">Pay with Stripe</button>
                             </div>
                         </form>
+                        <br>
+                        <p>Once payment is successful, An agent will get in touch with you within 30 minutes and begin
+                            your application process.</p>
                     </div>
 
                 </div>
             </div>
         </div>
-        <a class="btn btn-sm btn-primary p-1" href="/jobs">Go Back</a>
+        <br>
+        <a style="background: #11144C; color: white;" class="btn btn-sm btn-secondary p-2" href="/jobs">Back to job
+            listings</a>
+        <br>
     </div>
 </div>
 

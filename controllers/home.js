@@ -1,12 +1,12 @@
 class Home {
   // Render homepage
   static index(req, res, next) {
-    res.render('index', { title: 'Remote Job Alert' });
+    res.render('index', { title: 'DevAlert | Home' });
   }
 
   // Render about us page
   static aboutUs(req, res, next) {
-    res.render('about');
+    res.render('about' , { title: 'DevAlert | About Us' });
   }
 
   // Dashboard
