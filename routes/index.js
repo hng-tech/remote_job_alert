@@ -286,9 +286,6 @@ router.post('/contact', UserController.sendContactAlert);
 
 // GET User Login page
 router.get("/user-login", Home.userLogin);
-router.get("/register", function (req, res, next){
-  res.status(200).render('register');
-});
 
 // router.get("/auth", function (req, res, next){ 
 //   res.status(200).render('auth') 
@@ -308,7 +305,7 @@ router.get('/job-preference', isLoggedIn, function(req, res) {
  
   router.get('/auth/facebook/callback',
     passport.authenticate('facebook',{
-        failureRedirect : '/register'}),
+        failureRedirect : '/user-login'}),
         (req, res)=>{
           console.log("facebook login successful, redirecting to job Preference")
           res.redirect('/job-preference');
@@ -317,7 +314,7 @@ router.get('/job-preference', isLoggedIn, function(req, res) {
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-  // console.log('req is', req);
+    console.log('req is', req);
   // console.log('session id is', req.sessionID);
     // console.log('check login status');
     //if user is authenticated in the session, carry on
@@ -336,7 +333,7 @@ function isLoggedIn(req, res, next) {
     router.get('/auth/google/callback',
     passport.authenticate('google', {
         successRedirect : '/job-preference',
-        failureRedirect : '/register'
+        failureRedirect : '/user-login'
     }));
 
 
