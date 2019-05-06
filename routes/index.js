@@ -20,7 +20,7 @@ router.get('/', async function(req, res, next) {
     const stripeSession = await session;
     const jobs = await JobModel.find();
     res.render('index', {
-      title: 'Get Remote Job Alert | DevAlert ',
+      title: 'Remote Jobs | DevAlert ',
       contents: jobs,
       sessionId: stripeSession.id,
       helpers: {
