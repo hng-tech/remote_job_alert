@@ -2,7 +2,17 @@
 <html>
 
 <head>
-  <title>{{title}}</title>
+
+  <title>DevAlert | Remote Job Postings</title>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-139612600-1');
+  </script>
 
   <style type="text/css">
    
@@ -130,9 +140,10 @@
               /* job list view*/
 
                  .ci-logo{
-                   height: 14vh!important;
-                  width: 9vw!important;
+                   height: 11.5vh!important;
+                  width: 10vw!important;
                   margin-top: 10px!important;
+                  padding-left: 38px;
                 }
 
               .ci-card{
@@ -187,7 +198,7 @@
 
 
               .ci-title{
-                padding-left: 120px;
+                padding-left: 115px;
 
               }
 
@@ -335,13 +346,11 @@
 
               @media (max-width: 767px){
 
-                   .ci-logo{
-                  height: 70%!important;
-                  width: 30%!important;
+                  .ci-logo{
+                  height: 20%!important;
+                  width: 10vw!important;
                   margin-top: 10px!important;
-                  bottom: 0!important;
                 }
-
 
                     .ci-pos{
                     position: relative;
@@ -366,9 +375,9 @@
 
               @media (max-width: 750px){
 
-                .ci-logo{
-                  height: 70%!important;
-                  width: 30%!important;
+              .ci-body  .ci-logo{
+                  height: 15%!important;
+                  width: 70%!important;
                   margin-top: 10px!important;
                   bottom: 0!important;
                 }
@@ -446,7 +455,7 @@
   <div class="container ci-bread">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb ci-breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Job Page</li>
           </ol>
         </nav>
@@ -535,15 +544,15 @@
                     <div class="card-body">
                       <div class="row">
                         <div class="col-md-1 col-sm-12">
-                          <img class="ci-logo" src="{{this.company_logo}}" width="32" height="32">
+                          <img class="ci-logo" src="{{this.company_logo}}">
                         </div>
                         <div class="col-md-7 ci-title">
-                         <a href="jobs/{{this.id}}"><h3>{{this.title}} <br><span class="ci-job-nature">{{this.type}}</span></h3></a> 
+                         <a href="jobs/{{this.custom_url}}"><h3>{{this.title}} <br><span class="ci-job-nature">{{this.type}}</span></h3></a> 
                           <h4 class="ci-company">{{this.company}}</h4>
                         </div>
                         <div class="col-md-4 ci-position">
                           <p class="ci-pay-range">Pay Range</p>
-                          <a href="jobs/{{this.id}}" class="btn btn-outline-primary ci-pos">Read More</a>
+                          <a href="/jobs/{{this.custom_url}}" class="btn btn-outline-primary ci-pos">Read More</a>
                         </div>
                       </div>
                     </div>
