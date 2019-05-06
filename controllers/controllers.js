@@ -7,6 +7,8 @@ const {
   sendMailForRemoteJob
 } = require("./user");
 const userModel = require("../models/user");
+const validateRegisteredUser = require("../validation/registeredUser");
+const registeredUsers = require("../models/registeredUsers");
 const agentModel = require("../models/newAgent");
 const paymentModel = require("../models/payment");
 const Paystack = require('./paystack');
@@ -75,6 +77,128 @@ const Jobs = {
     }
     return res.status(200).json(main);
   },
+
+  async create_registered_user(req, res) {
+		const { errors, isValid } = validateRegisteredUser(req.body);
+
+		// Check Validation
+		if (!isValid) {
+			return res.status(400).json(errors);
+		}
+
+		const queryText = {
+			first_name: req.body.first_name,
+			last_name: req.body.last_name,
+			email: req.body.email,
+			phone_number: req.body.phone_number,
+			prefered_job_role: req.body.prefered_job_role,
+			prefered_job_level: req.body.prefered_job_level,
+			prefered_job_type: req.body.prefered_job_type,
+			prefered_job_location: req.body.prefered_job_location,
+			prefered_job_stack: req.body.prefered_job_stack,
+			prefered_update_type: req.body.prefered_update_type,
+			prefered_update: req.body.prefered_update,
+			created_At: Date.now()
+		};
+		try {
+			let user = await registeredUsers.create(queryText);
+			return res.status(200).json({
+				status: 'success',
+				message: user,
+			});
+		} catch (error) {
+			return res.status(500).send(error);
+		}
+	},
+
+  async view_all_registered_users(req, res) {
+    try {
+      let users = await registeredUsers.find();
+      return res.status(200).json(users);
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+
+  async update_registered_user(req, res) {
+    const { _id } = req.params;
+		const { errors, isValid } = validateRegisteredUser(req.body);
+
+		// Check Validation
+		if (!isValid) {
+			return res.status(400).json(errors);
+		}
+
+		const queryText = {
+			first_name: req.body.first_name,
+			last_name: req.body.last_name,
+			email: req.body.email,
+			phone_number: req.body.phone_number,
+			prefered_job_role: req.body.prefered_job_role,
+			prefered_job_level: req.body.prefered_job_level,
+			prefered_job_type: req.body.prefered_job_type,
+			prefered_job_location: req.body.prefered_job_location,
+			prefered_job_stack: req.body.prefered_job_stack,
+			prefered_update_type: req.body.prefered_update_type,
+			prefered_update: req.body.prefered_update,
+			created_At: Date.now()
+		};
+		try {
+
+			let user = await registeredUsers.findOneAndUpdate(_id, queryText)
+			return res.status(200).json({
+				status: 'success',
+				message: user,
+			});
+		} catch (error) {
+			return res.status(500).send(error);
+		}
+	},
+
+  async fetchPreferredJobs(req, res) {
+    try {
+    const { _id } = req.params; 
+    let registeredUser = await registeredUsers.findOne({ _id: _id });
+    if (registeredUser != null) {
+      let RoleData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_role}&location=remote`);
+      let LevelData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_level}&location=remote`);
+      let TypeData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_type}&location=remote`);
+      let LocationData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_location}&location=remote`);
+      let StackData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_stack}&location=remote`);
+      let RoleJobs = await RoleData.json();
+      let LevelJobs = await LevelData.json();
+      let TypeJobs = await TypeData.json();
+      let LocationJobs = await LocationData.json();
+      let StackJobs = await StackData.json();
+      let TotalJobs = RoleJobs.concat(LevelJobs, TypeJobs, LocationJobs, StackJobs);
+    // sendPreferedMailForRemoteJob(RoleJobs, registeredUser);
+
+      return res.status(200).json({
+        TotalRoleJobs:  Object.keys(RoleJobs).length,
+        TotalLevelJobs:  Object.keys(LevelJobs).length,
+        TotalTypeJobs:  Object.keys(TypeJobs).length,
+        TotalLocationJobs:  Object.keys(LocationJobs).length,
+        TotalStackJobs:  Object.keys(StackJobs).length,
+        TotalJobsCount:  Object.keys(TotalJobs).length,
+        RoleJobs: RoleJobs,
+        LevelJobs: LevelJobs,
+        TypeJobs: TypeJobs,
+        LocationJobs: LocationJobs,
+        StackJobs: StackJobs,
+        TotalJobs: TotalJobs,
+      });
+    }
+      return res.status(400).json({
+        status: "invalid input",
+        message: "no such user",
+      });
+    }
+    catch (error) {
+      console.log(error)
+      return res.status(400).send(error);
+    }
+  },
+
   async fetchSingle(req, res) {
 
     let slug = req.params.slug
@@ -203,17 +327,18 @@ const Jobs = {
       job_title: req.body.job_title,
       job_link: req.body.job_link,
       employer_email: req.body.email,
+      slug: req.body.slug,
       job_pay_min: req.body.minimum_salary,
       job_pay_max: req.body.maximum_salary,
-      career_level: req.body.career_level,
+      job_type: req.body.job_type,
       location: req.body.location,
       job_description: req.body.job_description,
       image_link: req.body.image_link
     };
     try {
       let createdJob = await db.create(queryText);
-      sendMailForRemoteJob(createdJob);
-      return res.status(201).redirect("/managejobs");
+     // sendMailForRemoteJob(createdJob);
+      return res.status(201).redirect("/admin/managejobs");
     } catch (error) {
       return res.status(400).send(error);
     }
@@ -222,7 +347,8 @@ const Jobs = {
   async get_all(req, res) {
     const queryText = {};
     try {
-      let foundJobs = await db.find(queryText);
+      let data = await fetch("https://jobs.github.com/positions.json?location=remote");
+      let foundJobs = await data.json();
       let usersCount = await userModel.countDocuments({});
       let agentsCount = await agentModel.countDocuments({});
       let paymentsCount = await paymentModel.countDocuments({});

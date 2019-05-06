@@ -18,7 +18,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="stylesheets/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../stylesheets/sb-admin-2.min.css" rel="stylesheet">
     <style type="text/css">
         .sidebar {
             background-color: #11122C;
@@ -55,13 +55,13 @@
                     <div class="d-sm-flex align-items-center justify-content-center mb-4 dashboard">
                         <h1 class="h3 mb-0 text-blue-700">Manage Payments</h1>
                     </div>
-
                     <div class="container-fluid">
+                     {{> adminMessage }}
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
                             <p class="mb-4 text-gray-800">This is the Manage Payments page for DevAlert</p>
-                            <button class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
+                            <button class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" onclick="DeleteAll()"><i
                                     class="fas fa-trash fa-sm text-white mr2" data-toggle="modal"
-                                    data-target="#createJobModal"></i> Delete All Subscribers</button>
+                                    data-target="#createJobModal"></i>Delete All Payments</button>
                         </div>
                         <div class="card shadow mb-4">
                             <div class="card-header py-3 bg-blue">
@@ -119,6 +119,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
                 <script>
                     // script for getting subscribers 
@@ -145,8 +147,9 @@
                                             + '</td><td>'
                                             + data.created_At
                                             + '</td><td>'
-                                            + '<button class="ViewBtn btn br-0 btn-dark btn-sm t-11 mr-2" data-id=' + data.id + ' data-toggle="modal" data-target="#ViewJob"><i class="fa fa-eye"></i> View</button>'
-                                            + '<a href="/delete_one_email_subscriber/:_{{this.id}}" class="btn br-0 btn-danger btn-sm t-11"><i class="fa fa-trash"></i> Delete</a>'
+                                            {{!-- + '<button class="ViewBtn btn br-0 btn-dark btn-sm t-11 mr-2" data-id=' + data._id + ' data-toggle="modal" data-target="#ViewJob"><i class="fa fa-eye"></i> View</button>' --}}
+                                            {{!-- + `<a href="/delete_one_payment/${data._id}" class="btn br-0 btn-danger btn-sm t-11"><i class="fa fa-trash"></i> Delete</a>` --}}
+                                            + `<button class="btn br-0 btn-danger btn-sm t-11" onclick="Delete('${data._id}')"><i class="fa fa-trash"></i> Delete</button>`
                                             + '</td></tr>'
                                         table.appendChild(tr);
                                     }
@@ -161,6 +164,23 @@
                     });
                 </script>
                 <script src="js/sb-admin-2.min.js"></script>
+                <script>
+                    function Delete(id) {
+                        if (confirm("This will delete the payment permanently")) {
+                            location.href = `/delete_one_payment/${id}`;
+                        } else {
+                            txt = "You pressed Cancel!";
+                        }
+                    }
+
+                    function DeleteAll() {
+                      if (confirm("This will delete the All Payments Permanently")) {
+                          location.href = `/delete_all_payments`;
+                      } else {
+                          txt = "You pressed Cancel!";
+                      }
+                    }
+                </script>
                 <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
         </body>
 

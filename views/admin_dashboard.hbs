@@ -8,8 +8,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  	<!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  <title>{{title}}</title>
+      gtag('config', 'UA-139612600-1');
+  </script>
+
+  <title>Dashboard</title>
 
   <!-- Custom fonts for this template-->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
@@ -121,8 +130,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xl font-weight-bold text-warning text-uppercase mb-1">Number of site visits</div>
-                      <div class="h4 mb-0 font-weight-bold text-gray-800">18</div>
+                      <div class="text-xl font-weight-bold text-warning text-uppercase mb-1">Total Payments</div>
+                      <div class="h4 mb-0 font-weight-bold text-gray-800">{{paymentsCount}}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -133,7 +142,7 @@
             </div>
 
                         <!-- Total payments  -->
-            <div class="col-xl-6 col-md-6 mb-4">
+            {{!-- <div class="col-xl-6 col-md-6 mb-4">
               <div class="card border-left-success shadow h-100 py-5">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -147,7 +156,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> --}}
           </div>           
           </div>
         </div>
