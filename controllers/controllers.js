@@ -117,45 +117,66 @@ const Jobs = {
 
   async fetchPreferredJobs(req, res) {
     try {
-    const { _id } = req.params; 
-    let registeredUser = await registeredUsers.findOne({ _id: _id });
-    if (registeredUser != null) {
-      let RoleData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_role}&location=remote`);
-      let LevelData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_level}&location=remote`);
-      let TypeData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_type}&location=remote`);
-      let LocationData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_location}&location=remote`);
-      let StackData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_stack}&location=remote`);
-      let RoleJobs = await RoleData.json();
-      let LevelJobs = await LevelData.json();
-      let TypeJobs = await TypeData.json();
-      let LocationJobs = await LocationData.json();
-      let StackJobs = await StackData.json();
-      let TotalJobs = RoleJobs.concat(LevelJobs, TypeJobs, LocationJobs, StackJobs);
-    // sendPreferedMailForRemoteJob(RoleJobs, registeredUser);
+      const { _id } = req.params; 
+      let registeredUser = await registeredUsers.findOne({ _id: _id });
+      let pr = registeredUser.prefered_job_role;
+      let ple = registeredUser.prefered_job_level;
+      let pt = registeredUser.prefered_job_type;
+      let plo = registeredUser.prefered_job_location;
+      let ps = registeredUser.prefered_job_stack;
+      let arrayRole = pr.split(',');
+      let arrayLevel = ple.split(',');
+      let arrayType = pt.split(',');
+      let arrayLocation = plo.split(',');
+      let arrayStack = ps.split(',');
+      for(let i=0;i<arrayRole.length; i++)
+      for(let i=0;i<arrayLevel.length; i++)
+      for(let i=0;i<arrayType.length; i++)
+      for(let i=0;i<arrayLocation.length; i++)
+      for(let i=0;i<arrayStack.length; i++)
+      await  fetch(`https://jobs.github.com/positions.json?description=${arrayRole[i]}&location=remote`)
+      .then(() => {
+        async function getUserJobPreference () {
+          let A =  await  fetch(`https://jobs.github.com/positions.json?description=${arrayRole[i]}&location=remote`);
+          let RoleResult= await A.json();
+            
+          let B =  await  fetch(`https://jobs.github.com/positions.json?description=${arrayLevel[i]}&location=remote`)
+          let LevelResult= await B.json();
 
-      return res.status(200).json({
-        TotalRoleJobs:  Object.keys(RoleJobs).length,
-        TotalLevelJobs:  Object.keys(LevelJobs).length,
-        TotalTypeJobs:  Object.keys(TypeJobs).length,
-        TotalLocationJobs:  Object.keys(LocationJobs).length,
-        TotalStackJobs:  Object.keys(StackJobs).length,
-        TotalJobsCount:  Object.keys(TotalJobs).length,
-        RoleJobs: RoleJobs,
-        LevelJobs: LevelJobs,
-        TypeJobs: TypeJobs,
-        LocationJobs: LocationJobs,
-        StackJobs: StackJobs,
-        TotalJobs: TotalJobs,
-      });
-    }
-      return res.status(400).json({
-        status: "invalid input",
-        message: "no such user",
+          let C =  await  fetch(`https://jobs.github.com/positions.json?description=${arrayType[i]}&location=remote`)
+          let TypeResult= await C.json();
+
+          let D =  await  fetch(`https://jobs.github.com/positions.json?description=${arrayLocation[i]}&location=remote`)
+          let LocationResult= await D.json();
+
+          let E =  await  fetch(`https://jobs.github.com/positions.json?description=${arrayStack[i]}&location=remote`)
+          let StackResult = await E.json();
+
+          let TotalJobs = RoleResult.concat(RoleResult, LevelResult, TypeResult, LocationResult, StackResult);
+                    
+          return res.status(200).json({
+            TotalRoleJobs:  Object.keys(RoleResult).length,
+            TotalLevelJobs:  Object.keys(LevelResult).length,
+            TotalTypeJobs:  Object.keys(TypeResult).length,
+            TotalLocationJobs:  Object.keys(LocationResult).length,
+            TotalStackJobs:  Object.keys(StackResult).length,
+            TotalJobsCount:  Object.keys(TotalJobs).length,
+            RoleJobs: RoleResult,
+            LevelJobs: LevelResult,
+            TypeJobs: TypeResult,
+            LocationJobs: LocationResult,
+            StackJobs: StackResult,
+            TotalJobs: TotalJobs,
+          });
+        }
+        getUserJobPreference();
+      })
+      .catch(err => {
+        return res.status(500).json(err);
       });
     }
     catch (error) {
-      console.log(error)
-      return res.status(400).send(error);
+      return res.status(500).json(error)
     }
   },
 
