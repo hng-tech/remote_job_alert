@@ -55,15 +55,19 @@ const Jobs = {
       element.custom_url = custom_url;
     });
     //Get the id of the slug that was just formed
-    allMain.forEach(element => {
-      if (slug == element.custom_url) {
-         id = element.id;
-         key = indexOf(element)
-      }
-      // else {
-      //   continue;
-      // }
-    });
+    const singleArr = allMain.filter(element => element.custom_url === slug);
+
+    let id = singleArr.id;
+    
+    // allMain.forEach(element => {
+    //   if (slug == element.custom_url) {
+    //      id = element.id;
+    //      key = indexOf(element)
+    //   }
+    //   // else {
+    //   //   continue;
+    //   // }
+    // });
 
 
     try {
