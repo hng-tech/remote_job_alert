@@ -304,7 +304,7 @@ router.get('/job-preference', isLoggedIn, function(req, res) {
     passport.authenticate('facebook',{
         failureRedirect : '/user-login'}),
         (req, res)=>{
-          console.log("facebook login successful, redirecting to profile")
+          console.log("facebook login successful, redirecting to job Preference")
           res.redirect('/job-preference');
         });
 
