@@ -289,6 +289,8 @@ router.post('/contact', UserController.sendContactAlert);
 // GET User Login page
 router.get("/user-login", Home.userLogin);
 
+router.get("/register", Home.register);
+
 router.get("/auth", function (req, res, next){ 
   res.status(200).render('auth') 
 });
