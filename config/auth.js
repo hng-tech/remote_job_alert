@@ -16,6 +16,6 @@ module.exports = {
 
 };
 
-
-// http://localhost:3020/auth/google/callback'
+// 'https://devalert.me/auth/google/callback'
+// 'http://localhost:3020/auth/google/callback'
 // 'http://localhost:3020/auth/facebook/callback'
