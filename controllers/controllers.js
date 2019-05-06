@@ -105,253 +105,69 @@ const Jobs = {
 
   async fetchPreferredJobs(req, res) {
     try {
-    const { _id } = req.params; 
-    let registeredUser = await registeredUsers.findOne({ _id: _id });
-    if (registeredUser != null) {
-      let RoleData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_role}&location=remote`);
-      let LevelData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_level}&location=remote`);
-      let TypeData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_type}&location=remote`);
-      let LocationData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_location}&location=remote`);
-      let StackData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_stack}&location=remote`);
-      let RoleJobs = await RoleData.json();
-      let LevelJobs = await LevelData.json();
-      let TypeJobs = await TypeData.json();
-      let LocationJobs = await LocationData.json();
-      let StackJobs = await StackData.json();
-      let TotalJobs = RoleJobs.concat(LevelJobs, TypeJobs, LocationJobs, StackJobs);
-    // sendPreferedMailForRemoteJob(RoleJobs, registeredUser);
-
-      return res.status(200).json({
-        TotalRoleJobs:  Object.keys(RoleJobs).length,
-        TotalLevelJobs:  Object.keys(LevelJobs).length,
-        TotalTypeJobs:  Object.keys(TypeJobs).length,
-        TotalLocationJobs:  Object.keys(LocationJobs).length,
-        TotalStackJobs:  Object.keys(StackJobs).length,
-        TotalJobsCount:  Object.keys(TotalJobs).length,
-        RoleJobs: RoleJobs,
-        LevelJobs: LevelJobs,
-        TypeJobs: TypeJobs,
-        LocationJobs: LocationJobs,
-        StackJobs: StackJobs,
-        TotalJobs: TotalJobs,
-      });
-    }
-      return res.status(400).json({
-        status: "invalid input",
-        message: "no such user",
-      });
-    }
-    catch (error) {
-      console.log(error)
-      return res.status(400).send(error);
-    }
-  },
-
-  async fetchPreferredJobs2(req, res) {
-    try {
-    const { _id } = req.params; 
-    let registeredUser = await registeredUsers.findOne({ _id: _id });
-    let pr = registeredUser.prefered_job_role;
-    let ple = registeredUser.prefered_job_level;
-    let pt = registeredUser.prefered_job_type;
-    let plo = registeredUser.prefered_job_location;
-    let ps = registeredUser.prefered_job_stack;
-    let array = pr.split(',');
-    let array2 = ple.split(',');
-    let array3 = pt.split(',');
-    let array4 = plo.split(',');
-    let array5 = ps.split(',');
-    console.log(array);
-    console.log(array2);
-    console.log(array3);
-    console.log(array4);
-    console.log(array5);
-    for(let i=0;i<array.length; i++)
-    for(let i=0;i<array2.length; i++)
-    for(let i=0;i<array3.length; i++)
-    for(let i=0;i<array4.length; i++)
-    for(let i=0;i<array5.length; i++)
-    await  fetch(`https://jobs.github.com/positions.json?description=${array[i]}&location=remote`)
-    .then(response => {
-      const Found = async function (response){
-        try {
-          let F =  await  fetch(`https://jobs.github.com/positions.json?description=${array[i]}&location=remote`)
-          let RoleResult= await F.json();
-          console.log(RoleResult[0].type)  
-          console.log(Object.keys(RoleResult).length)  
-          let Ds =  await  fetch(`${F.url}`)
-        } catch (error) {
-          console.log(error)
-        } 
-      }
-      let G = Found();
-      console.log(Found);
-      }).then(response1 => {
-          const Found1 = async function (response){
-            try {
-              let F =  await  fetch(`https://jobs.github.com/positions.json?description=${array2[i]}&location=remote`)
-              let RoleResult= await F.json();
-              console.log(RoleResult[0].type)  
-            console.log(Object.keys(RoleResult).length)
-            } catch (error) {
-              console.log(error)
-            } 
-          }
-          Found1();
-        }).then(response2 => {
-            const Found2 = async function (response){
-              try {
-                let F =  await  fetch(`https://jobs.github.com/positions.json?description=${array3[i]}&location=remote`)
-                let RoleResult= await F.json();
-                console.log(RoleResult[0].type)  
-                console.log(Object.keys(RoleResult).length)
-              } catch (error) {
-                console.log(error)
-              } 
-            }
-            Found2();
-          }).then(response3 => {
-              const Found3 = async function (response){
-                try {
-                  let F =  await  fetch(`https://jobs.github.com/positions.json?description=${array4[i]}&location=remote`)
-                  let RoleResult= await F.json();
-                  console.log(RoleResult[0].type)  
-                  console.log(Object.keys(RoleResult).length)
-                } catch (error) {
-                  console.log(error)
-                } 
-              }
-              Found3();
-            }).then(response4 => {
-                const Found4 = async function (response){
-                  try {
-                    let F =  await  fetch(`https://jobs.github.com/positions.json?description=${array5[i]}&location=remote`)
-                    let RoleResult= await F.json();
-                    console.log(RoleResult[0].type)  
-                    console.log(Object.keys(RoleResult).length)
-                    return RoleResult;
-
-                  } catch (error) {
-                    console.log(error)
-                  } 
-                }
-                Found4();
-                console.log(Found4)
-              }).then(response5 => {
-                  console.log('hi')
-                  console.log(Found4)  
-                })
-                .catch(error => {
-                return res.json(error)
-              })
-              .catch(error => {
-                return res.json(error)
-            }) 
-            .catch(error => {
-              return res.status(400).json(error)
-          }) 
-        .catch(error => {
-          return res.status(400).json(error)
-        }) 
-      .catch(error => {
-        return res.status(400).json(error)
-      }) 
-    }
-    catch (error) {
-      return res.status(500).json(error)
-    }
-  },
-
-    async fetchPreferredJobs1(req, res) {
-    try {
-    const { _id } = req.params; 
-    let registeredUser = await registeredUsers.findOne({ _id: _id });
-    let pr = registeredUser.prefered_job_role;
-    let ple = registeredUser.prefered_job_level;
-    let pt = registeredUser.prefered_job_type;
-    let plo = registeredUser.prefered_job_location;
-    let ps = registeredUser.prefered_job_stack;
-    let array = pr.split(',');
-    let array2 = ple.split(',');
-    let array3 = pt.split(',');
-    let array4 = plo.split(',');
-    let array5 = ps.split(',');
-    console.log(array);
-    console.log(array2);
-    console.log(array3);
-    console.log(array4);
-    console.log(array5);
-    for(let i=0;i<array.length; i++)
-    for(let i=0;i<array2.length; i++)
-    for(let i=0;i<array3.length; i++)
-    for(let i=0;i<array4.length; i++)
-    for(let i=0;i<array5.length; i++)
-    await  fetch(`https://jobs.github.com/positions.json?description=${array[i]}&location=remote`)
-    .then(response => {
-  async function Okay () {
-          let A =  await  fetch(`https://jobs.github.com/positions.json?description=${array[i]}&location=remote`);
+      const { _id } = req.params; 
+      let registeredUser = await registeredUsers.findOne({ _id: _id });
+      let pr = registeredUser.prefered_job_role;
+      let ple = registeredUser.prefered_job_level;
+      let pt = registeredUser.prefered_job_type;
+      let plo = registeredUser.prefered_job_location;
+      let ps = registeredUser.prefered_job_stack;
+      let arrayRole = pr.split(',');
+      let arrayLevel = ple.split(',');
+      let arrayType = pt.split(',');
+      let arrayLocation = plo.split(',');
+      let arrayStack = ps.split(',');
+      for(let i=0;i<arrayRole.length; i++)
+      for(let i=0;i<arrayLevel.length; i++)
+      for(let i=0;i<arrayType.length; i++)
+      for(let i=0;i<arrayLocation.length; i++)
+      for(let i=0;i<arrayStack.length; i++)
+      await  fetch(`https://jobs.github.com/positions.json?description=${arrayRole[i]}&location=remote`)
+      .then(() => {
+        async function getUserJobPreference () {
+          let A =  await  fetch(`https://jobs.github.com/positions.json?description=${arrayRole[i]}&location=remote`);
           let RoleResult= await A.json();
-          console.log(RoleResult[0].type)  
-          console.log(Object.keys(RoleResult).length)  
-      
-              let B =  await  fetch(`https://jobs.github.com/positions.json?description=${array2[i]}&location=remote`)
-              let RoleResult1= await B.json();
-              console.log(RoleResult1[0].type)  
-            console.log(Object.keys(RoleResult1).length)
+            
+          let B =  await  fetch(`https://jobs.github.com/positions.json?description=${arrayLevel[i]}&location=remote`)
+          let LevelResult= await B.json();
 
-                let C =  await  fetch(`https://jobs.github.com/positions.json?description=${array3[i]}&location=remote`)
-                let RoleResult2= await C.json();
-                console.log(RoleResult2[0].type)  
-                console.log(Object.keys(RoleResult2).length)
+          let C =  await  fetch(`https://jobs.github.com/positions.json?description=${arrayType[i]}&location=remote`)
+          let TypeResult= await C.json();
 
-                  let D =  await  fetch(`https://jobs.github.com/positions.json?description=${array4[i]}&location=remote`)
-                  let RoleResult3= await D.json();
-                  console.log(RoleResult3[0].type)  
-                  console.log(Object.keys(RoleResult3).length)
+          let D =  await  fetch(`https://jobs.github.com/positions.json?description=${arrayLocation[i]}&location=remote`)
+          let LocationResult= await D.json();
 
-                    let E =  await  fetch(`https://jobs.github.com/positions.json?description=${array5[i]}&location=remote`)
-                    let RoleResult4= await E.json();
-                    console.log(RoleResult4[0].type)  
-                    console.log(Object.keys(RoleResult4).length)
-                    // console.log(RoleResult4)  
+          let E =  await  fetch(`https://jobs.github.com/positions.json?description=${arrayStack[i]}&location=remote`)
+          let StackResult = await E.json();
+
+          let TotalJobs = RoleResult.concat(RoleResult, LevelResult, TypeResult, LocationResult, StackResult);
                     
-                   return  RoleResult4;
-                  
-  }
-  let K =  Okay();
-  async function Okay1() {
-    let H = await K;
-    console.log(H);
-    return  RoleResult4;
-  }
+          return res.status(200).json({
+            TotalRoleJobs:  Object.keys(RoleResult).length,
+            TotalLevelJobs:  Object.keys(LevelResult).length,
+            TotalTypeJobs:  Object.keys(TypeResult).length,
+            TotalLocationJobs:  Object.keys(LocationResult).length,
+            TotalStackJobs:  Object.keys(StackResult).length,
+            TotalJobsCount:  Object.keys(TotalJobs).length,
+            RoleJobs: RoleResult,
+            LevelJobs: LevelResult,
+            TypeJobs: TypeResult,
+            LocationJobs: LocationResult,
+            StackJobs: StackResult,
+            TotalJobs: TotalJobs,
+          });
+        }
+        getUserJobPreference();
       })
-      .then(reply =>{
-
-        return res.status(200).json({
-          message: "success"
-        })
-      })
-
+      .catch(err => {
+        return res.status(500).json(err);
+      });
     }
     catch (error) {
-      console.log(error)
       return res.status(500).json(error)
     }
   },
 
-
-  async me(req, res) {
-    try {
-      let data = await fetch("https://jobs.github.com/positions.json?location=remote");
-      let main = await data.json();
-      return res.status(200).json({
-        count: Object.keys(main).length,
-        main
-      });
-    } catch (error) {
-      return res.status(400).send(error);
-    }
-  },
   async fetchSingle(req, res) {
     // I'll be making use of this thank you very much. 
 

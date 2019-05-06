@@ -187,12 +187,11 @@ router.get('/jobs/:job_id', Jobs.fetchSingle);
 router.post('/jobs/:job_id', Jobs.update_job);
 router.get('/jobs/:job_id/delete', Jobs.cancel_job);
 
-router.post('/create_jobs_p', Jobs.create_registered_user);
-router.post('/update_jobs_p/:_id', Jobs.update_registered_user);
-router.get('/view_jobs_p', Jobs.view_all_registered_users);
-router.get('/jobs_p/:_id', Jobs.fetchPreferredJobs);
-router.get('/jobs_p1/:_id', Jobs.fetchPreferredJobs1);
-router.get('/me', Jobs.me);
+// Registered User's Preference Routes
+router.post('/register_user', Jobs.create_registered_user);
+router.post('/update_user/:_id', Jobs.update_registered_user);
+router.get('/view_all_users', Jobs.view_all_registered_users);
+router.get('/fetch_user_preference/:_id', Jobs.fetchPreferredJobs);
 
 //Agent Routes
 router.get('/agents', Agents.get_all_agents);
