@@ -129,12 +129,12 @@
 
               /* job list view*/
 
-              .ci-logo{
-                  height: 72px!important;
-                  width: 72px!important;
-                  margin-top: 7px!important;
+                 .ci-logo{
+                   height: 12vh!important;
+                  width: 9vw!important;
+                  margin-top: 10px!important;
+                  padding-left: 38px;
                 }
-
 
               .ci-card{
                 padding-top: 25px;
@@ -177,11 +177,10 @@
               }
 
 
-              /*.ci-position{
-                
-                margin-top: 70px;
-                margin-left: 100px;
-              }*/
+              .ci-position{
+                padding-left: 90px;
+              }
+
               .ci-pos{
                 position: absolute;
                 bottom: 0;
@@ -189,7 +188,7 @@
 
 
               .ci-title{
-                padding-left: 90px;
+                padding-left: 115px;
 
               }
 
@@ -262,6 +261,9 @@
                 line-height: 28px;
               }
 
+               .ci-position{
+                padding-left: 50px;
+              }
 
                
               }
@@ -269,14 +271,14 @@
               @media (max-width: 992px){
 
                 .ci-logo{
-                  height: 72px!important;
-                  width: 72px!important;
+                  height: 20%!important;
+                  width: 10vw!important;
                   margin-top: 10px!important;
                 }
 
 
               .ci-title{
-                  padding-left: 100px;
+                  padding-left: 120px;
 
                 }
 
@@ -299,7 +301,7 @@
               }
 
               .page-link{
-                   border: none!important;
+                border: none!important;
               }
 
               .ci-btn-secondary{
@@ -324,23 +326,40 @@
                 line-height: 28px;
               }
 
-
-
+                 .ci-position{
+                padding-left: 40px;
               }
 
-              @media (max-width: 766px){
-                .ci-pos{
-                position: relative;
-                width: 100%;
-                bottom: 0;
-                 }
-              }
+
+
+        }
+
+              @media (max-width: 767px){
+
+                   .ci-logo{
+                  height: 70%!important;
+                  width: 30%!important;
+                  margin-top: 10px!important;
+                  bottom: 0!important;
+                }
+
+
+                    .ci-pos{
+                    position: relative;
+                    width: 80%;
+                    bottom: 0;
+                }   
+
+                     .ci-position{
+                       padding-left: 60px;
+                }
+
+         }
 
                 @media (max-width: 776px){
                 
-                .ci-title{
-                  padding-left: 100px;
-
+                    .ci-title{
+                      padding-left: 100px;
                 }
               }
 
@@ -349,9 +368,10 @@
               @media (max-width: 750px){
 
                 .ci-logo{
-                  height: 72px!important;
-                  width: 72px!important;
+                  height: 70%!important;
+                  width: 30%!important;
                   margin-top: 10px!important;
+                  bottom: 0!important;
                 }
 
                 .ci-pos{
@@ -408,10 +428,9 @@
                 margin-left: 0px;
                 width: 84.5vw;
               }
-
-
-}
+           }
    </style>
+
 </head>
 
 
@@ -467,20 +486,11 @@
             <div class="list-group">
                 <a href="#" class="list-group-item  main-title">Job Category </a>
                   <a href="/" class="list-group-item">All Jobs</a>
-                   <a href="/" class="list-group-item"> Backend</a>
-                   <a href="/" class="list-group-item">Design</a>
-                  <a href="/" class="list-group-item"> Frontend </a>
-                 <a href="/" class="list-group-item ci-last">Marketing </a>
+                   <a href="/" class="list-group-item"> Full Time</a>
+                   <a href="/" class="list-group-item">Part Time</a>
+                  <a href="/" class="list-group-item"> Contract </a>
 
             </div>
-
-        <div class="list-group">
-          <a href="#" class="list-group-item main-title">Job Nature </a>
-                     <a href="#" class="list-group-item">Fulltime </a>
-                    <a href="/" class="list-group-item"> Freelance </a>
-                   <a href="/" class="list-group-item ci-last">Intern </a>
-
-        </div>
    </div>
 
 
@@ -513,9 +523,9 @@
                       Shows: <span class="ci-drop">All Jobs</span>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
+                      <a class="dropdown-item" href="#">Full Time</a>
+                      <a class="dropdown-item" href="#">Part Time</a>
+                      <a class="dropdown-item" href="#">Contract</a>
                     </div>
                   </div>
                 </div>

@@ -49,85 +49,17 @@ input[type=text]:focus {
 }
 
 
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: opacity 2s ease, transform 2s ease;
-    width: 480px;
-    height: 140px;
-    display: flex;
-    flex-direction: row;
-}
-
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transform: scale(1.1);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.cad-3 {
-    padding: 2px 16px;
-    float: left;
-}
-
-.card img {
-    width: 38px;
-    height: 38px;
-    margin: 50px 15px 10px 40px;
-    vertical-align: center;
-}
-
-.row-3 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0 -5px;
-}
-
-.left {
-    margin: 0 5px;
-}
-
-.right {
-    margin: 0 5px;
-}
-
 .more-jobs {
     text-align: center;
     color: #11144c;
     font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
-a:link {
-    text-decoration: none;
-}
-
-a:hover {
-    transition: color 1s ease, transform 1s ease;
-    transform: scale(1.1);
-}
-
-.cad-3 p {
-    padding-top: 15px;
-    text-align: left;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 16px;
-    color: #6F7484;
-}
 #Featured-jobs p {
  padding-top: 10px;
 }
-
-.card-head {
-    margin-top: 25px;
-    text-align: left;
-    color: #11144C;
-    font-size: 18px;
-    line-height: 21px;
-}
-
 
 /*Responsive styling when screen is less than 700px */
 
@@ -198,33 +130,37 @@ a:hover {
 		<section id="Featured-jobs">
         <div class="featured-jobs-header">
 			<h1>Featured Jobs</h1>
+		</div>
         <div class="filter-1">
             <form class="featured-form">
               <input type="text" name="search" placeholder="Enter language job of interest...">
             </form>
+         </div>
        <!-- <div class="row"> -->
 			<!---Left column card-->
-        <div class="row-3">
+        <div class="row" style="justify-content: center">
         {{#each (limit contents 8)}}
     
-    	<div class="card col-md-4 offset-md-4 left">
-    		<a href="jobs/featured/{{this.id}}">
+    	<div class="card featureCad col-md-4 offset-md-4 left" style="padding-bottom: 20px">
+    	<div class="container">
+    		<a href="/jobs/featured/{{this.id}}">
         <img src="{{this.image_link}}" alt="google-image">
-      <div class="container cad-3">
-      	
         <h4 class="card-head"><b>{{this.job_title}}</b></h4> 
         <p><ion-icon name="briefcase"></ion-icon>{{this.company_name}}
         <ion-icon name="time"></ion-icon>{{this.career_level}}</p>
+        <input type="hidden" id="min_pay_val" class="min_pay_val" value="{{this.job_pay_min}}">
+        <span id="min_pay" class="min_pay">{{this.job_pay_min}} -- </span>
+        <span id="max_pay">{{this.job_pay_max}}</span>
         </a>
-      </div>
     </div>
+</div>
 
     {{/each}}
     <!-- </div> -->
   <!---Right column--->
 </div>
 
-</div>
+
    <p class="more-jobs"><a href="/jobs">View more jobs <ion-icon name="arrow-forward"></ion-icon></a></p>       
         
 </section>
@@ -300,103 +236,48 @@ a:hover {
 	{{> footer}}
 	<script src="https://js.stripe.com/v3/"></script>
 	<script>
-/*
-		let data = null;
-		function sort_jobs(array, input) {
-			input = input.toLowerCase();
+	let i = 1;
+	$.ajax({
+    url: '/jobs_json',
+    dataType: 'json',
+    success: function(jobData){
+    	for (i=1;i<jobData.length;i++){
 
-			// sort by title
-			var sorted = array.slice().sort((a, b) => {
-				if (a.title.toLowerCase().includes(input) && b.title.toLowerCase().includes(input)) return a.title.localeCompare(b.title);
-				else if (a.title.toLowerCase().includes(input)) return -1;
-				else if (b.title.toLowerCase().includes(input)) return 1;
+    		let min_pay = jobData.job_pay_min[i];
+    		let max_pay = jobData.job_pay_max[i];
 
-				return a.title.localeCompare(b.title);
-			});
-			// sort by desc
-			sorted = array.slice().sort((a, b) => {
-				if (a.description.toLowerCase().includes(input) && b.description.toLowerCase().includes(input)) return a.description.localeCompare(b.description);
-				else if (a.description.toLowerCase().includes(input)) return -1;
-				else if (b.description.toLowerCase().includes(input)) return 1;
+    		$("#converter").change(function() {
+		let currency = $("#converter").val()
+		let url = "https://free.currconv.com/api/v7/convert?compact=ultra&apiKey=c02d6cdb83411b104639&q=USD_"+currency;
 
-				return a.description.localeCompare(b.description);
-			});
+		fetch(url)
+		.then((resp) => resp.json())
+		.then(function(data){
+		console.log(data);
 
-			return sorted;
-		}
-*/
-		function load_data(data, page) {
-			const page_number = parseInt(page);
-			let offset_start = page_number * 9;
-			let jobs = null;
-			let search_key = $("#search-text").val().trim();
-			$("#search-info").html("");
-			if (search_key !== "") {
-				$("#search-info").html(`showing search results for &quot;<span>${search_key}</span>&quot on page ${page_number + 1}`);
-				jobs = sort_jobs(data, search_key);
-				jobs = (jobs.slice(offset_start).length > 9) ? jobs.slice(offset_start, offset_start + 9) : jobs.slice(offset_start);
-			} else {
-				jobs = (data.slice(offset_start).length > 9) ? data.slice(offset_start, offset_start + 9) : data.slice(offset_start);
-			}
-			var jobs_html = "";
-			for (var i = 0; i < jobs.length; i++) {
-				let job_html = `<li data-id="${jobs[i].id}">
-							<a>
-								<img src="${(jobs[i].company_logo) ? jobs[i].company_logo : "images/code2.png"}"
-									class="img-fluid company-image" lazyload="on" />
-							</a>
-							<div>
-								<h2><a href="${jobs[i].company_url}">${jobs[i].title}</a></h2>
-								<p>${jobs[i].description.replace(/<[^>]*>/g, '').substring(0, 100) + "..."}</p>
-								<a data-toggle='modal' data-target='#jobModal' data-id=${jobs[i].id} class="read-more">Read more &rarr;</a>
-							</div>
-						</li>`;
-				jobs_html += job_html;
-			}
+  		if ($("#converter").val()) {
+		prameter = "USD_" + currency;
+		console.log(prameter);
 
+		let converted_unit = data["USD_" + currency];
+		console.log(data["USD_" + currency]);
 
-			$("#content").html(jobs_html); // or some ajax content loading...
-		}
-		/*
-		$("#search-submit").click(function () {
-			load_page(0)
-		})
+		let converted = Math.ceil(converted_unit * min_pay);
+		$("#min_pay").html(converted);
 
-		$("#search-clear").click(function () {
-			$("#search-text").val("");
-			load_page(0)
-		})
+	}
+})
+});
 
-		$("#content").on('click', '.read-more', function () {
-			$("#job-description, #company-name, #job-title").html("loading");
-			let id = $(this).attr("data-id");
+    	}
+    }
+});
+	
+		
 
-			let response = null;
-			for (let i = 0; i < data.length; i++) {
-				if (data[i].id == id) {
-					response = data[i];
-					break;
-				}
-			}
+	
+	
 
-			$("#job-title").html(response.title.toUpperCase() + " - " + response.type)
-			$("#company-name").html(response.company.toUpperCase())
-			let job_description_string = response.company.toUpperCase() + "<br/>Description: " + response.description + "<br/>Location: " + response.location + "<br/>Visit us:" + response.company_url + "<br/>";
-			$("#job-link").attr("href", response.company_url);
-			$("#job-description").html(job_description_string);
-		});
-*/
-		function load_page(page) {
-
-			$("#overlay").addClass("overlay-block")
-			load_data(data, page);
-			$(".page-link.active-link").removeClass("active-link");
-			$(`.page-link[data-number=${page}]`).addClass("active-link");
-			$("#overlay").hide();
-			$('html, body').animate({
-				scrollTop: $("#job-posting").offset().top
-			}, 500);
-		}
 
 		$(function () {
 			var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
@@ -408,41 +289,9 @@ a:hover {
 					// error, display the localized error message to your customer
 					// using `result.error.message`.
 				});
-			})
-/*
-			$.ajax({
-				url: "/jobs_api",
-				type: "get",
-
-				beforeSend: function () {
-					$("#overlay").show();
-				},
-				success: function (response) {
-					data = response;
-					const pages = Math.ceil(data.length / 9.0)
-					let links = "";
-					for (let i = 0; i < pages; i++) {
-						links += `
-							<button class="page-link" data-number=${i} style="display: inline-block;color:black;">${i + 1}</button>
-						`;
-					}
-
-					$("#page-links").html(links);
-					$(".page-link").first().addClass("active-link");
-
-					load_data(data, 0)
-					$("#overlay").hide();
-				}
-			});
-
-			$("#page-links").on('click', '.page-link', function () {
-				let page_num = $(this).attr("data-number");
-				$(".page-link").removeClass("active-link");
-				$(this).addClass("active-link");
-				load_page(page_num);
 			});
 		});
-		*/
+
 	</script>
 	<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
 </body>
