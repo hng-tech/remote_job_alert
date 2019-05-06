@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>{{title}}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Work Sans');
+        .main{
+            background-color: #11144C;
+            color: #FFF;
+        }
+        .banner{
+            text-align: center;
+            background-color: #11144C;
+            height: 200px;
+        }
+        .box{
+            background-color: #FFFFFF;
+            border-radius: 5px;
+            height: 100%;
+            width: 100%;
+        }
+        .note{
+            font-family: Work Sans;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 36px;
+            color: #FFFFFF;
+            width: 765px;
+            height: 40%;
+            margin-top: 150px;
+            margin-bottom: 100px;
+        }
+        .box h3{  
+            font-family: Work Sans;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 36px;
+            text-align: center;
+            color: #11144C;
+            padding-top: 40px;
+            padding-bottom: 25px;
+        }
+        .list{
+            font-family: Work Sans;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 24px;        
+            color: #77777D;
+            width: 85%;
+            padding-left: 0px !important;
+            list-style-type: none;
+            list-style-image: url('https://res.cloudinary.com/dhcrft7yd/image/upload/v1556735583/dot.png');
+        }
+        .item{
+            margin-top: 56px;
+            margin-left: 20px;
+        }
+        .agent img{
+            padding-top: 70px;
+            margin-right: 0px;
+            margin-left:0px;
+            padding-right: 0px;
+        }
+        
+        @media screen and (max-width:768px) {
+            .agent {
+                display: none;
+            }
+        }
+        
+        .agent p{
+            width: 60%;
+            margin-top: 55px;
+            font-family: Work Sans;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 16px;
+            color: #FFF;
+        }
+        .payBtn{
+            background-color: #11144C;
+            color: #FFFFFF;
+            width: 50% !important;
+            height: 60px;
+            border-radius: 5px;
+            border: 0px;
+            font-family: Work Sans;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom:0px;
+            transition: .4s ease all;
+            -webkit-transition: .4s ease all;
+            -moz-transition: .4s ease all;
+        }
+        .payBtn2{
+            background-color: #11144C;
+            color: #FFFFFF;
+            width: 50% !important;
+            height: 60px;
+            border-radius: 5px;
+            border: 0px;
+            font-family: Work Sans;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            transition: .4s ease all;
+            -webkit-transition: .4s ease all;
+            -moz-transition: .4s ease all;
+        }
+        .payBtn:hover{
+            color: #11144C;
+            border: 1px solid #11144C;
+            background-color: #FFFFFF;
+        }
+         .payBtn2:hover{
+            color: #11144C;
+            border: 1px solid #11144C;
+            background-color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+    {{> header}}
+    <div class="main container">
+
+            <div class="d-flex align-items-center justify-content-center">
+                <span style="margin-top: 150px; margin-bottom: 100px; margin-right: 5%"><svg width="10" height="64" viewBox="0 0 10 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="10" height="64" rx="5" fill="white"/>
+                    </svg>
+                </span>
+                <h5 class="note">Congratulations on choosing to begin your remote career with the DevAlert Agent Service!</h5>
+            </div>
+
+        <div class="row">
+            <div class="col-sm-7 ml-0 pl-0 pr-0 mr-0">
+                    <div class="box shadow-lg">
+                            <h3>Why use a DevAlert Agent</h3>
+                            <hr style="width:100%">
+                            
+                            <div>
+                                
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                    <ul class="list">
+                                            <li class="item">Level up your remote career by securing a remote job using one of our agents</li>
+                                            <li class="item">Level up your remote career by securing a remote job using one of our agents</li>
+                                            <li class="item">Level up your remote career by securing a remote job using one of our agents</li>
+                                        </ul>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn payBtn d-flex align-items-center justify-content-center" data-target="#registerModal" data-toggle="modal" style="text-align: center">Make Payment</a>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <a href="/contact" class="btn payBtn2 d-flex align-items-center justify-content-center" data-target="" data-toggle="" style="text-align: center">Contact Support</a>
+                            </div>
+                        </div>        
+            </div>
+            <div class="agent col-sm-5" style="padding-left: 0px; padding-right: 0px">
+                <img src="https://res.cloudinary.com/dhcrft7yd/image/upload/v1556728642/adult-connection-desk-1181524.jpg" class="img-responsive" alt="Agent image" width="100%" height="70%">
+                <div class="d-flex align-items-center justify-content-center">
+                    <p>"It’s simple, easy and quick! I look forward to working with you" - Sandra Pels</p>
+                </div>
+            </div>
+        </div>
+    </div>
+                {{> footer}}
+</body>
+</html>
