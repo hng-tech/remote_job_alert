@@ -188,6 +188,12 @@ router.get('/jobs/:job_id', Jobs.fetchSingle);
 router.post('/jobs/:job_id', Jobs.update_job);
 router.get('/jobs/:job_id/delete', Jobs.cancel_job);
 
+// for registered users
+router.post('/register_user', Jobs.create_registered_user);
+router.post('/update_user/:_id', Jobs.update_registered_user);
+router.get('/view_all_users', Jobs.view_all_registered_users);
+router.get('/fetch_user_preference/:_id', Jobs.fetchPreferredJobs);
+
 //Agent Routes
 router.get('/agents', Agents.get_all_agents);
 router.post('/agents', Agents.create_agent);
