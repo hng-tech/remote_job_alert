@@ -9,23 +9,24 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <title>{{title}}</title>
+    <title>DevAlert | Choose Agent</title>
+    
     <style>
         @import url('https://fonts.googleapis.com/css?family=Work Sans');
         .main{
             background-color: #11144C;
             color: #FFF;
         }
-        .banner{
-            text-align: center;
-            background-color: #11144C;
-            height: 200px;
-        }
         .box{
             background-color: #FFFFFF;
             border-radius: 5px;
             height: 100%;
             width: 100%;
+        }
+        .stroke{
+            margin-top: 150px; 
+            margin-bottom: 100px; 
+            margin-right: 5%;
         }
         .note{
             font-family: Work Sans;
@@ -60,7 +61,7 @@
             list-style-image: url('https://res.cloudinary.com/dhcrft7yd/image/upload/v1556735583/dot.png');
         }
         .item{
-            margin-top: 56px;
+            margin-top: 55px;
             margin-left: 20px;
         }
         .agent img{
@@ -69,10 +70,43 @@
             margin-left:0px;
             padding-right: 0px;
         }
-        
+        .btn-custom {
+            background: #11144c;
+            color: #fff;
+            padding: 10px 10px;
+}
+        .btn-custom:hover {
+            background: #11144c;
+            color: #fff;
+}
         @media screen and (max-width:768px) {
             .agent {
                 display: none;
+            }
+            .note{
+                font-size: 24px !important;
+                margin-top: 0px;
+                margin-bottom: 0px;
+                padding-top: 50px;
+                padding-bottom: 40px;
+            }
+            .box h3{
+                font-size: 26px !important;
+            }
+            .list{
+                font-size: 16px !important;
+                list-style-image: url('https://res.cloudinary.com/dhcrft7yd/image/upload/v1557000232/dotSmall.svg');
+            }
+            .item{
+                margin-top: 45px;
+            }
+            .stroke{
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+            .payBtn{
+                margin-top: 45px !important;
+                margin-bottom: 40px !important;
             }
         }
         
@@ -113,8 +147,8 @@
             font-style: normal;
             font-weight: 600;
             font-size: 20px;
-            margin-top: 10px;
-            margin-bottom: 15px;
+            margin-top: 0px;
+            margin-bottom: 25px;
             transition: .4s ease all;
             -webkit-transition: .4s ease all;
             -moz-transition: .4s ease all;
@@ -136,7 +170,7 @@
     <div class="main container">
 
             <div class="d-flex align-items-center justify-content-center">
-                <span style="margin-top: 150px; margin-bottom: 100px; margin-right: 5%"><svg width="10" height="64" viewBox="0 0 10 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <span class="stroke" style=""><svg width="10" height="64" viewBox="0 0 10 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="10" height="64" rx="5" fill="white"/>
                     </svg>
                 </span>
@@ -168,9 +202,9 @@
                         </div>        
             </div>
             <div class="agent col-sm-5" style="padding-left: 0px; padding-right: 0px">
-                <img src="https://res.cloudinary.com/dhcrft7yd/image/upload/v1556728642/adult-connection-desk-1181524.jpg" class="img-responsive" alt="Agent image" width="100%" height="70%">
+                <img src="https://res.cloudinary.com/dhcrft7yd/image/upload/v1556728642/adult-connection-desk-1181524.jpg" class="img-responsive" alt="Agent image" width="100%" height="60%">
                 <div class="d-flex align-items-center justify-content-center">
-                    <p>"It’s simple, easy and quick! I look forward to working with you" - Sandra Pels</p>
+                    <p style="padding-top:70px">"It’s simple, easy and quick! I look forward to working with you" - Sandra Pels</p>
                 </div>
             </div>
         </div>
