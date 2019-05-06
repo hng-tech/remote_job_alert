@@ -326,7 +326,6 @@ function isLoggedIn(req, res, next) {
     res.redirect('/user-login');
 }
 // GOOGLE ROUTES =======================
-    // =====================================
     // send to google to do the authentication
     // profile gets us their basic information including their name
     // email gets their emails
