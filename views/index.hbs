@@ -2,7 +2,19 @@
 <html lang="en">
 
 <head>
-	<title>{{title}}</title>
+	<meta name="google-site-verification" content="-CJUCQe06hKr7zz5IFIJHiDscVjUL9TRqbqnJK_jCM8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-139612600-1');
+</script>
+
+	<title>DevAlert | Home</title>
 	<style>
 		.view-more {
 			cursor: pointer !important;
@@ -68,7 +80,17 @@ input[type=text]:focus {
     .card {}
 }
 
-
+@media only screen and (min-device-width : 0px) and (max-device-width : 15000px){
+    .marow{
+        padding-left:50px;
+    }
+		}
+@media only screen and (min-device-width : 769px) and (max-device-width : 15000px){
+   
+	  .marow{
+        padding-left:60px;
+ }
+}
 /*End of Styling for featured jobs section*/
 
 
@@ -112,20 +134,7 @@ input[type=text]:focus {
 				</div>
 			</section>
 		</main>
-		<section id="pay-agent">
-			<div class="container">
-				<div class="pay-header">
-					<h1>Pay an agent to apply</h1>
-					<p>Secure the job faster and easier.
-						<br />Let an agent help you apply to get more probability of success
-					</p>
-					<button data-toggle="modal" class="btn btn-custom" data-target="#registerModal">
-						Contact Agent
-					</button>
-				</div>
-			</div>
-		</section>
-
+	<hr style="border:1px  solid #c4c4c4;">
 <!---Featured job section-->
 		<section id="Featured-jobs">
         <div class="featured-jobs-header">
@@ -138,7 +147,7 @@ input[type=text]:focus {
          </div>
        <!-- <div class="row"> -->
 			<!---Left column card-->
-        <div class="row" style="justify-content: center">
+        <div class="row col-sm-12 marow" style="justify-content: center">
         {{#each (limit contents 8)}}
     
     	<div class="card featureCad col-md-4 offset-md-4 left" style="padding-bottom: 20px">
@@ -161,7 +170,20 @@ input[type=text]:focus {
 </div>
 
 
-   <p class="more-jobs"><a href="/jobs">View more jobs <ion-icon name="arrow-forward"></ion-icon></a></p>       
+   <p class="more-jobs"><a href="/jobs">View more jobs <ion-icon name="arrow-forward"></ion-icon></a></p>     
+	 	<section id="pay-agent">
+			<div class="container">
+				<div class="pay-header">
+					<h1>Pay an agent to apply</h1>
+					<p>Secure the job faster and easier.
+						<br />Let an agent help you apply to get more probability of success
+					</p>
+					<button data-toggle="modal" class="btn btn-custom" data-target="#registerModal">
+						Contact Agent
+					</button>
+				</div>
+			</div>
+		</section>  
         
 </section>
 		<!--End of Featured job Section--->

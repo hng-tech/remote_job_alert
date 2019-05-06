@@ -9,6 +9,9 @@ const fetch = require('node-fetch');
 const transporter = nodemailer.createTransport({
   host: 'smtp.zoho.com',
   port: 587,
+  secure: false,
+  ignoreTLS:true,
+  requireTLS:false,
   auth: {
     user: process.env.ZOHO_USER,
     pass: process.env.ZOHO_PASS
