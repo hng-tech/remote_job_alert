@@ -158,8 +158,7 @@ router.get('/contact', Home.contactUs);
 
 
 //Routes for user pages
-// GET User Login page
-router.get("/user-login", Home.userLogin);
+
 
 // GET User Signup page
 //router.get("/user-signup", Home.userSignup);
@@ -276,24 +275,21 @@ router.get('/unsubscribe/:email', UserController.unsubscribeUser);
 router.post('/contact', UserController.sendContactAlert);
 
 
-/* THERE IS A PROBLEM WITH THE BELOW ROUTES, THEY ARE BREAKING THE SITE*/
-
-// GET Job list page
-// router.get('/jobs', Jobs.index);
-
-// // POST Job alerts subscription
-// router.post('/subscribe', Jobs.jobAlertSubscription);
 
 
 /*FACEBOOK AUTH*/
 // GET Social Auth Page
+
+// GET User Login page
+router.get("/user-login", Home.userLogin);
+
 router.get("/auth", function (req, res, next){ 
   res.status(200).render('auth') 
 });
 
 
-router.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.hbs', {
+router.get('/job-preference', isLoggedIn, function(req, res) {
+        res.render('jobPreference.hbs', {
             user : req.user // get the user out of session and pass to template
         });
     });
@@ -303,18 +299,13 @@ router.get('/profile', isLoggedIn, function(req, res) {
       scope : ['public_profile', 'email']
     }));
 
-    // handle the callback after facebook has authenticated the user
-  // router.get('/auth/facebook/callback',
-  //       passport.authenticate('facebook', {
-  //           successRedirect : '/profile',
-  //           failureRedirect : '/'
-  //       }));
+ 
   router.get('/auth/facebook/callback',
     passport.authenticate('facebook',{
-        failureRedirect : '/auth'}),
+        failureRedirect : '/user-login'}),
         (req, res)=>{
           console.log("facebook login successful, redirecting to profile")
-          res.redirect('/profile');
+          res.redirect('/job-preference');
         });
 
     // route for logging out
@@ -332,10 +323,9 @@ function isLoggedIn(req, res, next) {
       if (req.sessionID)
         return next();
     // if they aren't redirect them to the auth page
-    res.redirect('/auth');
+    res.redirect('/user-login');
 }
 // GOOGLE ROUTES =======================
-    // =====================================
     // send to google to do the authentication
     // profile gets us their basic information including their name
     // email gets their emails
@@ -344,8 +334,8 @@ function isLoggedIn(req, res, next) {
     //the callback after google has authenticated the user
     router.get('/auth/google/callback',
     passport.authenticate('google', {
-        successRedirect : '/profile',
-        failureRedirect : '/auth'
+        successRedirect : '/job-preference',
+        failureRedirect : '/user-login'
     }));
 
 
