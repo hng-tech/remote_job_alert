@@ -30,11 +30,32 @@
       background-color: #11144C;
       color: white;
     }
+    .alert{
+      width: 80%;
+      position: absolute;
+      top: 20px;
+      left: 10%;
+      color:#000;
+    }
+
+    .loading-screen{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      display: none;
+      right: 0;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      color: #fff; 
+      z-index: 1000;   
+        
+    }
   </style>
 </head>
 
 <body id="page-top">
-
+  
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -42,12 +63,17 @@
     {{> dashboard_nav }}
 
 <body class="admin_body">
-
+ 
+ <div class="loading-screen align-items-center justify-content-center" id="loading-screen">
+   <i class="fas fa-spinner fa-pulse fa-3x"></i> <span class="ml-2">Sending mail...</span>
+  </div>
   <div id="content-wrapper" class="d-flex flex-column">
 
       <!-- Main Content -->
       <div id="content ">
           <!-- Page Heading -->
+
+          
           <div class="d-sm-flex align-items-center justify-content-center mb-4 dashboard">
             <h1 class="h3 mb-0 text-blue-700">Manage Subscribers</h1>
           </div>
@@ -55,7 +81,10 @@
          <div class="container-fluid">
            <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <p class="mb-4 text-gray-800">This is the Manage Subscribers page for DevAlert</p>
+            <div class="d-flex justify-content-end">
+              <button class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm mr-3" id="sendMail"><i class="fas fa-envelope fa-sm text-white mr2" data-toggle="modal" data-target="#createJobModal" ></i> Send Mail</button>
             <button class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-trash fa-sm text-white mr2" data-toggle="modal" data-target="#createJobModal" ></i> Delete All Subscribers</button>
+            </div>
           </div>
           <div class="card shadow mb-4">
             <div class="card-header py-3 bg-blue">
@@ -142,6 +171,25 @@
 
     $(function () {
 			  load_data();
+
+        $("#sendMail").on("click",function(){
+
+          $('#loading-screen').css("display","flex")
+         $.ajax({
+           url:"/admin/send-mail",
+           async: false,
+           dataType:"JSON",
+           success: function(){
+             $('body').append($(`<div class="alert alert-success">
+    Job alert mail was successfully sent to subscribers
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+  </div>`))
+              $('#loading-screen').css("display","none");
+           }
+         })
+        })
 			});
   </script>
   <script src="js/sb-admin-2.min.js"></script>

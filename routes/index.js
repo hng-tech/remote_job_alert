@@ -277,6 +277,11 @@ router.post(
   UserController.sendMail
 );
 
+router.get("/admin/send-mail",async (req,res) => {
+ UserController.sendMailForRemoteJob().then(() => {
+  res.status(200).json({});
+ }).catch(err => res.status(500).json(err));
+  })
 router.get('/unsubscribe', Home.unsubscribe);
 
 router.get('/unsubscribe_success', Home.unsubscribe_success);
