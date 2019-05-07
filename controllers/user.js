@@ -8,15 +8,8 @@ const fetch = require('node-fetch');
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.zoho.com',
-<<<<<<< HEAD
   port: 465,
   secure: true,
-=======
-  port: 587,
-  secure: false,
-  ignoreTLS:true,
-  requireTLS:false,
->>>>>>> 7a0229d9d6bc8cc7200af092deed073a08c40dde
   auth: {
     user: process.env.ZOHO_USER,
     pass: process.env.ZOHO_PASS
@@ -189,4 +182,5 @@ module.exports = {
   sendMail,
   sendMailForRemoteJob,
   sendContactAlert,
+  sendPreferedMailForRemoteJob
 };
