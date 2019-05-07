@@ -59,9 +59,12 @@ router.post('/admin', function(req, res, next) {
       admin
     ) {
       if (error || !admin) {
-        var err = new Error('Wrong username or password.');
-        err.status = 401;
+        // var err = new Error('Wrong username or password.');
+        // err.status = 401;
         // return next(err);
+        return res.status(401).json({
+                    message: 'Wrong username or password'
+                  });
         req.session.err;
         return res.redirect('/admin');
         // res.render('login', { error: req.session.error });
@@ -97,7 +100,7 @@ router.get('/dashboard', function (req, res, next) {
 // This is generic and could be used anywhere
 router.get('/logout', function(req, res) {
   req.session.destroy();
-  //req.logout();
+  req.logout();
   res.redirect('/');
 });
 
@@ -173,6 +176,13 @@ router.get('/jobs_json', Jobs.get_all_json);
 router.get('/jobs_json/:job_id', Jobs.get_one_json);
 router.get('/jobs_api', Jobs.fetchData);
 router.get('/jobs_api/:slug', Jobs.fetchSingle);
+
+// Fetching jobs by category
+router.get('/all_jobs', Jobs.fetchAllSearchJobs);
+router.get('/part_time_jobs', Jobs.fetchAllFullTimeSearchJobs);
+router.get('/part_time_jobs', Jobs.fetchAllPartTimeSearchJobs);
+router.get('/contract_jobs', Jobs.fetchAllContractSearchJobs);
+router.get('/custom_search/:_id', Jobs.fetchAllCustomSearchJobs);
 
 /* There is an Error in this route, it is crashing the server */
 //router.post('/jobs', Jobs.validate('create'), Jobs.create);
@@ -268,6 +278,11 @@ router.post(
   UserController.sendMail
 );
 
+router.get("/admin/send-mail",async (req,res) => {
+ UserController.sendMailForRemoteJob().then(() => {
+  res.status(200).json({});
+ }).catch(err => res.status(500).json(err));
+  })
 router.get('/unsubscribe', Home.unsubscribe);
 
 router.get('/unsubscribe_success', Home.unsubscribe_success);
