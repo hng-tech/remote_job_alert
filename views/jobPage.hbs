@@ -357,12 +357,12 @@
 
               @media (max-width: 767px){
 
-                  .ci-logo{
-                  height: 20%!important;
-                  width: 10vw!important;
+                .ci-body  .ci-logo{
+                  height: 15%!important;
+                  width: 40%!important;
                   margin-top: 10px!important;
+                  bottom: 0!important;
                 }
-
                     .ci-pos{
                     position: relative;
                     width: 80%;
@@ -388,7 +388,7 @@
 
               .ci-body  .ci-logo{
                   height: 15%!important;
-                  width: 70%!important;
+                  width: 50%!important;
                   margin-top: 10px!important;
                   bottom: 0!important;
                 }
@@ -655,6 +655,30 @@
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+  {{!-- <script>
+     $(document).ready(function () {
+      $("#searchButton").on("click", function () {
+        let value = $("#searchInput").val().toLowerCase();
+        $("#jobTable #contentCard").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+      $("#searchInput").on("keypress", function (e) {
+        if (e.which === 13) {
+          let value = $(this).val().toLowerCase();
+          $("#jobTable #contentCard").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        }
+      });
+    });
+  </script>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  {{!-- <script src="js/bootstrap.bundle.min"></script>
+  <script src="js/bootstrap.min.js"></script> --}} --}}
 </body>
 
 </html>
