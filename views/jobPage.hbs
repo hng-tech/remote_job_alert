@@ -151,11 +151,12 @@
 
               /* job list view*/
 
-                 .ci-logo{
-                   height: 11.5vh!important;
-                  width: 10vw!important;
-                  margin-top: 10px!important;
-                  padding-left: 38px!important;
+                .img-res{
+                width: 300%;
+                max-width: 200px;
+                height: auto;
+                padding-left: 38px!important;
+              }
                 }
 
               .ci-card{
@@ -265,12 +266,12 @@
 
               @media (max-width: 1173px){
 
-                  .ci-body  .ci-logo{
-                   height: 9vh!important;
-                  width: 15vw!important;
-                  margin-top: 10px!important;
-                 
-                }
+                 .img-res{
+                width: 300%;
+                max-width: 200px;
+                height: auto;
+                padding-left: 38px!important;
+              }
 
                 .ci-title{
                 padding-left: 145px;
@@ -306,16 +307,16 @@
               }
 
                @media (max-width: 1024px){
-                            
-                  .ci-body  .ci-logo{
-                   height: 10vh!important;
-                  width: 15vw!important;
-                  margin-top: 10px!important;
-                  padding-left: 20px;
-                }
+                 .img-res{
+                width: 300%;
+                max-width: 200px;
+                height: auto;
+                padding-left: 38px!important;
               }
 
-              @media (max-width: 992px){
+              }
+
+              @media (max-width: 994px){
 
                  .ci-body  .ci-logo{
                    height: 9vh!important;
@@ -323,6 +324,12 @@
                   margin-top: 10px!important;
                  
                 }
+                 .img-res{
+                width: 900%;
+                max-width: 100px;
+                height: auto;
+                
+              }
 
 
               .ci-title{
@@ -383,25 +390,19 @@
         }
 
 
-                @media (max-width: 900px){
-                
-                  .ci-body  .ci-logo{
-                   height: 9vh!important;
-                  width: 15vw!important;
-                  margin-top: 10px!important;
-                  padding-left: 20px;
-                }
+                @media (max-width: 800px){
+
+                 .img-res{
+                width: 1100%;
+                max-width: 200px;
+                height: auto;
+                padding-left: 38px!important;
+              }
               }
 
 
               @media (max-width: 767px){
 
-                .ci-body  .ci-logo{
-                  height: 15%!important;
-                  width: 40%!important;
-                  margin-top: 10px!important;
-                  bottom: 0!important;
-                }
                     .ci-pos{
                     position: relative;
                     width: 80%;
@@ -424,14 +425,6 @@
 
 
               @media (max-width: 750px){
-
-              .ci-body  .ci-logo{
-                  height: 15%!important;
-                  width: 50%!important;
-                  margin-top: 10px!important;
-                  bottom: 0!important;
-                  padding-left: 38px!important;
-                }
 
                 .ci-pos{
                 position: relative;
@@ -571,8 +564,8 @@
 
 
 
-          <div class="">
-            <div class="">
+          <div>
+            <div>
               <div class="col-md-12 ci-card" id="jobTable">
                 <div class="">
                   <h3 class="ci-head">ALL JOBS</h3>
@@ -595,7 +588,7 @@
                     <div class="card-body">
                       <div class="row">
                         <div class="col-md-1 col-sm-12">
-                          <img class="ci-logo" src="{{this.company_logo}}" alt="company_logo">
+                          <img class="ci-log img-res" src="{{this.company_logo}}" alt="company_logo">
                         </div>
                         <div class="col-md-7 ci-title">
                          <a href="jobs/{{this.custom_url}}"><h3>{{this.title}} <br><span class="ci-job-nature">{{this.type}}</span></h3></a> 
@@ -718,7 +711,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   {{!-- <script src="js/bootstrap.bundle.min"></script>
-  <script src="js/bootstrap.min.js"></script> --}} --}}
+  <script src="js/bootstrap.min.js"></script> --}}
 </body>
 
 </html>
