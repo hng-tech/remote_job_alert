@@ -490,5 +490,84 @@ const Jobs = {
       return res.status(400).send(error);
     }
   },
+
+  async fetchAllSearchJobs(req, res) {
+    try {
+      let all = await fetch(`https://jobs.github.com/positions.json?location=remote`)
+      let allJobs = await all.json();
+      return res.status(200).send({
+        status: 'success',
+        TotalJobs: Object.keys(allJobs).length,
+        data: allJobs
+      });
+
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+
+  async fetchAllFullTimeSearchJobs(req, res) {
+    try {
+      let allFullTime = await fetch(`https://jobs.github.com/positions.json?location=remote&full_time=on`)
+      let allFullTimeJobs = await allFullTime.json();
+      return res.status(200).send({
+        status: 'success',
+        TotalJobs: Object.keys(allFullTimeJobs).length,
+        data: allFullTimeJobs
+      });
+
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+
+  async fetchAllPartTimeSearchJobs(req, res) {
+    try {
+      let allPartTime = await fetch(`https://jobs.github.com/positions.json?description=part+time&location=remote`)
+      let allPartTimeJobs = await allPartTime.json();
+      return res.status(200).send({
+        status: 'success',
+        TotalJobs: Object.keys(allPartTimeJobs).length,
+        data: allPartTimeJobs
+      });
+
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  }, 
+
+  async fetchAllContractSearchJobs(req, res) {
+    try {
+      let allContract = await fetch(`https://jobs.github.com/positions.json?description=contract&location=remote`)
+      let allContractJobs = await allContract.json();
+      return res.status(200).send({
+        status: 'success',
+        TotalJobs: Object.keys(allContractJobs).length,
+        data: allContractJobs
+      });
+
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+
+  async fetchAllCustomSearchJobs(req, res) {
+    const { search } = req.params; 
+    try {
+      let allCustom = await fetch(`https://jobs.github.com/positions.json?search=${search}&location=remote`)
+      let allCustomJobs = await allCustom.json();
+      return res.status(200).send({
+        status: 'success',
+        TotalJobs: Object.keys(allCustomJobs).length,
+        data: allCustomJobs
+      });
+
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  }
 };
+
+  
+
 module.exports = Jobs;

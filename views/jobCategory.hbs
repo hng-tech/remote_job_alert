@@ -31,7 +31,8 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb bg-whyt br-0">
                                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">All Jobs</li>
+                                <li class="breadcrumb-item"><a href="/jobs">Jobs</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Full time</li>
                             </ol>
                         </nav>
                     </div>
@@ -40,7 +41,7 @@
 
             {{!-- Main Page --}}
             <div class="bg-whyt py-lg-4 py-3 px-lg-3 px-2 shadow-sm  mt-1 mb-5">
-                <h3 class="text-center b-7 mb-md-5 mb-3 pt-3">Remote Developer Jobs</h3>
+                <h3 class="text-center b-7 mb-md-5 mb-3">Full Time Jobs</h3>
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="kilo__one">
@@ -84,47 +85,75 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-9 mt-lg-0 mt-3" id="jobTable">
-                        {{# each content}}
-                        <div class="job_list_wrapper mb-4 border contentCard">
+                    <div class="col-lg-9 mt-lg-0 mt-3">
+                        <div class="job_list_wrapper mb-4" id="contentCard">
                             <div class="row ">
                                 <div class="col-md-3">
-                                    <img class="img-fluid" src="{{this.company_logo}}" alt="{{this.company}} logo">
+                                    <img class="img-fluid" src="https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbjFqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6303f83c2da4e74c124dfa5bfe3f5bbc5846c91a/left%20field%20labs.jpg" alt="company logo">
                                 </div>
                                 <div class="col-md-6">
-                                    <a href="jobs/{{ this.custom_url }}"><h4 class="b-6 mt-3 mt-lg-0">{{this.title}}</h4></a>
-                                    <p class="text-muted pb-0 mb-1"><i class="fa fa-briefcase mr-1"></i>{{this.type}}</p>
-                                    <p class="text-muted"><i class="fa fa-building mr-1"></i>{{this.company}}</p>
+                                    <a href=""><h4 class="b-6 mt-3 mt-lg-0">Devops Engineer</h4></a>
+                                    <p class="text-muted pb-0 mb-1"><i class="fa fa-briefcase mr-1"></i>Full Time Job</p>
+                                    <p class="text-muted"><i class="fa fa-building mr-1"></i>Company Name</p>
                                 </div>
                                 <div class="col-md-3">
                                     <h6 class="b-7">Pay Range</h6>
-                                    <p class="text-muted"></p>
-                                    <a href="jobs/{{ this.custom_url }}" class="btn br-0 unsub_cancel btn-sm">View details</a>
+                                    <p class="text-muted">$1200</p>
+                                    <a href="" class="btn br-0 unsub_cancel btn-sm">View details</a>
                                 </div>
                             </div>
                         </div>
-                        {{/each}}
-                        <div class="alert alert-info hide" id="infoAlert">
-                          <strong>Sorry!!!,</strong> no job found
+                        <div class="job_list_wrapper mb-4" id="contentCard">
+                            <div class="row ">
+                                <div class="col-md-3">
+                                    <img class="img-fluid" src="https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbjFqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6303f83c2da4e74c124dfa5bfe3f5bbc5846c91a/left%20field%20labs.jpg" alt="company logo">
+                                </div>
+                                <div class="col-md-6">
+                                    <a href=""><h4 class="b-6 mt-3 mt-lg-0">Devops Engineer</h4></a>
+                                    <p class="text-muted pb-0 mb-1"><i class="fa fa-briefcase mr-1"></i>Full Time Job</p>
+                                    <p class="text-muted"><i class="fa fa-building mr-1"></i>Company Name</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <h6 class="b-7">Pay Range</h6>
+                                    <p class="text-muted">$1200</p>
+                                    <a href="" class="btn br-0 unsub_cancel btn-sm">View details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="job_list_wrapper mb-4" id="contentCard">
+                            <div class="row ">
+                                <div class="col-md-3">
+                                    <img class="img-fluid" src="https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbjFqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6303f83c2da4e74c124dfa5bfe3f5bbc5846c91a/left%20field%20labs.jpg" alt="company logo">
+                                </div>
+                                <div class="col-md-6">
+                                    <a href=""><h4 class="b-6 mt-3 mt-lg-0">Devops Engineer</h4></a>
+                                    <p class="text-muted pb-0 mb-1"><i class="fa fa-briefcase mr-1"></i>Full Time Job</p>
+                                    <p class="text-muted"><i class="fa fa-building mr-1"></i>Company Name</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <h6 class="b-7">Pay Range</h6>
+                                    <p class="text-muted">$1200</p>
+                                    <a href="" class="btn br-0 unsub_cancel btn-sm">View details</a>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="job__paginate my-4">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination">
-                                    {{#if buttons.previous}}
                                     <li class="page-item">
-                                    <a class="page-link" href="jobs?page={{buttons.previous}}" aria-label="Previous">
+                                    <a class="page-link" href="#" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                     </li>
-                                    {{/if}}
-                                    {{{helpers.populate_links}}}
-                                    {{#if buttons.next}}
-                                    <a class="page-link" href="jobs?page={{buttons.next}}" aria-label="Next">
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                     </li>
-                                    {{/if}}
                                 </ul>
                             </nav>
                         </div>
@@ -139,26 +168,20 @@
 
   <script>
      $(document).ready(function () {
-   
-      $('#infoAlert').hide();
-        $('#searchInput').keyup(function() {
-            $('.contentCard').hide();
-            $('#infoAlert').css("display", "none");
-            var txt = $('#searchInput').val();
-            var resultCount = 0;
-            $('.contentCard').each(function() {
-                if ($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1) {
-                    $(this).show();
-                    resultCount++;
-                }
-            });
-
-            if (resultCount == 0) {
-                $('#infoAlert').css("display", "block");
-            }
-
+      $("#searchButton").on("click", function () {
+        let value = $("#searchInput").val().toLowerCase();
+        $(" #contentCard").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
-
+      });
+      $("#searchInput").on("keypress", function (e) {
+        if (e.which === 13) {
+          let value = $(this).val().toLowerCase();
+          $("#contentCard").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        }
+      });
     });
   </script>
 
