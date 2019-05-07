@@ -90,13 +90,6 @@
 
 
 
-              /* Filter Bar*/
-              /*.form-control{
-                background:  url(../img/search.png);
-                background-repeat: no-repeat;
-                background-position: right;
-                background-origin: content-box;
-              }*/
               /*Filter Bar*/
               .ci-body .bg-deep{
                 background-color: #11144C !important;
@@ -152,12 +145,12 @@
               /* job list view*/
 
                 .img-res{
-                width: 300%;
+                width: 400%;
                 max-width: 200px;
                 height: auto;
                 padding-left: 38px!important;
               }
-                }
+            
 
               .ci-card{
                 padding-top: 25px;
@@ -166,15 +159,12 @@
                 margin-bottom: 10px;
                 box-shadow: 0px 0px 10px 10px #f3f3f3;
                 background-color: #fff;
-                /*min-height: 300px;*/
                 position: relative;
-
 
               }
 
               .ci-body .card{
                 border: none!important;
-                  /*height: 160px;*/
               }
 
 
@@ -280,13 +270,13 @@
 
 
               .ci-body .list-group{
-                border: 1.5px solid #c4c4c4 ;
+                border: 1.5px solid #c4c4c4;
                 margin-bottom: 10px;
               }
 
               .ci-body .card{
                 border: none!important;
-                  /*height: 230px;*/
+                  
               }
 
               .ci-company{
@@ -317,13 +307,6 @@
               }
 
               @media (max-width: 994px){
-
-                 .ci-body  .ci-logo{
-                   height: 9vh!important;
-                  width: 15vw!important;
-                  margin-top: 10px!important;
-                 
-                }
                  .img-res{
                 width: 900%;
                 max-width: 100px;
@@ -564,9 +547,9 @@
 
 
 
-          <div>
-            <div>
-              <div class="col-md-12 ci-card" id="jobTable">
+          <div class="" >
+            <div class="ci-card">
+              <div class="col-md-12" id="jobTable">
                 <div class="">
                   <h3 class="ci-head">ALL JOBS</h3>
                   <div class="dropdown ci-option">
@@ -588,7 +571,7 @@
                     <div class="card-body">
                       <div class="row">
                         <div class="col-md-1 col-sm-12">
-                          <img class="ci-log img-res" src="{{this.company_logo}}" alt="company_logo">
+                          <img class="img-res" src="{{this.company_logo}}">
                         </div>
                         <div class="col-md-7 ci-title">
                          <a href="jobs/{{this.custom_url}}"><h3>{{this.title}} <br><span class="ci-job-nature">{{this.type}}</span></h3></a> 
@@ -605,6 +588,7 @@
                 {{/each}}
               </div>
             </div>
+
             <div class="row">
               <div class="col-md-0">
 
