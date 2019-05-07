@@ -86,54 +86,20 @@
                         </div>
                     </div>
                     <div class="col-lg-9 mt-lg-0 mt-3">
-                        <div class="job_list_wrapper mb-4">
+                        <div class="job_list_wrapper mb-4" id="contentCard">
                             <div class="row ">
                                 <div class="col-md-3">
                                     <img class="img-fluid" src="https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbjFqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6303f83c2da4e74c124dfa5bfe3f5bbc5846c91a/left%20field%20labs.jpg" alt="company logo">
                                 </div>
                                 <div class="col-md-6">
-                                    <h4 class="b-6 mt-3 mt-lg-0">Devops Engineer</h4>
+                                    <a href=""><h4 class="b-6 mt-3 mt-lg-0">Devops Engineer</h4></a>
                                     <p class="text-muted pb-0 mb-1"><i class="fa fa-briefcase mr-1"></i>Full Time Job</p>
                                     <p class="text-muted"><i class="fa fa-building mr-1"></i>Company Name</p>
                                 </div>
                                 <div class="col-md-3">
                                     <h6 class="b-7">Pay Range</h6>
                                     <p class="text-muted">$1200</p>
-                                    <button class="btn br-0 unsub_cancel btn-sm">View details</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="job_list_wrapper mb-4">
-                            <div class="row ">
-                                <div class="col-md-3">
-                                    <img class="img-fluid" src="https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbjFqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6303f83c2da4e74c124dfa5bfe3f5bbc5846c91a/left%20field%20labs.jpg" alt="company logo">
-                                </div>
-                                <div class="col-md-6">
-                                    <h4 class="b-6 mt-3 mt-lg-0">Devops Engineer</h4>
-                                    <p class="text-muted pb-0 mb-1"><i class="fa fa-briefcase mr-1"></i>Full Time Job</p>
-                                    <p class="text-muted"><i class="fa fa-building mr-1"></i>Company Name</p>
-                                </div>
-                                <div class="col-md-3">
-                                    <h6 class="b-7">Pay Range</h6>
-                                    <p class="text-muted">$1200</p>
-                                    <button class="btn br-0 unsub_cancel btn-sm">View details</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="job_list_wrapper">
-                            <div class="row ">
-                                <div class="col-md-3">
-                                    <img class="img-fluid" src="https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbjFqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6303f83c2da4e74c124dfa5bfe3f5bbc5846c91a/left%20field%20labs.jpg" alt="company logo">
-                                </div>
-                                <div class="col-md-6">
-                                    <h4 class="b-6  mt-3 mt-lg-0">Lorem ipsum dolor sit amet.</h4>
-                                    <p class="text-muted pb-0 mb-1"><i class="fa fa-briefcase mr-1"></i>Part Time Job</p>
-                                    <p class="text-muted"><i class="fa fa-building mr-1"></i>Company Name</p>
-                                </div>
-                                <div class="col-md-3">
-                                    <h6 class="b-7">Pay Range</h6>
-                                    <p class="text-muted">$3000</p>
-                                    <button class="btn br-0 unsub_cancel btn-sm">View details</button>
+                                    <a href="" class="btn br-0 unsub_cancel btn-sm">View details</a>
                                 </div>
                             </div>
                         </div>
@@ -170,14 +136,14 @@
      $(document).ready(function () {
       $("#searchButton").on("click", function () {
         let value = $("#searchInput").val().toLowerCase();
-        $("#jobTable #contentCard").filter(function () {
+        $(" #contentCard").filter(function () {
           $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
       });
       $("#searchInput").on("keypress", function (e) {
         if (e.which === 13) {
           let value = $(this).val().toLowerCase();
-          $("#jobTable #contentCard").filter(function () {
+          $("#contentCard").filter(function () {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
           });
         }
