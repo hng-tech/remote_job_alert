@@ -74,8 +74,13 @@ input[type=text]:focus {
     margin-bottom: 50px;
 }
 
+
 #Featured-jobs p {
  padding-top: 10px;
+}
+
+.row .card {
+	margin: 8px;
 }
 
 /*Responsive styling when screen is less than 700px */
@@ -140,6 +145,7 @@ input[type=text]:focus {
 			</section>
 		</main>
 	<hr style="border:1px  solid #c4c4c4;">
+
 <!---Featured job section-->
 		<section id="Featured-jobs">
         <div class="featured-jobs-header">
@@ -160,15 +166,14 @@ input[type=text]:focus {
          </div>
 				 
        <!-- <div class="row"> -->
-			<!---Left column card-->
         <div class="row col-sm-12 marow" style="justify-content: center">
         {{#each (limit contents 8)}}
-    
+    <!---Left column card-->
     	<div class="card featureCad col-md-4 offset-md-4 left" style="padding-bottom: 20px">
     	<div class="container">
     		<a href="/jobs/featured/{{this.id}}">
         <img src="{{this.image_link}}" alt="google-image">
-        <h4 class="card-head"><b>{{this.job_title}}</b></h4> 
+        <h3 class="card-head"><b>{{this.job_title}}</b></h3> 
 				<p class="job-brief"><b>We are recruiting for the role of a full stack developer.....</b><br><b>Stack:</b> JavaScript || React || HTML.</p> 
 				<p><ion-icon name="briefcase"></ion-icon>{{this.company_name}}
         <ion-icon name="time"></ion-icon>{{this.career_level}}</p>
@@ -178,14 +183,12 @@ input[type=text]:focus {
         </a>
     </div>
 </div>
-
     {{/each}}
     <!-- </div> -->
-  <!---Right column--->
 </div>
+   <p class="more-jobs"><a href="/jobs">View all remote jobs <ion-icon name="arrow-forward"></ion-icon></a></p>     
+	 	<!--End of Featured job Section--->
 
-
-   <p class="more-jobs"><a href="/jobs">View more jobs <ion-icon name="arrow-forward"></ion-icon></a></p>     
 	 	<section id="pay-agent">
 			<div class="container">
 				<div class="pay-header">
@@ -198,10 +201,9 @@ input[type=text]:focus {
 					</button>
 				</div>
 			</div>
-		</section>  
-        
+		</section>    
 </section>
-		<!--End of Featured job Section--->
+	
 
 <!---	
 		<section id="job-posting">
