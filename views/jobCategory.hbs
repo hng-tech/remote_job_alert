@@ -168,20 +168,25 @@
 
   <script>
      $(document).ready(function () {
-      $("#searchButton").on("click", function () {
-        let value = $("#searchInput").val().toLowerCase();
-        $(" #contentCard").filter(function () {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      $('#infoAlert').hide();
+        $('#searchInput').keyup(function() {
+            $('.contentCard').hide();
+            $('#infoAlert').css("display", "none");
+            var txt = $('#searchInput').val();
+            var resultCount = 0;
+            $('.contentCard').each(function() {
+                if ($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1) {
+                    $(this).show();
+                    resultCount++;
+                }
+            });
+
+            if (resultCount == 0) {
+                $('#infoAlert').css("display", "block");
+            }
+
         });
-      });
-      $("#searchInput").on("keypress", function (e) {
-        if (e.which === 13) {
-          let value = $(this).val().toLowerCase();
-          $("#contentCard").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-          });
-        }
-      });
+
     });
   </script>
 
