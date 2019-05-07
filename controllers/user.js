@@ -189,8 +189,4 @@ module.exports = {
   sendMail,
   sendMailForRemoteJob,
   sendContactAlert,
-<<<<<<< HEAD
-=======
-  sendPreferedMailForRemoteJob
->>>>>>> 7a0229d9d6bc8cc7200af092deed073a08c40dde
 };
