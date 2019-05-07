@@ -8,10 +8,8 @@ const fetch = require('node-fetch');
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.zoho.com',
-  port: 587,
-  secure: false,
-  ignoreTLS:true,
-  requireTLS:false,
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.ZOHO_USER,
     pass: process.env.ZOHO_PASS
@@ -69,15 +67,21 @@ async function sendMail(req, res, next) {
   }
 }
 
-async function sendMailForRemoteJob() {
+async function sendMailForRemoteJob(){
   try {
     const last7days = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
     let data = await fetch(
       'https://jobs.github.com/positions.json?location=remote'
     );
     let jobs = await data.json();
-    jobs = jobs.filter(job => new Date(job.created_at) >= last7days);
+    jobs = jobs.filter(job => new Date(job.created_at) >= last7days)
+    .map(job => ({
+      ...job,
+      created_at: new Date(job.created_at).toDateString(),
+      description:job.description.slice(0,200) + " ..."
+    }));
 
+    // res.json({counts:jobs.length,jobs})
     if (jobs.length === 0) {
       return;
     }
@@ -86,15 +90,16 @@ async function sendMailForRemoteJob() {
       .toString();
     const template = hbs.compile(file);
 
+    // Looping through the users email and sending emails to each user throws a timeout error. 
     User.find()
       .cursor()
       .on('data', async function(user) {
         const html = template({ jobs, email: user.email });
         const data = {
-          from: 'Devalert Team <info@devalert.com>',
+          from: 'Devalert Team <info@devalert.me>',
           to: user.email,
           subject: 'New Remote job Alert! ',
-          html: html.replace(/{{email}}/, user.email)
+          html: html
         };
         await transporter.sendMail(data);
       })
@@ -105,6 +110,8 @@ async function sendMailForRemoteJob() {
     console.error(err);
   }
 }
+
+
 
 async function sendContactAlert(req, res, next) {
   try {
