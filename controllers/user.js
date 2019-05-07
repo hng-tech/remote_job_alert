@@ -143,9 +143,37 @@ async function sendContactAlert(req, res, next) {
   }
 }
 
+async function sendPreferedMailForRemoteJob(jobs, user) {
+  try {
+    const file = fs
+      .readFileSync(path.join(__dirname, '../email-templates/remote_job.hbs'))
+      .toString();
+    const template = hbs.compile(file);
+
+    User.find()
+      .cursor()
+      .on('data', async function(user) {
+        const html = template({ jobs, email: user.email });
+        const data = {
+          from: 'Devalert Team <info@devalert.com>',
+          to: user.email,
+          subject: 'New Remote job Alert! ',
+          html: html.replace(/{{email}}/, user.email)
+        };
+        await transporter.sendMail(data);
+      })
+      .on('end', function() {
+        console.log('Done!');
+      });
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 module.exports = {
   unsubscribeUser,
   sendMail,
   sendMailForRemoteJob,
-  sendContactAlert
+  sendContactAlert,
+  sendPreferedMailForRemoteJob
 };

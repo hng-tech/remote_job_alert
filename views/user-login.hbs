@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> DevAlert - login</title>
+    <title> DevAlert - Log In</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
     crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -80,6 +80,11 @@
         .btn{
             width: 60%;
             color: #eee!important;
+            transition:0.3s
+        }
+
+        .btn:hover{
+            background-color: transparent;
         }
 
         .googlebtn{
@@ -87,16 +92,63 @@
             margin-bottom: 3em;
         }
 
+        .googlebtn:hover{
+            color: #DB4437!important;
+            border-color: #DB4437;
+        }
+
         .facebookbtn{
             background-color: darkblue
         }
+        .facebookbtn:hover{
+            border-color: darkblue;
+            color: darkblue!important;
+        }
+
+        @media screen and (max-width: 1024px){
+            .main-inner{
+                width: 65%
+            }
+
+            .main-inner h6{
+                font-size: 16px;
+            }
+        }
+
+        @media screen and (max-width: 768px){
+            .main-inner h6{
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 414px){
+            .main-inner{
+                width: 80%
+            }
+
+            .main-inner h3{
+                font-size: 24px;
+            }
+
+            .main-inner img{
+                width: 40%
+            }
+
+            .main-inner h6{
+                font-size: 12px;
+            }
+
+            .btn{
+                width: 200px
+            }
+}
     </style>
 </head>
 <body>
     <div class="main">
         <div class="main-inner">
             <img src="/images/logo.jpg" alt="DevAlert logo">
-            <h3>Login / Register with: </h3>
+            <h3> Sign In </h3>
             <p>with</p>
             <hr>
             <div class="btns">  
@@ -104,7 +156,7 @@
                 <p class="mb-0">or</p>
                 <a href="/auth/google" class="btn googlebtn mt-2 "><i class="fab fa-google mr-2"></i> Google </a>
             </div>
-            <h6>By Registering or Logging in, you can control the frequency of your mail. Choose the kind of mail you want to receive and rate agents</h6>
+            <h6>You can control the frequency of your mail. Choose the kind of mail you want to receive and also choose agents </h6>
         </div>
     </div>
 </body>

@@ -4,6 +4,15 @@
 <head>
 
   <title>DevAlert | Remote Job Postings</title>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-139612600-1');
+  </script>
 
   <style type="text/css">
    
@@ -448,7 +457,7 @@
   <div class="container ci-bread">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb ci-breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Job Page</li>
           </ol>
         </nav>
@@ -540,12 +549,12 @@
                           <img class="ci-logo" src="{{this.company_logo}}" width="32" height="32">
                         </div>
                         <div class="col-md-7 ci-title">
-                         <a href="jobs/{{this.id}}"><h3>{{this.title}} <br><span class="ci-job-nature">{{this.type}}</span></h3></a> 
+                         <a href="jobs/{{this.custom_url}}"><h3>{{this.title}} <br><span class="ci-job-nature">{{this.type}}</span></h3></a> 
                           <h4 class="ci-company">{{this.company}}</h4>
                         </div>
                         <div class="col-md-4 ci-position">
                           <p class="ci-pay-range">Pay Range</p>
-                          <a href="jobs/{{this.id}}" class="btn btn-outline-primary ci-pos">Read More</a>
+                          <a href="/jobs/{{this.custom_url}}" class="btn btn-outline-primary ci-pos">Read More</a>
                         </div>
                       </div>
                     </div>
