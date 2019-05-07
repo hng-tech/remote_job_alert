@@ -8,8 +8,15 @@ const fetch = require('node-fetch');
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.zoho.com',
+<<<<<<< HEAD
   port: 465,
   secure: true,
+=======
+  port: 587,
+  secure: false,
+  ignoreTLS:true,
+  requireTLS:false,
+>>>>>>> 7a0229d9d6bc8cc7200af092deed073a08c40dde
   auth: {
     user: process.env.ZOHO_USER,
     pass: process.env.ZOHO_PASS
@@ -141,7 +148,7 @@ async function sendContactAlert(req, res, next) {
 
     req.flash(
       'success',
-      'Your message was sent. Our support would reply within 24 hours.'
+      'Your message has been delivered successfully and would be processed. Thank you.'
     );
     res.redirect('/contact');
   } catch (err) {
@@ -150,9 +157,40 @@ async function sendContactAlert(req, res, next) {
   }
 }
 
+async function sendPreferedMailForRemoteJob(jobs, user) {
+  try {
+    const file = fs
+      .readFileSync(path.join(__dirname, '../email-templates/remote_job.hbs'))
+      .toString();
+    const template = hbs.compile(file);
+
+    User.find()
+      .cursor()
+      .on('data', async function(user) {
+        const html = template({ jobs, email: user.email });
+        const data = {
+          from: 'Devalert Team <info@devalert.com>',
+          to: user.email,
+          subject: 'New Remote job Alert! ',
+          html: html.replace(/{{email}}/, user.email)
+        };
+        await transporter.sendMail(data);
+      })
+      .on('end', function() {
+        console.log('Done!');
+      });
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 module.exports = {
   unsubscribeUser,
   sendMail,
   sendMailForRemoteJob,
   sendContactAlert,
+<<<<<<< HEAD
+=======
+  sendPreferedMailForRemoteJob
+>>>>>>> 7a0229d9d6bc8cc7200af092deed073a08c40dde
 };

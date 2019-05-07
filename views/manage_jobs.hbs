@@ -8,6 +8,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  	<!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-139612600-1');
+  </script>
 
   <title>{{title}}</title>
 
@@ -91,7 +100,7 @@
       </div>
 
   <!-- Create Job Modal-->
-  <form action="/jobs" method="POST">
+  <form action="/dashboard" method="POST">
     <div class="modal fade" id="createJobModal" tabindex="-1" role="dialog" aria-labelledby="createJobModalLabel" aria-hidden="true">
       <div class="modal-dialog " role="document">
         <div class="modal-content">
@@ -115,6 +124,9 @@
               <div class="form-group">
                 <input type="email" class="form-control br-0" name="email" placeholder="Email Address" required>
               </div>
+              <div class="form-group">
+                <input type="text" class="form-control br-0" name="slug" placeholder="Enter Slug" required>
+              </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
@@ -130,22 +142,16 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <select name="location" id="" class="form-control br-0" required>
-                      <option selected>Select State</option>
-                      <option value="Abuja">Abuja</option>
-                      <option value="Lagos">Lagos</option>
-                      <option value="Port Harcourt">Port Harcourt</option>
-                      <option value="Ghana">Ghana</option>
-                    </select>
+                    <input type="text" name="location" placeholder="Enter Job Location" class="form-control">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <select name="career_level" id="" class="form-control br-0" required>
-                      <option selected>Choose Experience</option>
-                      <option value="Junior">Junior</option>
-                      <option value="Intermediate">Intermediate</option>
-                      <option value="Expert">Expert</option>
+                    <select name="job_type" id="" class="form-control br-0" required>
+                      <option selected>Choose Job Type</option>
+                      <option value="Junior">Full Time</option>
+                      <option value="Intermediate">Part Time</option>
+                      <option value="Expert">Contract</option>
                     </select>
                   </div>
                 </div>

@@ -11,6 +11,7 @@ var MongoStore = require('connect-mongo')(session);
 require('dotenv').config();
 require('./schedule');
 const passport = require('passport');
+const fx = require('money');
 
 
 // The database setup
@@ -70,7 +71,9 @@ app.use(function(req, res, next) {
 	res.locals.emailError = req.flash('emailError');
 	res.locals.errors = req.flash('errors');
 	res.locals.paymentError = req.flash('paymentError');
-	res.locals.payment = req.flash('payment');
+  res.locals.payment = req.flash('payment');
+  res.locals.adminError = req.flash('adminError');
+	res.locals.adminSuccess = req.flash('adminSuccess');
 	next();
 });
 

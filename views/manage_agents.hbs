@@ -8,6 +8,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  	<!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-139612600-1');
+    </script>
 
   <title>{{title}}</title>
 
@@ -53,9 +62,10 @@
           </div>
           
          <div class="container-fluid">
+           {{> adminMessage }}
            <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <p class="mb-4 text-gray-800">This is the Manage Agents page for DevAlert</p>
-            <button class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-trash fa-sm text-white-50" data-toggle="modal" data-target="#createJobModal" ></i> Delete all agents</button>
+            <button class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" onclick="DeleteAll()"><i class="fas fa-trash fa-sm text-white-50" data-toggle="modal" data-target="#createJobModal" ></i> Delete All Agents</a></button>
           </div>
           <div class="card shadow mb-4">
             <div class="card-header py-3 bg-blue">
@@ -113,8 +123,9 @@
                                                 + '</td><td>'
                                                 + data.phone_number
                                                 + '</td><td>'                                               
-                                               + '<a href="/delete_one_email_subscriber/:_{{this.id}}" class="btn br-0 btn-danger btn-sm t-11"><i class="fa fa-trash"></i> Delete</a>'
-                                                + '</td></tr>'
+                                               {{!-- + `<a href="/delete_one_agent/${data._id}" class="btn br-0 btn-danger btn-sm t-11"><i class="fa fa-trash"></i> Delete</a>` --}}
+                                              + `<button class="btn br-0 btn-danger btn-sm t-11" onclick="Delete('${data._id}')"><i class="fa fa-trash"></i> Delete</button>`
+                                             + '</td></tr>'
                                      table.appendChild(tr);
             }
           )
@@ -128,6 +139,22 @@
 			}); 
   </script>
   <script src="js/sb-admin-2.min.js"></script>
+   <script>
+                    function Delete(id) {
+                      if (confirm("This will delete the agent permanently")) {
+                          location.href = `/delete_one_agent/${id}`;
+                      } else {
+                          txt = "You pressed Cancel!";
+                      }
+                    }
+                     function DeleteAll() {
+                      if (confirm("This will delete the All Agents Permanently")) {
+                          location.href = `/delete_all_agents`;
+                      } else {
+                          txt = "You pressed Cancel!";
+                      }
+                    }
+                </script>
   <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 </body>
 </html>
