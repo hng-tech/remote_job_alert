@@ -282,7 +282,6 @@ router.post('/contact', UserController.sendContactAlert);
 
 
 /*FACEBOOK AUTH*/
-// GET Social Auth Page
 
 // GET User Login page
 router.get("/user-login", Home.userLogin);
@@ -290,7 +289,6 @@ router.get("/user-login", Home.userLogin);
 // router.get("/auth", function (req, res, next){ 
 //   res.status(200).render('auth') 
 // });
-
 router.get('/job-preference', isLoggedIn, function(req, res) {
         res.render('jobPreference.hbs', {
             user : req.user // get the user out of session and pass to template
