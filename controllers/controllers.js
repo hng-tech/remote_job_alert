@@ -1,3 +1,5 @@
+/*jshint esversion: 8 */
+
 const db = require("./promise").Db;
 const validateQueryText = require("../validation/controller");
 const fetch = require("node-fetch");
@@ -13,11 +15,48 @@ const Paystack = require('./paystack');
 const session = require('./stripe');
 const Applicant = require('./applicant');
 
-function search_common(needle, haystack){
+// Null placeholder till promise returns a value
+var remote_jobs = null;
+
+// trick function to store Promise value
+function load_data(data) {
+  remote_jobs = data;
+}
+
+// Get all the data
+const getData = async () => {
+  try {
+    const response = await fetch("https://jobs.github.com/positions.json?location=remote");
+    const json = await response.json();
+    
+    // Parse and produce unique slug -- custom-url
+    json.forEach(element => {
+      let title = element.title;
+      let company = element.company;
+      let url = title + ' ' + company;
+      let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\'\|\@\%\&\*]/g;
+      let custom_url = url.toLowerCase().replace(regex, '-');
+      element.custom_url = custom_url;
+    });
+
+    // sneak and load up our global variable
+    load_data(json);
+
+  } catch (error) {
+    // catch @Prismatic. He's an error
+    console.log(error);
+  }
+};
+
+// fire! Promise fire!
+getData();
+
+// searches for common needles in a an array. Don't touch
+function search_common(needle, haystack) {
   let key_languages = "";
-  for (let i = 0; i < haystack.length; i++){
-    if (needle.includes(haystack[i])){
-      key_languages += haystack[i] + " ";
+  for (let i = 0, n = haystack.length; i < n; i++) {
+    if (needle.includes(haystack[i])) {
+      key_languages += haystack[i] + ", ";
     }
   }
   return key_languages;
@@ -25,8 +64,9 @@ function search_common(needle, haystack){
 
 const Jobs = {
   async fetchData(req, res) {
-    let data = await fetch("https://jobs.github.com/positions.json?location=remote");
-    let main = await data.json();
+    
+    let main = JSON.parse(JSON.stringify(remote_jobs));
+
     if (req.query.country) {
       const search = main.filter((country) => {
         return country.location.indexOf(req.query.country) > -1;
@@ -160,48 +200,63 @@ const Jobs = {
   },
 
   async fetchSingle(req, res) {
-    // I'll be making use of this thank you very much. 
 
-    // @Albert, Welcome home!
-    let id = req.params.job_id;
-
+    let slug = req.params.slug
+    let single_job = null;
 
     try {
-      let data = await fetch("https://jobs.github.com/positions/" + id + ".json");
+      
+      let main = JSON.parse(JSON.stringify(remote_jobs));
 
-      let main = await data.json();
+      for (let i = 0; i < main.length; i++){
+        if (slug == main[i].custom_url) {
+          single_job = main[i];
+          break;
+        }
+      };
 
-      let similar_data_query = "https://jobs.github.com/positions.json?description=" + encodeURIComponent(main.title.replace(/[^a-zA-Z-_]/g, ' ').slice(0, 10));
+      let common_tech = ["python", "es6", "ruby", "c#", "java ", " C ", "c++", "php", "javascript", "css", "html", "swift", "git", "azure", "docker", "sql", "asp.net", ".net", "asp", "rest", "react", "ios", "android", "vagrant", "trello", " R ", "Linux", "Angular", "Node"];
 
-      let similar_data = await fetch(similar_data_query);
+      let key_tech = search_common(single_job.description.toLowerCase(), common_tech);
 
-      let sub_data = await similar_data.json();
+      let sortquery = key_tech.trim().split(", ");
 
-      sub_data = sub_data.filter(function (job) {
-        if (job.id !== main.id) {
+      for (let i = 0; i < sortquery.length; i++){
+        main.sort(function (a, b) {
+          var A = a.description, B = b.description;
+          if (A.includes(sortquery[i])) {
+            return 1;
+          } else if (B.includes(sortquery[i])) {
+            return -1;
+          }
+        });
+      }
+
+      let sub_data = main.filter(function (job) {
+        if (job.id !== single_job.id) {
           job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+          let url = job.title + ' ' + job.company;
+          let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\'\|\@\%\&\*]/g;
+          let custom_url = url.toLowerCase().replace(regex, '-');
+          job.custom_url = custom_url;
           return job;
         }
       }).slice(0, 3);
 
-      let common_tech = ["python", "es6", "ruby", "c#", "java", " C ", "C++", "php", "javascript", "css", "html", "swift", "git", "azure", "docker", "sql", "asp.net", ".net", "asp", "rest"];
-      
-      let key_tech = search_common(main.description.toLowerCase(), common_tech);
+      let summary = single_job.description.slice(0, single_job.description.indexOf("</p>", 100));
 
-      let summary = main.description.slice(0, main.description.indexOf("</p>", 50));
-
-      main.description = main.description.slice(summary.length);
+      single_job.description = single_job.description.slice(summary.length);
 
       const stripeSession = await session;
 
       // some jobs have no image
-      main.company_logo = (!main.company_logo) ? "/images/no_job_image.jpg" : main.company_logo;
+      single_job.company_logo = (!single_job.company_logo) ? "/images/no_job_image.jpg" : single_job.company_logo;
 
       return res.status(200).render('singleJob', {
-        content: main,
+        content: single_job,
         summary: summary,
-        keytech: key_tech,
-        title: main.title,
+        keytech: key_tech + "...",
+        title: single_job.title,
         similar_jobs: sub_data,
         sessionId: stripeSession.id
       })
@@ -210,8 +265,13 @@ const Jobs = {
     }
   },
   async get_api_jobs(req, res) {
-    let data = await fetch("https://jobs.github.com/positions.json?location=remote");
-    let main = await data.json();
+
+    let main = JSON.parse(JSON.stringify(remote_jobs));
+
+    main.slice().map(function (job) {
+      job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+      return job;
+    });
 
     // So your narcissistic a$$ can change it easily
     let jobs_per_page = 7;
@@ -247,9 +307,9 @@ const Jobs = {
           links = "";
           for (let i = 0; i < pages; i++) {
             if (page == i + 1)
-              links += `<li class="page-item active"><a class="page-link" href="jobs?page=${i+1}">${i+1}</a></li>`
+              links += `<li class="page-item active"><a class="page-link" href="jobs?page=${i + 1}">${i + 1}</a></li>`
             else
-              links += `<li class="page-item"><a class="page-link" href="jobs?page=${i+1}">${i+1}</a></li>`
+              links += `<li class="page-item"><a class="page-link" href="jobs?page=${i + 1}">${i + 1}</a></li>`
           }
           return links;
         },
@@ -420,5 +480,84 @@ const Jobs = {
       return res.status(400).send(error);
     }
   },
+
+  async fetchAllSearchJobs(req, res) {
+    try {
+      let all = await fetch(`https://jobs.github.com/positions.json?location=remote`)
+      let allJobs = await all.json();
+      return res.status(200).send({
+        status: 'success',
+        TotalJobs: Object.keys(allJobs).length,
+        data: allJobs
+      });
+
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+
+  async fetchAllFullTimeSearchJobs(req, res) {
+    try {
+      let allFullTime = await fetch(`https://jobs.github.com/positions.json?location=remote&full_time=on`)
+      let allFullTimeJobs = await allFullTime.json();
+      return res.status(200).send({
+        status: 'success',
+        TotalJobs: Object.keys(allFullTimeJobs).length,
+        data: allFullTimeJobs
+      });
+
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+
+  async fetchAllPartTimeSearchJobs(req, res) {
+    try {
+      let allPartTime = await fetch(`https://jobs.github.com/positions.json?description=part+time&location=remote`)
+      let allPartTimeJobs = await allPartTime.json();
+      return res.status(200).send({
+        status: 'success',
+        TotalJobs: Object.keys(allPartTimeJobs).length,
+        data: allPartTimeJobs
+      });
+
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  }, 
+
+  async fetchAllContractSearchJobs(req, res) {
+    try {
+      let allContract = await fetch(`https://jobs.github.com/positions.json?description=contract&location=remote`)
+      let allContractJobs = await allContract.json();
+      return res.status(200).send({
+        status: 'success',
+        TotalJobs: Object.keys(allContractJobs).length,
+        data: allContractJobs
+      });
+
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+
+  async fetchAllCustomSearchJobs(req, res) {
+    const { search } = req.params; 
+    try {
+      let allCustom = await fetch(`https://jobs.github.com/positions.json?search=${search}&location=remote`)
+      let allCustomJobs = await allCustom.json();
+      return res.status(200).send({
+        status: 'success',
+        TotalJobs: Object.keys(allCustomJobs).length,
+        data: allCustomJobs
+      });
+
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  }
 };
+
+  
+
 module.exports = Jobs;
