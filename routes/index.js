@@ -177,6 +177,8 @@ router.get('/jobs_json/:job_id', Jobs.get_one_json);
 router.get('/jobs_api', Jobs.fetchData);
 router.get('/jobs_api/:slug', Jobs.fetchSingle);
 
+router.get('/jobs/category', Home.category);
+
 // Fetching jobs by category
 router.get('/all_jobs', Jobs.fetchAllSearchJobs);
 router.get('/part_time_jobs', Jobs.fetchAllFullTimeSearchJobs);
