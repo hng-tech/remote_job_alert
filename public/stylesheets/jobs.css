@@ -21,6 +21,10 @@
     font-size: 88%
 }
 
+.job__paginate{
+    padding-left: 20vw;
+}
+
 .bg-deep{
     background: #11144c;
 }
@@ -32,3 +36,10 @@
 #searchInput:focus{
     box-shadow: none
 }
+
+ @media (max-width: 767px){
+                .job__paginate{
+                    padding-left: 15vw;
+                }
+                 
+            }
