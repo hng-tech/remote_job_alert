@@ -20,6 +20,7 @@
                 margin: 0;
                 line-height: 1.6rem;
                 box-sizing: border-box;
+                overflow-x: hidden;
               }
 
               #fullTime:hover {
@@ -72,7 +73,7 @@
 
               .ci-body .list-group{
                 border: 1px solid #c4c4c4;
-                margin-bottom: 10px;
+                margin-bottom: 20px;
                 box-shadow: 2px 7px 12px 10px #f3f3f3;
               }
 
@@ -154,7 +155,7 @@
                    height: 11.5vh!important;
                   width: 10vw!important;
                   margin-top: 10px!important;
-                  padding-left: 38px;
+                  padding-left: 38px!important;
                 }
 
               .ci-card{
@@ -259,8 +260,23 @@
               }
 
 
+             
+
 
               @media (max-width: 1173px){
+
+                  .ci-body  .ci-logo{
+                   height: 9vh!important;
+                  width: 15vw!important;
+                  margin-top: 10px!important;
+                 
+                }
+
+                .ci-title{
+                padding-left: 145px;
+
+              }
+
 
               .ci-body .list-group{
                 border: 1.5px solid #c4c4c4 ;
@@ -289,12 +305,23 @@
                
               }
 
+               @media (max-width: 1024px){
+                            
+                  .ci-body  .ci-logo{
+                   height: 10vh!important;
+                  width: 15vw!important;
+                  margin-top: 10px!important;
+                  padding-left: 20px;
+                }
+              }
+
               @media (max-width: 992px){
 
-                .ci-logo{
-                  height: 20%!important;
-                  width: 10vw!important;
+                 .ci-body  .ci-logo{
+                   height: 9vh!important;
+                  width: 15vw!important;
                   margin-top: 10px!important;
+                 
                 }
 
 
@@ -355,6 +382,18 @@
 
         }
 
+
+                @media (max-width: 900px){
+                
+                  .ci-body  .ci-logo{
+                   height: 9vh!important;
+                  width: 15vw!important;
+                  margin-top: 10px!important;
+                  padding-left: 20px;
+                }
+              }
+
+
               @media (max-width: 767px){
 
                 .ci-body  .ci-logo{
@@ -391,6 +430,7 @@
                   width: 50%!important;
                   margin-top: 10px!important;
                   bottom: 0!important;
+                  padding-left: 38px!important;
                 }
 
                 .ci-pos{
@@ -410,7 +450,7 @@
               }
 
               .ci-nav{
-                padding-left: 5px;
+                padding-left: 15px;
                 margin-bottom: 70px;
               }
 
@@ -555,7 +595,7 @@
                     <div class="card-body">
                       <div class="row">
                         <div class="col-md-1 col-sm-12">
-                          <img class="ci-logo" src="{{this.company_logo}}">
+                          <img class="ci-logo" src="{{this.company_logo}}" alt="company_logo">
                         </div>
                         <div class="col-md-7 ci-title">
                          <a href="jobs/{{this.custom_url}}"><h3>{{this.title}} <br><span class="ci-job-nature">{{this.type}}</span></h3></a> 
