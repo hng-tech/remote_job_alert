@@ -273,15 +273,6 @@ const Jobs = {
       return job;
     });
 
-    //FE come and take your work ;(
-    main.forEach(element => {
-      let title = element.title;
-      let company = element.company;
-      let url = title + ' ' + company;
-      let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\'\|\@\%\&\*]/g;
-      let custom_url = url.toLowerCase().replace(regex, '-');
-      element.custom_url = custom_url;
-    });
     // So your narcissistic a$$ can change it easily
     let jobs_per_page = 7;
 
@@ -510,7 +501,8 @@ const Jobs = {
     try {
       let allFullTime = await fetch(`https://jobs.github.com/positions.json?location=remote&full_time=on`)
       let allFullTimeJobs = await allFullTime.json();
-      return res.status(200).send({
+      return res.status(200).render('jobCategory', {
+        name: "Full Time",
         status: 'success',
         TotalJobs: Object.keys(allFullTimeJobs).length,
         data: allFullTimeJobs
@@ -525,7 +517,8 @@ const Jobs = {
     try {
       let allPartTime = await fetch(`https://jobs.github.com/positions.json?description=part+time&location=remote`)
       let allPartTimeJobs = await allPartTime.json();
-      return res.status(200).send({
+      return res.status(200).render('jobCategory', {
+        name: "Part Time",
         status: 'success',
         TotalJobs: Object.keys(allPartTimeJobs).length,
         data: allPartTimeJobs
@@ -540,7 +533,8 @@ const Jobs = {
     try {
       let allContract = await fetch(`https://jobs.github.com/positions.json?description=contract&location=remote`)
       let allContractJobs = await allContract.json();
-      return res.status(200).send({
+      return res.status(200).render('jobCategory', {
+        name: "Contract",
         status: 'success',
         TotalJobs: Object.keys(allContractJobs).length,
         data: allContractJobs
