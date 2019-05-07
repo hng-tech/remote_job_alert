@@ -20,3 +20,15 @@
 .job_list_wrapper p{
     font-size: 88%
 }
+
+.bg-deep{
+    background: #11144c;
+}
+
+.hide{
+    display: none
+}
+
+#searchInput:focus{
+    box-shadow: none
+}
