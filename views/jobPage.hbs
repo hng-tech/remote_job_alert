@@ -22,6 +22,17 @@
                 box-sizing: border-box;
               }
 
+              #fullTime:hover {
+                cursor: pointer;
+              }
+              #partTime:hover {
+                cursor: pointer;
+              }
+
+              #contract:hover {
+                cursor: pointer;
+              }
+
               /* Page Title*/
               .ci-body #ci-header h1{
                 font-style: normal;
@@ -492,11 +503,11 @@
           </div>
        
             <div class="list-group">
-                <a href="#" class="list-group-item  main-title">Job Category </a>
-                  <a href="/" class="list-group-item">All Jobs</a>
-                   <a href="/" class="list-group-item"> Full Time</a>
-                   <a href="/" class="list-group-item">Part Time</a>
-                  <a href="/" class="list-group-item"> Contract </a>
+                <a class="list-group-item  main-title">Job Category </a>
+                  <a href=" " class="list-group-item">All Jobs</a>
+                   <a class="list-group-item" id="fullTime"> Full Time</a>
+                   <a class="list-group-item" id="partTime">Part Time</a>
+                  <a class="list-group-item" id="contract"> Contract </a>
 
             </div>
    </div>
@@ -508,11 +519,10 @@
 
           <div class="row">
              <div class="col-md-12 col-sm-12 ci-search">
-                <div class="input-group mb-4">
-                <input id="searchInput" type="search" class="form-control"
-                  placeholder="Search with Keyword, Location, company">
-                <div class="input-group-prepend">
-                  <div class="input-group-text bg-deep" id="searchButton"><i class="fa fa-search search-white"></i>
+                 <div class="input-group mb-4">
+                    <input id="searchInput"  type="search" class="form-control"  placeholder="Search with Keyword, Location, company">
+                  <div class="input-group-prepend">
+                      <div class="input-group-text bg-deep" id="searchButton"><i class="fa fa-search search-white"></i></div>
                   </div>
                  </div>
                 
@@ -540,7 +550,7 @@
                 </div>
 
                 {{# each content}}
-                <div class="ci-card " id="contentCard">
+                <div class="ci-card" id="contentCard">
                   <div class="card">
                     <div class="card-body">
                       <div class="row">
@@ -601,8 +611,51 @@
     </div>
   </section>
   {{> footer}}
-
   <script>
+    $(document).ready(function () {
+      $("#searchButton").on("click", function () {
+        let value = $("#searchInput").val().toLowerCase();
+        $("#jobTable #contentCard").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+      $("#searchInput").on("keypress", function (e) {
+        if (e.which === 13) {
+          let value = $(this).val().toLowerCase();
+          $("#jobTable #contentCard").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        }
+      });
+      
+      $("#fullTime").on("click", function () {
+        const job = "Full Time";
+        const value = job.toLowerCase();
+        $("#jobTable #contentCard").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+
+      $("#partTime").on("click", function () {
+        const job = "Part Time";
+        const value = job.toLowerCase();
+        $("#jobTable #contentCard").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+
+      $("#contract").on("click", function () {
+        const job = "Contract";
+        const value = job.toLowerCase();
+        $("#jobTable #contentCard").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+  {{!-- <script>
      $(document).ready(function () {
       $("#searchButton").on("click", function () {
         let value = $("#searchInput").val().toLowerCase();
@@ -625,7 +678,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   {{!-- <script src="js/bootstrap.bundle.min"></script>
-  <script src="js/bootstrap.min.js"></script> --}}
+  <script src="js/bootstrap.min.js"></script> --}} --}}
 </body>
 
 </html>

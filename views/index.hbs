@@ -4,22 +4,23 @@
 <head>
 	<meta name="google-site-verification" content="-CJUCQe06hKr7zz5IFIJHiDscVjUL9TRqbqnJK_jCM8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-139612600-1');
-</script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-139612600-1');
+	</script>
 
 	<title>DevAlert | Home</title>
 	<style>
 		.view-more {
 			cursor: pointer !important;
 		}
+
 		/*Styling for featured jobs section*/
 
 #homepage #Featured-jobs .featured-jobs-header h1 {
@@ -95,15 +96,33 @@ input[type=text]:focus {
         padding-left:50px;
     }
 		}
-@media only screen and (min-device-width : 769px) and (max-device-width : 15000px){
-   
-	  .marow{
-        padding-left:60px;
- }
-}
-/*End of Styling for featured jobs section*/
 
+		#Featured-jobs p {
+			padding-top: 10px;
+		}
 
+		/*Responsive styling when screen is less than 700px */
+
+		@media screen and (max-width: 700px) {
+			.row {}
+
+			.card {}
+		}
+
+		@media only screen and (min-device-width : 0px) and (max-device-width : 15000px) {
+			.marow {
+				padding-left: 50px;
+			}
+		}
+
+		@media only screen and (min-device-width : 769px) and (max-device-width : 15000px) {
+
+			.marow {
+				padding-left: 60px;
+			}
+		}
+
+		/*End of Styling for featured jobs section*/
 	</style>
 </head>
 
@@ -135,6 +154,30 @@ input[type=text]:focus {
 										</div>
 									</div>
 								</form>
+								<div class="input-group">
+									{{#each errors}}
+									<div class="alert alert-danger alert-dismissible fade show" role="alert">
+										<strong>{{msg}}</strong>
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									{{/each}} {{#if emailError}}
+									<div class="alert alert-warning alert-dismissible fade show">
+										<strong>{{emailError}}</strong>
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									{{/if}} {{#if success}}
+									<div class="alert alert-success alert-dismissible fade show">
+										<strong>{{success}}</strong>
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									{{/if}}
+								</div>
 							</div>
 							<div class="col-sm-12 col-md-6 intro-img d-flex justify-content-center align-items-center">
 								<img src="images/introimg.jpg" width="300" />
@@ -205,7 +248,7 @@ input[type=text]:focus {
 </section>
 	
 
-<!---	
+		<!---	
 		<section id="job-posting">
 			<div class="job-header">
 				<h1>Job Postings</h1>
@@ -237,100 +280,100 @@ input[type=text]:focus {
 		</section>
 	</div>
 -->
-	<!--- JOB LISTING MODAL -->
-	<div style="width: 100%;" class="modal fade" id="jobModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content" style="text-align: left;">
-				<div class="modal-body" id="job-details" style="overflow-y:scroll; height: 85vh;">
-					<button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h3 class="mt-4">Job Details</h3>
-					<div class="row mt-4">
-						<div class="col-md-6">
-							<p class="font-weight-bold">Job Title</p>
-							<h6 id="job-title"></h6>
-						</div>
-						<div class="col-md-6">
-							<p class="font-weight-bold">Company</p>
-							<h6 id="company-name"></h6>
+		<!--- JOB LISTING MODAL -->
+		<div style="width: 100%;" class="modal fade" id="jobModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content" style="text-align: left;">
+					<div class="modal-body" id="job-details" style="overflow-y:scroll; height: 85vh;">
+						<button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h3 class="mt-4">Job Details</h3>
+						<div class="row mt-4">
+							<div class="col-md-6">
+								<p class="font-weight-bold">Job Title</p>
+								<h6 id="job-title"></h6>
+							</div>
+							<div class="col-md-6">
+								<p class="font-weight-bold">Company</p>
+								<h6 id="company-name"></h6>
 
+							</div>
 						</div>
-					</div>
-					<div class="mt-4">
-						<hr>
-						<p id="job-description" class="text-muted"></p>
-					</div>
+						<div class="mt-4">
+							<hr>
+							<p id="job-description" class="text-muted"></p>
+						</div>
 
-					<a href="#registerModal" data-toggle="modal" data-dismiss="modal"
-						style="margin: 0 auto; background: #11144C; color: #fff;" class="btn mt-4 px-4">Hire
-						Agent</a><br /><br />
+						<a href="#registerModal" data-toggle="modal" data-dismiss="modal"
+							style="margin: 0 auto; background: #11144C; color: #fff;" class="btn mt-4 px-4">Hire
+							Agent</a><br /><br />
+
+					</div>
 
 				</div>
-
 			</div>
 		</div>
-	</div>
-	{{> footer}}
-	<script src="https://js.stripe.com/v3/"></script>
-	<script>
-	let i = 1;
-	$.ajax({
-    url: '/jobs_json',
-    dataType: 'json',
-    success: function(jobData){
-    	for (i=1;i<jobData.length;i++){
+		{{> footer}}
+		<script src="https://js.stripe.com/v3/"></script>
+		<script>
+			let i = 1;
+			$.ajax({
+				url: '/jobs_json',
+				dataType: 'json',
+				success: function (jobData) {
+					for (i = 1; i < jobData.length; i++) {
 
-    		let min_pay = jobData.job_pay_min[i];
-    		let max_pay = jobData.job_pay_max[i];
+						let min_pay = jobData.job_pay_min[i];
+						let max_pay = jobData.job_pay_max[i];
 
-    		$("#converter").change(function() {
-		let currency = $("#converter").val()
-		let url = "https://free.currconv.com/api/v7/convert?compact=ultra&apiKey=c02d6cdb83411b104639&q=USD_"+currency;
+						$("#converter").change(function () {
+							let currency = $("#converter").val()
+							let url = "https://free.currconv.com/api/v7/convert?compact=ultra&apiKey=c02d6cdb83411b104639&q=USD_" + currency;
 
-		fetch(url)
-		.then((resp) => resp.json())
-		.then(function(data){
-		console.log(data);
+							fetch(url)
+								.then((resp) => resp.json())
+								.then(function (data) {
+									console.log(data);
 
-  		if ($("#converter").val()) {
-		prameter = "USD_" + currency;
-		console.log(prameter);
+									if ($("#converter").val()) {
+										prameter = "USD_" + currency;
+										console.log(prameter);
 
-		let converted_unit = data["USD_" + currency];
-		console.log(data["USD_" + currency]);
+										let converted_unit = data["USD_" + currency];
+										console.log(data["USD_" + currency]);
 
-		let converted = Math.ceil(converted_unit * min_pay);
-		$("#min_pay").html(converted);
+										let converted = Math.ceil(converted_unit * min_pay);
+										$("#min_pay").html(converted);
 
-	}
-})
-});
+									}
+								})
+						});
 
-    	}
-    }
-});
-	
-		
-
-	
-	
+					}
+				}
+			});
 
 
-		$(function () {
-			var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
-			$("buttonCheckout").click(function () {
-				stripe.redirectToCheckout({
-					sessionId: '{{sessionId}}',
-				}).then(function (result) {
-					// If `redirectToCheckout` fails due to a browser or network
-					// error, display the localized error message to your customer
-					// using `result.error.message`.
+
+
+
+
+
+			$(function () {
+				var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
+				$("buttonCheckout").click(function () {
+					stripe.redirectToCheckout({
+						sessionId: '{{sessionId}}',
+					}).then(function (result) {
+						// If `redirectToCheckout` fails due to a browser or network
+						// error, display the localized error message to your customer
+						// using `result.error.message`.
+					});
 				});
 			});
-		});
 
-	</script>
-	<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+		</script>
+		<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
 </body>
