@@ -78,16 +78,16 @@
                                 Job Categories
                             </div>
                             <ul class="list-group list-group-flush">
-                                <a href="" class="list-group-item job__active">All Jobs </a>
-                                <a href="/jobs/full-time" class="list-group-item">Full Time Jobs</a>
-                                <a href="/jobs/part-time" class="list-group-item">Part Time Jobs</a>
-                                <a href="/jobs/contract" class="list-group-item">Contract Jobs</a>
+                                <a id="all-jobs" href="/jobs" class="list-group-item">All Jobs </a>
+                                <a id="full-time" href="/jobs/full-time" class="list-group-item">Full Time Jobs</a>
+                                <a id="part-time" href="/jobs/part-time" class="list-group-item">Part Time Jobs</a>
+                                <a id="contract" href="/jobs/contract" class="list-group-item">Contract Jobs</a>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-9 mt-lg-0 mt-3">
                         {{# each data}}
-                        <div class="job_list_wrapper mb-4" id="contentCard">
+                        <div class="job_list_wrapper mb-4 contentCard">
                             <div class="row ">
                                 <div class="col-md-3">
                                     <img class="img-fluid" src="{{this.company_logo}}" alt="{{this.company}} logo">
@@ -98,13 +98,16 @@
                                     <p class="text-muted"><i class="fa fa-building mr-1"></i>{{this.company}}</p>
                                 </div>
                                 <div class="col-md-3">
-                                    <h6 class="b-7">Pay Range</h6>
-                                    <p class="text-muted">$1200</p>
+                                    {{!-- <h6 class="b-7">Pay Range</h6>
+                                    <p class="text-muted">$1200</p> --}}
                                     <a href="" class="btn br-0 unsub_cancel btn-sm">View details</a>
                                 </div>
                             </div>
                         </div>
                         {{/each}}
+                        <div class="alert alert-info hide" id="infoAlert">
+                          <strong>Sorry!!!,</strong> no job found
+                        </div>
                         
 
                         <div class="job__paginate my-4">
@@ -134,36 +137,56 @@
     </div>
   
   {{> footer}}
-
-  <script>
-     $(document).ready(function () {
-      $('#infoAlert').hide();
-        $('#searchInput').keyup(function() {
-            $('.contentCard').hide();
-            $('#infoAlert').css("display", "none");
-            var txt = $('#searchInput').val();
-            var resultCount = 0;
-            $('.contentCard').each(function() {
-                if ($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1) {
-                    $(this).show();
-                    resultCount++;
-                }
-            });
-
-            if (resultCount == 0) {
-                $('#infoAlert').css("display", "block");
-            }
-
-        });
-
-    });
-  </script>
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  
   {{!-- <script src="js/bootstrap.bundle.min"></script>
   <script src="js/bootstrap.min.js"></script> --}}
+  <script>
+      $(document).ready(() => {
+            $('#infoAlert').hide();
+            $('#searchInput').keyup(function() {
+                $('.contentCard').hide();
+                $('#infoAlert').css("display", "none");
+                var txt = $('#searchInput').val();
+                var resultCount = 0;
+                $('.contentCard').each(function() {
+                    if ($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1) {
+                        $(this).show();
+                        resultCount++;
+                    }
+                });
+
+                if (resultCount == 0) {
+                    $('#infoAlert').css("display", "block");
+                }
+
+            });
+
+            function getCurrentUri() {
+                let url = window.location.pathname;
+                return url.substr(url.lastIndexOf('/') + 1)
+            }
+
+            let URI = getCurrentUri()
+            
+            switch (URI) {
+                case '':
+                $('#all-jobs').addClass('job__active');
+                break;
+                case 'full-time':
+                $('#full-time').addClass('job__active');
+                break;
+                case 'part-time':
+                $('#part-time').addClass('job__active');
+                break;
+                case 'contract':
+                $('#contract').addClass('job__active');
+                break;
+            } 
+
+      })
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </body>
 
 </html>

@@ -7,7 +7,8 @@
 }
 
 .job__active{
-    background: aliceblue !important
+    background: #c6daec !important;
+    color: black;
 }
 
 .job_list_wrapper{
