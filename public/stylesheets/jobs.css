@@ -11,6 +11,10 @@
     color: black;
 }
 
+.ci-title{
+    color: #11144c;
+}
+
 .job_list_wrapper{
     background: white;
     padding: 20px;
@@ -40,7 +44,7 @@
 
  @media (max-width: 767px){
                 .job__paginate{
-                    padding-left: 15vw;
+                    padding-left: 10vw;
                 }
                  
             }
