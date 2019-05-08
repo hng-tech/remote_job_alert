@@ -299,9 +299,10 @@ const Jobs = {
         next: (page === pages) ? false : page + 1,
       },
 
-      // we all need helpers. Baba God hear me out
-      helpers: {
 
+      // we all need helpers. Baba God hear me out
+      helpers: 
+      {
         // this helps with displaying the page links, I guess
         populate_links: function () {
           links = "";
@@ -480,5 +481,125 @@ const Jobs = {
       return res.status(400).send(error);
     }
   },
+
+  async fetchAllSearchJobs(req, res) {
+    try {
+      let all = await fetch(`https://jobs.github.com/positions.json?location=remote`)
+      let allJobs = await all.json();
+      return res.status(200).send({
+        status: 'success',
+        TotalJobs: Object.keys(allJobs).length,
+        data: allJobs
+      });
+
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+
+  async fetchAllFullTimeSearchJobs(req, res) {
+    try {
+      let main = JSON.parse(JSON.stringify(remote_jobs));
+      let allFullTimeJobs = [];
+
+      for (let i = 0; i < main.length; i++){
+        if (main[i].type == "Full Time" || main[i].description.toLowerCase().includes("full time") ) {
+          allFullTimeJobs.push(main[i]);
+          continue;
+        }
+      };
+
+
+      allFullTimeJobs.slice().map(function (job) {
+        job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+        return job;
+      });
+      return res.status(200).render('jobCategory', {
+        name: "Full Time",
+        status: 'success',
+        TotalJobs: Object.keys(allFullTimeJobs).length,
+        data: allFullTimeJobs
+      });
+
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+
+  async fetchAllPartTimeSearchJobs(req, res) {
+    try {
+      let main = JSON.parse(JSON.stringify(remote_jobs));
+      let allPartTimeJobs = [];
+
+      for (let i = 0; i < main.length; i++){
+        if (main[i].description.toLowerCase().includes("part time") ) {
+          allPartTimeJobs.push(main[i]);
+          continue;
+        }
+      };
+
+      allPartTimeJobs.slice().map(function (job) {
+        job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+        return job;
+      });
+      return res.status(200).render('jobCategory', {
+        name: "Part Time",
+        status: 'success',
+        message: "Sorry, there are no jobs available for this selected category",
+        TotalJobs: Object.keys(allPartTimeJobs).length,
+          data: allPartTimeJobs
+        });
+
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  }, 
+
+  async fetchAllContractSearchJobs(req, res) {
+    try {
+      let main = JSON.parse(JSON.stringify(remote_jobs));
+      let allContractJobs = [];
+
+      for (let i = 0; i < main.length; i++){
+        if (main[i].type == "Contract" || main[i].description.toLowerCase().includes("contract") ) {
+          allContractJobs.push(main[i]);
+          continue;
+        }
+      };
+
+      allContractJobs.slice().map(function (job) {
+        job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+        return job;
+      });
+      return res.status(200).render('jobCategory', {
+        name: "Contract",
+        status: 'success',
+        TotalJobs: Object.keys(allContractJobs).length,
+        data: allContractJobs
+      });
+
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+
+  async fetchAllCustomSearchJobs(req, res) {
+    const { search } = req.params; 
+    try {
+      let allCustom = await fetch(`https://jobs.github.com/positions.json?search=${search}&location=remote`)
+      let allCustomJobs = await allCustom.json();
+      return res.status(200).send({
+        status: 'success',
+        TotalJobs: Object.keys(allCustomJobs).length,
+        data: allCustomJobs
+      });
+
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  }
 };
+
+  
+
 module.exports = Jobs;
