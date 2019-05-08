@@ -180,10 +180,10 @@ router.get('/jobs_api/:slug', Jobs.fetchSingle);
 router.get('/jobs/category', Home.category);
 
 // Fetching jobs by category
-router.get('/all_jobs', Jobs.fetchAllSearchJobs);
-router.get('/part_time_jobs', Jobs.fetchAllFullTimeSearchJobs);
-router.get('/part_time_jobs', Jobs.fetchAllPartTimeSearchJobs);
-router.get('/contract_jobs', Jobs.fetchAllContractSearchJobs);
+router.get('/all-jobs', Jobs.fetchAllSearchJobs);
+router.get('/jobs/full-time', Jobs.fetchAllFullTimeSearchJobs);
+router.get('/jobs/part-time', Jobs.fetchAllPartTimeSearchJobs);
+router.get('/jobs/contract', Jobs.fetchAllContractSearchJobs);
 router.get('/custom_search/:_id', Jobs.fetchAllCustomSearchJobs);
 
 /* There is an Error in this route, it is crashing the server */
