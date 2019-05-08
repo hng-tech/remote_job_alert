@@ -177,20 +177,7 @@ async function sendPreferedMailForRemoteJob(jobs, user) {
     console.err(err);
   }
 }
-function addArrayMails() {
-  try {
-    const emailArray = require('../latest.js');
-    let emails = emailArray.emails;
 
-    emails.forEach(email => {
-      User.create(email)
-    });
-
-  }
-  catch (err) {
-    console.error(err);
-  }
-}
 
 module.exports = {
   unsubscribeUser,
@@ -198,5 +185,4 @@ module.exports = {
   sendMailForRemoteJob,
   sendContactAlert,
   sendPreferedMailForRemoteJob,
-  addArrayMails
 };

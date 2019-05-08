@@ -105,6 +105,55 @@ button i {
   border-radius: 5px;
   border-color: #11144c;
 }
+/* Drop down */
+
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: white;
+  padding: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 0;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: white;
+}
+
+/* Input controls contd */
 .inputControls i {
   font-size: 20px;
   color: #11144c;
@@ -146,7 +195,6 @@ button i {
   border-left-color: #ffffff;
 }
 .text {
-  border: ;
   width: 90%;
   margin: 19px;
 }
@@ -166,10 +214,75 @@ button i {
 }
 .stack-check {
   padding: 10px;
+  /* flex-direction: column; */
 }
-.checkboxes {
-  margin-left: 35px;
+/* .check-row {
+  display: flex;
+} */
+.checkbox {
+  width: 22%;
 }
+/* .checkboxes  */
+.checkbox input[type="checkbox"] {
+    opacity: 0;
+}
+
+.checkbox label {
+    position: relative;
+    display: inline-block;
+    
+    /*16px width of fake checkbox + 6px distance between fake checkbox and text*/
+    padding-left: 22px;
+}
+
+.checkbox label::before,
+.checkbox label::after {
+    position: absolute;
+    content: "";
+    
+    /*Needed for the line-height to take effect*/
+    display: inline-block;
+}
+
+/*Outer box of the fake checkbox*/
+.checkbox label::before{
+    height: 16px;
+    width: 16px;
+    border-radius: 5px;
+    border: 1px solid;
+    left: 0px;
+    
+    /*(24px line-height - 16px height of fake checkbox) / 2 - 1px for the border
+     *to vertically center it.
+     */
+    top: 3px;
+}
+
+/*Checkmark of the fake checkbox*/
+.checkbox label::after {
+    height: 5px;
+    width: 9px;
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+    
+    transform: rotate(-45deg);
+    
+    left: 4px;
+    top: 7px;
+}
+
+/*Hide the checkmark by default*/
+.checkbox input[type="checkbox"] + label::after {
+    content: none;
+}
+
+/*Unhide on the checked state*/
+.checkbox input[type="checkbox"]:checked + label::after {
+    content: "";
+}
+
+
+/* Pay Range */
 .pay-text,
 .update-text {
   width: 93%;
@@ -293,7 +406,7 @@ button i {
         <!-- Job Role -->
         <section>
           <div class="label" for="jobRole">Select your Job Role(s)</div>
-          <div class="field">
+          <div class="field" >
             <div class="inputButtons" id="jobRole">
               <button type="button">
                 <span class="button-text"
@@ -316,8 +429,17 @@ button i {
             </div>
             <div class="inputControls">
               <button type="button"><span class="buttonNo">4</span></button>
-              <i class="fa fa-times"></i>
-              <i class="fa fa-chevron-down"></i>
+              <i class="fa fa-times" id="clearRoles"></i>
+              
+              <div class="dropdown">
+                <i class="fa fa-chevron-down dropbtn"></i>
+                <div class="dropdown-content">
+                  <a href="#">Devops</a>
+                  <a href="#">Front-End</a>
+                  <a href="#">Fullstack</a>
+                  <a href="#">UI/UX</a>
+                </div>
+              </div> 
             </div>
           </div>
         </section>
@@ -345,7 +467,14 @@ button i {
             <div class="inputControls">
               <button type="button"><span class="buttonNo">3</span></button>
               <i class="fa fa-times"></i>
-              <i class="fa fa-chevron-down"></i>
+              <div class="dropdown">
+                <i class="fa fa-chevron-down dropbtn"></i>
+                <div class="dropdown-content">
+                  <a href="#">Internship</a>
+                  <a href="#">Junior</a>
+                  <a href="#">Intermediate</a>
+                  <a href="#">Senior</a>
+                </div>
             </div>
           </div>
         </section>
@@ -373,7 +502,15 @@ button i {
             <div class="inputControls">
               <button type="button"><span class="buttonNo">3</span></button>
               <i class="fa fa-times"></i>
-              <i class="fa fa-chevron-down"></i>
+              <div class="dropdown">
+                <i class="fa fa-chevron-down dropbtn"></i>
+                <div class="dropdown-content">
+                  <a href="#">Remote</a>
+                  <a href="#">Part-remote</a>
+                  <a href="#">Full-time</a>
+                  <a href="#">Part-time</a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -409,7 +546,17 @@ button i {
             <div class="inputControls">
               <button type="button"><span class="buttonNo">5</span></button>
               <i class="fa fa-times"></i>
-              <i class="fa fa-chevron-down"></i>
+              <div class="dropdown">
+                <i class="fa fa-chevron-down dropbtn"></i>
+                <div class="dropdown-content">
+                  <a href="#">Nigeria</a>
+                  <a href="#">Germany</a>
+                  <a href="#">Rwanda</a>
+                  <a href="#">UK</a>
+                  <a href="#">Canada</a>
+                  <a href="#">Autralia</a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -447,7 +594,19 @@ button i {
               <div class="inputControls">
                 <button type="button"><span class="buttonNo">5</span></button>
                 <i class="fa fa-times"></i>
-                <i class="fa fa-chevron-down"></i>
+                <div class="dropdown">
+                  <i class="fa fa-chevron-down dropbtn"></i>
+                  <div class="dropdown-content">
+                    <a href="#">Javascript</a>
+                    <a href="#">Java</a>
+                    <a href="#">Python</a>
+                    <a href="#">Flutter</a>
+                    <a href="#">React</a>
+                    <a href="#">GoLang</a>
+                    <a href="#">Go</a>
+                    <a href="#">Node</a>
+                  </div>
+                </div>
               </div>
             </div>
             <!-- Stack Search -->
@@ -461,22 +620,11 @@ button i {
             </div>
             <!-- Stack Ckeckboxes -->
             <div class="stack-check">
-              <div class="checkboxes">
-                <label class="checkbox">One
-                  <input type="checkbox" checked="checked">
-                  <span class="checkmark"></span>
-                </label>
-                <label class="container">One
-                  <input type="checkbox" checked="checked">
-                  <span class="checkmark"></span>
-                </label>
-                <label class="container">One
-                  <input type="checkbox" checked="checked">
-                  <span class="checkmark"></span>
-                </label>
+              
+              
+               
                     
                     
-              </div>
               
               
             </div>
@@ -492,7 +640,15 @@ button i {
                   100,000 - 200,000
                 </div>
                 <div class="inputControls-2">
-                  <i class="fa fa-chevron-down"></i>
+                  <div class="dropdown">
+                    <i class="fa fa-chevron-down dropbtn"></i>
+                    <div class="dropdown-content">
+                      <a href="#">10,000 - 50,000</a>
+                      <a href="#">50,000 - 100,000</a>
+                      <a href="#">100,000 - 200,000</a>
+                      <a href="#">200,000 - 500,000</a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -505,7 +661,14 @@ button i {
                   Monthly Updates
                 </div>
                 <div class="inputControls-2">
-                  <i class="fa fa-chevron-down"></i>
+                  <div class="dropdown">
+                    <i class="fa fa-chevron-down dropbtn"></i>
+                    <div class="dropdown-content ">
+                      <a href="#" class="updateTypeOptions">Daily</a>
+                      <a href="#" class="updateTypeOptions">Weekly</a>
+                      <a href="#" class="updateTypeOptions">Monthly</a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -525,6 +688,7 @@ button i {
         
 
       </main>
+    
       <!-- Modal -->
       <div
         class="modal fade"
@@ -538,7 +702,7 @@ button i {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">
-                Congrats
+                Hurray
               </h5>
               <button
                 type="button"
@@ -567,6 +731,58 @@ button i {
     <!-- footer -->
     {{>footer}}
     <!-- scripts -->
+
+    <script>
+      // InputButton Fields
+      const jobRole = document.getElementById("jobRole")
+      const jobLevel = document.getElementById("jobLevel")
+      const jobType = document.getElementById("jobType")
+      const jobLocation = document.getElementById("jobLocation")
+      const techStack = document.getElementById("techStack")
+      const payRange = document.getElementById("payRange")
+      const updateType = document.getElementById("updateType")
+    
+      console.log(updateType.innerText)
+
+      // Clear all buttons
+      const clearRoles = document.querySelector("#clearRoles")
+
+
+      // Drop down options
+      const updateTypeOptions = document.getElementsByClassName("updateTypeOptions")
+      console.log(updateTypeOptions)
+
+      // Event Handlers
+      function clearRolesButtons() {
+        console.log('1')
+        return jobRole.innerHTML = ``
+      }
+
+      function updateTypeSetting() {
+        const update = e.target.innerText
+        console.log(update)
+
+      }
+      
+
+      // Event Listeners
+      updateTypeOptions.addEventListener("click", updateTypeSetting)
+      clearRoles.addEventListener("click", clearRolesButtons)
+
+
+
+
+
+
+    
+    
+    </script>
+
+
+
+
+
+
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

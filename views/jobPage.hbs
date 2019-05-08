@@ -5,7 +5,7 @@
 
   <title>DevAlert | Remote Job Postings</title>
   <link rel='stylesheet' href='stylesheets/style.css' />
-	<link rel="shortcut icon" href="images/code2.png" type="image/x-icon">
+	<link rel="shortcut icon" href="/images/code2.png" type="image/x-icon">
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
   <script>
@@ -77,10 +77,12 @@
                                 Job Categories
                             </div>
                             <ul class="list-group list-group-flush">
-                                <a href="/jobs" class="list-group-item job__active">All Jobs </a>
-                                <a href="/jobs/full-time" class="list-group-item">Full Time Jobs</a>
-                                <a href="/jobs/part-time" class="list-group-item">Part Time Jobs</a>
-                                <a href="/jobs/contract" class="list-group-item">Contract Jobs</a>
+
+                                <a href="" class="list-group-item job__active">All Jobs </a>
+                                <a href="/jobs/full-time" id="fullTime" class="list-group-item">Full Time Jobs</a>
+                                <a href="/jobs/part-time" id="partTime" class="list-group-item">Part Time Jobs</a>
+                                <a href="/jobs/contract" id="contract" class="list-group-item">Contract Jobs</a>
+                                
                             </ul>
                         </div>
                     </div>
@@ -92,13 +94,13 @@
                                     <img class="img-fluid" src="{{this.company_logo}}" alt="{{this.company}} logo">
                                 </div>
                                 <div class="col-md-6">
-                                    <a href="jobs/{{ this.custom_url }}"><h4 class="b-6 mt-3 mt-lg-0">{{this.title}}</h4></a>
+                                    <a href="jobs/{{ this.custom_url }}"><h4 class="b-6 mt-3 mt-lg-0 ci-title">{{this.title}}</h4></a>
                                     <p class="text-muted pb-0 mb-1"><i class="fa fa-briefcase mr-1"></i>{{this.type}}</p>
                                     <p class="text-muted"><i class="fa fa-building mr-1"></i>{{this.company}}</p>
                                 </div>
                                 <div class="col-md-3">
-                                    <h6 class="b-7">Pay Range</h6>
-                                    <p class="text-muted"></p>
+                                    {{!-- <h6 class="b-7">Pay Range</h6>
+                                    <p class="text-muted"></p> --}}
                                     <a href="jobs/{{ this.custom_url }}" class="btn br-0 unsub_cancel btn-sm">View details</a>
                                 </div>
                             </div>

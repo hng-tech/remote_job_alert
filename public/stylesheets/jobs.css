@@ -7,7 +7,12 @@
 }
 
 .job__active{
-    background: aliceblue !important
+    background: #c6daec !important;
+    color: black;
+}
+
+.ci-title{
+    color: #11144c;
 }
 
 .job_list_wrapper{
@@ -39,7 +44,7 @@
 
  @media (max-width: 767px){
                 .job__paginate{
-                    padding-left: 15vw;
+                    padding-left: 10vw;
                 }
                  
             }

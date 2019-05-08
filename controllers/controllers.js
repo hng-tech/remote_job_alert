@@ -547,8 +547,8 @@ const Jobs = {
         status: 'success',
         message: "Sorry, there are no jobs available for this selected category",
         TotalJobs: Object.keys(allPartTimeJobs).length,
-        data: allPartTimeJobs
-      });
+          data: allPartTimeJobs
+        });
 
     } catch (error) {
       return res.status(400).send(error);
