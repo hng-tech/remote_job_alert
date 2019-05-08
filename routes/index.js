@@ -109,10 +109,6 @@ router.get('/successful-payment', function(req, res) {
   res.render('payment_success');
 });
 
-router.get('/job-preference', function(req, res){
-  res.render('jobPreference.hbs')
-});
-
 router.get('/payment-failed', function(req, res) {
   res.render('payment_failed');
 });
@@ -202,7 +198,7 @@ router.get('/jobs/:job_id/delete', Jobs.cancel_job);
 router.post('/register_user', Jobs.create_registered_user);
 router.post('/update_user/:_id', Jobs.update_registered_user);
 router.get('/view_all_users', Jobs.view_all_registered_users);
-router.get('/fetch_user_preference/:_id', Jobs.fetchPreferredJobs);
+router.get('/job-preference/:_id', Jobs.fetchPreferredJobs);
 
 //Agent Routes
 router.get('/agents', Agents.get_all_agents);
@@ -308,11 +304,7 @@ router.get("/user-login", Home.userLogin);
 //   res.status(200).render('auth') 
 // });
 
-router.get('/job-preference', isLoggedIn, function(req, res) {
-        res.render('jobPreference.hbs', {
-            user : req.user // get the user out of session and pass to template
-        });
-    });
+router.get('/job-preference', isLoggedIn, Jobs.fetchPreferredJobs);
 
 // route for facebook authentication and login
   router.get('/auth/facebook', passport.authenticate('facebook', { 
