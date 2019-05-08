@@ -88,6 +88,9 @@ class Home {
   static unsubscribe_success(req, res, next) {
     res.render('unsubscribe_success', { title: 'unsubscribe success' });
   }
+  static category(req, res, next) {
+    res.render('jobCategory', { title: 'Full time' });
+  }
 }
 
 module.exports = Home;

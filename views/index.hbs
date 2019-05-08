@@ -4,22 +4,23 @@
 <head>
 	<meta name="google-site-verification" content="-CJUCQe06hKr7zz5IFIJHiDscVjUL9TRqbqnJK_jCM8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-139612600-1');
-</script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-139612600-1');
+	</script>
 
 	<title>DevAlert | Home</title>
 	<style>
 		.view-more {
 			cursor: pointer !important;
 		}
+
 		/*Styling for featured jobs section*/
 
 #homepage #Featured-jobs .featured-jobs-header h1 {
@@ -74,8 +75,13 @@ input[type=text]:focus {
     margin-bottom: 50px;
 }
 
+
 #Featured-jobs p {
  padding-top: 10px;
+}
+
+.row .card {
+	margin: 8px;
 }
 
 /*Responsive styling when screen is less than 700px */
@@ -115,7 +121,32 @@ input[type=text]:focus {
      margin: 0 auto;
 }
 
+		#Featured-jobs p {
+			padding-top: 10px;
+		}
 
+		/*Responsive styling when screen is less than 700px */
+
+		@media screen and (max-width: 700px) {
+			.row {}
+
+			.card {}
+		}
+
+		@media only screen and (min-device-width : 0px) and (max-device-width : 15000px) {
+			.marow {
+				padding-left: 50px;
+			}
+		}
+
+		@media only screen and (min-device-width : 769px) and (max-device-width : 15000px) {
+
+			.marow {
+				padding-left: 60px;
+			}
+		}
+
+		/*End of Styling for featured jobs section*/
 	</style>
 </head>
 
@@ -147,6 +178,30 @@ input[type=text]:focus {
 										</div>
 									</div>
 								</form>
+								<div class="input-group">
+									{{#each errors}}
+									<div class="alert alert-danger alert-dismissible fade show" role="alert">
+										<strong>{{msg}}</strong>
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									{{/each}} {{#if emailError}}
+									<div class="alert alert-warning alert-dismissible fade show">
+										<strong>{{emailError}}</strong>
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									{{/if}} {{#if success}}
+									<div class="alert alert-success alert-dismissible fade show">
+										<strong>{{success}}</strong>
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									{{/if}}
+								</div>
 							</div>
 							<div class="col-sm-12 col-md-6 intro-img d-flex justify-content-center align-items-center">
 								<img src="images/introimg.jpg" width="300" />
@@ -157,6 +212,7 @@ input[type=text]:focus {
 			</section>
 		</main>
 	<hr style="border:1px  solid #c4c4c4;">
+
 <!---Featured job section-->
 		<section id="Featured-jobs">
         <div class="featured-jobs-header">
@@ -268,8 +324,7 @@ input[type=text]:focus {
 					// using `result.error.message`.
 				});
 			});
-		});
 
-	</script>
-	<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+		</script>
+		<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
 </body>
