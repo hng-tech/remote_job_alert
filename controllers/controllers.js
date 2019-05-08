@@ -499,8 +499,21 @@ const Jobs = {
 
   async fetchAllFullTimeSearchJobs(req, res) {
     try {
-      let allFullTime = await fetch(`https://jobs.github.com/positions.json?location=remote&full_time=on`)
-      let allFullTimeJobs = await allFullTime.json();
+      let main = JSON.parse(JSON.stringify(remote_jobs));
+      let allFullTimeJobs = [];
+
+      for (let i = 0; i < main.length; i++){
+        if (main[i].type == "Full Time" || main[i].description.toLowerCase().includes("full time") ) {
+          allFullTimeJobs.push(main[i]);
+          continue;
+        }
+      };
+
+
+      allFullTimeJobs.slice().map(function (job) {
+        job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+        return job;
+      });
       return res.status(200).render('jobCategory', {
         name: "Full Time",
         status: 'success',
@@ -515,11 +528,24 @@ const Jobs = {
 
   async fetchAllPartTimeSearchJobs(req, res) {
     try {
-      let allPartTime = await fetch(`https://jobs.github.com/positions.json?description=part+time&location=remote`)
-      let allPartTimeJobs = await allPartTime.json();
+      let main = JSON.parse(JSON.stringify(remote_jobs));
+      let allPartTimeJobs = [];
+
+      for (let i = 0; i < main.length; i++){
+        if (main[i].description.toLowerCase().includes("part time") ) {
+          allPartTimeJobs.push(main[i]);
+          continue;
+        }
+      };
+
+      allPartTimeJobs.slice().map(function (job) {
+        job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+        return job;
+      });
       return res.status(200).render('jobCategory', {
         name: "Part Time",
         status: 'success',
+        message: "Sorry, there are no jobs available for this selected category",
         TotalJobs: Object.keys(allPartTimeJobs).length,
           data: allPartTimeJobs
         });
@@ -531,8 +557,20 @@ const Jobs = {
 
   async fetchAllContractSearchJobs(req, res) {
     try {
-      let allContract = await fetch(`https://jobs.github.com/positions.json?description=contract&location=remote`)
-      let allContractJobs = await allContract.json();
+      let main = JSON.parse(JSON.stringify(remote_jobs));
+      let allContractJobs = [];
+
+      for (let i = 0; i < main.length; i++){
+        if (main[i].type == "Contract" || main[i].description.toLowerCase().includes("contract") ) {
+          allContractJobs.push(main[i]);
+          continue;
+        }
+      };
+
+      allContractJobs.slice().map(function (job) {
+        job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+        return job;
+      });
       return res.status(200).render('jobCategory', {
         name: "Contract",
         status: 'success',
