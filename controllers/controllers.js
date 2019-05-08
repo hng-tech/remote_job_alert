@@ -157,35 +157,28 @@ const Jobs = {
 
   async fetchPreferredJobs(req, res) {
     try {
-    const { _id } = req.params; 
-    let registeredUser = await registeredUsers.findOne({ _id: _id });
+    let id = req.params._id; 
+    if (typeof id == "undefined")
+        id = "5ccef761e415f84678d393f1";
+    let registeredUser = await registeredUsers.findById(id);
     if (registeredUser != null) {
-      let RoleData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_role}&location=remote`);
-      let LevelData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_level}&location=remote`);
-      let TypeData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_type}&location=remote`);
-      let LocationData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_location}&location=remote`);
-      let StackData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_stack}&location=remote`);
-      let RoleJobs = await RoleData.json();
-      let LevelJobs = await LevelData.json();
-      let TypeJobs = await TypeData.json();
-      let LocationJobs = await LocationData.json();
-      let StackJobs = await StackData.json();
-      let TotalJobs = RoleJobs.concat(LevelJobs, TypeJobs, LocationJobs, StackJobs);
+      let RoleData = ["App Developer", "Database Administrator", "Programmer", "Software Developer", "Web Developer"];
+      let LevelData = ["Junior", "Intermediate", "Semior","Intern"]
+      let TypeData = ["Part time", "Full time", "Remote", "Part time remote"];
+      let LocationData = await fetch(`https://gist.githubusercontent.com/Shock451/53fe61b951f809f8fa91bab6c490aae4/raw/ce8f86dd5606dc59fd966e82ac804580f75082ac/countries.json`);
+      let StackData = await fetch(`https://gist.githubusercontent.com/Shock451/4a14fc459f411b0fbbeeb62f6a7ad297/raw/284e5bedbb84ef15f79add3384a2375163d89535/languages.json`);
+      let Locations = await LocationData.json();
+      let Stacks = await StackData.json();
+      //let TotalJobs = RoleJobs.concat(LevelJobs, TypeJobs, LocationJobs, StackJobs);
     // sendPreferedMailForRemoteJob(RoleJobs, registeredUser);
 
-      return res.status(200).json({
-        TotalRoleJobs:  Object.keys(RoleJobs).length,
-        TotalLevelJobs:  Object.keys(LevelJobs).length,
-        TotalTypeJobs:  Object.keys(TypeJobs).length,
-        TotalLocationJobs:  Object.keys(LocationJobs).length,
-        TotalStackJobs:  Object.keys(StackJobs).length,
-        TotalJobsCount:  Object.keys(TotalJobs).length,
-        RoleJobs: RoleJobs,
-        LevelJobs: LevelJobs,
-        TypeJobs: TypeJobs,
-        LocationJobs: LocationJobs,
-        StackJobs: StackJobs,
-        TotalJobs: TotalJobs,
+    
+      return res.status(200).render("jobPreference", {
+        RoleData,
+        LevelData,
+        TypeData,
+        Locations: Locations.countries,
+        Stacks: Stacks.languages,
       });
     }
       return res.status(400).json({
