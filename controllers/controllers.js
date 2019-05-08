@@ -521,8 +521,8 @@ const Jobs = {
         name: "Part Time",
         status: 'success',
         TotalJobs: Object.keys(allPartTimeJobs).length,
-        data: allPartTimeJobs
-      });
+          data: allPartTimeJobs
+        });
 
     } catch (error) {
       return res.status(400).send(error);
