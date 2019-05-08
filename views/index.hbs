@@ -96,6 +96,30 @@ input[type=text]:focus {
         padding-left:50px;
     }
 		}
+@media only screen and (min-device-width : 769px) and (max-device-width : 15000px){
+   
+	  .marow{
+        padding-left:60px;
+ }
+}
+
+.truncate {
+  width: auto;
+  height: 40px;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/*End of Styling for featured jobs section*/
+#jobs {
+	justify-content: center;
+	
+}
+
+.center-div
+{
+     margin: 0 auto;
+}
 
 		#Featured-jobs p {
 			padding-top: 10px;
@@ -196,169 +220,108 @@ input[type=text]:focus {
 		</div>
         <div class="filter-1">
             <form class="featured-form">
-              <input type="text" name="search" placeholder="Enter language to filter jobs...">
+              <input type="text" name="search" id="search" placeholder="Enter language to filter jobs...">
             </form>
 						            <!--select currency-->
-            <select name="currency">
-                <option value="NAI">🇳🇬&emsp;₦&emsp;NAI&emsp;💶</option>			
+            <select name="currency" id="converter">
+                <option value="NGN">🇳🇬&emsp;₦&emsp;NAI&emsp;💶</option>			
                 <option value="EUR">🇪🇺&emsp;€&emsp;EUR&emsp;💶</option>
                 <option value="GBP">🇬🇧&emsp;£&emsp;GBP&emsp;💷</option>
                 <option value="USD">🇺🇸&emsp;$&emsp;USD&emsp;💵</option>
                  <option value="YEN">🇯🇵&emsp;¥&emsp;YEN&emsp;💴</option>
-                         </select>
+             </select>
          </div>
 				 
-       <!-- <div class="row"> -->
-        <div class="row col-sm-12 marow" style="justify-content: center">
-        {{#each (limit contents 8)}}
-    <!---Left column card-->
-    	<div class="card featureCad col-md-4 offset-md-4 left" style="padding-bottom: 20px">
-    	<div class="container">
-    		<a href="/jobs/featured/{{this.id}}">
-        <img src="{{this.image_link}}" alt="google-image">
-        <h3 class="card-head"><b>{{this.job_title}}</b></h3> 
-				<p class="job-brief"><b>We are recruiting for the role of a full stack developer.....</b><br><b>Stack:</b> JavaScript || React || HTML.</p> 
-				<p><ion-icon name="briefcase"></ion-icon>{{this.company_name}}
-        <ion-icon name="time"></ion-icon>{{this.career_level}}</p>
-        <input type="hidden" id="min_pay_val" class="min_pay_val" value="{{this.job_pay_min}}">
-        <span id="min_pay" class="min_pay">{{this.job_pay_min}} -- </span>
-        <span id="max_pay">{{this.job_pay_max}}</span>
-        </a>
-    </div>
-</div>
-    {{/each}}
-    <!-- </div> -->
-</div>
-   <p class="more-jobs"><a href="/jobs">View all remote jobs <ion-icon name="arrow-forward"></ion-icon></a></p>     
-	 	<!--End of Featured job Section--->
+    
+        <div class="row" style="justify-content: center;">
+    	<div id="jobs" style="margin: auto;" class="center-div">
 
-	 	 {{!--The section for pay an agenty has been removed  --}}
-</section>
+
+    	</div>
+		</div>
+
+
+   <p class="more-jobs"><a href="/jobs">View more jobs <ion-icon name="arrow-forward"></ion-icon></a></p>    
+   </section> 
+	 	<section id="pay-agent">
+			<div class="container">
+				<div class="pay-header">
+					<h1>Pay an agent to apply</h1>
+					<p>Secure the job faster and easier.
+						<br />Let an agent help you apply to get more probability of success
+					</p>
+					<button data-toggle="modal" class="btn btn-custom" data-target="#registerModal">
+						Contact Agent
+					</button>
+				</div>
+			</div>
+		</section>  
+        
+
+		<!--End of Featured job Section--->
+
+	{{> footer}}
+	
+	<script src="https://js.stripe.com/v3/"></script>
+	
+	<script>
+
+	let url = '/jobs_json';
 	
 
-		<!---	
-		<section id="job-posting">
-			<div class="job-header">
-				<h1>Job Postings</h1>
-				<div class="input-group input-group-search">
-					<input id="search-text" value="" type="text" class="form-control" placeholder="Search">
-					<div class="input-group-btn">
-						<button class="btn btn-default" id="search-submit" type="submit">
-							<i class="fa fa-search"></i>
-						</button>
-						<button class="btn btn-default" id="search-clear" type="submit">
-							<i class="fa fa-times"></i>
-						</button>
-					</div>
-				</div>
+	fetch(url)
+	.then((resp) => resp.json())
+	.then(function(jobData){
+		for(let i=0;i<8;i++){
+		let min_pay = jobData[i].job_pay_min;
+		let max_pay = jobData[i].job_pay_max;
 
-				<br />
-				<p id="search-info" style="font-weight: lighter !important; font-size: .8em;"></p>
-				<br />
-				<div class="container-fluid">
-					<ul id="content" class="row article-list-vertical">
+		let currency_url = "http://www.geoplugin.net/json.gp";
 
-					</ul>
-					<hr>
-					<div id="page-links" class="text-align: center;">
-					</div>
-					<div id="page-selection"></div>
-				</div>
-			</div>
-		</section>
-	</div>
--->
-		<!--- JOB LISTING MODAL -->
-		<div style="width: 100%;" class="modal fade" id="jobModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content" style="text-align: left;">
-					<div class="modal-body" id="job-details" style="overflow-y:scroll; height: 85vh;">
-						<button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h3 class="mt-4">Job Details</h3>
-						<div class="row mt-4">
-							<div class="col-md-6">
-								<p class="font-weight-bold">Job Title</p>
-								<h6 id="job-title"></h6>
-							</div>
-							<div class="col-md-6">
-								<p class="font-weight-bold">Company</p>
-								<h6 id="company-name"></h6>
+		fetch(currency_url)
+		.then(resp=>resp.json())
+		.then(function (curr){
+		let exchange_rate = curr.geoplugin_currencyConverter;
+		let currency_code = curr.geoplugin_currencySymbol;
+		let min_pay_convert = Math.ceil(min_pay*exchange_rate);
+		let max_pay_convert = Math.ceil(max_pay*exchange_rate);
 
-							</div>
-						</div>
-						<div class="mt-4">
-							<hr>
-							<p id="job-description" class="text-muted"></p>
-						</div>
-
-						<a href="#registerModal" data-toggle="modal" data-dismiss="modal"
-							style="margin: 0 auto; background: #11144C; color: #fff;" class="btn mt-4 px-4">Hire
-							Agent</a><br /><br />
-
-					</div>
-
-				</div>
-			</div>
-		</div>
-		{{> footer}}
-		<script src="https://js.stripe.com/v3/"></script>
-		<script>
-			let i = 1;
-			$.ajax({
-				url: '/jobs_json',
-				dataType: 'json',
-				success: function (jobData) {
-					for (i = 1; i < jobData.length; i++) {
-
-						let min_pay = jobData.job_pay_min[i];
-						let max_pay = jobData.job_pay_max[i];
-
-						$("#converter").change(function () {
-							let currency = $("#converter").val()
-							let url = "https://free.currconv.com/api/v7/convert?compact=ultra&apiKey=c02d6cdb83411b104639&q=USD_" + currency;
-
-							fetch(url)
-								.then((resp) => resp.json())
-								.then(function (data) {
-									console.log(data);
-
-									if ($("#converter").val()) {
-										prameter = "USD_" + currency;
-										console.log(prameter);
-
-										let converted_unit = data["USD_" + currency];
-										console.log(data["USD_" + currency]);
-
-										let converted = Math.ceil(converted_unit * min_pay);
-										$("#min_pay").html(converted);
-
-									}
-								})
-						});
-
-					}
-				}
-			});
+		let job_cards =	"<div class='card featureCad col-md-4 offset-md-4 left' style='padding-bottom: 20px' id='job_card'><div class='container'><a href='/jobs/featured/" +jobData[i].slug+ "'><img src='"+jobData[i].image_link+"' alt='google-image'><h4 class='card-head' id='job_title'><b>"+jobData[i].job_title+"</b></h4> <p class='job-brief truncate' id='job_desc'>"+jobData[i].job_description+"<br><b>Stack:</b> JavaScript || React || HTML.</p> <p><ion-icon name='briefcase' id='company_name'></ion-icon>"+jobData[i].company_name+"<ion-icon name='time'></ion-icon><span id='job_type'>"+jobData[i].job_type+"</span></p><span class='pay1' id='min_pay'>"+currency_code+min_pay_convert+"</span> -- <span class='pay2' id='max_pay'>"+currency_code+max_pay_convert+"</span><p class='hide'></p></a></div></div>";
 
 
+			$("#jobs").append(job_cards);
+		
+	})
+
+		
+			
+		}
+	})
+
+//Change currency
 
 
+//Search Filter
+	
+	$(document).ready(function(){
+  	$("#search").on("keyup", function() {
+    let value = $(this).val().toLowerCase();
+    $("#job_card").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 
-
-
-			$(function () {
-				var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
-				$("buttonCheckout").click(function () {
-					stripe.redirectToCheckout({
-						sessionId: '{{sessionId}}',
-					}).then(function (result) {
-						// If `redirectToCheckout` fails due to a browser or network
-						// error, display the localized error message to your customer
-						// using `result.error.message`.
-					});
+	
+		$(function () {
+			var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
+			$("buttonCheckout").click(function () {
+				stripe.redirectToCheckout({
+					sessionId: '{{sessionId}}',
+				}).then(function (result) {
+					// If `redirectToCheckout` fails due to a browser or network
+					// error, display the localized error message to your customer
+					// using `result.error.message`.
 				});
 			});
 
