@@ -157,35 +157,28 @@ const Jobs = {
 
   async fetchPreferredJobs(req, res) {
     try {
-    const { _id } = req.params; 
-    let registeredUser = await registeredUsers.findOne({ _id: _id });
+    let id = req.params._id; 
+    if (typeof id == "undefined")
+        id = "5ccef761e415f84678d393f1";
+    let registeredUser = await registeredUsers.findById(id);
     if (registeredUser != null) {
-      let RoleData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_role}&location=remote`);
-      let LevelData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_level}&location=remote`);
-      let TypeData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_type}&location=remote`);
-      let LocationData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_location}&location=remote`);
-      let StackData = await fetch(`https://jobs.github.com/positions.json?description=${registeredUser.prefered_job_stack}&location=remote`);
-      let RoleJobs = await RoleData.json();
-      let LevelJobs = await LevelData.json();
-      let TypeJobs = await TypeData.json();
-      let LocationJobs = await LocationData.json();
-      let StackJobs = await StackData.json();
-      let TotalJobs = RoleJobs.concat(LevelJobs, TypeJobs, LocationJobs, StackJobs);
+      let RoleData = ["App Developer", "Database Administrator", "Programmer", "Software Developer", "Web Developer"];
+      let LevelData = ["Junior", "Intermediate", "Semior","Intern"]
+      let TypeData = ["Part time", "Full time", "Remote", "Part time remote"];
+      let LocationData = await fetch(`https://gist.githubusercontent.com/Shock451/53fe61b951f809f8fa91bab6c490aae4/raw/ce8f86dd5606dc59fd966e82ac804580f75082ac/countries.json`);
+      let StackData = await fetch(`https://gist.githubusercontent.com/Shock451/4a14fc459f411b0fbbeeb62f6a7ad297/raw/284e5bedbb84ef15f79add3384a2375163d89535/languages.json`);
+      let Locations = await LocationData.json();
+      let Stacks = await StackData.json();
+      //let TotalJobs = RoleJobs.concat(LevelJobs, TypeJobs, LocationJobs, StackJobs);
     // sendPreferedMailForRemoteJob(RoleJobs, registeredUser);
 
-      return res.status(200).json({
-        TotalRoleJobs:  Object.keys(RoleJobs).length,
-        TotalLevelJobs:  Object.keys(LevelJobs).length,
-        TotalTypeJobs:  Object.keys(TypeJobs).length,
-        TotalLocationJobs:  Object.keys(LocationJobs).length,
-        TotalStackJobs:  Object.keys(StackJobs).length,
-        TotalJobsCount:  Object.keys(TotalJobs).length,
-        RoleJobs: RoleJobs,
-        LevelJobs: LevelJobs,
-        TypeJobs: TypeJobs,
-        LocationJobs: LocationJobs,
-        StackJobs: StackJobs,
-        TotalJobs: TotalJobs,
+    
+      return res.status(200).render("jobPreference", {
+        RoleData,
+        LevelData,
+        TypeData,
+        Locations: Locations.countries,
+        Stacks: Stacks.languages,
       });
     }
       return res.status(400).json({
@@ -299,9 +292,10 @@ const Jobs = {
         next: (page === pages) ? false : page + 1,
       },
 
-      // we all need helpers. Baba God hear me out
-      helpers: {
 
+      // we all need helpers. Baba God hear me out
+      helpers: 
+      {
         // this helps with displaying the page links, I guess
         populate_links: function () {
           links = "";
@@ -498,9 +492,23 @@ const Jobs = {
 
   async fetchAllFullTimeSearchJobs(req, res) {
     try {
-      let allFullTime = await fetch(`https://jobs.github.com/positions.json?location=remote&full_time=on`)
-      let allFullTimeJobs = await allFullTime.json();
-      return res.status(200).send({
+      let main = JSON.parse(JSON.stringify(remote_jobs));
+      let allFullTimeJobs = [];
+
+      for (let i = 0; i < main.length; i++){
+        if (main[i].type == "Full Time" || main[i].description.toLowerCase().includes("full time") ) {
+          allFullTimeJobs.push(main[i]);
+          continue;
+        }
+      };
+
+
+      allFullTimeJobs.slice().map(function (job) {
+        job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+        return job;
+      });
+      return res.status(200).render('jobCategory', {
+        name: "Full Time",
         status: 'success',
         TotalJobs: Object.keys(allFullTimeJobs).length,
         data: allFullTimeJobs
@@ -513,13 +521,27 @@ const Jobs = {
 
   async fetchAllPartTimeSearchJobs(req, res) {
     try {
-      let allPartTime = await fetch(`https://jobs.github.com/positions.json?description=part+time&location=remote`)
-      let allPartTimeJobs = await allPartTime.json();
-      return res.status(200).send({
-        status: 'success',
-        TotalJobs: Object.keys(allPartTimeJobs).length,
-        data: allPartTimeJobs
+      let main = JSON.parse(JSON.stringify(remote_jobs));
+      let allPartTimeJobs = [];
+
+      for (let i = 0; i < main.length; i++){
+        if (main[i].description.toLowerCase().includes("part time") ) {
+          allPartTimeJobs.push(main[i]);
+          continue;
+        }
+      };
+
+      allPartTimeJobs.slice().map(function (job) {
+        job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+        return job;
       });
+      return res.status(200).render('jobCategory', {
+        name: "Part Time",
+        status: 'success',
+        message: "Sorry, there are no jobs available for this selected category",
+        TotalJobs: Object.keys(allPartTimeJobs).length,
+          data: allPartTimeJobs
+        });
 
     } catch (error) {
       return res.status(400).send(error);
@@ -528,9 +550,22 @@ const Jobs = {
 
   async fetchAllContractSearchJobs(req, res) {
     try {
-      let allContract = await fetch(`https://jobs.github.com/positions.json?description=contract&location=remote`)
-      let allContractJobs = await allContract.json();
-      return res.status(200).send({
+      let main = JSON.parse(JSON.stringify(remote_jobs));
+      let allContractJobs = [];
+
+      for (let i = 0; i < main.length; i++){
+        if (main[i].type == "Contract" || main[i].description.toLowerCase().includes("contract") ) {
+          allContractJobs.push(main[i]);
+          continue;
+        }
+      };
+
+      allContractJobs.slice().map(function (job) {
+        job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+        return job;
+      });
+      return res.status(200).render('jobCategory', {
+        name: "Contract",
         status: 'success',
         TotalJobs: Object.keys(allContractJobs).length,
         data: allContractJobs

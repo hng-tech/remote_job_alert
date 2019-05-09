@@ -41,9 +41,6 @@ router.get('/', async function(req, res, next) {
   }
 });
 
-// Choose Agent Page
-router.get('/choose_agent', Home.chooseAgent);
-
 // GET About us page
 router.get('/about', Home.aboutUs);
 
@@ -101,16 +98,12 @@ router.get('/dashboard', function (req, res, next) {
 router.get('/logout', function(req, res) {
   req.session.destroy();
   req.logout();
-  res.redirect('/');
+  res.status(401).redirect('/');
 });
 
 //successful payment
 router.get('/successful-payment', function(req, res) {
   res.render('payment_success');
-});
-
-router.get('/job-preference', function(req, res){
-  res.render('jobPreference.hbs')
 });
 
 router.get('/payment-failed', function(req, res) {
@@ -177,11 +170,13 @@ router.get('/jobs_json/:job_id', Jobs.get_one_json);
 router.get('/jobs_api', Jobs.fetchData);
 router.get('/jobs_api/:slug', Jobs.fetchSingle);
 
+router.get('/jobs/category', Home.category);
+
 // Fetching jobs by category
-router.get('/all_jobs', Jobs.fetchAllSearchJobs);
-router.get('/part_time_jobs', Jobs.fetchAllFullTimeSearchJobs);
-router.get('/part_time_jobs', Jobs.fetchAllPartTimeSearchJobs);
-router.get('/contract_jobs', Jobs.fetchAllContractSearchJobs);
+router.get('/all-jobs', Jobs.fetchAllSearchJobs);
+router.get('/jobs/full-time', Jobs.fetchAllFullTimeSearchJobs);
+router.get('/jobs/part-time', Jobs.fetchAllPartTimeSearchJobs);
+router.get('/jobs/contract', Jobs.fetchAllContractSearchJobs);
 router.get('/custom_search/:_id', Jobs.fetchAllCustomSearchJobs);
 
 /* There is an Error in this route, it is crashing the server */
@@ -200,7 +195,7 @@ router.get('/jobs/:job_id/delete', Jobs.cancel_job);
 router.post('/register_user', Jobs.create_registered_user);
 router.post('/update_user/:_id', Jobs.update_registered_user);
 router.get('/view_all_users', Jobs.view_all_registered_users);
-router.get('/fetch_user_preference/:_id', Jobs.fetchPreferredJobs);
+router.get('/job-preference/:_id', Jobs.fetchPreferredJobs);
 
 //Agent Routes
 router.get('/agents', Agents.get_all_agents);
@@ -297,20 +292,27 @@ router.post('/contact', UserController.sendContactAlert);
 
 
 /*FACEBOOK AUTH*/
-// GET Social Auth Page
 
 // GET User Login page
-router.get("/user-login", Home.userLogin);
+router.get("/login", function(req, res){
+    res.render('user-login');
+});
 
 // router.get("/auth", function (req, res, next){ 
 //   res.status(200).render('auth') 
 // });
-
 router.get('/job-preference', isLoggedIn, function(req, res) {
         res.render('jobPreference.hbs', {
             user : req.user // get the user out of session and pass to template
         });
     });
+// Choose Agent Page
+router.get('/choose_agent', isLoggedIn, function(req, res){
+        res.render('choose_agent.hbs', {
+          user : req.user
+        });
+});
+
 
 // route for facebook authentication and login
   router.get('/auth/facebook', passport.authenticate('facebook', { 
@@ -320,23 +322,26 @@ router.get('/job-preference', isLoggedIn, function(req, res) {
  
   router.get('/auth/facebook/callback',
     passport.authenticate('facebook',{
-        failureRedirect : '/user-login'}),
+        failureRedirect : '/login'}),
         (req, res)=>{
           console.log("facebook login successful, redirecting to job Preference")
           res.redirect('/job-preference');
         });
 
 
-// route middleware to make sure a user is logged in
+// route middleware to make sure a user is logged in.... Please don't touch
 function isLoggedIn(req, res, next) {
-    console.log('req is', req);
-  // console.log('session id is', req.sessionID);
-    // console.log('check login status');
+    
+    console.log('req is ', Object.keys(req));
+    console.log("sessionID is ", req.sessionID)
+    console.log('session is', req.session);
+    console.log('session store is', req.sessionStore);
+    //console.log('check login status');
     //if user is authenticated in the session, carry on
-      if (req.sessionID)
+      if (req.isAuthenticated())
         return next();
     // if they aren't redirect them to the auth page
-    res.redirect('/user-login');
+    res.redirect('/login');
 }
 // GOOGLE ROUTES =======================
     // send to google to do the authentication
@@ -348,7 +353,7 @@ function isLoggedIn(req, res, next) {
     router.get('/auth/google/callback',
     passport.authenticate('google', {
         successRedirect : '/job-preference',
-        failureRedirect : '/user-login'
+        failureRedirect : '/login'
     }));
 
 
