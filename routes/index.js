@@ -106,10 +106,6 @@ router.get('/successful-payment', function(req, res) {
   res.render('payment_success');
 });
 
-//router.get('/job-preference', function(req, res){
-//  res.render('jobPreference.hbs')
-//});
-
 router.get('/payment-failed', function(req, res) {
   res.render('payment_failed');
 });
@@ -174,11 +170,13 @@ router.get('/jobs_json/:job_id', Jobs.get_one_json);
 router.get('/jobs_api', Jobs.fetchData);
 router.get('/jobs_api/:slug', Jobs.fetchSingle);
 
+router.get('/jobs/category', Home.category);
+
 // Fetching jobs by category
-router.get('/all_jobs', Jobs.fetchAllSearchJobs);
-router.get('/part_time_jobs', Jobs.fetchAllFullTimeSearchJobs);
-router.get('/part_time_jobs', Jobs.fetchAllPartTimeSearchJobs);
-router.get('/contract_jobs', Jobs.fetchAllContractSearchJobs);
+router.get('/all-jobs', Jobs.fetchAllSearchJobs);
+router.get('/jobs/full-time', Jobs.fetchAllFullTimeSearchJobs);
+router.get('/jobs/part-time', Jobs.fetchAllPartTimeSearchJobs);
+router.get('/jobs/contract', Jobs.fetchAllContractSearchJobs);
 router.get('/custom_search/:_id', Jobs.fetchAllCustomSearchJobs);
 
 /* There is an Error in this route, it is crashing the server */
@@ -197,7 +195,7 @@ router.get('/jobs/:job_id/delete', Jobs.cancel_job);
 router.post('/register_user', Jobs.create_registered_user);
 router.post('/update_user/:_id', Jobs.update_registered_user);
 router.get('/view_all_users', Jobs.view_all_registered_users);
-router.get('/fetch_user_preference/:_id', Jobs.fetchPreferredJobs);
+router.get('/job-preference/:_id', Jobs.fetchPreferredJobs);
 
 //Agent Routes
 router.get('/agents', Agents.get_all_agents);

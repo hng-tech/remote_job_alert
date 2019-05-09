@@ -1,586 +1,819 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Job Preference Page</title>
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Work+Sans"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <link rel="shortcut icon" href="images/code2.png" type="image/x-icon" />
-    	<!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
-      <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
 
-          gtag('config', 'UA-139612600-1');
-      </script>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Job Preference Page</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="shortcut icon" href="images/code2.png" type="image/x-icon" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
-    <style>
-      * {
-  font-family: Work Sans;
-  font-style: normal;
-}
-.head {
-  text-align: center;
-  margin-top: 100px;
-  margin-bottom: 55px;
-}
-main {
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-139612600-1');
+  </script>
+
+  <style>
+    * {
+      font-family: Work Sans;
+      font-style: normal;
+    }
+
+    .head {
+      text-align: center;
+      margin-top: 100px;
+      margin-bottom: 55px;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+    }
+
+    section {
+      display: flex;
+      margin-bottom: 26px;
+    }
+
+    .label {
+      width: 20%;
+      margin-top: 15px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: row-reverse;
+      width: 80%;
+      background: #ffffff;
+      border: 1px solid #cccccc;
+      box-sizing: border-box;
+      border-radius: 5px;
+    }
+
+    button {
+      background: #eeeeee;
+      border-radius: 5px;
+      border: 2px solid #cccccc;
+    }
+
+    button i {
+      padding-left: 15px;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+
+      color: #11144c;
+    }
+
+    .buttonText {
+      font-family: Work Sans;
+      font-size: 14px;
+      /* or 125% */
+      letter-spacing: 0.05em;
+
+      color: #11144c;
+    }
+
+    .inputButtons {
+      width: 85%;
+      margin: 14px;
+      flex-wrap: wrap;
+    }
+
+    .inputButtons button {
+      margin-bottom: 5px;
+    }
+
+    .inputControls {
+      width: 15%;
+      margin: 14px;
+      order: -1;
+    }
+
+    .inputControls button {
+      background: #11144c;
+      border-radius: 5px;
+      border-color: #11144c;
+    }
+
+    /* Drop down */
+
+    /* Style The Dropdown Button */
+    .dropbtn {
+      background-color: white;
+      padding: 4px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+      border: .2px solid black;
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      right: 0;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {
+      background-color: #f1f1f1
+    }
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .dropdown:hover .dropbtn {
+      background-color: white;
+    }
+
+    /* Input controls contd */
+    .inputControls i {
+      font-size: 20px;
+      color: #11144c;
+      padding-left: 10px;
+    }
+
+    .buttonNo {
+      font-size: 24px;
+      line-height: 28px;
+      letter-spacing: 0.05em;
+
+      color: #ffffff;
+    }
+
+    /* Job Stack Section */
+    .stack {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      background: #ffffff;
+      border: 1px solid #cccccc;
+      box-sizing: border-box;
+      border-radius: 5px;
+    }
+
+    .stack-field,
+    .stack-search,
+    .stack-check {
+      display: flex;
+      width: 100%;
+    }
+
+    .stack-field,
+    .stack-search {
+      flex-direction: row-reverse;
+    }
+
+    .stack-search {
+      display: flex;
+      flex-direction: row-reverse;
+      border: 1px solid #cccccc;
+      border-right-color: #ffffff;
+      border-left-color: #ffffff;
+    }
+
+    .text {
+      width: 90%;
+      margin: 19px;
+    }
+
+    .text input {
+      background: white;
+      border: 0px;
+    }
+
+    .search-button {
+      order: -1;
+    }
+
+    .search-button i {
+      font-size: 24px;
+      color: #11144c;
+      padding-left: 10px;
+      margin: 15px;
+      color: #bebcbc;
+    }
+
+    .stack-check {
+      padding: 10px;
+      /* flex-direction: column; */
+    }
+
+    /* .check-row {
   display: flex;
-  flex-direction: column;
-}
-section {
-  display: flex;
-  margin-bottom: 26px;
-}
-.label {
-  width: 20%;
-  margin-top: 15px;
-}
-.field {
-  display: flex;
-  flex-direction: row-reverse;
-  width: 80%;
-  background: #ffffff;
-  border: 1px solid #cccccc;
-  box-sizing: border-box;
-  border-radius: 5px;
-}
+} */
+    .checkbox {
+      width: 22%;
+    }
 
-button {
-  background: #cccccc;
-  border-radius: 5px;
-  border: 2px solid #cccccc;
-}
-button i {
-  padding-left: 15px;
-  font-size: 14px;
-  letter-spacing: 0.05em;
+    /* .checkboxes  */
+    .checkbox input[type="checkbox"] {
+      opacity: 0;
+    }
 
-  color: #11144c;
-}
-.buttonText {
-  font-family: Work Sans;
-  font-size: 14px;
-  /* or 125% */
-  letter-spacing: 0.05em;
+    .checkbox label {
+      position: relative;
+      display: inline-block;
 
-  color: #11144c;
-}
-.inputButtons {
-  width: 85%;
-  margin: 14px;
-  flex-wrap: wrap;
-}
-.inputButtons button {
-  margin-bottom: 5px;
-}
-.inputControls {
-  width: 15%;
-  margin: 14px;
-  order: -1;
-}
-.inputControls button {
-  background: #11144c;
-  border-radius: 5px;
-  border-color: #11144c;
-}
-.inputControls i {
-  font-size: 20px;
-  color: #11144c;
-  padding-left: 10px;
-}
-.buttonNo {
-  font-size: 24px;
-  line-height: 28px;
-  letter-spacing: 0.05em;
+      /*16px width of fake checkbox + 6px distance between fake checkbox and text*/
+      padding-left: 22px;
+    }
 
-  color: #ffffff;
-}
+    .checkbox label::before,
+    .checkbox label::after {
+      position: absolute;
+      content: "";
 
-/* Job Stack Section */
-.stack {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  background: #ffffff;
-  border: 1px solid #cccccc;
-  box-sizing: border-box;
-  border-radius: 5px;
-}
-.stack-field,
-.stack-search,
-.stack-check {
-  display: flex;
-  width: 100%;
-}
-.stack-field,
-.stack-search {
-  flex-direction: row-reverse;
-}
-.stack-search {
-  display: flex;
-  flex-direction: row-reverse;
-  border: 1px solid #cccccc;
-  border-right-color: #ffffff;
-  border-left-color: #ffffff;
-}
-.text {
-  border: ;
-  width: 90%;
-  margin: 19px;
-}
-.text input {
-  background: white;
-  border: 0px;
-}
-.search-button {
-  order: -1;
-}
-.search-button i {
-  font-size: 24px;
-  color: #11144c;
-  padding-left: 10px;
-  margin: 15px;
-  color: #bebcbc;
-}
-.stack-check {
-  padding: 10px;
-}
-.checkboxes {
-  margin-left: 35px;
-}
-.pay-text,
-.update-text {
-  width: 93%;
-  font-size: 16px;
-  line-height: 20px;
-  /* or 125% */
-  letter-spacing: 0.05em;
-  padding: 23px;
-  color: #11144c;
-}
-.inputControls-2 {
-  order: -1;
-  width: 7%;
-  margin: 20px;
-}
+      /*Needed for the line-height to take effect*/
+      display: inline-block;
+    }
 
-.inputControls-2 i {
-  font-size: 20px;
-  color: #11144c;
-  padding-left: 10px;
-}
-#submit {
-  display: flex;
-  justify-content: center;
-}
-.submit {
-  background: #11144c;
-  border-radius: 5px;
-  width: 348px;
-  height: 77px;
-  margin-top: 90px;
-  margin-bottom: 200px;
-  border: 0px;
-}
-#submit-text {
-  font-family: Work Sans;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 20px;
-  /* or 100% */
-  letter-spacing: 0.05em;
+    /*Outer box of the fake checkbox*/
+    .checkbox label::before {
+      height: 16px;
+      width: 16px;
+      border-radius: 5px;
+      border: 1px solid;
+      left: 0px;
 
-  color: #ffffff;
-}
+      /*(24px line-height - 16px height of fake checkbox) / 2 - 1px for the border
+     *to vertically center it.
+     */
+      top: 3px;
+    }
 
- /* Large devices (desktops, 992px and up) */
-@media (max-width: 992px) { 
-  .inputControls, .inputControls-2 {
-    width: 30px;
-  }
-  .inputControls button, .inputControls-2 button {
-    margin-bottom: 5px;
-  }
-  
-  .inputButtons {
-    width: 90%;
-  }
- }
+    /*Checkmark of the fake checkbox*/
+    .checkbox label::after {
+      height: 5px;
+      width: 9px;
+      border-left: 2px solid;
+      border-bottom: 2px solid;
 
- /* Medium devices (tablets, 768px and up) */
-@media (max-width: 768px) { 
-  .inputControls, .inputControls-2 {
-    width: 7%;
-  }
-  .inputControls button, .inputControls-2 button {
-    margin-bottom: 5px;
-  }
-  .inputButtons {
-    width: 93%;
-  }
- }
+      transform: rotate(-45deg);
 
- /* Small devices (landscape phones, 576px and up) */
-@media (max-width: 576px) { 
-  section {
-    flex-direction: column;
-    margin-bottom: 20px;
-  }
-  .label, .field, .stack {
-    width: 100%;
-  }
-  .label {
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  .inputControls, .inputControls-2 {
-    width: 10%;
-  }
-  .inputControls button, .inputControls-2 button {
-    margin-bottom: 5px;
-  }
-  .inputButtons {
-    width: 90%;
-  }
-  .submit {
-    width: 200px;
-    height:50px;
-    margin-top: 45px;
-    margin-bottom: 100px;
-  }
-  #submit-text {
-    font-size: 15px;
-  }
- }
+      left: 4px;
+      top: 7px;
+    }
 
-    </style>
-  </head>
+    /*Hide the checkmark by default*/
+    .checkbox input[type="checkbox"]+label::after {
+      content: none;
+    }
 
-  <body>
-    <!-- header -->
-    {{>header}}
+    /*Unhide on the checked state*/
+    .checkbox input[type="checkbox"]:checked+label::after {
+      content: "";
+    }
 
-    <!-- body -->
-    <div class="container">
-      <div class="head">
-        <h5><b>Hello Test One</b></h5>
-        <h1><b>Time to set your Job Preferences</b></h1>
-      </div>
 
-      <main>
-        <!-- Job Role -->
-        <section>
-          <div class="label" for="jobRole">Select your Job Role(s)</div>
-          <div class="field">
-            <div class="inputButtons" id="jobRole">
-              <button type="button">
-                <span class="button-text"
-                  >Front-End<i class="fa fa-times"></i
-                ></span>
-              </button>
-              <button type="button">
-                <span class="button-text"
-                  >Devops<i class="fa fa-times"></i
-                ></span>
-              </button>
-              <button type="button">
-                <span class="button-text"
-                  >Fullstack<i class="fa fa-times"></i
-                ></span>
-              </button>
-              <button type="button">
-                <span class="buttonText">UI/UX<i class="fa fa-times"></i></span>
-              </button>
-            </div>
-            <div class="inputControls">
-              <button type="button"><span class="buttonNo">4</span></button>
-              <i class="fa fa-times"></i>
-              <i class="fa fa-chevron-down"></i>
-            </div>
-          </div>
-        </section>
-        <!-- Job Level -->
-        <section>
-          <div class="label" for="jobLevel">Select your Job Level(s)</div>
-          <div class="field">
-            <div class="inputButtons" id="jobLevel">
-              <button type="button">
-                <span class="button-text"
-                  >Junior<i class="fa fa-times"></i
-                ></span>
-              </button>
-              <button type="button">
-                <span class="button-text"
-                  >Intermediate<i class="fa fa-times"></i
-                ></span>
-              </button>
-              <button type="button">
-                <span class="buttonText"
-                  >Senior<i class="fa fa-times"></i
-                ></span>
-              </button>
-            </div>
-            <div class="inputControls">
-              <button type="button"><span class="buttonNo">3</span></button>
-              <i class="fa fa-times"></i>
-              <i class="fa fa-chevron-down"></i>
-            </div>
-          </div>
-        </section>
-        <!-- Job Type -->
-        <section>
-          <div class="label" for="jobType">Select your Job Type(s)</div>
-          <div class="field">
-            <div class="inputButtons" id="jobType">
-              <button type="button">
-                <span class="button-text"
-                  >Remote<i class="fa fa-times"></i
-                ></span>
-              </button>
-              <button type="button">
-                <span class="button-text"
-                  >Full-time<i class="fa fa-times"></i
-                ></span>
-              </button>
-              <button type="button">
-                <span class="button-text"
-                  >Part-remote<i class="fa fa-times"></i
-                ></span>
-              </button>
-            </div>
-            <div class="inputControls">
-              <button type="button"><span class="buttonNo">3</span></button>
-              <i class="fa fa-times"></i>
-              <i class="fa fa-chevron-down"></i>
-            </div>
-          </div>
-        </section>
-        <!-- Job Location -->
-        <section>
-          <div class="label" for="jobLocation">Select your Job Location(s)</div>
-          <div class="field">
-            <div class="inputButtons" id="jobLocation">
-              <button type="button">
-                <span class="button-text"
-                  >Nigeria<i class="fa fa-times"></i
-                ></span>
-              </button>
-              <button type="button">
-                <span class="button-text"
-                  >Germany<i class="fa fa-times"></i
-                ></span>
-              </button>
-              <button type="button">
-                <span class="buttonText"
-                  >Rwanda<i class="fa fa-times"></i
-                ></span>
-              </button>
-              <button type="button">
-                <span class="button-text"
-                  >Canada<i class="fa fa-times"></i
-                ></span>
-              </button>
-              <button type="button">
-                <span class="buttonText">UK<i class="fa fa-times"></i></span>
-              </button>
-            </div>
-            <div class="inputControls">
-              <button type="button"><span class="buttonNo">5</span></button>
-              <i class="fa fa-times"></i>
-              <i class="fa fa-chevron-down"></i>
-            </div>
-          </div>
-        </section>
-        <!-- Tech Stack -->
-        <section>
-          <div class="label" for="techStack">Select Tech Stack(s)</div>
-          <div class="stack">
-            <!-- For Input Buttons and Controls -->
-            <div class="stack-field">
-              <div class="inputButtons" id="techStack">
-                <button type="button">
-                  <span class="button-text"
-                    >Java<i class="fa fa-times"></i
-                  ></span>
-                </button>
-                <button type="button">
-                  <span class="button-text"
-                    >GoLang<i class="fa fa-times"></i
-                  ></span>
-                </button>
-                <button type="button">
-                  <span class="buttonText"
-                    >Flutter<i class="fa fa-times"></i
-                  ></span>
-                </button>
-                <button type="button">
-                  <span class="button-text"
-                    >React<i class="fa fa-times"></i
-                  ></span>
-                </button>
-                <button type="button">
-                  <span class="buttonText">Go<i class="fa fa-times"></i></span>
-                </button>
-              </div>
-              <div class="inputControls">
-                <button type="button"><span class="buttonNo">5</span></button>
-                <i class="fa fa-times"></i>
-                <i class="fa fa-chevron-down"></i>
-              </div>
-            </div>
-            <!-- Stack Search -->
-            <div class="stack-search">
-              <div class="text">
-                <input type="text" size="15" placeholder="Search" />
-              </div>
-              <div class="search-button">
-                <i class="fa fa-search"></i>
-              </div>
-            </div>
-            <!-- Stack Ckeckboxes -->
-            <div class="stack-check">
-              <div class="checkboxes">
-                <label class="checkbox">One
-                  <input type="checkbox" checked="checked">
-                  <span class="checkmark"></span>
-                </label>
-                <label class="container">One
-                  <input type="checkbox" checked="checked">
-                  <span class="checkmark"></span>
-                </label>
-                <label class="container">One
-                  <input type="checkbox" checked="checked">
-                  <span class="checkmark"></span>
-                </label>
-                    
-                    
-              </div>
-              
-              
-            </div>
-          </div>
-        </section>
-        <div></div>
-      
-        <!-- Pay Range -->
-        <section class="">
-            <div class="label" for="payRange">Choose pay range</div>
-            <div class="field">
-                <div class="pay-text" id="payRange">
-                  100,000 - 200,000
-                </div>
-                <div class="inputControls-2">
-                  <i class="fa fa-chevron-down"></i>
-                </div>
-              </div>
-            </div>
-          </section>
-        <!-- Update Type -->
-        <section class="container">
-            <div class="label" for="updateType">Choose update type</div>
-            <div class="field">
-                <div class="update-text" id="updateType">
-                  Monthly Updates
-                </div>
-                <div class="inputControls-2">
-                  <i class="fa fa-chevron-down"></i>
-                </div>
-              </div>
-            </div>
-          </section>
-          
-          <!-- Button trigger modal -->
-          <div id="submit">
-            <button
-            type="button"
-            class="submit"
-            data-toggle="modal"
-            data-target="#exampleModalCenter"
-          ><span id="submit-text">
-            Save & Submit</span>
+    /* Pay Range */
+    .pay-text,
+    .update-text {
+      width: 93%;
+      font-size: 16px;
+      line-height: 20px;
+      /* or 125% */
+      letter-spacing: 0.05em;
+      padding: 23px;
+      color: #11144c;
+    }
+
+    .inputControls-2 {
+      order: -1;
+      width: 7%;
+      margin: 20px;
+    }
+
+    .inputControls-2 i {
+      font-size: 20px;
+      color: #11144c;
+      padding-left: 10px;
+    }
+
+    #submit {
+      display: flex;
+      justify-content: center;
+    }
+
+    .submit {
+      background: #11144c;
+      border-radius: 5px;
+      width: 348px;
+      height: 77px;
+      margin-top: 90px;
+      margin-bottom: 200px;
+      border: 0px;
+    }
+
+    #submit-text {
+      font-family: Work Sans;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 20px;
+      /* or 100% */
+      letter-spacing: 0.05em;
+
+      color: #ffffff;
+    }
+
+    /* Large devices (desktops, 992px and up) */
+    @media (max-width: 992px) {
+
+      .inputControls,
+      .inputControls-2 {
+        width: 30px;
+      }
+
+      .inputControls button,
+      .inputControls-2 button {
+        margin-bottom: 5px;
+      }
+
+      .inputButtons {
+        width: 90%;
+      }
+    }
+
+    /* Medium devices (tablets, 768px and up) */
+    @media (max-width: 768px) {
+
+      .inputControls,
+      .inputControls-2 {
+        width: 7%;
+      }
+
+      .inputControls button,
+      .inputControls-2 button {
+        margin-bottom: 5px;
+      }
+
+      .inputButtons {
+        width: 93%;
+      }
+    }
+
+    /* Small devices (landscape phones, 576px and up) */
+    @media (max-width: 576px) {
+      section {
+        flex-direction: column;
+        margin-bottom: 20px;
+      }
+
+      .label,
+      .field,
+      .stack {
+        width: 100%;
+      }
+
+      .label {
+        text-align: center;
+        margin-bottom: 15px;
+      }
+
+      .inputControls,
+      .inputControls-2 {
+        width: 10%;
+      }
+
+      .inputControls button,
+      .inputControls-2 button {
+        margin-bottom: 5px;
+      }
+
+      .inputButtons {
+        width: 90%;
+      }
+
+      .submit {
+        width: 200px;
+        height: 50px;
+        margin-top: 45px;
+        margin-bottom: 100px;
+      }
+
+      #submit-text {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<!-- header -->
+{{>header}}
+
+<!-- body -->
+<div class="container">
+  <div class="head">
+    <h5><b>Hello Test One</b></h5>
+    <h1>Time to set your Job Preferences</h1>
+  </div>
+
+  <main id="preferences">
+    <!-- Job Role -->
+    <section>
+      <div class="label" for="jobRole">Select your Job Role(s)</div>
+      <div class="field">
+        <div class="inputButtons" id="jobRole">
+          {{# each RoleData}}
+          <button type="button">
+            <span class="button-text" data-attr="{{this}}">{{this}}<i class="fa fa-times clear-me"></i></span>
           </button>
-          </div>
-        
+          {{/each}}
+        </div>
+        <div class="inputControls">
+          <button type="button"><span id="jobRoleCount" class="buttonNo"></span></button>
+          <i class="fa fa-times" id="clearRoles"></i>
 
-      </main>
-      <!-- Modal -->
-      <div
-        class="modal fade"
-        id="exampleModalCenter"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">
-                Congrats
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              Your job preferences have been set
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">
-                  <span><i class="fa fa-long-arrow-left"></i>Back to job page</span>
-                  
-              </button>
+          <div class="dropdown">
+            <i class="fa fa-plus dropbtn"></i>
+            <div class="dropdown-content">
+              {{# each RoleData}}
+              <a data-attr="{{this}}" class="role-data-btn">{{this}}</a>
+              {{/each}}
             </div>
           </div>
         </div>
       </div>
-    </div>
-    </div>
+    </section>
+    <!-- Job Level -->
+    <section>
+      <div class="label" for="jobLevel">Select your Job Level(s)</div>
+      <div class="field">
+        <div class="inputButtons" id="jobLevel">
+          {{# each LevelData}}
+          <button type="button">
+            <span class="button-text" data-attr="{{this}}">{{this}}<i class="fa fa-times clear-me"></i></span>
+          </button>
+          {{/each}}
+        </div>
+        <div class="inputControls">
+          <button type="button"><span id="jobLevelCount" class="buttonNo"></span></button>
+          <i class="fa fa-times" id="clearLevels"></i>
+          <div class="dropdown">
+            <i class="fa fa-plus dropbtn"></i>
+            <div class="dropdown-content">
+              {{# each LevelData}}
+              <a data-attr="{{this}}" class="level-data-btn">{{this}}</a>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+    </section>
+    <!-- Job Type -->
+    <section>
+      <div class="label" for="jobType">Select your Job Type(s)</div>
+      <div class="field">
+        <div class="inputButtons" id="jobType">
+          {{# each TypeData}}
+          <button type="button">
+            <span class="button-text" data-attr="{{this}}">{{this}}<i class="fa fa-times clear-me"></i></span>
+          </button>
+          {{/each}}
+        </div>
+        <div class="inputControls">
+          <button type="button"><span id="jobTypeCount" class="buttonNo"></span></button>
+          <i class="fa fa-times" id="clearTypes"></i>
+          <div class="dropdown">
+            <i class="fa fa-plus dropbtn"></i>
+            <div class="dropdown-content">
+              {{# each TypeData}}
+              <a data-attr="{{this}}" class="type-data-btn">{{this}}</a>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Job Location -->
+    <section>
+      <div class="label" for="jobLocation">Select your Job Location(s)</div>
+      <div class="field">
+        <div class="inputButtons" id="jobLocation">
+          
+        </div>
+        <div class="inputControls">
+          <button type="button"><span id="locationCount" class="buttonNo"></span></button>
+          <i class="fa fa-times" id="clearLocations"></i>
+          <div class="dropdown">
+            <i class="fa fa-plus dropbtn"></i>
+            <div class="dropdown-content">
+              {{# each Locations}}
+              <a data-attr="{{this.name}}" class="location-item-btn">{{this.name}}</a>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Tech Stack -->
+    <section>
+      <div class="label" for="techStack">Select Tech Stack(s)</div>
+      <div class="stack">
+        <!-- For Input Buttons and Controls -->
+        <div class="stack-field">
+          <div class="inputButtons" id="techStack">
+            
+          </div>
+          <div class="inputControls">
+            <button type="button"><span id="techStackCount" class="buttonNo"></span></button>
+            <i class="fa fa-times" id="clearStacks"></i>
+            <div class="dropdown">
+              <i class="fa fa-plus dropbtn"></i>
+              <div class="dropdown-content">
+                {{# each Stacks}}
+                <a data-attr="{{this}}" class="stack-item-btn">{{this}}</a>
+                {{/each}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Stack Search -->
+        <div class="stack-search">
+          <div class="text">
+            <input type="text" size="15" placeholder="Search" value="coming soon"/>
+          </div>
+          <div class="search-button">
+            <i class="fa fa-search"></i>
+          </div>
+        </div>
+        <!-- Stack Ckeckboxes -->
+        <div class="stack-check">
 
-    <!-- footer -->
-    {{>footer}}
-    <!-- scripts -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
+        </div>
+      </div>
+    </section>
+    <div></div>
+
+    <!-- Update Type -->
+    <section class="container">
+      <div class="label" for="updateType">Choose update type</div>
+      <div class="field">
+        <div class="update-text" id="updateType">
+          Monthly Updates
+        </div>
+        <div class="inputControls-2">
+          <div class="dropdown">
+            <i class="fa fa-plus dropbtn"></i>
+            <div class="dropdown-content ">
+              <a href="#" class="updateTypeOptions">Daily</a>
+              <a href="#" class="updateTypeOptions">Weekly</a>
+              <a href="#" class="updateTypeOptions">Monthly</a>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+</section>
+
+<!-- Button trigger modal -->
+<div id="submit">
+  <button type="button" id="submit-btn" class="submit"><span id="submit-text">
+      Save &amp; Submit</span>
+  </button>
+</div>
+
+
+</main>
+</div>
+</div>
+
+<!-- footer -->
+{{>footer}}
+<!-- scripts -->
+
+<script>
+
+  function updateCount() {
+    $("#jobRoleCount").html(($("#jobRole > button").length))
+    $("#jobLevelCount").html(($("#jobLevel > button").length))
+    $("#jobTypeCount").html(($("#jobType > button").length))
+    $("#locationCount").html(($("#jobLocation > button").length))
+    $("#techStackCount").html(($("#techStack > button").length))
+  }
+
+  $(function () {
+
+    updateCount();
+
+    $("#clearStacks").click(function () {
+      if ($(this).html().length == 0) {
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "This will clear all selected stacks!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#11144C',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, clear it!'
+        }).then((result) => {
+          if (result.value) {
+            $("#techStack > button").fadeOut(500, function () {
+              $(this).remove();
+              updateCount();
+            });
+
+          }
+        })
+      }
+    });
+    $("#clearLocations").click(function () {
+      if ($(this).html().length == 0) {
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "This will clear all selected locations!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#11144C',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, clear it!'
+        }).then((result) => {
+          if (result.value) {
+            $("#jobLocation > button").fadeOut(500, function () {
+              $(this).remove();
+              updateCount();
+            });
+          }
+        })
+      }
+    });
+    $("#clearTypes").click(function () {
+      if ($(this).html().length == 0) {
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "This will clear all selected job types!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#11144C',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, clear it!'
+        }).then((result) => {
+          if (result.value) {
+            $("#jobType > button").fadeOut(500, function () {
+              $(this).remove();
+              updateCount();
+            });
+
+          }
+        })
+      }
+    });
+    $("#clearLevels").click(function () {
+      if ($(this).html().length == 0) {
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "This will clear all selected levels!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#11144C',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, clear it!'
+        }).then((result) => {
+          if (result.value) {
+            $("#jobLevel > button").fadeOut(500, function () {
+              $(this).remove();
+              updateCount();
+            });
+          }
+        })
+      }
+    });
+    $("#clearRoles").click(function () {
+      if ($(this).html().length == 0) {
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "This will clear all selected Roles!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#11144C',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, clear it!'
+        }).then((result) => {
+          if (result.value) {
+            $("#jobRole > button").fadeOut(500, function () {
+              $(this).remove();
+              updateCount();
+            });
+          }
+        })
+      }
+    });
+
+
+    $("#preferences").on("click", ".clear-me", function () {
+      $(this).parent().fadeOut(500, function () {
+        $(this).parent().remove();
+        updateCount();
+      });
+    })
+
+    $(".role-data-btn").click(function () {
+      if ($('#jobRole span[data-attr="' + $(this).attr("data-attr") + '"]').length == 0) {
+
+
+        let new_entry = `
+                <button type="button">
+                  <span data-attr='${$(this).attr('data-attr')}' class="button-text">${$(this).attr("data-attr")}<i class="fa fa-times clear-me"></i></span>
+                </button>
+              `;
+        $(new_entry).hide().appendTo("#jobRole").fadeIn("fast", updateCount());
+      }
+    })
+    $(".type-data-btn").click(function () {
+      if ($('#jobType span[data-attr="' + $(this).attr('data-attr') + '"]').length == 0) {
+        let new_entry = `
+                <button type="button">
+                  <span data-attr='${$(this).attr('data-attr')}' class="button-text">${$(this).attr("data-attr")}<i class="fa fa-times clear-me"></i></span>
+                </button>
+              `;
+        $(new_entry).hide().appendTo("#jobType").fadeIn("fast", updateCount());
+        updateCount();
+      }
+    })
+
+    $(".level-data-btn").click(function () {
+      if ($('#jobLevel span[data-attr="' + $(this).attr('data-attr') + '"]').length == 0) {
+        let new_entry = `
+                <button type="button">
+                  <span data-attr='${$(this).attr('data-attr')}' class="button-text">${$(this).attr("data-attr")}<i class="fa fa-times clear-me"></i></span>
+                </button>
+              `;
+        $(new_entry).hide().appendTo("#jobLevel").fadeIn("fast", updateCount());
+        updateCount();
+      }
+    })
+
+    $(".location-item-btn").click(function () {
+      if ($('#jobLocation span[data-attr="' + $(this).attr("data-attr") + '"]').length == 0) {
+        let new_entry = `
+                <button type="button">
+                  <span data-attr='${$(this).attr('data-attr')}' class="button-text">${$(this).attr("data-attr")}<i class="fa fa-times clear-me"></i></span>
+                </button>
+              `;
+        $(new_entry).hide().appendTo("#jobLocation").fadeIn("fast", updateCount());
+        updateCount();
+      }
+    })
+
+    $(".stack-item-btn").click(function () {
+      if ($('#techStack span[data-attr="' + $(this).attr("data-attr") + '"]').length === 0) {
+        let new_entry = `
+                <button type="button">
+                  <span data-attr='${$(this).attr('data-attr')}' class="button-text">${$(this).attr("data-attr")}<i class="fa fa-times clear-me"></i></span>
+                </button>
+              `;
+        $(new_entry).hide().appendTo("#techStack").fadeIn("fast", updateCount());
+        updateCount();
+      }
+
+    })
+
+    $(".updateTypeOptions").click(function () {
+      $("#updateType").html($(this).html);
+    })
+
+    $("#submit-btn").click(function () {
+      Swal.fire({
+        title: 'Successful',
+        text: "Your job preferences have been saved!\n You will be redirected shortly!",
+        type: 'success',
+      })
+      setTimeout(function(){
+        window.location.replace("https://devalert.me/jobs");
+      }, 2000);
+    });
+
+
+  })
+</script>
