@@ -41,9 +41,6 @@ router.get('/', async function(req, res, next) {
   }
 });
 
-// Choose Agent Page
-router.get('/choose_agent', Home.chooseAgent);
-
 // GET About us page
 router.get('/about', Home.aboutUs);
 
@@ -101,7 +98,7 @@ router.get('/dashboard', function (req, res, next) {
 router.get('/logout', function(req, res) {
   req.session.destroy();
   req.logout();
-  res.redirect('/');
+  res.status(401).redirect('/');
 });
 
 //successful payment
@@ -295,16 +292,27 @@ router.post('/contact', UserController.sendContactAlert);
 
 
 /*FACEBOOK AUTH*/
-// GET Social Auth Page
 
 // GET User Login page
-router.get("/user-login", Home.userLogin);
+router.get("/login", function(req, res){
+    res.render('user-login');
+});
 
 // router.get("/auth", function (req, res, next){ 
 //   res.status(200).render('auth') 
 // });
+router.get('/job-preference', isLoggedIn, function(req, res) {
+        res.render('jobPreference.hbs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+// Choose Agent Page
+router.get('/choose_agent', isLoggedIn, function(req, res){
+        res.render('choose_agent.hbs', {
+          user : req.user
+        });
+});
 
-router.get('/job-preference', isLoggedIn, Jobs.fetchPreferredJobs);
 
 // route for facebook authentication and login
   router.get('/auth/facebook', passport.authenticate('facebook', { 
@@ -314,23 +322,26 @@ router.get('/job-preference', isLoggedIn, Jobs.fetchPreferredJobs);
  
   router.get('/auth/facebook/callback',
     passport.authenticate('facebook',{
-        failureRedirect : '/user-login'}),
+        failureRedirect : '/login'}),
         (req, res)=>{
           console.log("facebook login successful, redirecting to job Preference")
           res.redirect('/job-preference');
         });
 
 
-// route middleware to make sure a user is logged in
+// route middleware to make sure a user is logged in.... Please don't touch
 function isLoggedIn(req, res, next) {
-    console.log('req is', req);
-  // console.log('session id is', req.sessionID);
-    // console.log('check login status');
+    
+    console.log('req is ', Object.keys(req));
+    console.log("sessionID is ", req.sessionID)
+    console.log('session is', req.session);
+    console.log('session store is', req.sessionStore);
+    //console.log('check login status');
     //if user is authenticated in the session, carry on
-      if (req.sessionID)
+      if (req.isAuthenticated())
         return next();
     // if they aren't redirect them to the auth page
-    res.redirect('/user-login');
+    res.redirect('/login');
 }
 // GOOGLE ROUTES =======================
     // send to google to do the authentication
@@ -342,7 +353,7 @@ function isLoggedIn(req, res, next) {
     router.get('/auth/google/callback',
     passport.authenticate('google', {
         successRedirect : '/job-preference',
-        failureRedirect : '/user-login'
+        failureRedirect : '/login'
     }));
 
 
