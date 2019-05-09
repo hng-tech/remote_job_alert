@@ -294,7 +294,9 @@ router.post('/contact', UserController.sendContactAlert);
 /*FACEBOOK AUTH*/
 
 // GET User Login page
-router.get("/user-login", Home.userLogin);
+router.get("/login", function(req, res){
+    res.render('user-login');
+});
 
 // router.get("/auth", function (req, res, next){ 
 //   res.status(200).render('auth') 
@@ -320,7 +322,7 @@ router.get('/choose_agent', isLoggedIn, function(req, res){
  
   router.get('/auth/facebook/callback',
     passport.authenticate('facebook',{
-        failureRedirect : '/user-login'}),
+        failureRedirect : '/login'}),
         (req, res)=>{
           console.log("facebook login successful, redirecting to job Preference")
           res.redirect('/job-preference');
@@ -339,7 +341,7 @@ function isLoggedIn(req, res, next) {
       if (req.isAuthenticated())
         return next();
     // if they aren't redirect them to the auth page
-    res.redirect('/user-login');
+    res.redirect('/login');
 }
 // GOOGLE ROUTES =======================
     // send to google to do the authentication
@@ -351,7 +353,7 @@ function isLoggedIn(req, res, next) {
     router.get('/auth/google/callback',
     passport.authenticate('google', {
         successRedirect : '/job-preference',
-        failureRedirect : '/user-login'
+        failureRedirect : '/login'
     }));
 
 
