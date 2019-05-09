@@ -116,10 +116,6 @@ input[type=text]:focus {
 	
 }
 
-.center-div
-{
-     margin: 0 auto;
-}
 
 		#Featured-jobs p {
 			padding-top: 10px;
@@ -131,6 +127,10 @@ input[type=text]:focus {
 			.row {}
 
 			.card {}
+
+			#jobs{
+				margin:auto;
+			}
 		}
 
 		@media only screen and (min-device-width : 0px) and (max-device-width : 15000px) {
@@ -143,6 +143,10 @@ input[type=text]:focus {
 
 			.marow {
 				padding-left: 60px;
+			}
+
+			#jobs{
+				margin-left: 340px;
 			}
 		}
 
@@ -234,7 +238,7 @@ input[type=text]:focus {
 				 
     
         <div class="row" style="justify-content: center;">
-    	<div id="jobs" style="margin: auto;" class="center-div">
+    	<div id="jobs">
 
 
     	</div>
@@ -324,6 +328,7 @@ input[type=text]:focus {
 					// using `result.error.message`.
 				});
 			});
+		});
 
 		</script>
 		<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
