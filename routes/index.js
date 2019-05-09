@@ -41,9 +41,6 @@ router.get('/', async function(req, res, next) {
   }
 });
 
-// Choose Agent Page
-router.get('/choose_agent', Home.chooseAgent);
-
 // GET About us page
 router.get('/about', Home.aboutUs);
 
@@ -101,7 +98,7 @@ router.get('/dashboard', function (req, res, next) {
 router.get('/logout', function(req, res) {
   req.session.destroy();
   req.logout();
-  res.redirect('/');
+  res.status(401).redirect('/');
 });
 
 //successful payment
@@ -109,9 +106,9 @@ router.get('/successful-payment', function(req, res) {
   res.render('payment_success');
 });
 
-router.get('/job-preference', function(req, res){
-  res.render('jobPreference.hbs')
-});
+//router.get('/job-preference', function(req, res){
+//  res.render('jobPreference.hbs')
+//});
 
 router.get('/payment-failed', function(req, res) {
   res.render('payment_failed');
@@ -309,6 +306,13 @@ router.get('/job-preference', isLoggedIn, function(req, res) {
             user : req.user // get the user out of session and pass to template
         });
     });
+// Choose Agent Page
+router.get('/choose_agent', isLoggedIn, function(req, res){
+        res.render('choose_agent.hbs', {
+          user : req.user
+        });
+});
+
 
 // route for facebook authentication and login
   router.get('/auth/facebook', passport.authenticate('facebook', { 
@@ -325,13 +329,16 @@ router.get('/job-preference', isLoggedIn, function(req, res) {
         });
 
 
-// route middleware to make sure a user is logged in
+// route middleware to make sure a user is logged in.... Please don't touch
 function isLoggedIn(req, res, next) {
-    console.log('req is', req);
-  // console.log('session id is', req.sessionID);
-    // console.log('check login status');
+    
+    console.log('req is ', Object.keys(req));
+    console.log("sessionID is ", req.sessionID)
+    console.log('session is', req.session);
+    console.log('session store is', req.sessionStore);
+    //console.log('check login status');
     //if user is authenticated in the session, carry on
-      if (req.sessionID)
+      if (req.isAuthenticated())
         return next();
     // if they aren't redirect them to the auth page
     res.redirect('/user-login');
