@@ -1,6 +1,27 @@
 <footer>
 	<!--Start of Tawk.to Script-->
 	<script type="text/javascript">
+		function getCurrentUri() {
+                let url = window.location.pathname;
+                return url.substr(url.lastIndexOf('/') + 1)
+            }
+
+            let URI = getCurrentUri()
+            
+            switch (URI) {
+                case '':
+                $('#all-jobs').addClass('job__active');
+                break;
+                case 'full-time':
+                $('#full-time').addClass('job__active');
+                break;
+                case 'part-time':
+                $('#part-time').addClass('job__active');
+                break;
+                case 'contract':
+                $('#contract').addClass('job__active');
+                break;
+            } 
 		var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
 		(function () {
 			var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
@@ -27,31 +48,17 @@
 					<li>
 						<a href="/faqs">FAQs</a>
 					</li>
-					<li>
-						<a class="typeform-share button" href="https://opensaucedeveloper.typeform.com/to/CXoPol" data-mode="popup" data-submit-close-delay="5"
-						 target="_blank">
-							Become an Agent
-						</a>
-
-
-					</li>
 					<script> (function () { var qs, js, q, s, d = document, gi = d.getElementById, ce = d.createElement, gt = d.getElementsByTagName, id = "typef_orm_share", b = "https://embed.typeform.com/"; if (!gi.call(d, id)) { js = ce.call(d, "script"); js.id = id; js.src = b + "embed.js"; q = gt.call(d, "script")[0]; q.parentNode.insertBefore(js, q) } })() </script>
 				</ul>
 			</div>
 			<div class="col link-subgroup">
-				<h3>SPONSORS</h3>
+				<h3>QUICKLINKS</h3>
 				<ul>
 					<li>
-						<a target="_blank" href="https://hotels.ng/">HotelsNG</a>
+						<a href="/jobs">Find Jobs</a>
 					</li>
 					<li>
-						<a target="_blank" href="https://hotel.africa/">Hotel Africa</a>
-					</li>
-					<li>
-						<a target="_blank" href="https://flyafrica.com/">Fly Africa</a>
-					</li>
-					<li>
-						<a target="_blank" href="https://verifi.ng/">Verifi</a>
+						<a target="_blank" href="https://paystack.com/pay/devalert">Donate</a>
 					</li>
 				</ul>
 			</div>
@@ -74,7 +81,7 @@
 	</div>
 	<div class="copyright">
 		<p>&copy;Copyright
-			<script>document.write(new Date().getFullYear())</script>. All rights reserved</p>
+			<script>document.write(new Date().getFullYear())</script>. HNG</p>
 	</div>
 	<a id="back-to-top" href="#header" style="display: none;padding: 10px;text-align:center; position: fixed; background: #11144C;bottom: 24px; right: 24px;">
 		<span style="width: 24px; height: 24px; padding: 4px;color:white;" class="fa fa-arrow-up"></span>

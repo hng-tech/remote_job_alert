@@ -1,4 +1,4 @@
-<div class="container">
+{{!-- <div class="container">
 	{{#each errors}}
 	<div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<strong>{{msg}}</strong>
@@ -21,17 +21,17 @@
 		</button>
 	</div>
 	{{/if}}
-</div>
+</div> --}}
 
 
 <div class="container">
 	{{#each errors}}
-	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	{{!-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
 		<strong>{{msg}}</strong>
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
-	</div>
+	</div> --}}
 	{{/each}} {{#if paymentError}}
 	<div class="alert alert-warning alert-dismissible fade show">
 		<strong>{{paymentError}}</strong>
@@ -76,7 +76,7 @@
 						<a class="nav-link b-2 hover_link" href="/jobs">Jobs</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link b-2 hover_link" href="/auth">Log in</a>
+						<a class="nav-link b-2 hover_link" href="/user-login">Log in</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link b-2 hover_link" href="/about">About Us</a>

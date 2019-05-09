@@ -1,12 +1,12 @@
 class Home {
   // Render homepage
   static index(req, res, next) {
-    res.render('index', { title: 'Remote Job Alert' });
+    res.render('index', { title: 'DevAlert | Home' });
   }
 
   // Render about us page
   static aboutUs(req, res, next) {
-    res.render('about');
+    res.render('about' , { title: 'DevAlert | About Us' });
   }
 
   // Dashboard
@@ -37,8 +37,8 @@ class Home {
   }
 
   // Render user-signup page
-  static userSignup(req, res, next) {
-    res.render('user-signup');
+  static register(req, res, next) {
+    res.render('register');
   }
 
   //Render contact details page
@@ -87,6 +87,9 @@ class Home {
   }
   static unsubscribe_success(req, res, next) {
     res.render('unsubscribe_success', { title: 'unsubscribe success' });
+  }
+  static category(req, res, next) {
+    res.render('jobCategory', { title: 'Full time' });
   }
 }
 

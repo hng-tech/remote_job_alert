@@ -60,7 +60,8 @@ header nav ul.navbar-nav li {
 
     div.cta {
         background-color: #e5e6f7;
-        padding-left: 3rem !important;
+        margin-left: 0px !important;
+        margin-bottom: 0px !important;
     }
 }
 @media screen and (min-width:992px){
@@ -102,6 +103,9 @@ header nav ul.navbar-nav li {
 .navbar-light .navbar-nav a.nav-link {
     color: #ffffff;
 }
+.lin:active{
+    color: #fff;
+}
 }
 @media (max-width:767px) {
     .yoko{
@@ -129,4 +133,9 @@ header nav ul.navbar-nav li {
         text-align: left!important;
         padding-left: 19px;
     }
+@media only screen and (min-device-width : 992px) and (max-device-width : 1199px){
+        .saa{
+            margin-right: -38px;
+        }
+ }
 }
