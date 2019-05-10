@@ -373,4 +373,5 @@ router.get('/view_all_payments', Subscription.view_all_payments);
 router.get('/view_one_payment/:_id', Subscription.view_one_payment);
 router.get('/delete_one_payment/:_id', Subscription.deleteOnePayment);
 router.get('/delete_all_payments', Subscription.deleteAllPayments); //CAUTION, IT'S WORKING
+router.get('/fetch_user_preference/:_id', Jobs.fetchPreferredRegisterJobs);
 module.exports = router;

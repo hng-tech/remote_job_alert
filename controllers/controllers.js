@@ -15,6 +15,7 @@ const Paystack = require('./paystack');
 const session = require('./stripe');
 const Applicant = require('./applicant');
 
+
 // Null placeholder till promise returns a value
 var remote_jobs = null;
 
@@ -589,6 +590,75 @@ const Jobs = {
 
     } catch (error) {
       return res.status(400).send(error);
+    }
+  },
+
+  async fetchPreferredRegisterJobs(req, res) {
+ 
+    try {
+      const { _id } = req.params; 
+      let registeredUser = await registeredUsers.findOne({ _id: _id });
+      console.log(registeredUser)
+      let pr = registeredUser.prefered_job_role;
+      let ple = registeredUser.prefered_job_level;
+      let pt = registeredUser.prefered_job_type;
+      let plo = registeredUser.prefered_job_location;
+      let ps = registeredUser.prefered_job_stack;
+      let arrayRole = pr.split(',');
+      let arrayLevel = ple.split(',');
+      let arrayType = pt.split(',');
+      let arrayLocation = plo.split(',');
+      let arrayStack = ps.split(',');
+      for(let i=0;i<arrayRole.length; i++)
+      for(let i=0;i<arrayLevel.length; i++)
+      for(let i=0;i<arrayType.length; i++)
+      for(let i=0;i<arrayLocation.length; i++)
+      for(let i=0;i<arrayStack.length; i++)
+      await  fetch(`https://jobs.github.com/positions.json?description=${arrayRole[i]}&location=remote`)
+      .then(() => {
+        async function getUserJobPreference () {
+          let A =  await  fetch(`https://jobs.github.com/positions.json?description=${arrayRole[i]}&location=remote`);
+          let RoleResult= await A.json();
+            
+          let B =  await  fetch(`https://jobs.github.com/positions.json?description=${arrayLevel[i]}&location=remote`)
+          let LevelResult= await B.json();
+
+          let C =  await  fetch(`https://jobs.github.com/positions.json?description=${arrayType[i]}&location=remote`)
+          let TypeResult= await C.json();
+
+          let D =  await  fetch(`https://jobs.github.com/positions.json?description=${arrayLocation[i]}&location=remote`)
+          let LocationResult= await D.json();
+
+          let E =  await  fetch(`https://jobs.github.com/positions.json?description=${arrayStack[i]}&location=remote`)
+          let StackResult = await E.json();
+
+          let TotalJobs = RoleResult.concat(RoleResult, LevelResult, TypeResult, LocationResult, StackResult);
+          
+          return res.status(200).json({
+            TotalRoleJobs:  Object.keys(RoleResult).length,
+            TotalLevelJobs:  Object.keys(LevelResult).length,
+            TotalTypeJobs:  Object.keys(TypeResult).length,
+            TotalLocationJobs:  Object.keys(LocationResult).length,
+            TotalStackJobs:  Object.keys(StackResult).length,
+            TotalJobsCount:  Object.keys(TotalJobs).length,
+            RoleJobs: RoleResult,
+            LevelJobs: LevelResult,
+            TypeJobs: TypeResult,
+            LocationJobs: LocationResult,
+            StackJobs: StackResult,
+            TotalJobs: TotalJobs,
+          });
+        }
+        getUserJobPreference();
+      })
+      .catch(err => {
+        console.log(err)
+        return res.status(500).json(err);
+      });
+    }
+    catch (error) {
+      console.log(error)
+      return res.status(500).json(error)
     }
   }
 };
