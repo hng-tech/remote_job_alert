@@ -279,28 +279,69 @@ input[type=text]:focus {
 		for(let i=0;i<8;i++){
 		let min_pay = jobData[i].job_pay_min;
 		let max_pay = jobData[i].job_pay_max;
+		let currency_code = "$";
+		let min_pay_convert = min_pay;
+		let max_pay_convert = max_pay;
 
-		let currency_url = "http://www.geoplugin.net/json.gp";
+		$('select[name="currency"]').change(function(){
 
-		fetch(currency_url)
-		.then(resp=>resp.json())
-		.then(function (curr){
-		let exchange_rate = curr.geoplugin_currencyConverter;
-		let currency_code = curr.geoplugin_currencySymbol;
-		let min_pay_convert = Math.ceil(min_pay*exchange_rate);
-		let max_pay_convert = Math.ceil(max_pay*exchange_rate);
+    	if ($(this).val() === "USD"){
+        min_pay_convert = min_pay * 1;
+        max_pay_convert = max_pay * 1;
+        currency_code = '$';
+        $(".pay1").html(currency_code + min_pay_convert);
+        $(".pay2").html(currency_code + max_pay_convert);
+
+     	} else if ($(this).val() === "NGN") {
+     	min_pay_convert = min_pay * 360;
+     	max_pay_convert = max_pay * 360;
+     	currency_code = '₦';
+
+     	$("#min_pay").html(currency_code + min_pay_convert);
+        $("#max_pay").html(currency_code + max_pay_convert);
+
+     	} else if ($(this).val() === "GBP"){
+     		min_pay_convert = min_pay * 468;
+     		max_pay_convert = max_pay * 468;
+     		currency_code = '£';
+
+     		$("#min_pay").html(currency_code + min_pay_convert);
+        	$("#max_pay").html(currency_code + max_pay_convert);
+
+     	} else if ($(this).val() === "EUR"){
+     		min_pay_convert = min_pay * 404;
+     		max_pay_convert = max_pay * 404;
+     		currency_code = '€';
+
+     		$("#min_pay").html(currency_code + min_pay_convert);
+        	$("#max_pay").html(currency_code + max_pay_convert);
+
+     	} else if ($(this).val() === "YEN"){
+     		min_pay_convert = min_pay * 3;
+     		max_pay_convert = max_pay * 3;
+     		currency_code = '¥';
+
+     		$("#min_pay").html(currency_code + min_pay_convert);
+        	$("#max_pay").html(currency_code + max_pay_convert);
+
+     	} else {
+     		min_pay_convert = min_pay;
+     		max_pay_convert = max_pay;
+     		currency_code = '$';
+
+     	}
+     	
+		})
+
+
 
 		let job_cards =	"<div class='card featureCad col-md-4 offset-md-4 left' style='padding-bottom: 20px' id='job_card'><div class='container'><a href='/jobs/featured/" +jobData[i].slug+ "'><img src='"+jobData[i].image_link+"' alt='google-image'><h4 class='card-head' id='job_title'><b>"+jobData[i].job_title+"</b></h4> <p class='job-brief truncate' id='job_desc'>"+jobData[i].job_description+"<br><b>Stack:</b> JavaScript || React || HTML.</p> <p><ion-icon name='briefcase' id='company_name'></ion-icon>"+jobData[i].company_name+"<ion-icon name='time'></ion-icon><span id='job_type'>"+jobData[i].job_type+"</span></p><span class='pay1' id='min_pay'>"+currency_code+min_pay_convert+"</span> -- <span class='pay2' id='max_pay'>"+currency_code+max_pay_convert+"</span><p class='hide'></p></a></div></div>";
 
 
 			$("#jobs").append(job_cards);
 		
-	})
-
-		
-			
-		}
-	})
+	}
+})
 
 //Change currency
 
