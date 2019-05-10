@@ -188,8 +188,7 @@ const Jobs = {
       });
     }
     catch (error) {
-      console.log(error)
-      return res.status(400).send(error);
+      return res.status(500).json(error)
     }
   },
 
@@ -437,8 +436,7 @@ const Jobs = {
       image_link: req.body.image_link
     };
     try {
-      let updatedJob = await db.findOneAndUpdate(queryText, updateText);
-      console.log(updatedJob);
+      let updatedJob = await db.findOneAndUpdate(queryText, updateText);;
       return res.status(201).redirect("/managejobs");
     } catch (error) {
       return res.status(400).send(error);
@@ -450,7 +448,6 @@ const Jobs = {
     };
     try {
       let foundJob = await db.findOneAndDelete(queryText);
-      console.log(foundJob);
       return res.status(200).redirect("/managejobs");
     } catch (error) {
       return res.status(400).send(error);
@@ -598,7 +595,6 @@ const Jobs = {
     try {
       const { _id } = req.params; 
       let registeredUser = await registeredUsers.findOne({ _id: _id });
-      console.log(registeredUser)
       let pr = registeredUser.prefered_job_role;
       let ple = registeredUser.prefered_job_level;
       let pt = registeredUser.prefered_job_type;
