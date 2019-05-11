@@ -322,6 +322,7 @@ const Jobs = {
       job_link: req.body.job_link,
       employer_email: req.body.email,
       slug: req.body.slug,
+      job_stack: req.body.job_stack,
       job_pay_min: req.body.minimum_salary,
       job_pay_max: req.body.maximum_salary,
       job_type: req.body.job_type,
