@@ -174,10 +174,9 @@ router.get('/jobs/category', Home.category);
 
 // Fetching jobs by category
 router.get('/all-jobs', Jobs.fetchAllSearchJobs);
-router.get('/jobs/full-time', Jobs.fetchAllFullTimeSearchJobs);
-router.get('/jobs/part-time', Jobs.fetchAllPartTimeSearchJobs);
-router.get('/jobs/contract', Jobs.fetchAllContractSearchJobs);
 router.get('/custom_search/:_id', Jobs.fetchAllCustomSearchJobs);
+
+// Fetch Jobs by Tech
 
 /* There is an Error in this route, it is crashing the server */
 //router.post('/jobs', Jobs.validate('create'), Jobs.create);
@@ -187,6 +186,7 @@ router.get("/jobs", Jobs.get_api_jobs);
 /////////////////////////////////////////////////
 router.get('/jobs/featured/:job_id', Jobs.get_one);
 router.get('/jobs/:slug', Jobs.fetchSingle);
+router.get('/jobs/:tech', Jobs.fetchTechData);
 //router.get("/jobs/:job_id/edit", Jobs.edit);
 router.post('/jobs/:job_id', Jobs.update_job);
 router.get('/jobs/:job_id/delete', Jobs.cancel_job);
