@@ -2,26 +2,26 @@
 	<!--Start of Tawk.to Script-->
 	<script type="text/javascript">
 		function getCurrentUri() {
-                let url = window.location.pathname;
-                return url.substr(url.lastIndexOf('/') + 1)
-            }
+			let url = window.location.pathname;
+			return url.substr(url.lastIndexOf('/') + 1)
+		}
 
-            let URI = getCurrentUri()
-            
-            switch (URI) {
-                case '':
-                $('#all-jobs').addClass('job__active');
-                break;
-                case 'full-time':
-                $('#full-time').addClass('job__active');
-                break;
-                case 'part-time':
-                $('#part-time').addClass('job__active');
-                break;
-                case 'contract':
-                $('#contract').addClass('job__active');
-                break;
-            } 
+		let URI = getCurrentUri()
+
+		switch (URI) {
+			case '':
+				$('#all-jobs').addClass('job__active');
+				break;
+			case 'full-time':
+				$('#full-time').addClass('job__active');
+				break;
+			case 'part-time':
+				$('#part-time').addClass('job__active');
+				break;
+			case 'contract':
+				$('#contract').addClass('job__active');
+				break;
+		}
 		var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
 		(function () {
 			var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
@@ -33,7 +33,7 @@
 		})();
 	</script>
 	<!--End of Tawk.to Script-->
-	
+
 	<div class="container">
 		<div class="row links">
 			<div class="col link-subgroup">
@@ -44,6 +44,12 @@
 					</li>
 					<li>
 						<a href="/contact">Contact Us</a>
+					</li>
+					<li>
+						<a href="/privacy">Privacy policy</a>
+					</li>
+					<li>
+						<a href="/terms">Terms and conditions</a>
 					</li>
 					<li>
 						<a href="/faqs">FAQs</a>
@@ -83,7 +89,8 @@
 		<p>&copy;Copyright
 			<script>document.write(new Date().getFullYear())</script>. HNG</p>
 	</div>
-	<a id="back-to-top" href="#header" style="display: none;padding: 10px;text-align:center; position: fixed; background: #11144C;bottom: 24px; right: 24px;">
+	<a id="back-to-top" href="#header"
+		style="display: none;padding: 10px;text-align:center; position: fixed; background: #11144C;bottom: 24px; right: 24px;">
 		<span style="width: 24px; height: 24px; padding: 4px;color:white;" class="fa fa-arrow-up"></span>
 	</a>
 	<script>

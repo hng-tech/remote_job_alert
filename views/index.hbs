@@ -95,17 +95,20 @@ input[type=text]:focus {
     .marow{
         padding-left:50px;
     }
-		}
+}
 @media only screen and (min-device-width : 769px) and (max-device-width : 15000px){
    
 	  .marow{
         padding-left:60px;
  }
+ #jobs {
+ 	margin-left: 270px;
+ }
 }
 
 .truncate {
   width: auto;
-  height: 40px;
+  height: 45px;
   white-space: wrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -116,41 +119,6 @@ input[type=text]:focus {
 	
 }
 
-
-		#Featured-jobs p {
-			padding-top: 10px;
-		}
-
-		/*Responsive styling when screen is less than 700px */
-
-		@media screen and (max-width: 700px) {
-			.row {}
-
-			.card {}
-
-			#jobs{
-				margin:auto;
-			}
-		}
-
-		@media only screen and (min-device-width : 0px) and (max-device-width : 15000px) {
-			.marow {
-				padding-left: 50px;
-			}
-		}
-
-		@media only screen and (min-device-width : 769px) and (max-device-width : 15000px) {
-
-			.marow {
-				padding-left: 60px;
-			}
-
-			#jobs{
-				margin-left: 340px;
-			}
-		}
-
-		/*End of Styling for featured jobs section*/
 	</style>
 </head>
 
@@ -279,42 +247,108 @@ input[type=text]:focus {
 		for(let i=0;i<8;i++){
 		let min_pay = jobData[i].job_pay_min;
 		let max_pay = jobData[i].job_pay_max;
+		let currency_code = "$";
+		let min_pay_convert = min_pay;
+		let max_pay_convert = max_pay;
 
-		let currency_url = "http://www.geoplugin.net/json.gp";
+		$('select[name="currency"]').change(function(){
 
-		fetch(currency_url)
-		.then(resp=>resp.json())
-		.then(function (curr){
-		let exchange_rate = curr.geoplugin_currencyConverter;
-		let currency_code = curr.geoplugin_currencySymbol;
-		let min_pay_convert = Math.ceil(min_pay*exchange_rate);
-		let max_pay_convert = Math.ceil(max_pay*exchange_rate);
+    	if ($(this).val() === "USD"){
+        currency_code = '$';
+        	for (let j=0;j<8; j++){
+					min_pay_convert = jobData[j].job_pay_min;
+					max_pay_convert = jobData[j].job_pay_max;
+        		$(`#a${jobData[j]._id}`).html(currency_code+min_pay_convert);
+						$(`#b${jobData[j]._id}`).html(currency_code+max_pay_convert);
+        	}
 
-		let job_cards =	"<div class='card featureCad col-md-4 offset-md-4 left' style='padding-bottom: 20px' id='job_card'><div class='container'><a href='/jobs/featured/" +jobData[i].slug+ "'><img src='"+jobData[i].image_link+"' alt='google-image'><h4 class='card-head' id='job_title'><b>"+jobData[i].job_title+"</b></h4> <p class='job-brief truncate' id='job_desc'>"+jobData[i].job_description+"<br><b>Stack:</b> JavaScript || React || HTML.</p> <p><ion-icon name='briefcase' id='company_name'></ion-icon>"+jobData[i].company_name+"<ion-icon name='time'></ion-icon><span id='job_type'>"+jobData[i].job_type+"</span></p><span class='pay1' id='min_pay'>"+currency_code+min_pay_convert+"</span> -- <span class='pay2' id='max_pay'>"+currency_code+max_pay_convert+"</span><p class='hide'></p></a></div></div>";
+
+     	} else if ($(this).val() === "NGN") {
+     	currency_code = '₦';
+
+				for (let j=0;j<8; j++){
+					min_pay_convert = jobData[j].job_pay_min * 360;
+					max_pay_convert = jobData[j].job_pay_max * 360;
+        		$(`#a${jobData[j]._id}`).html(currency_code+min_pay_convert);
+						$(`#b${jobData[j]._id}`).html(currency_code+max_pay_convert);
+        	}
+
+     	} else if ($(this).val() === "GBP"){
+     		currency_code = '£';
+
+     		for (let j=0;j<8; j++){
+					min_pay_convert = jobData[j].job_pay_min * 468;
+					max_pay_convert = jobData[j].job_pay_max * 468;
+        		$(`#a${jobData[j]._id}`).html(currency_code+min_pay_convert);
+						$(`#b${jobData[j]._id}`).html(currency_code+max_pay_convert);
+        	}
+
+     	} else if ($(this).val() === "EUR"){
+     		currency_code = '€';
+
+     		for (let j=0;j<8; j++){
+					min_pay_convert = jobData[j].job_pay_min * 404;
+					max_pay_convert = jobData[j].job_pay_max * 404;
+        		$(`#a${jobData[j]._id}`).html(currency_code+min_pay_convert);
+						$(`#b${jobData[j]._id}`).html(currency_code+max_pay_convert);
+        	}
+
+     	} else if ($(this).val() === "YEN"){
+     		currency_code = '¥';
+
+     		for (let j=0;j<8; j++){
+					min_pay_convert = jobData[j].job_pay_min * 3;
+					max_pay_convert = jobData[j].job_pay_max * 3;
+        		$(`#a${jobData[j]._id}`).html(currency_code+min_pay_convert);
+						$(`#b${jobData[j]._id}`).html(currency_code+max_pay_convert);
+        	}
+
+     	} else {
+     		min_pay_convert = min_pay;
+     		max_pay_convert = max_pay;
+     		currency_code = '$';
+
+     	}
+     	
+		})
+
+
+
+		let job_cards =	"<div class='card featureCad col-md-4 offset-md-4 left' style='padding-bottom: 20px' id='#job_card"+jobData[i]._id+"'><div class='container'><a href='/jobs/featured/" +jobData[i].slug+ "'><img src='"+jobData[i].image_link+"' alt='google-image'><h4 class='card-head' id='job_title'><b>"+jobData[i].job_title+"</b></h4> <p class='job-brief truncate' id='job_desc'>"+jobData[i].job_description+"</p><p><t><b>Required Stack:</b>&nbsp;"+ jobData[i].job_stack +"</t></p> <p><ion-icon name='briefcase' id='company_name' class='company_name'></ion-icon>"+jobData[i].company_name+"<ion-icon name='time'></ion-icon><span id='job_type'>"+jobData[i].job_type+"</span></p><span class='pay1' id='a"+jobData[i]._id+"'>"+currency_code+min_pay_convert+"</span> -- <span class='pay2' id='b"+jobData[i]._id+"'>"+currency_code+max_pay_convert+"</span><p class='hide'></p></a></div></div>";
 
 
 			$("#jobs").append(job_cards);
 		
-	})
 
-		
-			
-		}
-	})
-
-//Change currency
-
-
-//Search Filter
+		//Search Filter
 	
-	$(document).ready(function(){
-  	$("#search").on("keyup", function() {
-    let value = $(this).val().toLowerCase();
-    $("#job_card").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+	$('#search').keyup(function () {
+
+    var filter = this.value.toLowerCase();  // no need to call jQuery here
+
+    $('.card').each(function() {
+        /* cache a reference to the current .media (you're using it twice) */
+        let _this = $(this);
+        let jtitle = _this.find('t').text().toLowerCase();
+
+        /* 
+            title and filter are normalized in lowerCase letters
+            for a case insensitive search
+         */
+        if (jtitle.indexOf(filter) < 0) {
+            _this.hide();
+        }
+        else {
+        	_this.show();
+        }
     });
-  });
 });
+
+	}
+})
+
+
+	
 
 	
 		$(function () {
