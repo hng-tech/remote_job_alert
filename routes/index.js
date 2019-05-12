@@ -173,11 +173,10 @@ router.get("/jobs_api/:slug", Jobs.fetchSingle);
 router.get("/jobs/category", Home.category);
 
 // Fetching jobs by category
-router.get("/all-jobs", Jobs.fetchAllSearchJobs);
-router.get("/jobs/full-time", Jobs.fetchAllFullTimeSearchJobs);
-router.get("/jobs/part-time", Jobs.fetchAllPartTimeSearchJobs);
-router.get("/jobs/contract", Jobs.fetchAllContractSearchJobs);
-router.get("/custom_search/:_id", Jobs.fetchAllCustomSearchJobs);
+router.get('/all-jobs', Jobs.fetchAllSearchJobs);
+router.get('/custom_search/:_id', Jobs.fetchAllCustomSearchJobs);
+
+// Fetch Jobs by Tech
 
 /* There is an Error in this route, it is crashing the server */
 //router.post('/jobs', Jobs.validate('create'), Jobs.create);

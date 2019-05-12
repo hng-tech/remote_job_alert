@@ -196,66 +196,128 @@ const Jobs = {
 
     let slug = req.params.slug
     let single_job = null;
+    let main = JSON.parse(JSON.stringify(remote_jobs));
+    let techs = ['python','php','javascript','java','c','c#','c++','node','asp','react','android','linux'];
+    let categories = ['full-time','part-time','contract'];
 
-    try {
-      
-      let main = JSON.parse(JSON.stringify(remote_jobs));
-
-      for (let i = 0; i < main.length; i++){
-        if (slug == main[i].custom_url) {
-          single_job = main[i];
-          break;
+      if(techs.includes(slug)) {
+        try {
+          let tech = slug;
+          let allStackJobs = [];
+          let formalTech = tech.charAt(0).toUpperCase() + tech.slice(1);
+    
+          for (let i = 0; i < main.length; i++){
+            if (main[i].description.toLowerCase().includes(tech)) {
+              allStackJobs.push(main[i]);
+              continue;
+            }
+          };
+    
+          allStackJobs.slice().map(function (job) {
+            job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+            return job;
+          });
+          return res.status(200).render('jobStack', {
+            name: formalTech,
+            status: 'success',
+            TotalJobs: Object.keys(allStackJobs).length,
+            data: allStackJobs
+          });
+    
+        } catch (error) {
+          return res.status(400).send(error);
+        } 
+      }
+      else if(categories.includes(slug)) {
+        try {
+          let allCategoryJobs = [];
+          let formalSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
+    
+          for (let i = 0; i < main.length; i++){
+            if (main[i].type == formalSlug || main[i].description.toLowerCase().includes(slug) ) {
+              allCategoryJobs.push(main[i]);
+              continue;
+            }
+          };
+    
+          allCategoryJobs.slice().map(function (job) {
+            job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+            return job;
+          });
+          return res.status(200).render('jobCategory', {
+            name: formalSlug,
+            status: 'success',
+            TotalJobs: Object.keys(allCategoryJobs).length,
+            data: allCategoryJobs
+          });
+    
+        } catch (error) {
+          return res.status(400).send(error);
         }
-      };
-
-      let common_tech = ["python", "es6", "ruby", "c#", "java ", " C ", "c++", "php", "javascript", "css", "html", "swift", "git", "azure", "docker", "sql", "asp.net", ".net", "asp", "rest", "react", "ios", "android", "vagrant", "trello", " R ", "Linux", "Angular", "Node"];
-
-      let key_tech = search_common(single_job.description.toLowerCase(), common_tech);
-
-      let sortquery = key_tech.trim().split(", ");
-
-      for (let i = 0; i < sortquery.length; i++){
-        main.sort(function (a, b) {
-          var A = a.description, B = b.description;
-          if (A.includes(sortquery[i])) {
-            return 1;
-          } else if (B.includes(sortquery[i])) {
-            return -1;
+      }
+      else {
+      try {
+        
+        for (let i = 0; i < main.length; i++){
+          if (slug == main[i].custom_url) {
+            single_job = main[i];
+            break;
           }
-        });
+        };
+  
+        let common_tech = ["python", "es6", "ruby", "c#", "java ", " C ", "c++", "php", "javascript", "css", "html", "swift", "git", "azure", "docker", "sql", "asp.net", ".net", "asp", "rest", "react", "ios", "android", "vagrant", "trello", " R ", "Linux", "Angular", "Node"];
+  
+        let key_tech = search_common(single_job.description.toLowerCase(), common_tech);
+  
+        let sortquery = key_tech.trim().split(", ");
+  
+        for (let i = 0; i < sortquery.length; i++){
+          main.sort(function (a, b) {
+            var A = a.description, B = b.description;
+            if (A.includes(sortquery[i])) {
+              return 1;
+            } else if (B.includes(sortquery[i])) {
+              return -1;
+            }
+          });
+        }
+  
+        let sub_data = main.filter(function (job) {
+          if (job.id !== single_job.id) {
+            job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+            let url = job.title + ' ' + job.company;
+            let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\'\|\@\%\&\*]/g;
+            let custom_url = url.toLowerCase().replace(regex, '-');
+            job.custom_url = custom_url;
+            return job;
+          }
+        }).slice(0, 3);
+  
+        let summary = single_job.description.slice(0, single_job.description.indexOf("</p>", 100));
+  
+        single_job.description = single_job.description.slice(summary.length);
+  
+        const stripeSession = await session;
+  
+        // some jobs have no image
+        single_job.company_logo = (!single_job.company_logo) ? "/images/no_job_image.jpg" : single_job.company_logo;
+  
+        return res.status(200).render('singleJob', {
+          content: single_job,
+          summary: summary,
+          keytech: key_tech + "...",
+          title: single_job.title,
+          similar_jobs: sub_data,
+          sessionId: stripeSession.id
+        })
+      } 
+      catch (error) 
+      {
+        return res.status(400).send(error);
+      }
       }
 
-      let sub_data = main.filter(function (job) {
-        if (job.id !== single_job.id) {
-          job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
-          let url = job.title + ' ' + job.company;
-          let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\'\|\@\%\&\*]/g;
-          let custom_url = url.toLowerCase().replace(regex, '-');
-          job.custom_url = custom_url;
-          return job;
-        }
-      }).slice(0, 3);
-
-      let summary = single_job.description.slice(0, single_job.description.indexOf("</p>", 100));
-
-      single_job.description = single_job.description.slice(summary.length);
-
-      const stripeSession = await session;
-
-      // some jobs have no image
-      single_job.company_logo = (!single_job.company_logo) ? "/images/no_job_image.jpg" : single_job.company_logo;
-
-      return res.status(200).render('singleJob', {
-        content: single_job,
-        summary: summary,
-        keytech: key_tech + "...",
-        title: single_job.title,
-        similar_jobs: sub_data,
-        sessionId: stripeSession.id
-      })
-    } catch (error) {
-      return res.status(400).send(error);
-    }
+      
   },
   async get_api_jobs(req, res) {
 
@@ -476,6 +538,7 @@ const Jobs = {
     }
   },
 
+  //Unused for now, Please do not touch
   async fetchAllSearchJobs(req, res) {
     try {
       let all = await fetch(`https://jobs.github.com/positions.json?location=remote`)
@@ -491,6 +554,7 @@ const Jobs = {
     }
   },
 
+  //Unused for now, Please do not touch
   async fetchAllFullTimeSearchJobs(req, res) {
     try {
       let main = JSON.parse(JSON.stringify(remote_jobs));
@@ -520,6 +584,7 @@ const Jobs = {
     }
   },
 
+  //Unused for now, Please do not touch
   async fetchAllPartTimeSearchJobs(req, res) {
     try {
       let main = JSON.parse(JSON.stringify(remote_jobs));
@@ -549,6 +614,7 @@ const Jobs = {
     }
   }, 
 
+  //Unused for now, Please do not touch
   async fetchAllContractSearchJobs(req, res) {
     try {
       let main = JSON.parse(JSON.stringify(remote_jobs));
@@ -577,6 +643,7 @@ const Jobs = {
     }
   },
 
+  //Unused for now, Please do not touch
   async fetchAllCustomSearchJobs(req, res) {
     const { search } = req.params; 
     try {
@@ -591,7 +658,7 @@ const Jobs = {
     } catch (error) {
       return res.status(400).send(error);
     }
-  }
+  },
 };
 
   
