@@ -197,22 +197,26 @@ const Jobs = {
     let slug = req.params.slug
     let single_job = null;
     let main = JSON.parse(JSON.stringify(remote_jobs));
-    let techs = ['python','php','javascript','java','c','c#','c++','node','asp','react','android','linux'];
+
+    //Array containing potential slugs
+    let techs = ['python','php','javascript','java','c','c++','node','asp','react','android','linux'];
     let categories = ['full-time','part-time','contract'];
 
+    //Check for the type of the param being passed, a tech, a category or a custom URL
       if(techs.includes(slug)) {
         try {
           let tech = slug;
           let allStackJobs = [];
           let formalTech = tech.charAt(0).toUpperCase() + tech.slice(1);
-    
+          
+          //Algo for deriving a stack job by checking if the desc includes the tech passed to the param
           for (let i = 0; i < main.length; i++){
             if (main[i].description.toLowerCase().includes(tech)) {
               allStackJobs.push(main[i]);
               continue;
             }
           };
-    
+          //For jobs without an image
           allStackJobs.slice().map(function (job) {
             job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
             return job;
@@ -233,13 +237,15 @@ const Jobs = {
           let allCategoryJobs = [];
           let formalSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
     
+          //Same algo as above...
           for (let i = 0; i < main.length; i++){
             if (main[i].type == formalSlug || main[i].description.toLowerCase().includes(slug) ) {
               allCategoryJobs.push(main[i]);
               continue;
             }
           };
-    
+          
+          //Jobs with no images
           allCategoryJobs.slice().map(function (job) {
             job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
             return job;
@@ -256,65 +262,66 @@ const Jobs = {
         }
       }
       else {
-      try {
-        
-        for (let i = 0; i < main.length; i++){
-          if (slug == main[i].custom_url) {
-            single_job = main[i];
-            break;
-          }
-        };
-  
-        let common_tech = ["python", "es6", "ruby", "c#", "java ", " C ", "c++", "php", "javascript", "css", "html", "swift", "git", "azure", "docker", "sql", "asp.net", ".net", "asp", "rest", "react", "ios", "android", "vagrant", "trello", " R ", "Linux", "Angular", "Node"];
-  
-        let key_tech = search_common(single_job.description.toLowerCase(), common_tech);
-  
-        let sortquery = key_tech.trim().split(", ");
-  
-        for (let i = 0; i < sortquery.length; i++){
-          main.sort(function (a, b) {
-            var A = a.description, B = b.description;
-            if (A.includes(sortquery[i])) {
-              return 1;
-            } else if (B.includes(sortquery[i])) {
-              return -1;
+        //@Ayo, now your watch begins...
+        try {
+          
+          for (let i = 0; i < main.length; i++){
+            if (slug == main[i].custom_url) {
+              single_job = main[i];
+              break;
             }
-          });
-        }
-  
-        let sub_data = main.filter(function (job) {
-          if (job.id !== single_job.id) {
-            job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
-            let url = job.title + ' ' + job.company;
-            let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\'\|\@\%\&\*]/g;
-            let custom_url = url.toLowerCase().replace(regex, '-');
-            job.custom_url = custom_url;
-            return job;
+          };
+    
+          let common_tech = ["python", "es6", "ruby", "c#", "java ", " C ", "c++", "php", "javascript", "css", "html", "swift", "git", "azure", "docker", "sql", "asp.net", ".net", "asp", "rest", "react", "ios", "android", "vagrant", "trello", " R ", "Linux", "Angular", "Node"];
+    
+          let key_tech = search_common(single_job.description.toLowerCase(), common_tech);
+    
+          let sortquery = key_tech.trim().split(", ");
+    
+          for (let i = 0; i < sortquery.length; i++){
+            main.sort(function (a, b) {
+              var A = a.description, B = b.description;
+              if (A.includes(sortquery[i])) {
+                return 1;
+              } else if (B.includes(sortquery[i])) {
+                return -1;
+              }
+            });
           }
-        }).slice(0, 3);
-  
-        let summary = single_job.description.slice(0, single_job.description.indexOf("</p>", 100));
-  
-        single_job.description = single_job.description.slice(summary.length);
-  
-        const stripeSession = await session;
-  
-        // some jobs have no image
-        single_job.company_logo = (!single_job.company_logo) ? "/images/no_job_image.jpg" : single_job.company_logo;
-  
-        return res.status(200).render('singleJob', {
-          content: single_job,
-          summary: summary,
-          keytech: key_tech + "...",
-          title: single_job.title,
-          similar_jobs: sub_data,
-          sessionId: stripeSession.id
-        })
-      } 
-      catch (error) 
-      {
-        return res.status(400).send(error);
-      }
+    
+          let sub_data = main.filter(function (job) {
+            if (job.id !== single_job.id) {
+              job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+              let url = job.title + ' ' + job.company;
+              let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\'\|\@\%\&\*]/g;
+              let custom_url = url.toLowerCase().replace(regex, '-');
+              job.custom_url = custom_url;
+              return job;
+            }
+          }).slice(0, 3);
+    
+          let summary = single_job.description.slice(0, single_job.description.indexOf("</p>", 100));
+    
+          single_job.description = single_job.description.slice(summary.length);
+    
+          const stripeSession = await session;
+    
+          // some jobs have no image
+          single_job.company_logo = (!single_job.company_logo) ? "/images/no_job_image.jpg" : single_job.company_logo;
+    
+          return res.status(200).render('singleJob', {
+            content: single_job,
+            summary: summary,
+            keytech: key_tech + "...",
+            title: single_job.title,
+            similar_jobs: sub_data,
+            sessionId: stripeSession.id
+          })
+        } 
+        catch (error) 
+        {
+          return res.status(400).send(error);
+        }
       }
 
       
