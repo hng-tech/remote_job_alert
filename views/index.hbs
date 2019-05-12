@@ -21,14 +21,6 @@
 			cursor: pointer !important;
 		}
 
-		@media(max-width:767px) {
-			.col-sm-12 {
-				flex: 0 0 100%;
-				max-width: 100% !important;
-				padding-left: 30px !important;
-			}
-		}
-
 		/*Styling for featured jobs section*/
 
 #homepage #Featured-jobs .featured-jobs-header h1 {
@@ -103,16 +95,15 @@ input[type=text]:focus {
     .marow{
         padding-left:50px;
     }
-
 }
 @media only screen and (min-device-width : 769px) and (max-device-width : 15000px){
    
 	  .marow{
         padding-left:60px;
  }
- 	#jobs {
- 		margin-left: 270px;
- 	}
+ #jobs {
+ 	margin-left: 270px;
+ }
 }
 
 .truncate {
@@ -192,39 +183,39 @@ input[type=text]:focus {
 				</div>
 			</section>
 		</main>
-		<hr style="border:1px  solid #c4c4c4;">
+	<hr style="border:1px  solid #c4c4c4;">
 
-		<!---Featured job section-->
+<!---Featured job section-->
 		<section id="Featured-jobs">
-			<div class="featured-jobs-header">
-				<h1>Featured Jobs</h1>
-			</div>
-			<div class="filter-1">
-				<form class="featured-form">
-					<input type="text" name="search" id="search" placeholder="Enter language to filter jobs...">
-				</form>
-				<!--select currency-->
-				<select name="currency" id="converter">
-					<option value="NGN">🇳🇬&emsp;₦&emsp;NAI&emsp;💶</option>
-					<option value="EUR">🇪🇺&emsp;€&emsp;EUR&emsp;💶</option>
-					<option value="GBP">🇬🇧&emsp;£&emsp;GBP&emsp;💷</option>
-					<option value="USD">🇺🇸&emsp;$&emsp;USD&emsp;💵</option>
-					<option value="YEN">🇯🇵&emsp;¥&emsp;YEN&emsp;💴</option>
-				</select>
-			</div>
+        <div class="featured-jobs-header">
+			<h1>Featured Jobs</h1>
+		</div>
+        <div class="filter-1">
+            <form class="featured-form">
+              <input type="text" name="search" id="search" placeholder="Enter language to filter jobs...">
+            </form>
+						            <!--select currency-->
+            <select name="currency" id="converter">
+                <option value="NGN">🇳🇬&emsp;₦&emsp;NAI&emsp;💶</option>			
+                <option value="EUR">🇪🇺&emsp;€&emsp;EUR&emsp;💶</option>
+                <option value="GBP">🇬🇧&emsp;£&emsp;GBP&emsp;💷</option>
+                <option value="USD">🇺🇸&emsp;$&emsp;USD&emsp;💵</option>
+                 <option value="YEN">🇯🇵&emsp;¥&emsp;YEN&emsp;💴</option>
+             </select>
+         </div>
+				 
+    
+        <div class="row" style="justify-content: center;">
+    	<div id="jobs">
 
 
-			<div class="row col-sm-12 yoko" style="justify-content: center;">
-				<div id="jobs">
+    	</div>
+		</div>
 
 
-				</div>
-			</div>
-
-
-			<p class="more-jobs"><a href="/jobs">View more jobs <ion-icon name="arrow-forward"></ion-icon></a></p>
-		</section>
-		<section id="pay-agent">
+   <p class="more-jobs"><a href="/jobs">View more jobs <ion-icon name="arrow-forward"></ion-icon></a></p>    
+   </section> 
+	 	<section id="pay-agent">
 			<div class="container">
 				<div class="pay-header">
 					<h1>Pay an agent to apply</h1>
@@ -236,104 +227,16 @@ input[type=text]:focus {
 					</button>
 				</div>
 			</div>
-		</section>
-
+		</section>  
+        
 
 		<!--End of Featured job Section--->
 
-		{{> footer}}
-
-		<script src="https://js.stripe.com/v3/"></script>
-
-		<script>
-
-			let url = '/jobs_json';
-
-
-			fetch(url)
-				.then((resp) => resp.json())
-				.then(function (jobData) {
-					for (let i = 0; i < 8; i++) {
-						let min_pay = jobData[i].job_pay_min;
-						let max_pay = jobData[i].job_pay_max;
-						let currency_code = "$";
-						let min_pay_convert = min_pay;
-						let max_pay_convert = max_pay;
-
-						$('select[name="currency"]').change(function () {
-
-							if ($(this).val() === "USD") {
-								min_pay_convert = min_pay * 1;
-								max_pay_convert = max_pay * 1;
-								currency_code = '$';
-								$(".pay1").html(currency_code + min_pay_convert);
-								$(".pay2").html(currency_code + max_pay_convert);
-
-							} else if ($(this).val() === "NGN") {
-								min_pay_convert = min_pay * 360;
-								max_pay_convert = max_pay * 360;
-								currency_code = '₦';
-
-								$("#min_pay").html(currency_code + min_pay_convert);
-								$("#max_pay").html(currency_code + max_pay_convert);
-
-							} else if ($(this).val() === "GBP") {
-								min_pay_convert = min_pay * 468;
-								max_pay_convert = max_pay * 468;
-								currency_code = '£';
-
-								$("#min_pay").html(currency_code + min_pay_convert);
-								$("#max_pay").html(currency_code + max_pay_convert);
-
-							} else if ($(this).val() === "EUR") {
-								min_pay_convert = min_pay * 404;
-								max_pay_convert = max_pay * 404;
-								currency_code = '€';
-
-								$("#min_pay").html(currency_code + min_pay_convert);
-								$("#max_pay").html(currency_code + max_pay_convert);
-
-							} else if ($(this).val() === "YEN") {
-								min_pay_convert = min_pay * 3;
-								max_pay_convert = max_pay * 3;
-								currency_code = '¥';
-
-								$("#min_pay").html(currency_code + min_pay_convert);
-								$("#max_pay").html(currency_code + max_pay_convert);
-
-							} else {
-								min_pay_convert = min_pay;
-								max_pay_convert = max_pay;
-								currency_code = '$';
-
-							}
-
-						})
-
-
-
-						let job_cards = "<div class='card featureCad col-md-4 offset-md-4 left' style='padding-bottom: 20px' id='job_card'><div class='container'><a href='/jobs/featured/" + jobData[i].slug + "'><img src='" + jobData[i].image_link + "' alt='google-image'><h4 class='card-head' id='job_title'><b>" + jobData[i].job_title + "</b></h4> <p class='job-brief truncate' id='job_desc'>" + jobData[i].job_description + "<br><b>Stack:</b> JavaScript || React || HTML.</p> <p><ion-icon name='briefcase' id='company_name'></ion-icon>" + jobData[i].company_name + "<ion-icon name='time'></ion-icon><span id='job_type'>" + jobData[i].job_type + "</span></p><span class='pay1' id='min_pay'>" + currency_code + min_pay_convert + "</span> -- <span class='pay2' id='max_pay'>" + currency_code + max_pay_convert + "</span><p class='hide'></p></a></div></div>";
-
-
-						$("#jobs").append(job_cards);
-
-					}
-				})
-
-			//Change currency
-
-
-			//Search Filter
-
-			$(document).ready(function () {
-				$("#search").on("keyup", function () {
-					let value = $(this).val().toLowerCase();
-					$("#job_card").filter(function () {
-						$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-					});
-				});
-			});
-
+	{{> footer}}
+	
+	<script src="https://js.stripe.com/v3/"></script>
+	
+	<script>
 
 	let url = '/jobs_json';
 	
@@ -415,9 +318,9 @@ input[type=text]:focus {
 
 
 			$("#jobs").append(job_cards);
+		
 
-
-			//Search Filter
+		//Search Filter
 	
 	$('#search').keyup(function () {
 
@@ -441,13 +344,11 @@ input[type=text]:focus {
     });
 });
 
-	
-		
 	}
 })
 
 
-
+	
 
 	
 		$(function () {
@@ -461,6 +362,7 @@ input[type=text]:focus {
 					// using `result.error.message`.
 				});
 			});
+		});
 
 		</script>
 		<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
