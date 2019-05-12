@@ -16,6 +16,10 @@ const jobSchema = new Schema(
       type: String,
       required: true
     },
+    job_stack: {
+      type: String,
+      required: false,
+    },
     image_link: {
       type: String,
       required: false
