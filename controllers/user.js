@@ -172,15 +172,17 @@ async function sendPreferedMailForRemoteJob(jobs, user) {
       .on('end', function() {
         console.log('Done!');
       });
-  } catch (err) {
-    console.error(err);
+  }
+  catch (err) {
+    console.err(err);
   }
 }
+
 
 module.exports = {
   unsubscribeUser,
   sendMail,
   sendMailForRemoteJob,
   sendContactAlert,
-  sendPreferedMailForRemoteJob
+  sendPreferedMailForRemoteJob,
 };
