@@ -17,10 +17,11 @@
 
 	<title>DevAlert | Home</title>
 	<style>
+		
+	/*Styling for featured jobs section*/	
 		.view-more {
 			cursor: pointer !important;
 		}
-
 		/*Styling for featured jobs section*/
 
 #homepage #Featured-jobs .featured-jobs-header h1 {
@@ -35,9 +36,9 @@
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
-	padding-bottom: 15px;
-
+	padding-bottom: 15px;  
 }
+
 .featured-form {
 padding-right: 5px;
 padding-bottom: 8px;
@@ -80,6 +81,17 @@ input[type=text]:focus {
  padding-top: 10px;
 }
 
+.card {
+ width: 700px;
+ height: 400px;
+ box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+ transition: 0.3s;
+}
+
+.card:hover {
+ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
 .row .card {
 	margin: 8px;
 }
@@ -95,14 +107,15 @@ input[type=text]:focus {
     .marow{
         padding-left:50px;
     }
-}
-@media only screen and (min-device-width : 769px) and (max-device-width : 15000px){
+		}
+@media only screen and (min-device-width : 769px){
    
 	  .marow{
         padding-left:60px;
  }
- #jobs {
- 	margin-left: 270px;
+
+#jobs {
+ 	margin-left: 265px;
  }
 }
 
@@ -113,12 +126,12 @@ input[type=text]:focus {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/*End of Styling for featured jobs section*/
 #jobs {
 	justify-content: center;
 	
 }
 
+/*End of Styling for featured jobs section*/
 	</style>
 </head>
 
@@ -194,7 +207,7 @@ input[type=text]:focus {
             <form class="featured-form">
               <input type="text" name="search" id="search" placeholder="Enter language to filter jobs...">
             </form>
-						            <!--select currency-->
+			<!--select currency-->
             <select name="currency" id="converter">
                 <option value="NGN">🇳🇬&emsp;₦&emsp;NAI&emsp;💶</option>			
                 <option value="EUR">🇪🇺&emsp;€&emsp;EUR&emsp;💶</option>
@@ -205,15 +218,14 @@ input[type=text]:focus {
          </div>
 				 
     
-        <div class="row" style="justify-content: center;">
+        <div class="row col-sm-12 marow" style="justify-content: center">	
     	<div id="jobs">
-
 
     	</div>
 		</div>
+   <p class="more-jobs"><a href="/jobs">View all remote jobs <ion-icon name="arrow-forward"></ion-icon></a></p>    
+   <!--End of Featured job Section--->
 
-
-   <p class="more-jobs"><a href="/jobs">View more jobs <ion-icon name="arrow-forward"></ion-icon></a></p>    
    </section> 
 	 	<section id="pay-agent">
 			<div class="container">
@@ -230,13 +242,15 @@ input[type=text]:focus {
 		</section>  
         
 
-		<!--End of Featured job Section--->
+		
 
 	{{> footer}}
 	
 	<script src="https://js.stripe.com/v3/"></script>
 	
-	<script>
+		<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+
+		<script>
 
 	let url = '/jobs_json';
 	
@@ -389,5 +403,5 @@ input[type=text]:focus {
 		});
 
 		</script>
-		<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+	
 </body>
