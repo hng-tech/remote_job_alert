@@ -184,7 +184,7 @@ router.post("/dashboard", Jobs.create);
 router.get("/jobs", Jobs.get_api_jobs);
 
 /////////////////////////////////////////////////
-router.get("/jobs/featured/:job_id", Jobs.get_one);
+router.get("/jobs/featured/:slug", Jobs.get_one);
 router.get("/jobs/:slug", Jobs.fetchSingle);
 //router.get("/jobs/:job_id/edit", Jobs.edit);
 router.post("/jobs/:job_id", Jobs.update_job);
