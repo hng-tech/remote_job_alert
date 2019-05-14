@@ -449,7 +449,7 @@ const Jobs = {
   },
   async get_one(req, res) {
     const queryText = {
-      _id: req.params.job_id
+      slug: req.params.slug
     };
     try {
 
