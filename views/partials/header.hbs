@@ -1,38 +1,5 @@
-{{!-- <div class="container">
-	{{#each errors}}
-	<div class="alert alert-danger alert-dismissible fade show" role="alert">
-		<strong>{{msg}}</strong>
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-	{{/each}} {{#if emailError}}
-	<div class="alert alert-warning alert-dismissible fade show">
-		<strong>{{emailError}}</strong>
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-	{{/if}} {{#if success}}
-	<div class="alert alert-success alert-dismissible fade show">
-		<strong>{{success}}</strong>
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-	{{/if}}
-</div> --}}
-
-
 <div class="container">
-	{{#each errors}}
-	{{!-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
-		<strong>{{msg}}</strong>
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div> --}}
-	{{/each}} {{#if paymentError}}
+	{{#if paymentError}}
 	<div class="alert alert-warning alert-dismissible fade show">
 		<strong>{{paymentError}}</strong>
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -76,13 +43,13 @@
 						<a class="nav-link b-2 hover_link" href="/jobs">Jobs</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link b-2 hover_link" href="/login">Log in</a>
+						<a class="nav-link b-2 hover_link" href="/about">About</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link b-2 hover_link" href="/about">About Us</a>
+						<a class="nav-link b-2 hover_link" href="/contact">Contact</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link b-2 hover_link" href="/contact">Contact Us</a>
+						<a class="nav-link b-2 hover_link" href="/login">Login</a>
 					</li>
 				</ul>
 			</div>
