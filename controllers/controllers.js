@@ -379,6 +379,8 @@ const Jobs = {
       }
     });
   },
+
+  //Do not Touch - Used by Featured Jobs
   async create(req, res, next) {
     // // Check Validation
     // if (!isValid) {
@@ -460,6 +462,31 @@ const Jobs = {
       return res.status(200).render("singleFeaturedJob", {
         content: foundJob,
         sessionId: stripeSession.id
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  },
+
+  async get_all_featured(req, res){
+    const queryText = {};
+
+    try {
+      let foundFeaturedJobs = await db.find(queryText);
+      return res.status(200).render("manage_featured_jobs",{
+        content: foundFeaturedJobs,
+        helpers: {
+          inc: function (index) {
+            index++;
+            return index;
+          },
+          limit: function (arr, limit) {
+            if (!Array.isArray(arr)) { return []; }
+            return arr.slice(0, limit);
+          }
+
+        }
+        
       });
     } catch (error) {
       return res.status(400).send(error);
