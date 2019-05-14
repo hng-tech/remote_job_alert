@@ -15,7 +15,247 @@
 
         gtag('config', 'UA-139612600-1');
     </script>
+    <style>
+        form {
+            position: relative;
+            margin: 5px auto 0;
+            font-size: 15px;
+            width: 100%;
+        }
 
+        .radiobtn {
+            position: relative;
+            display: block;
+        }
+
+        .radiobtn label {
+            display: block;
+            background: #c6daec;
+            color: #444;
+            border-radius: 5px;
+            padding: 10px 20px;
+            border: 2px solid #72ace0;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        .radiobtn label:after,
+        .radiobtn label:before {
+            content: "";
+            position: absolute;
+            right: 11px;
+            top: 11px;
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            background: #72ace0;
+        }
+
+        .radiobtn label:before {
+            background: transparent;
+            transition: 0.1s width cubic-bezier(0.075, 0.82, 0.165, 1) 0s, 0.3s height cubic-bezier(0.075, 0.82, 0.165, 2) 0.1s;
+            z-index: 2;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-size: 13px;
+            background-position: center;
+            width: 0;
+            height: 0;
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNS4zIDEzLjIiPiAgPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTE0LjcuOGwtLjQtLjRhMS43IDEuNyAwIDAgMC0yLjMuMUw1LjIgOC4yIDMgNi40YTEuNyAxLjcgMCAwIDAtMi4zLjFMLjQgN2ExLjcgMS43IDAgMCAwIC4xIDIuM2wzLjggMy41YTEuNyAxLjcgMCAwIDAgMi40LS4xTDE1IDMuMWExLjcgMS43IDAgMCAwLS4yLTIuM3oiIGRhdGEtbmFtZT0iUGZhZCA0Ii8+PC9zdmc+);
+        }
+
+        .radiobtn input[type="radio"] {
+            display: none;
+            position: absolute;
+            width: 100%;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .radiobtn input[type="radio"]:checked+label {
+            background: #5ca0e0;
+            -webkit-animation-name: blink;
+            animation-name: blink;
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            border-color: #5ca0e0;
+        }
+
+        .radiobtn input[type="radio"]:checked+label:after {
+            background: #6bb8ff;
+        }
+
+        .radiobtn input[type="radio"]:checked+label:before {
+            width: 20px;
+            height: 20px;
+        }
+
+        @-webkit-keyframes blink {
+            0% {
+                background-color: #5ca0e0;
+            }
+
+            10% {
+                background-color: #5ca0e0;
+            }
+
+            11% {
+                background-color: #6fa5d8;
+            }
+
+            29% {
+                background-color: #6fa5d8;
+            }
+
+            30% {
+                background-color: #78a4ce;
+            }
+
+            50% {
+                background-color: #83a9cc;
+            }
+
+            45% {
+                background-color: #8ba9c5;
+            }
+
+            50% {
+                background-color: #92abc2;
+            }
+
+            100% {
+                background-color: #93a7b9;
+            }
+        }
+
+        @keyframes blink {
+            0% {
+                background-color: #93a7b9;
+            }
+
+            10% {
+                background-color: #92abc2;
+            }
+
+            11% {
+                background-color: #8ba9c5;
+            }
+
+            29% {
+                background-color: #83a9cc;
+            }
+
+            30% {
+                background-color: #78a4ce;
+            }
+
+            50% {
+                background-color: #6fa5d8;
+            }
+
+            45% {
+                background-color: #6fa5d8;
+            }
+
+            50% {
+                background-color: #5ca0e0;
+            }
+
+            100% {
+                background-color: #5ca0e0;
+            }
+        }
+
+        input:focus {
+            box-shadow: none;
+            outline: 0;
+        }
+
+        input[type="text"] {
+            width: 400px;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        ul {
+            margin: 5px 10px;
+            padding: 10px;
+        }
+
+        ul li {
+            display: block;
+            margin: 2px 5px;
+            padding: 2px 10px;
+            width: 100%;
+        }
+
+        /**
+ * Code for checkboxes
+ */
+        .checkboxes {
+            max-height: 350px;
+            overflow: auto;
+        }
+
+        .checkboxes::-webkit-scrollbar-thumb,
+        .checkboxes::-moz-scrollbar-thumb {
+            background-color: #5ca0e0;
+            outline: 1px solid #5ca0e0;
+        }
+
+        .checkboxes::-webkit-scrollbar,
+        .checkboxes::-moz-scrollbar {
+            width: 1em;
+        }
+
+        .checkboxes::-webkit-scrollbar-track,
+        .checkboxes::-moz-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .checkbox {
+            position: relative;
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.75rem;
+            cursor: pointer;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            outline: 0;
+
+            /**
+   * Iterate over map and autogenerate helper classes.
+  * See "https://codepen.io/fxm90/pen/zGjjrJ" for an example
+  */
+        }
+
+        .checkbox:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4px;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #5ca0e0;
+            transition: all 0s ease-in-out;
+        }
+
+        .checkbox:checked:before {
+            height: 50%;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            border-top-style: none;
+            border-right-style: none;
+        }
+
+        .checkbox--blue-grey:checked:before {
+            border-color: #5ca0e0;
+        }
+    </style>
 
 </head>
 
@@ -44,202 +284,188 @@
             <h3 class="text-center b-7 mb-md-5 mb-3">Remote {{name}} Developer Jobs</h3>
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="kilo__one">
-                        <div class="form-group">
-                            <select name="" id="" class="form-control br-0">
-                                <option value="" selected>Choose a country</option>
-                                <option value="canada">Canada</option>
-                                <option value="germany">Germany</option>
-                                <option value="india">India</option>
-                                <option value="nigeria">Nigeria</option>
-                                <option value="uk">UK</option>
-                                <option value="us">US</option>
-                            </select>
+                    <div class="card br-0">
+                        <div class="card-header b-6 -center">
+                            Filter by Category
                         </div>
+                        <form>
+                            <div class="radiobtn">
+                                <input type="radio" id="part-time" name="drone" value="part-time" checked />
+                                <label for="part-time">Part Time</label>
+                            </div>
+                            <div class="radiobtn">
+                                <input type="radio" id="full-time" name="drone" value="full-time" />
+                                <label for="full-time">Full Time</label>
+                            </div>
+                            <div class="radiobtn">
+                                <input type="radio" id="contract" name="drone" value="contract" />
+                                <label for="contract">Contract</label>
+                            </div>
+                        </form>
                     </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="kilo__two">
-                        <div class="input-group mb-4">
-                            <input id="searchInput" type="search" class="form-control br-0"
-                                placeholder="Search with Keyword, Location, company">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text bg-deep" id="searchButton"><i
-                                        class="fa fa-search text-white"></i>
+                    <br>
+                    <div class="card br-0">
+                        <div class="card-header b-6 -center">
+                            Stacks
+                        </div>
+                        <ul class="checkboxes">
+                            <li><input type="checkbox" data-id="android" class="checkbox checkbox--blue-grey" />Android
+                            </li>
+                            <li><input type="checkbox" data-id="asp" class="checkbox checkbox--blue-grey" />ASP</li>
+                            <li><input type="checkbox" data-id="c" class="checkbox checkbox--blue-grey" />C</li>
+                            <li><input type="checkbox" data-id="cplusplus" class="checkbox checkbox--blue-grey" />C++
+                            </li>
+                            <li><input type="checkbox" data-id="Java" class="checkbox checkbox--blue-grey" />Java</li>
+                            <li><input type="checkbox" data-id="javascript"
+                                    class="checkbox checkbox--blue-grey" />Javascript</li>
+                            <li><input type="checkbox" data-id="linux" class="checkbox checkbox--blue-grey" />Linux</li>
+                            <li><input type="checkbox" data-id="node" class="checkbox checkbox--blue-grey" />Node</li>
+                            <li><input type="checkbox" data-id="php" class="checkbox checkbox--blue-grey" />PHP</li>
+                            <li><input type="checkbox" data-id="python" class="checkbox checkbox--blue-grey" />Python
+                            </li>
+                            <li><input type="checkbox" data-id="react" class="checkbox checkbox--blue-grey" />React</li>
+                            <li><input type="checkbox" data-id="Ruby" class="checkbox checkbox--blue-grey" />Ruby</li>
+                            <li><input type="checkbox" data-id="sql" class="checkbox checkbox--blue-grey" />SQL</li>
+
+                        </ul>
+                    </div>
+                    <br>
+                    <button id="refine" class="btn btn-primary btn-md btn-rounded"
+                        style="background: #5ca0e0; color: #000">Refine
+                        results</button>
+                    <div class="col-lg-9 mt-lg-0 mt-3">
+                        {{# each data}}
+                        <div class="job_list_wrapper mb-4 contentCard">
+                            <div class="row ">
+                                <div class="col-md-3">
+                                    <img class="img-fluid" src="{{this.company_logo}}" alt="{{this.company}} logo">
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="{{this.custom_url}}">
+                                        <h4 class="b-6 mt-3 mt-lg-0">{{this.title}}</h4>
+                                    </a>
+                                    <p class="text-muted pb-0 mb-1"><i class="fa fa-briefcase mr-1"></i>{{this.type}}
+                                    </p>
+                                    <p class="text-muted"><i class="fa fa-building mr-1"></i>{{this.company}}</p>
+                                </div>
+                                <div class="col-md-3">
+                                    {{!-- <h6 class="b-7">Pay Range</h6>
+                                    <p class="text-muted">$1200</p> --}}
+                                    <a href="{{this.custom_url}}" class="btn br-0 unsub_cancel btn-sm">View details</a>
                                 </div>
                             </div>
                         </div>
+                        {{/each}}
+                        <div class="alert alert-info hide" id="infoAlert">
+                            <strong>Sorry!!!,</strong> no job found
+                        </div>
+
+
+                        <div class="job__paginate my-4">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
                 </div>
+
             </div>
-
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="card br-0">
-                        <div class="card-header b-6 -center">
-                            Job Categories
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <a id="all-jobs" href="/jobs" class="list-group-item">All Jobs </a>
-                            <a id="full-time" href="/jobs/full-time" class="list-group-item">Full Time Jobs</a>
-                            <a id="part-time" href="/jobs/part-time" class="list-group-item">Part Time Jobs</a>
-                            <a id="contract" href="/jobs/contract" class="list-group-item">Contract Jobs</a>
-                        </ul>
-                    </div>
-
-                    <br>
-
-                    <div class="card br-0">
-                        <div class="card-header b-6 -center">
-                            Technologies
-                        </div>
-                        <ul class="list-group list-group-flush">
-
-                            <a href="/jobs" class="list-group-item job__active">ALL</a>
-                            <a href="/jobs/javascript" id="javascript" class="list-group-item">Javascript</a>
-                            <a href="/jobs/python" id="python" class="list-group-item">Python</a>
-                            <a href="/jobs/php" id="php" class="list-group-item">PHP</a>
-                            <a href="/jobs/java" id="java" class="list-group-item">Java</a>
-                            <a href="/jobs/node" id="node" class="list-group-item">Node</a>
-                            <a href="/jobs/c" id="c" class="list-group-item">C</a>
-                            <a href="/jobs/c++" id="c-plus-plus" class="list-group-item">C++</a>
-                            <a href="/jobs/asp" id="asp" class="list-group-item">ASP.Net</a>
-                            <a href="/jobs/react" id="react" class="list-group-item">React</a>
-                            <a href="/jobs/android" id="android" class="list-group-item">Android</a>
-                            <a href="/jobs/linux" id="linux" class="list-group-item">Linux</a>
-
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-9 mt-lg-0 mt-3">
-                    {{# each data}}
-                    <div class="job_list_wrapper mb-4 contentCard">
-                        <div class="row ">
-                            <div class="col-md-3">
-                                <img class="img-fluid" src="{{this.company_logo}}" alt="{{this.company}} logo">
-                            </div>
-                            <div class="col-md-6">
-                                <a href="{{this.custom_url}}">
-                                    <h4 class="b-6 mt-3 mt-lg-0">{{this.title}}</h4>
-                                </a>
-                                <p class="text-muted pb-0 mb-1"><i class="fa fa-briefcase mr-1"></i>{{this.type}}</p>
-                                <p class="text-muted"><i class="fa fa-building mr-1"></i>{{this.company}}</p>
-                            </div>
-                            <div class="col-md-3">
-                                {{!-- <h6 class="b-7">Pay Range</h6>
-                                    <p class="text-muted">$1200</p> --}}
-                                <a href="{{this.custom_url}}" class="btn br-0 unsub_cancel btn-sm">View details</a>
-                            </div>
-                        </div>
-                    </div>
-                    {{/each}}
-                    <div class="alert alert-info hide" id="infoAlert">
-                        <strong>Sorry!!!,</strong> no job found
-                    </div>
-
-
-                    <div class="job__paginate my-4">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
-</div>
 
-{{> footer}}
+    {{> footer}}
 
-{{!-- <script src="js/bootstrap.bundle.min"></script>
+    {{!-- <script src="js/bootstrap.bundle.min"></script>
   <script src="js/bootstrap.min.js"></script> --}}
-<script>
-    $(document).ready(() => {
-        $('#infoAlert').hide();
-        $('#searchInput').keyup(function () {
-            $('.contentCard').hide();
-            $('#infoAlert').css("display", "none");
-            var txt = $('#searchInput').val();
-            var resultCount = 0;
-            $('.contentCard').each(function () {
-                if ($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1) {
-                    $(this).show();
-                    resultCount++;
+    <script>
+        $(document).ready(() => {
+            $('#refine').click(function () {
+                var selected_category;
+                var selected_stacks = [];
+
+                let categories = $('input[type="radio"]')
+
+                for (let i = 0; i < categories.length; i++) {
+                    if (categories[i].checked) {
+                        selected_category = categories[i].value;
+                    }
                 }
+
+                let stacks = $('input[type="checkbox"]')
+
+                for (let i = 0; i < stacks.length; i++) {
+                    if (stacks[i].checked) {
+                        selected_stacks.push(stacks[i].dataset.id)
+                    }
+                }
+
+                let redirect_url = `/jobs/${selected_category}?${(selected_stacks.join('+'))}`
+
+                location.href = redirect_url;
+
             });
 
-            if (resultCount == 0) {
-                $('#infoAlert').css("display", "block");
+            $('#clear-filter').click(() => location.href = "/jobs");
+
+            $('#infoAlert').hide();
+            $('#searchInput').keyup(function () {
+                $('.contentCard').hide();
+                $('#infoAlert').css("display", "none");
+                var txt = $('#searchInput').val();
+                var resultCount = 0;
+                $('.contentCard').each(function () {
+                    if ($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1) {
+                        $(this).show();
+                        resultCount++;
+                    }
+                });
+
+                if (resultCount == 0) {
+                    $('#infoAlert').css("display", "block");
+                }
+
+            });
+
+             function getCurrentUri() {
+                let url = window.location.pathname;
+                return url.substr(url.lastIndexOf('/') + 1)
             }
 
-        });
 
-        function getCurrentUri() {
-            let url = window.location.pathname;
-            return url.substr(url.lastIndexOf('/') + 1)
-        }
+            let currentUri = getCurrentUri();
+            debugger;
+            $('input[type="radio"]:checked').prop('checked', false);
+            let radio_buttons = $('input[type="radio"]');
 
-        let URI = getCurrentUri()
+            for (let i = 0; i < radio_buttons.length; i++) {
+                if (radio_buttons[i].value == currentUri) {
+                    radio_buttons[i].checked = true;
+                    break;
+                }
+            }
 
-        switch (URI) {
-            case '':
-                $('#all-jobs').addClass('job__active');
-                break;
-            case 'javascript':
-                $('#javascript').addClass('job__active');
-                break;
-            case 'python':
-                $('#python').addClass('job__active');
-                break;
-            case 'php':
-                $('#php').addClass('job__active');
-                break;
-            case 'java':
-                $('#java').addClass('job__active');
-                break;
-            case 'node':
-                $('#node').addClass('job__active');
-                break;
-            case 'c':
-                $('#c').addClass('job__active');
-                break;
-            case 'c++':
-                $('#c-plus-plus').addClass('job__active');
-                break;
-            case 'asp':
-                $('#asp').addClass('job__active');
-                break;
-            case 'react':
-                $('#react').addClass('job__active');
-                break;
-            case 'android':
-                $('#android').addClass('job__active');
-                break;
-            case 'linux':
-                $('#linux').addClass('job__active');
-                break;
-        }
-
-    })
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-</body>
+            let params = window.location.search.substr(1).split('+');
+            for (let n = 0; n < params.length; n++) {
+                $('input[data-id="' + params[n] + '"]').prop('checked', true);
+            }
+        })
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    </body>
 
 </html>
