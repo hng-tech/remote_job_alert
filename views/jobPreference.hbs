@@ -30,12 +30,6 @@
       font-style: normal;
     }
 
-    .head {
-      text-align: center;
-      margin-top: 100px;
-      margin-bottom: 55px;
-    }
-
     main {
       display: flex;
       flex-direction: column;
@@ -86,7 +80,6 @@
 
     .inputButtons {
       width: 85%;
-      margin: 14px;
       flex-wrap: wrap;
     }
 
@@ -322,11 +315,6 @@
       padding-left: 10px;
     }
 
-    #submit {
-      display: flex;
-      justify-content: center;
-    }
-
     .submit {
       background: #11144c;
       border-radius: 5px;
@@ -427,6 +415,245 @@
         font-size: 15px;
       }
     }
+
+
+
+
+
+    ul.ks-cboxtags {
+      list-style: none;
+      padding: 20px;
+    }
+
+    ul.ks-cboxtags li {
+      display: inline;
+    }
+
+    ul.ks-cboxtags li label {
+      display: inline-block;
+      background-color: rgba(255, 255, 255, .9);
+      border: 2px solid rgba(139, 139, 139, .3);
+      color: #adadad;
+      border-radius: 25px;
+      white-space: nowrap;
+      margin: 3px 0px;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: all .2s;
+    }
+
+    ul.ks-cboxtags li label {
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    ul.ks-cboxtags li label::before {
+      display: inline-block;
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      font-size: 12px;
+      padding: 2px 6px 2px 2px;
+      content: "\f067";
+      transition: transform .3s ease-in-out;
+    }
+
+    ul.ks-cboxtags li input[type="checkbox"]:checked+label::before {
+      content: "\f00c";
+      transform: rotate(-360deg);
+      transition: transform .3s ease-in-out;
+    }
+
+    ul.ks-cboxtags li input[type="checkbox"]:checked+label {
+      border: 2px solid #5ca0e0;
+      background-color: #5ca0e0;
+      color: #fff;
+      transition: all .2s;
+    }
+
+    ul.ks-cboxtags li input[type="checkbox"] {
+      display: absolute;
+    }
+
+    ul.ks-cboxtags li input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+    }
+
+    ul.ks-cboxtags li input[type="checkbox"]:focus+label {
+      border: 2px solid #e9a1ff;
+    }
+
+
+    /**radio**/
+    form {
+      position: relative;
+      margin: 5px auto 0;
+      font-size: 15px;
+      width: 100%;
+    }
+
+    .radiobtn {
+      position: relative;
+      display: block;
+    }
+
+    .radiobtn label {
+      display: block;
+      color: #444;
+      border-radius: 5px;
+      padding: 10px 20px;
+      border: 2px solid #72ace0;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+
+    .radiobtn label:after,
+    .radiobtn label:before {
+      content: "";
+      position: absolute;
+      right: 11px;
+      top: 11px;
+      width: 20px;
+      height: 20px;
+      border-radius: 3px;
+      background: #72ace0;
+    }
+
+    .radiobtn label:before {
+      background: transparent;
+      transition: 0.1s width cubic-bezier(0.075, 0.82, 0.165, 1) 0s, 0.3s height cubic-bezier(0.075, 0.82, 0.165, 2) 0.1s;
+      z-index: 2;
+      overflow: hidden;
+      background-repeat: no-repeat;
+      background-size: 13px;
+      background-position: center;
+      width: 0;
+      height: 0;
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNS4zIDEzLjIiPiAgPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTE0LjcuOGwtLjQtLjRhMS43IDEuNyAwIDAgMC0yLjMuMUw1LjIgOC4yIDMgNi40YTEuNyAxLjcgMCAwIDAtMi4zLjFMLjQgN2ExLjcgMS43IDAgMCAwIC4xIDIuM2wzLjggMy41YTEuNyAxLjcgMCAwIDAgMi40LS4xTDE1IDMuMWExLjcgMS43IDAgMCAwLS4yLTIuM3oiIGRhdGEtbmFtZT0iUGZhZCA0Ii8+PC9zdmc+);
+    }
+
+    .radiobtn input[type="radio"] {
+      display: none;
+      position: absolute;
+      width: 100%;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    .radiobtn input[type="radio"]:checked+label {
+      background: #5ca0e0;
+      -webkit-animation-name: blink;
+      animation-name: blink;
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      border-color: #5ca0e0;
+    }
+
+    .radiobtn input[type="radio"]:checked+label:after {
+      background: #6bb8ff;
+    }
+
+    .radiobtn input[type="radio"]:checked+label:before {
+      width: 20px;
+      height: 20px;
+    }
+
+    @-webkit-keyframes blink {
+      0% {
+        background-color: #5ca0e0;
+      }
+
+      10% {
+        background-color: #5ca0e0;
+      }
+
+      11% {
+        background-color: #6fa5d8;
+      }
+
+      29% {
+        background-color: #6fa5d8;
+      }
+
+      30% {
+        background-color: #78a4ce;
+      }
+
+      50% {
+        background-color: #83a9cc;
+      }
+
+      45% {
+        background-color: #8ba9c5;
+      }
+
+      50% {
+        background-color: #92abc2;
+      }
+
+      100% {
+        background-color: #93a7b9;
+      }
+    }
+
+    @keyframes blink {
+      0% {
+        background-color: #93a7b9;
+      }
+
+      10% {
+        background-color: #92abc2;
+      }
+
+      11% {
+        background-color: #8ba9c5;
+      }
+
+      29% {
+        background-color: #83a9cc;
+      }
+
+      30% {
+        background-color: #78a4ce;
+      }
+
+      50% {
+        background-color: #6fa5d8;
+      }
+
+      45% {
+        background-color: #6fa5d8;
+      }
+
+      50% {
+        background-color: #5ca0e0;
+      }
+
+      100% {
+        background-color: #5ca0e0;
+      }
+    }
+
+    input:focus {
+      box-shadow: none;
+      outline: 0;
+    }
+
+    input[type="text"] {
+      width: 400px;
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+    }
   </style>
 </head>
 
@@ -434,179 +661,91 @@
 {{>header}}
 
 <!-- body -->
-<div class="container">
-  <div class="head">
-    <h5><b>Hello Test One</b></h5>
-    <h1>Time to set your Job Preferences</h1>
+<div class="container mb-4">
+  <div class="mb-5 mt-5">
+    <h1 style="color: #333">Set your preferences</h1>
+    <p>You can always come back to update your settings</p>
   </div>
 
   <main id="preferences">
-    <!-- Job Role -->
-    <section>
-      <div class="label" for="jobRole">Select your Job Role(s)</div>
-      <div class="field">
-        <div class="inputButtons" id="jobRole">
-          {{# each RoleData}}
-          <button type="button">
-            <span class="button-text" data-attr="{{this}}">{{this}}<i class="fa fa-times clear-me"></i></span>
-          </button>
-          {{/each}}
-        </div>
-        <div class="inputControls">
-          <button type="button"><span id="jobRoleCount" class="buttonNo"></span></button>
-          <i class="fa fa-times" id="clearRoles"></i>
 
-          <div class="dropdown">
-            <i class="fa fa-plus dropbtn"></i>
-            <div class="dropdown-content">
-              {{# each RoleData}}
-              <a data-attr="{{this}}" class="role-data-btn">{{this}}</a>
-              {{/each}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Job Level -->
-    <section>
-      <div class="label" for="jobLevel">Select your Job Level(s)</div>
-      <div class="field">
-        <div class="inputButtons" id="jobLevel">
-          {{# each LevelData}}
-          <button type="button">
-            <span class="button-text" data-attr="{{this}}">{{this}}<i class="fa fa-times clear-me"></i></span>
-          </button>
-          {{/each}}
-        </div>
-        <div class="inputControls">
-          <button type="button"><span id="jobLevelCount" class="buttonNo"></span></button>
-          <i class="fa fa-times" id="clearLevels"></i>
-          <div class="dropdown">
-            <i class="fa fa-plus dropbtn"></i>
-            <div class="dropdown-content">
-              {{# each LevelData}}
-              <a data-attr="{{this}}" class="level-data-btn">{{this}}</a>
-              {{/each}}
-            </div>
-          </div>
-        </div>
-    </section>
-    <!-- Job Type -->
-    <section>
-      <div class="label" for="jobType">Select your Job Type(s)</div>
-      <div class="field">
-        <div class="inputButtons" id="jobType">
-          {{# each TypeData}}
-          <button type="button">
-            <span class="button-text" data-attr="{{this}}">{{this}}<i class="fa fa-times clear-me"></i></span>
-          </button>
-          {{/each}}
-        </div>
-        <div class="inputControls">
-          <button type="button"><span id="jobTypeCount" class="buttonNo"></span></button>
-          <i class="fa fa-times" id="clearTypes"></i>
-          <div class="dropdown">
-            <i class="fa fa-plus dropbtn"></i>
-            <div class="dropdown-content">
-              {{# each TypeData}}
-              <a data-attr="{{this}}" class="type-data-btn">{{this}}</a>
-              {{/each}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Job Location -->
-    <section>
-      <div class="label" for="jobLocation">Select your Job Location(s)</div>
-      <div class="field">
-        <div class="inputButtons" id="jobLocation">
-          
-        </div>
-        <div class="inputControls">
-          <button type="button"><span id="locationCount" class="buttonNo"></span></button>
-          <i class="fa fa-times" id="clearLocations"></i>
-          <div class="dropdown">
-            <i class="fa fa-plus dropbtn"></i>
-            <div class="dropdown-content">
-              {{# each Locations}}
-              <a data-attr="{{this.name}}" class="location-item-btn">{{this.name}}</a>
-              {{/each}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
     <!-- Tech Stack -->
     <section>
-      <div class="label" for="techStack">Select Tech Stack(s)</div>
-      <div class="stack">
-        <!-- For Input Buttons and Controls -->
-        <div class="stack-field">
-          <div class="inputButtons" id="techStack">
-            
-          </div>
-          <div class="inputControls">
-            <button type="button"><span id="techStackCount" class="buttonNo"></span></button>
-            <i class="fa fa-times" id="clearStacks"></i>
-            <div class="dropdown">
-              <i class="fa fa-plus dropbtn"></i>
-              <div class="dropdown-content">
-                {{# each Stacks}}
-                <a data-attr="{{this}}" class="stack-item-btn">{{this}}</a>
-                {{/each}}
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Stack Search -->
-        <div class="stack-search">
-          <div class="text">
-            <input type="text" size="15" placeholder="Search" value="coming soon"/>
-          </div>
-          <div class="search-button">
-            <i class="fa fa-search"></i>
-          </div>
-        </div>
-        <!-- Stack Ckeckboxes -->
-        <div class="stack-check">
-
-        </div>
+      <!-- For Input Buttons and Controls -->
+      <div class="inputButtons" id="techStack">
+        <h4 style="color: #888888; tex-align: center;">Now choose your stacks</h4>
+        <ul class="ks-cboxtags">
+          <li><input type="checkbox" id="stackboxOne" value="Rainbow Dash"><label for="stackboxOne">Rainbow
+              Dash</label>
+          </li>
+          <li><input type="checkbox" id="stackboxTwo" value="C" checked><label for="stackboxTwo">C</label></li>
+          <li><input type="checkbox" id="stackboxThree" value="android" checked><label
+              for="stackboxThree">Android</label>
+          </li>
+          <li><input type="checkbox" id="stackboxFour" value="asp"><label for="stackboxFour">ASP</label>
+          </li>
+          <li><input type="checkbox" id="stackboxFive" value="cplusplus"><label for="stackboxFive">C++</label>
+          </li>
+          <li><input type="checkbox" id="stackboxSix" value="java" checked><label for="stackboxSix">Java</label></li>
+          <li><input type="checkbox" id="stackboxSeven" value="javascript"><label for="stackboxSeven">Javascript</label>
+          </li>
+          <li><input type="checkbox" id="stackboxEight" value="linux"><label for="stackboxEight">Linux</label>
+          </li>
+          <li><input type="checkbox" id="stackboxNine" value="node"><label for="stackboxNine">Node</label></li>
+          <li><input type="checkbox" id="stackboxTen" value="php"><label for="stackboxTen">PHP</label></li>
+          <li class="ks-selected"><input type="checkbox" id="stackboxEleven" value="python"><label
+              for="stackboxEleven">Python</label></li>
+          <li><input type="checkbox" id="stackboxTwelve" value="react"><label for="stackboxTwelve">React</label>
+          </li>
+          <li><input type="checkbox" id="stackboxThirteen" value="ruby"><label for="stackboxThirteen">Ruby</label></li>
+          <li><input type="checkbox" id="stackboxFourteen" value="sql"><label for="stackboxFourteen">SQL</label>
+          </li>
+        </ul>
       </div>
     </section>
-    <div></div>
+
+    <!-- Job Type -->
+    <section>
+      <div class="inputButtons" id="jobType">
+        <h4 style="color: #888888; tex-align: center;">What type of jobs do you like?</h4>
+        <ul class="ks-cboxtags">
+          <li><input type="checkbox" id="typeboxTwo" value="full-time"><label for="typeboxTwo">Full Time</label></li>
+          <li><input type="checkbox" id="typeboxOne" value="part-time" checked><label for="typeboxOne">Part Time</label>
+          </li>
+          <li><input type="checkbox" id="typeboxThree" value="contract"><label for="typeboxThree">Contract</label>
+          </li>
+        </ul>
+      </div>
+    </section>
 
     <!-- Update Type -->
     <section class="container">
-      <div class="label" for="updateType">Choose update type</div>
-      <div class="field">
-        <div class="update-text" id="updateType">
-          Monthly Updates
-        </div>
-        <div class="inputControls-2">
-          <div class="dropdown">
-            <i class="fa fa-plus dropbtn"></i>
-            <div class="dropdown-content ">
-              <a href="#" class="updateTypeOptions">Daily</a>
-              <a href="#" class="updateTypeOptions">Weekly</a>
-              <a href="#" class="updateTypeOptions">Monthly</a>
-            </div>
+      <div class="inputButtons">
+        <h4 style="color: #888888; tex-align: center;">How often should we send you offers?</h4>
+        <form>
+          <div class="radiobtn">
+            <input type="radio" id="daily" name="drone" value="daily" />
+            <label for="daily">Daily</label>
           </div>
-        </div>
+          <div class="radiobtn">
+            <input type="radio" id="weekly" name="drone" value="weekly" checked />
+            <label for="weekly">Weekly</label>
+          </div>
+          <div class="radiobtn">
+            <input type="radio" id="monthly" name="drone" value="monthly" />
+            <label for="monthly">Monthly</label>
+          </div>
+        </form>
       </div>
-</div>
-</section>
+    </section>
 
-<!-- Button trigger modal -->
-<div id="submit">
-  <button type="button" id="submit-btn" class="submit"><span id="submit-text">
-      Save &amp; Submit</span>
-  </button>
-</div>
-
-
-</main>
-</div>
+    <section>
+      <button style="background: #72ace0; color: #333" id="submit" type="button"
+        class="btn btn-xs ml-md-4 ml-sm-auto mr-sm-auto">Save preferences
+      </button>
+    </section>
+    <!-- Button trigger modal -->
+  </main>
 </div>
 
 <!-- footer -->
@@ -615,203 +754,44 @@
 
 <script>
 
-  function updateCount() {
-    $("#jobRoleCount").html(($("#jobRole > button").length))
-    $("#jobLevelCount").html(($("#jobLevel > button").length))
-    $("#jobTypeCount").html(($("#jobType > button").length))
-    $("#locationCount").html(($("#jobLocation > button").length))
-    $("#techStackCount").html(($("#techStack > button").length))
-  }
-
   $(function () {
 
-    updateCount();
 
-    $("#clearStacks").click(function () {
-      if ($(this).html().length == 0) {
-        Swal.fire({
-          title: 'Are you sure?',
-          text: "This will clear all selected stacks!",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#11144C',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, clear it!'
-        }).then((result) => {
-          if (result.value) {
-            $("#techStack > button").fadeOut(500, function () {
-              $(this).remove();
-              updateCount();
-            });
+    $('#submit').click(function () {
+      var selected_categories = [];
+      var selected_stacks = [];
+      var update_frequency;
 
-          }
-        })
-      }
-    });
-    $("#clearLocations").click(function () {
-      if ($(this).html().length == 0) {
-        Swal.fire({
-          title: 'Are you sure?',
-          text: "This will clear all selected locations!",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#11144C',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, clear it!'
-        }).then((result) => {
-          if (result.value) {
-            $("#jobLocation > button").fadeOut(500, function () {
-              $(this).remove();
-              updateCount();
-            });
-          }
-        })
-      }
-    });
-    $("#clearTypes").click(function () {
-      if ($(this).html().length == 0) {
-        Swal.fire({
-          title: 'Are you sure?',
-          text: "This will clear all selected job types!",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#11144C',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, clear it!'
-        }).then((result) => {
-          if (result.value) {
-            $("#jobType > button").fadeOut(500, function () {
-              $(this).remove();
-              updateCount();
-            });
+      let frequencies = $('input[type="radio"]')
 
-          }
-        })
-      }
-    });
-    $("#clearLevels").click(function () {
-      if ($(this).html().length == 0) {
-        Swal.fire({
-          title: 'Are you sure?',
-          text: "This will clear all selected levels!",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#11144C',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, clear it!'
-        }).then((result) => {
-          if (result.value) {
-            $("#jobLevel > button").fadeOut(500, function () {
-              $(this).remove();
-              updateCount();
-            });
-          }
-        })
-      }
-    });
-    $("#clearRoles").click(function () {
-      if ($(this).html().length == 0) {
-        Swal.fire({
-          title: 'Are you sure?',
-          text: "This will clear all selected Roles!",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#11144C',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, clear it!'
-        }).then((result) => {
-          if (result.value) {
-            $("#jobRole > button").fadeOut(500, function () {
-              $(this).remove();
-              updateCount();
-            });
-          }
-        })
-      }
-    });
-
-
-    $("#preferences").on("click", ".clear-me", function () {
-      $(this).parent().fadeOut(500, function () {
-        $(this).parent().remove();
-        updateCount();
-      });
-    })
-
-    $(".role-data-btn").click(function () {
-      if ($('#jobRole span[data-attr="' + $(this).attr("data-attr") + '"]').length == 0) {
-
-
-        let new_entry = `
-                <button type="button">
-                  <span data-attr='${$(this).attr('data-attr')}' class="button-text">${$(this).attr("data-attr")}<i class="fa fa-times clear-me"></i></span>
-                </button>
-              `;
-        $(new_entry).hide().appendTo("#jobRole").fadeIn("fast", updateCount());
-      }
-    })
-    $(".type-data-btn").click(function () {
-      if ($('#jobType span[data-attr="' + $(this).attr('data-attr') + '"]').length == 0) {
-        let new_entry = `
-                <button type="button">
-                  <span data-attr='${$(this).attr('data-attr')}' class="button-text">${$(this).attr("data-attr")}<i class="fa fa-times clear-me"></i></span>
-                </button>
-              `;
-        $(new_entry).hide().appendTo("#jobType").fadeIn("fast", updateCount());
-        updateCount();
-      }
-    })
-
-    $(".level-data-btn").click(function () {
-      if ($('#jobLevel span[data-attr="' + $(this).attr('data-attr') + '"]').length == 0) {
-        let new_entry = `
-                <button type="button">
-                  <span data-attr='${$(this).attr('data-attr')}' class="button-text">${$(this).attr("data-attr")}<i class="fa fa-times clear-me"></i></span>
-                </button>
-              `;
-        $(new_entry).hide().appendTo("#jobLevel").fadeIn("fast", updateCount());
-        updateCount();
-      }
-    })
-
-    $(".location-item-btn").click(function () {
-      if ($('#jobLocation span[data-attr="' + $(this).attr("data-attr") + '"]').length == 0) {
-        let new_entry = `
-                <button type="button">
-                  <span data-attr='${$(this).attr('data-attr')}' class="button-text">${$(this).attr("data-attr")}<i class="fa fa-times clear-me"></i></span>
-                </button>
-              `;
-        $(new_entry).hide().appendTo("#jobLocation").fadeIn("fast", updateCount());
-        updateCount();
-      }
-    })
-
-    $(".stack-item-btn").click(function () {
-      if ($('#techStack span[data-attr="' + $(this).attr("data-attr") + '"]').length === 0) {
-        let new_entry = `
-                <button type="button">
-                  <span data-attr='${$(this).attr('data-attr')}' class="button-text">${$(this).attr("data-attr")}<i class="fa fa-times clear-me"></i></span>
-                </button>
-              `;
-        $(new_entry).hide().appendTo("#techStack").fadeIn("fast", updateCount());
-        updateCount();
+      for (let i = 0; i < frequencies.length; i++) {
+        if (frequencies[i].checked) {
+          update_frequency = frequencies[i].value;
+        }
       }
 
-    })
+      let categories = $('#jobType input[type="checkbox"]')
 
-    $(".updateTypeOptions").click(function () {
-      $("#updateType").html($(this).html);
-    })
+      for (let i = 0; i < categories.length; i++) {
+        if (categories[i].checked) {
+          selected_categories.push(categories[i].value);
+        }
+      }
 
-    $("#submit-btn").click(function () {
-      Swal.fire({
-        title: 'Successful',
-        text: "Your job preferences have been saved!\n You will be redirected shortly!",
-        type: 'success',
-      })
-      setTimeout(function(){
-        window.location.replace("https://devalert.me/jobs");
-      }, 2000);
+      let stacks = $('#techStack input[type="checkbox"]')
+
+      for (let i = 0; i < stacks.length; i++) {
+        if (stacks[i].checked) {
+          selected_stacks.push(stacks[i].value)
+        }
+      }
+
+      // Use this to redirect the user to the jobs page appropriately, Don't forget to save the user's preferencies in the db after parsing.
+      let redirect_url = `/jobs/preferences?categories=${(selected_categories.join('+'))}&stacks=${(selected_stacks.join('+'))}&update=${update_frequency}`
+
+      debugger;
+      location.href = redirect_url;
+
     });
 
 
