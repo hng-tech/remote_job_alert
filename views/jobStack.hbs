@@ -309,6 +309,8 @@
                             Stacks
                         </div>
                         <ul class="checkboxes">
+                            <li><input id="checkall" type="checkbox" data-id="all" class="checkbox checkbox--blue-grey" />All stacks
+                            </li>
                             <li><input type="checkbox" data-id="android" class="checkbox checkbox--blue-grey" />Android
                             </li>
                             <li><input type="checkbox" data-id="asp" class="checkbox checkbox--blue-grey" />ASP</li>
@@ -393,6 +395,12 @@
   <script src="js/bootstrap.min.js"></script> --}}
     <script>
         $(document).ready(() => {
+
+            $("#checkall").change(function () {
+                debugger;
+                $('input[type="checkbox"]').prop('checked', $(this).prop("checked"));
+            })
+
             $('#refine').click(function () {
                 var selected_category;
                 var selected_stacks = [];
@@ -412,6 +420,9 @@
                         selected_stacks.push(stacks[i].dataset.id)
                     }
                 }
+
+                if (selected_stacks[0] == "all")
+                    selected_stacks.shift()
 
                 let redirect_url = `/jobs/${selected_category}?${(selected_stacks.join('+'))}`
 
