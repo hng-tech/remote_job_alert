@@ -74,7 +74,8 @@ app.use(function(req, res, next) {
 	res.locals.paymentError = req.flash('paymentError');
   res.locals.payment = req.flash('payment');
   res.locals.adminError = req.flash('adminError');
-	res.locals.adminSuccess = req.flash('adminSuccess');
+  res.locals.adminSuccess = req.flash('adminSuccess');
+  res.locals.user = req.flash('user');
 	next();
 });
 
