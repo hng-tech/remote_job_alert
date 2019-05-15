@@ -267,6 +267,28 @@ router.get(
   Home.managesubscribers
 );
 
+router.get(
+  "/admin/managefeaturedjobs",
+  function(req, res, next) {
+    Admin.findById(req.session.adminId).exec(function(error, admin) {
+      if (error) {
+        return next(error);
+      } else {
+        if (admin === null) {
+          var err = new Error("Not authorized! Go back!");
+          err.status = 400;
+          res.redirect("/admin");
+          //  return next(err);
+        } else {
+          return next();
+        }
+      }
+    });
+  },
+);
+
+router.get("/admin/managefeaturedjobs", Jobs.get_all_featured);
+
 //Deleting Applicant details
 router.get("/applicant/:applicant_id/delete", Applicant.cancel);
 
