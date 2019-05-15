@@ -58,12 +58,12 @@
       <div id="content ">
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-center mb-4 dashboard">
-            <h1 class="h3 mb-0 text-blue-700">Manage Jobs</h1>
+            <h1 class="h3 mb-0 text-blue-700">Manage Featured Jobs</h1>
           </div>
           
          <div class="container-fluid">
            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <p class="mb-4 text-gray-800">This is the managejobs page for DevAlert</p>
+            <p class="mb-4 text-gray-800">This is the managefeaturedjobs page for DevAlert</p>
             <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#createJobModal"><i class="fas fa-plus fa-sm text-white-50"  ></i> Add Jobs</button>
           </div>
           <div class="card shadow mb-4">
@@ -76,7 +76,7 @@
                   <thead>
                     <tr>
                       <th>S/N</th>
-                      <th>Website</th>
+                      <th>Email</th>
                       <th>Company Name</th>
                       <th>Job Title</th>
                       <th>Date Created</th>
@@ -84,10 +84,19 @@
                     </tr>
                   </thead>
                   <tbody id="tbody">
+                    {{# each content}}
                     <tr>
-                      
+                      <td>{{inc @index}}</td>
+                      <td>{{this.employer_email}}</td>
+                      <td>{{this.company_name}}</td>
+                      <td>{{this.job_title}}</td>
+                      <td>{{this.createdAt}}</td>
+                      <td><button class="btn br-0 btn-primary btn-sm t-11" data-toggle="modal" data-target="#a{{this.id}}"><i class="fa fa-pen"></i> Edit</button>
+                        <button class="btn br-0 btn-primary btn-sm t-11" data-toggle="modal" data-target="#b{{this.id}}"><i class="fa fa-eye"></i> View</button>
+                        <a href="/jobs/{{this.id}}/delete" class="btn br-0 btn-danger btn-sm t-11"><i class="fa fa-trash"></i> Delete</a>
+                      </td>
                     </tr>
-                    
+                    {{/each}}
                   </tbody>
                 </table>
               </div>
@@ -219,10 +228,10 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <select name="career_level" id="" class="form-control br-0">
-                      <option selected>Choose Experience</option>
-                      <option value="Junior">Junior</option>
-                      <option value="Intermediate">Intermediate</option>
-                      <option value="Expert">Expert</option>
+                      <option selected>Choose Job Type</option>
+                      <option value="Full Time">Full Time</option>
+                      <option value="Part Time">Part Time</option>
+                      <option value="Contract">Contract</option>
                     </select>
                   </div>
                 </div>
@@ -308,7 +317,8 @@
   
 
 
-<!---View Modal of API Jobs--->
+<!---View Modal of All Featured Jobs--->
+{{# each content}}
 <div class="ViewJob modal fade" id="ViewJob" tabindex="-1" role="dialog" aria-labelledby="viewJobModalLabel" aria-hidden="true">
     <div class="modal-dialog " role="document">
       <div class="modal-content">
@@ -324,40 +334,41 @@
             <div class="row">
               <div class="col-6">
                 <h6 class="text-muted t-12">Job Title</h6>
-                <h5 id="jobTitle" class="job_text_color t-15"></h5>
+                <h5 id="jobTitle" class="job_text_color t-15">{{this.job_title}}</h5>
               </div>
               <div class="col-6">
                 <h6 class="text-muted t-12">Company</h6>
-                <h5 id="company" class="job_text_color t-15"></h5>
+                <h5 id="company" class="job_text_color t-15">{{this.company_name}}</h5>
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-6">
                 <h6 class="text-muted t-12">Job Type</h6>
-                <h5 id="jobType" class="job_text_color t-15"></h5>
+                <h5 id="jobType" class="job_text_color t-15">{{this.job_type}}</h5>
               </div>
               <div class="col-6">
-                <h6 class="text-muted t-12">Website</h6>
-                <h5 id="website" class="job_text_color t-15"></h5>
+                <h6 class="text-muted t-12">Email</h6>
+                <h5 id="website" class="job_text_color t-15">{{this.employer_email}}</h5>
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-6">
                 <h6 class="text-muted t-12">Job Link</h6>
-                <h5 id="jobURL" class="job_text_color t-15"></h5>
+                <h5 id="jobURL" class="job_text_color t-15">{{this.job_link}}</h5>
               </div>
               <div class="col-6">
                 <h6 class="text-muted t-12">Location</h6>
-                <h5 id="location" class="job_text_color t-15"></h5>
+                <h5 id="location" class="job_text_color t-15">{{this.location}}</h5>
               </div>
               
             </div>
             <div class="row mt-4">
               <div class="col-12">
                 <div class="bg-light p-2">
-                  <h6 class="text-muted t-12 b-7">How To Apply</h6>
+                  <h6 class="text-muted t-12 b-7">Description</h6>
                   <p id="description" class="job_textcolor t-14 l-27">
-                    
+                    {{this.job_description}}
+
                   </p>
                 </div>
               </div>
@@ -367,155 +378,12 @@
       </div>
     </div>
   </div>
+  {{/each}}
+
+
 </div>
 </div>
   <script>
-		let jobs = null; // To store all jobs
-		var job_id = null;
-		var job = null;
-		let single_job = null; // to store a single job
-		let loaded = 0;
-		let i = 1;
-
-		function add_jobs(jobs) {
-			for (let i = 0; i < jobs.length; i++) {
-				add_job(jobs[i]);
-				loaded += 1;
-			}
-		}
-
-		function add_job(job) {
-			// if it's a job from microsoft, use microsoft's logo
-			if (job.company.toLowerCase() == "microsoft") {
-				job.company_logo = "images/ms.png";
-			}
-
-			// if it's a job from google's, use google's logo
-			else if (job.company.toLowerCase() == "google") {
-				job.company_logo = "https://img.icons8.com/color/29/000000/google-logo.png";
-			}
-
-			// if it's a job from google's, use google's logo
-			else if (job.company.toLowerCase() == "facebook") {
-				job.company_logo = "https://img.icons8.com/ios/29/000000/facebook-filled.png";
-			}
-			
-				let job_html = "<ul data-id=" + job.id + " class='job col-sm-5'><li><img style='width:29px; height:29px;' src='" + job.company_logo + "' /></li><li><p>" + job.title + "</p></li><li><a class='view-more' data-toggle='modal' data-target='#jobModal'><p>view<img src='images/Arrow.png' /></p></a></li></ul>";
-
-			$(".jobs").append(job_html);
-	
-
-
-			if (image.attr("src") == "") {
-				image.attr("src", "https://img.icons8.com/ios-glyphs/29/000000/organization.png");
-			}
-			
-
-		}
-
-
-		function load_data() {
-
-			//$("#jobtable").html("<img src='images/spinner.gif' style='height: 31px; width:31px;' />");
-			$.ajax({
-				url: "/jobs_api",
-				async: false,
-				dataType: 'JSON',
-				success: function (data) {
-					var table = document.getElementById('jobtable');
-					
-					
-
-					data.forEach(
-                            function(jobs) {
-                            	var tr = document.createElement('tr');
-                                  tr.innerHTML =  '<tr><td>' + i++
-                                                + '</td><td>'
-                                                + jobs.company_url
-                                                + '</td><td>'
-                                                + jobs.company
-                                                + '</td><td>'
-                                                + jobs.title
-                                                + '</td><td>'
-                                                + jobs.created_at
-                                                + '</td><td>'
-                                               + '<button class="btn br-0 btn-primary btn-sm t-11" data-toggle="modal" data-target="#a{{this.id}}"><i class="fa fa-pen"></i> Edit</button>'
-                                               
-                                               + '<button class="ViewBtn btn br-0 btn-dark btn-sm t-11" data-id=' + jobs.id +' data-toggle="modal" data-target="#ViewJob"><i class="fa fa-eye"></i> View</button>'
-                                               
-                                               + '<a href="/jobs/{{this.id}}/delete" class="btn br-0 btn-danger btn-sm t-11"><i class="fa fa-trash"></i> Delete</a>'
-                                                + '</td></tr>';
-                                     table.appendChild(tr);
-                                     
-                            });
-				}
-			});
-		}
-
-		function load_single_data(id) {
-			$.ajax({
-				url: "/jobs_api/" + id,
-				async: false,
-				success: function (data) {
-					for(let j = 0; j < data.length; j++){
-						if(data[j].id){
-							job = data[j];
-						}
-						
-						if (!job.company_url){
-							job.company_url = ""
-						}
-
-						if(!job.how_to_apply){
-							job.how_to_apply = ""
-						}
-						$("#jobTitle").html(job.title)
-						$("#website").html(job.company_url)
-						$("#description").html(job.how_to_apply)
-						$("#location").html(job.location)
-						$("#company").html(job.company)
-						$("#jobType").html(job.type)
-						$("#jobURL").html(job.url)
-					}
-					
-					
-				}
-			});
-		}
-
-		$(function () {
-			load_data();
-			$("#filter > a").on("click", function () {
-				$(".jobs ul").remove();
-				filter = $(this).attr("data-filter")
-				loaded = 0;
-				$("#curr_filter").html(filter)
-				load_data(filter)
-			})
-
-			$("#load_listings").on('click', function () {
-				if (loaded < jobs.length) {
-					// add 10 more jobs to the homepage // or what's left in the db
-					load_data()
-				}
-				if (jobs.length == loaded) {
-					$("#load_listings").attr("disabled", true).html("No more listings");
-				}
-			});
-
-			$("#jobtable").on('click', ".ViewBtn", function () {
-				job_id = $(this).attr("data-id");
-				load_single_data(job_id);
-			});
-		});
-
-
-
-
-
-
-
-
 
     $(document).ready(() => {
       $('.dash_bar').click(e => {
@@ -524,6 +392,7 @@
         $('.fixed-header').toggleClass('fixed-header-collapse')
       })
     })
+
   </script>
   <script src="js/sb-admin-2.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
