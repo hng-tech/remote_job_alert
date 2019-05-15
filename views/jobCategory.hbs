@@ -15,6 +15,9 @@
 
         gtag('config', 'UA-139612600-1');
     </script>
+    <meta name="keywords"
+        content="Remote Python Jobs,Remote Node Jobs,Remote Java Jobs,Remote JavaScript Jobs,Remote React Jobs'Remote IOS Jobs,Remote Asp Jobs,Remote Linux jobs,Remote php jobs,Remote ruby jobs,Remote Sql jobs,Remote Android jobs,remote developer jobs" />
+    <meta name="description" content="Remote jobs are categorized in this section..." />
     <style>
         form {
             position: relative;
@@ -310,14 +313,16 @@
                             Stacks
                         </div>
                         <ul class="checkboxes">
-                            <li><input id="checkall" type="checkbox" data-id="all" class="checkbox checkbox--blue-grey" />All stacks
+                            <li><input id="checkall" type="checkbox" data-id="all"
+                                    class="checkbox checkbox--blue-grey" />All stacks
                             </li>
                             <li><input type="checkbox" data-id="android" class="checkbox checkbox--blue-grey" />Android
                             </li>
                             <li><input type="checkbox" data-id="asp" class="checkbox checkbox--blue-grey" />ASP</li>
                             <li><input type="checkbox" data-id="cplusplus" class="checkbox checkbox--blue-grey" />C++
                             </li>
-                            <li><input type="checkbox" data-id="devops" class="checkbox checkbox--blue-grey" />DevOps</li>
+                            <li><input type="checkbox" data-id="devops" class="checkbox checkbox--blue-grey" />DevOps
+                            </li>
                             <li><input type="checkbox" data-id="ios" class="checkbox checkbox--blue-grey" />IOS</li>
                             <li><input type="checkbox" data-id="java" class="checkbox checkbox--blue-grey" />Java</li>
                             <li><input type="checkbox" data-id="javascript"
@@ -327,7 +332,8 @@
                             <li><input type="checkbox" data-id="php" class="checkbox checkbox--blue-grey" />PHP</li>
                             <li><input type="checkbox" data-id="python" class="checkbox checkbox--blue-grey" />Python
                             </li>
-                            <li><input type="checkbox" data-id="react" class="checkbox checkbox--blue-grey" />ReactJS</li>
+                            <li><input type="checkbox" data-id="react" class="checkbox checkbox--blue-grey" />ReactJS
+                            </li>
                             <li><input type="checkbox" data-id="ruby" class="checkbox checkbox--blue-grey" />Ruby</li>
                             <li><input type="checkbox" data-id="sql" class="checkbox checkbox--blue-grey" />SQL</li>
 
@@ -462,21 +468,21 @@
             return url.substr(url.lastIndexOf('/') + 1)
         }
 
-        
+
         let currentUri = getCurrentUri();
         debugger;
         $('input[type="radio"]:checked').prop('checked', false);
         let radio_buttons = $('input[type="radio"]');
 
-        for (let i = 0; i < radio_buttons.length; i++){
-            if (radio_buttons[i].value == currentUri){
+        for (let i = 0; i < radio_buttons.length; i++) {
+            if (radio_buttons[i].value == currentUri) {
                 radio_buttons[i].checked = true;
                 break;
             }
         }
-        
+
         let params = window.location.search.substr(1).split('|');
-        for (let n = 0; n < params.length; n++){
+        for (let n = 0; n < params.length; n++) {
             $('input[data-id="' + params[n] + '"]').prop('checked', true);
         }
     })

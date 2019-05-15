@@ -8,6 +8,9 @@
     <link rel="shortcut icon" href="/images/code2.png" type="image/x-icon">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
+    <meta name="keywords"
+        content="Remote Python Jobs,Remote Node Jobs,Remote Java Jobs,Remote JavaScript Jobs,Remote React Jobs'Remote IOS Jobs,Remote Asp Jobs,Remote Linux jobs,Remote php jobs,Remote ruby jobs,Remote Sql jobs,Remote Android jobs,remote developer jobs" />
+    <meta name="description" content="Apply for Remote Developer Jobs with DevAlert..." />
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -310,14 +313,16 @@
                             Technologies
                         </div>
                         <ul class="checkboxes">
-                            <li><input id="checkall" type="checkbox" data-id="all" class="checkbox checkbox--blue-grey" />All stacks
+                            <li><input id="checkall" type="checkbox" data-id="all"
+                                    class="checkbox checkbox--blue-grey" />All stacks
                             </li>
                             <li><input type="checkbox" data-id="android" class="checkbox checkbox--blue-grey" />Android
                             </li>
                             <li><input type="checkbox" data-id="asp" class="checkbox checkbox--blue-grey" />ASP</li>
                             <li><input type="checkbox" data-id="cplusplus" class="checkbox checkbox--blue-grey" />C++
                             </li>
-                            <li><input type="checkbox" data-id="devops" class="checkbox checkbox--blue-grey" />DevOps</li>
+                            <li><input type="checkbox" data-id="devops" class="checkbox checkbox--blue-grey" />DevOps
+                            </li>
                             <li><input type="checkbox" data-id="ios" class="checkbox checkbox--blue-grey" />IOS</li>
                             <li><input type="checkbox" data-id="java" class="checkbox checkbox--blue-grey" />Java</li>
                             <li><input type="checkbox" data-id="javascript"
@@ -327,7 +332,8 @@
                             <li><input type="checkbox" data-id="php" class="checkbox checkbox--blue-grey" />PHP</li>
                             <li><input type="checkbox" data-id="python" class="checkbox checkbox--blue-grey" />Python
                             </li>
-                            <li><input type="checkbox" data-id="react" class="checkbox checkbox--blue-grey" />ReactJS</li>
+                            <li><input type="checkbox" data-id="react" class="checkbox checkbox--blue-grey" />ReactJS
+                            </li>
                             <li><input type="checkbox" data-id="ruby" class="checkbox checkbox--blue-grey" />Ruby</li>
                             <li><input type="checkbox" data-id="sql" class="checkbox checkbox--blue-grey" />SQL</li>
 
@@ -336,9 +342,10 @@
                     <br>
                     <button id="refine" class="btn btn-primary btn-md btn-rounded mt-2"
                         style="background: #5ca0e0; color: #fff">Refine results</button>
-                        <button  style="background: #5ca0e0; color: #fff" id="clear-filter" class="btn btn-primary btn-md btn-rounded mt-2">
-                            Clear filters 
-                        </button>
+                    <button style="background: #5ca0e0; color: #fff" id="clear-filter"
+                        class="btn btn-primary btn-md btn-rounded mt-2">
+                        Clear filters
+                    </button>
                 </div>
                 <div class="col-lg-9 mt-lg-0 mt-3" id="jobTable">
                     {{# each content}}
@@ -423,7 +430,7 @@
                     selected_stacks.push(stacks[i].dataset.id)
                 }
             }
-            
+
             debugger;
             if (selected_stacks[0] == "all")
                 selected_stacks.shift()
@@ -434,7 +441,7 @@
 
         });
 
-        $('#clear-filter').click(()=>location.href = "/jobs");
+        $('#clear-filter').click(() => location.href = "/jobs");
 
         $('#infoAlert').hide();
         $('#searchInput').keyup(function () {
