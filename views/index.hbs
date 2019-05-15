@@ -22,14 +22,35 @@
 		.view-more {
 			cursor: pointer !important;
 		}
+
+		/* Large devices (laptops/desktops, 992px and up) */
+      @media only screen and (min-width: 992px) {
+		  
+	  } 
 		
-		@media(max-width:767px) {
+		@media only screen and (max-width:790px) {
 			.col-sm-12 {
 				flex: 0 0 100%;
 				max-width: 100% !important;
-				padding-left: 30px !important;
+				padding-left: 90px !important;
+			}
+			.card {
+				width: 520px;
+				
 			}
 		}
+		@media only screen and (max-width: 550px) {
+			.col-sm-12 {
+				padding-left: 10px;
+			}
+			.card {
+				width: 385px;
+				
+			}
+			.featured-form{
+				padding-left: 15px;
+			}
+			} 
 
 #homepage #Featured-jobs .featured-jobs-header h1 {
     color: #11144c;
@@ -110,32 +131,13 @@ input[type=text]:focus {
     .card {}
 }
 
-@media only screen and (min-device-width : 0px) and (max-device-width : 1500px){
-.marow {
-		
-		
-		padding-left: 50px;
-	}
-	
-		}
-@media only screen and (min-device-width : 769px) and (max-device-width: 1500px) {
-   
-	  .marow {
-		  padding-left: 60px;
-		  
-		 }
-
-#jobs {
- 	
- }
-}
 
 @media(min-width:768px) {
 
 	        .row {}
 
 			.card {}
-			.ebuka {
+			.cont-2 {
 				flex: 0 0 100%;
 				max-width: 100%;
 				padding-left: 70px !important;
@@ -241,7 +243,7 @@ input[type=text]:focus {
          </div>
 				 
     
-        <div class="row col-sm-12  ebuka" style="justify-content: center;">	
+        <div class="row col-sm-12  cont-2" style="justify-content: center;">	
     	<div id="jobs">
 
     	</div>
