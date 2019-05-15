@@ -315,19 +315,20 @@
                             <li><input type="checkbox" data-id="android" class="checkbox checkbox--blue-grey" />Android
                             </li>
                             <li><input type="checkbox" data-id="asp" class="checkbox checkbox--blue-grey" />ASP</li>
-                            <li><input type="checkbox" data-id="c" class="checkbox checkbox--blue-grey" />C</li>
                             <li><input type="checkbox" data-id="cplusplus" class="checkbox checkbox--blue-grey" />C++
                             </li>
-                            <li><input type="checkbox" data-id="Java" class="checkbox checkbox--blue-grey" />Java</li>
+                            <li><input type="checkbox" data-id="devops" class="checkbox checkbox--blue-grey" />DevOps</li>
+                            <li><input type="checkbox" data-id="ios" class="checkbox checkbox--blue-grey" />IOS</li>
+                            <li><input type="checkbox" data-id="java" class="checkbox checkbox--blue-grey" />Java</li>
                             <li><input type="checkbox" data-id="javascript"
                                     class="checkbox checkbox--blue-grey" />Javascript</li>
                             <li><input type="checkbox" data-id="linux" class="checkbox checkbox--blue-grey" />Linux</li>
-                            <li><input type="checkbox" data-id="node" class="checkbox checkbox--blue-grey" />Node</li>
+                            <li><input type="checkbox" data-id="node" class="checkbox checkbox--blue-grey" />NodeJS</li>
                             <li><input type="checkbox" data-id="php" class="checkbox checkbox--blue-grey" />PHP</li>
                             <li><input type="checkbox" data-id="python" class="checkbox checkbox--blue-grey" />Python
                             </li>
-                            <li><input type="checkbox" data-id="react" class="checkbox checkbox--blue-grey" />React</li>
-                            <li><input type="checkbox" data-id="Ruby" class="checkbox checkbox--blue-grey" />Ruby</li>
+                            <li><input type="checkbox" data-id="react" class="checkbox checkbox--blue-grey" />ReactJS</li>
+                            <li><input type="checkbox" data-id="ruby" class="checkbox checkbox--blue-grey" />Ruby</li>
                             <li><input type="checkbox" data-id="sql" class="checkbox checkbox--blue-grey" />SQL</li>
 
                         </ul>
@@ -429,7 +430,7 @@
             if (selected_stacks[0] == "all")
                 selected_stacks.shift()
 
-            let redirect_url = `/jobs/${selected_category}?${(selected_stacks.join('+'))}`
+            let redirect_url = `/jobs/${selected_category}?tech=${(selected_stacks.join('|'))}`
 
             location.href = redirect_url;
 
@@ -474,7 +475,7 @@
             }
         }
         
-        let params = window.location.search.substr(1).split('+');
+        let params = window.location.search.substr(1).split('|');
         for (let n = 0; n < params.length; n++){
             $('input[data-id="' + params[n] + '"]').prop('checked', true);
         }

@@ -34,7 +34,7 @@ const getData = async () => {
       let title = element.title;
       let company = element.company;
       let url = title + ' ' + company;
-      let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\'\|\@\%\&\*]/g;
+      let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\:\'\|\@\%\&\*]/g;
       let custom_url = url.toLowerCase().replace(regex, '-');
       element.custom_url = custom_url;
     });
@@ -234,28 +234,96 @@ const Jobs = {
       }
       else if(categories.includes(slug)) {
         try {
-          let allCategoryJobs = [];
-          let formalSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
-    
-          //Same algo as above...
-          for (let i = 0; i < main.length; i++){
-            if (main[i].type == formalSlug || main[i].description.toLowerCase().includes(slug) ) {
-              allCategoryJobs.push(main[i]);
-              continue;
-            }
-          };
-          
-          //Jobs with no images
-          allCategoryJobs.slice().map(function (job) {
-            job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
-            return job;
-          });
-          return res.status(200).render('jobCategory', {
-            name: formalSlug,
-            status: 'success',
-            TotalJobs: Object.keys(allCategoryJobs).length,
-            data: allCategoryJobs
-          });
+          //Refine the slugs for effective searching, remove the hyphens and capitalize each word
+          if (slug.includes('-')) {
+            let newSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
+            let oldSlug = newSlug.split('-');
+            oldSlug[1] = oldSlug[1].charAt(0).toUpperCase() + oldSlug[1].slice(1);
+            var formalSlug = oldSlug.join(' ');
+          }
+          else {
+            var formalSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
+          }
+
+          //Now Check if the query string has values
+          if (typeof req.query.tech == "undefined") {
+            let allCategoryJobs = [];
+            
+      
+            //Same algo as above...
+            for (let i = 0; i < main.length; i++){
+              if (main[i].type == formalSlug || main[i].description.toLowerCase().includes(slug) ) {
+                allCategoryJobs.push(main[i]);
+                continue;
+              }
+            };
+            
+            //Jobs with no images
+            allCategoryJobs.slice().map(function (job) {
+              job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+              return job;
+            });
+            return res.status(200).render('jobCategory', {
+              name: formalSlug,
+              status: 'success',
+              TotalJobs: Object.keys(allCategoryJobs).length,
+              data: allCategoryJobs
+            });
+          }
+          else {
+            //If it does not have values, grab the values
+            let query = req.query.tech;
+            let selectedTech = query.split('|');
+
+            let selectedJobs = [];
+            for (let j = 0; j<selectedTech.length; j++) {
+              //Perform search with reference to relative parameters and add additional params where necessary
+              switch (selectedTech[j]) {
+                case 'react':
+                  selectedTech.push('reactjs','react.js');
+                  break;
+                case 'node':
+                  selectedTech.push('nodejs','node.js');
+                  break;
+                case 'java':
+                  selectedTech[j] = ' java ';
+                  break;
+                case 'ios':
+                  selectedTech[j] = ' ios ';
+                  break;
+                case 'cplusplus':
+                  selectedTech[j] = 'c++';
+                  break;
+                case 'asp':
+                  selectedTech[j] = ' asp ';
+                  selectedTech.push('asp.net')
+                  break;
+                default:
+                  break;
+              }
+            //Search for jobs and add them to the selected jobs array
+              for (let i = 0; i < main.length; i++){
+                if (main[i].type == formalSlug && main[i].description.toLowerCase().includes(selectedTech[j]) && selectedJobs.includes(main[i]) == false ) {
+                  selectedJobs.push(main[i]);
+                  continue;
+                }
+              };
+            };
+            //Jobs with no images
+            selectedJobs.slice().map(function (job) {
+              job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+              return job;
+            });
+
+            return res.status(200).render('jobCategory', {
+              name: formalSlug,
+              tech: selectedTech,
+              status: 'success',
+              TotalJobs: Object.keys(selectedJobs).length,
+              data: selectedJobs
+            });
+
+          }
     
         } catch (error) {
           return res.status(400).send(error);
