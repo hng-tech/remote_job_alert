@@ -23,13 +23,6 @@
 			cursor: pointer !important;
 		}
 		
-		@media(max-width:767px) {
-			.col-sm-12 {
-				flex: 0 0 100%;
-				max-width: 100% !important;
-				padding-left: 30px !important;
-			}
-		}
 
 #homepage #Featured-jobs .featured-jobs-header h1 {
     color: #11144c;
@@ -89,8 +82,8 @@ input[type=text]:focus {
 }
 
 .card {
- 
- height: 500px;
+
+ height: 400px;
  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
  transition: 0.3s;
 }
@@ -104,51 +97,33 @@ input[type=text]:focus {
 }
 
 /*Responsive styling when screen is less than 700px */
-
+/* Do Not Edit */
 @media screen and (max-width: 700px) {
-    .row {}
-    .card {}
+  .card{
+  	width:359px;
+  }
 }
 
-@media only screen and (min-device-width : 0px) and (max-device-width : 1500px){
-.marow {
-		
-		
-		padding-left: 50px;
-	}
-	
-		}
-@media only screen and (min-device-width : 769px) and (max-device-width: 1500px) {
+@media only screen and (min-width : 769px) and (max-width: 1500px) {
    
-	  .marow {
-		  padding-left: 60px;
-		  
-		 }
-
 #jobs {
+	margin-left: 27%;
  	
  }
 }
 
-@media(min-width:768px) {
+@media only screen and (min-device-width : 769px) and (max-device-width: 1500px) {
+   
+#jobs {
+	margin-left: 27%;
+ 	
+ }
+}
 
-	        .row {}
 
-			.card {}
-			.cont-2 {
-				flex: 0 0 100%;
-				max-width: 100%;
-				padding-left: 70px !important;
-			}
-			#jobs {
-				margin-left: 21.5%;
-			}
-	
-		}
 /*end of responsive styling */
 .truncate {
-  width: auto;
-  height: 45px;
+  height: 40px;
   white-space: wrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -241,8 +216,8 @@ input[type=text]:focus {
          </div>
 				 
     
-        <div class="row col-sm-12  cont-2" style="justify-content: center;">	
-    	<div id="jobs">
+        <div class="row col-sm-12">	
+    	<div id="jobs" style="justify-content: center;">
 
     	</div>
 		</div>
