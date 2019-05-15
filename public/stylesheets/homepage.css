@@ -566,8 +566,7 @@ a:link {
 /*Responsive styling when screen is less than 700px */
 
 @media screen and (max-width: 700px) {
-    .row {}
-    .card {}
+
 }
 
 
