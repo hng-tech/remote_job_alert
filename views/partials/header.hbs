@@ -43,13 +43,17 @@
 						<a class="nav-link b-2 hover_link" href="/jobs">Jobs</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link b-2 hover_link" href="/about">About Us</a>
+						<a class="nav-link b-2 hover_link" href="/about">About</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link b-2 hover_link" href="/contact">Contact Us</a>
+						<a class="nav-link b-2 hover_link" href="/contact">Contact</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link b-2 hover_link" href="/login">Log in</a>
+						{{#if user}}
+						<a class="nav-link b-2 hover_link" href="/logout">Logout</a>
+						{{else}}
+						<a class="nav-link b-2 hover_link" href="/login">Login</a>
+						{{/if}}
 					</li>
 				</ul>
 			</div>

@@ -22,7 +22,7 @@
 		.view-more {
 			cursor: pointer !important;
 		}
-		/*Styling for featured jobs section*/
+		
 
 #homepage #Featured-jobs .featured-jobs-header h1 {
     color: #11144c;
@@ -97,38 +97,36 @@ input[type=text]:focus {
 }
 
 /*Responsive styling when screen is less than 700px */
-
+/* Do Not Edit */
 @media screen and (max-width: 700px) {
-    .row {}
-    .card {}
+  .card{
+  	width:359px;
+  }
 }
 
-@media only screen and (min-device-width : 0px) and (max-device-width : 15000px){
-    .marow{
-        padding-left:50px;
-    }
-		}
-@media only screen and (min-device-width : 769px){
+@media only screen and (min-width : 769px) and (max-width: 1500px) {
    
-	  .marow{
-        padding-left:60px;
- }
-
 #jobs {
- 	margin-left: 265px;
+	margin-left: 27%;
+ 	
  }
 }
 
+@media only screen and (min-device-width : 769px) and (max-device-width: 1500px) {
+   
+#jobs {
+	margin-left: 27%;
+ 	
+ }
+}
+
+
+/*end of responsive styling */
 .truncate {
-  width: auto;
-  height: 45px;
+  height: 40px;
   white-space: wrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-#jobs {
-	justify-content: center;
-	
 }
 
 /*End of Styling for featured jobs section*/
@@ -218,8 +216,8 @@ input[type=text]:focus {
          </div>
 				 
     
-        <div class="row col-sm-12 marow" style="justify-content: center">	
-    	<div id="jobs">
+        <div class="row col-sm-12">	
+    	<div id="jobs" style="justify-content: center;">
 
     	</div>
 		</div>
