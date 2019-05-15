@@ -30,119 +30,146 @@
 
 	<title>DevAlert | Home</title>
 	<style>
-		/*Styling for featured jobs section*/
+	/*###########Styling for featured job section######*/	
 		.view-more {
 			cursor: pointer !important;
 		}
 
-
-		#homepage #Featured-jobs .featured-jobs-header h1 {
-			color: #11144c;
-			font-weight: 600;
-			font-size: 36px;
-			line-height: 42px;
-			margin-bottom: 10px;
-		}
-
-		.filter-1 {
-			display: flex;
-			flex-direction: row;
-			flex-wrap: wrap;
-			justify-content: center;
-			padding-bottom: 15px;
-		}
-
-		.featured-form {
-			padding-right: 5px;
-			padding-bottom: 8px;
-		}
-
-		select {
-			height: 50px;
-			line-height: 50px;
-			font-size: 12pt;
-		}
-
-		input[type=text] {
-			width: 100%;
-			box-sizing: border-box;
-			border: 2px solid #ccc;
-			border-radius: 4px;
-			font-size: 16px;
-			background-color: white;
-			background-position: 10px 10px;
-			background-repeat: no-repeat;
-			padding: 12px 20px 12px 40px;
-
-		}
-
-		input[type=text]:focus {
-			width: 100%;
-		}
-
-
-		.more-jobs {
-			text-align: center;
-			color: #11144c;
-			font-weight: bold;
-			margin-top: 50px;
-			margin-bottom: 50px;
-		}
-
-
-		#Featured-jobs p {
-			padding-top: 10px;
-		}
-
-		.card {
-
-			height: 400px;
-			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-			transition: 0.3s;
-		}
-
-		.card:hover {
-			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-		}
-
-		.row .card {
-			margin: 8px;
-		}
-
-		/*Responsive styling when screen is less than 700px */
-		/* Do Not Edit */
-		@media screen and (max-width: 700px) {
+		/* Large devices (laptops/desktops, 992px and up) */
+      @media only screen and (min-width: 992px) {
+		  
+	  } 
+		
+		@media only screen and (max-width:790px) {
+			.col-sm-12 {
+				flex: 0 0 100%;
+				max-width: 100% !important;
+				padding-left: 90px !important;
+			}
 			.card {
-				width: 359px;
+				width: 520px;
+				
 			}
 		}
+		@media only screen and (max-width: 550px) {
+			.col-sm-12 {
+				padding-left: 10px;
+			}
+			.card {
+				width: 385px;
+				
+			}
+			.featured-form{
+				padding-left: 15px;
+			}
+			} 
 
-		@media only screen and (min-width : 769px) and (max-width: 1500px) {
+#homepage #Featured-jobs .featured-jobs-header h1 {
+    color: #11144c;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 42px;
+    margin-bottom: 10px;
+}
+.filter-1 {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding-bottom: 15px;  
+}
 
+.featured-form {
+padding-right: 5px;
+padding-bottom: 8px;
+}
+
+select {
+  height: 50px;
+  line-height: 50px;
+  font-size: 12pt;
+       }
+
+input[type=text] {
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+
+}
+
+input[type=text]:focus {
+  width: 100%;
+}
+
+
+.more-jobs {
+    text-align: center;
+    color: #11144c;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+
+#Featured-jobs p {
+ padding-top: 10px;
+}
+
+.card {
+ 
+ height: 500px;
+ box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+ transition: 0.3s;
+}
+
+.card:hover {
+ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.row .card {
+	margin: 8px;
+}
+
+/*Responsive styling when screen is less than 700px */
+
+@media screen and (max-width: 700px) {
+    .row {}
+    .card {}
+}
+
+
+@media(min-width:768px) {
+
+	        .row {}
+
+			.card {}
+			.cont-2 {
+				flex: 0 0 100%;
+				max-width: 100%;
+				padding-left: 70px !important;
+			}
 			#jobs {
-				margin-left: 27%;
-
+				margin-left: 21.5%;
 			}
+	
 		}
+/*end of responsive styling */
+.truncate {
+  width: auto;
+  height: 45px;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-		@media only screen and (min-device-width : 769px) and (max-device-width: 1500px) {
 
-			#jobs {
-				margin-left: 27%;
-
-			}
-		}
-
-
-		/*end of responsive styling */
-		.truncate {
-			height: 40px;
-			white-space: wrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-		}
-
-		/*End of Styling for featured jobs section*/
+/*#######End of styling for featured job########*/
 	</style>
 </head>
 
@@ -229,11 +256,11 @@
 			</div>
 
 
-			<div class="row col-sm-12">
-				<div id="jobs" style="justify-content: center;">
+		<div class="row col-sm-12  cont-2" style="justify-content: center;">	
+			<div id="jobs">
 
-				</div>
 			</div>
+		</div>
 			<p class="more-jobs"><a href="/jobs">View all remote jobs <ion-icon name="arrow-forward"></ion-icon></a></p>
 			<!--End of Featured job Section--->
 
