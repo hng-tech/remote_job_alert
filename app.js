@@ -80,6 +80,7 @@ app.use(function(req, res, next) {
 
 
 app.use('/', indexRouter);
+app.use('/auth', authRouter);
 // app.use('/users', usersRouter);
 
 
