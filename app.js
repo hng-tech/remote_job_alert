@@ -12,6 +12,8 @@ require('dotenv').config();
 require('./schedule');
 const passport = require('passport');
 const fx = require('money');
+var bodyParser = require('body-parser')
+
 
 
 // The database setup
@@ -33,6 +35,7 @@ db.once('open', () => console.log('Connected to database'));
 db.on('error', console.error.bind(console, 'Database connection error:'));
 
 var indexRouter = require('./routes/index');
+var authRouter = require('./routes/auth');
 // var usersRouter = require('./routes/users');
 
 var app = express(); require('./config/passport')(passport);     //pass passport for configuration

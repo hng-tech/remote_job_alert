@@ -87,7 +87,8 @@
     </style>
 </head>
 
-<body>
+
+    {{>header}}
     <div>
         <div class="container">
             {{#each errors}}
@@ -113,83 +114,23 @@
             </div>
             {{/if}}
         </div>
-        <header id="header" class="">
-
-            <div class="container">
-                <nav class="navbar navbar-expand-lg navbar-light bg-white">
-                    <a class="navbar-brand" href="/">
-                        <img src="images/code2.png" class="img-fluid" height="40" width="40"> <span
-                            class="b-7">DevAlert</span>
-                    </a>
-                    <!--<button id="hamburger_menu" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>-->
-                    <div id="mobile_hamburger" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+        
+        <div id="contact" class="container py-0">
+            {{!-- Bread crumb --}}
+            <div class="row">
+                <div class="col-12">
+                    <div class=" my-4 shadow-sm">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb bg-whyt br-0">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                            </ol>
+                        </nav>
                     </div>
-
-                    <div class="collapse navbar-collapse saa" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto xcv_link">
-                            <li class="nav-item">
-                                <a class="nav-link b-6 hover_lin" href="/">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link b-6 hover_lin" href="/jobs">Jobs</a>
-                            </li>
-                             <li class="nav-item">
-                                <a class="nav-link b-6 hover_lin" href="/login">Log in</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link b-6 hover_lin" href="/about">About Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link b-6 hover_lin" href="/contact">Contact Us</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </header>
-
-        {{!-- REGISTER MODAL--}}
-        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h5 class="mt-5 font-weight-bold">Pay to an agent</h5>
-                        <form action="/pay" method="POST" class="mt-3">
-                            <div class="form-group">
-                                <label for="" class="my-0">Email</label>
-                                <input type="text" name="email" class="form-control my-0"
-                                    placeholder="johndoe@example.com" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="my-0">Phone number</label>
-                                <input type="tel" name="phoneNo" class="form-control my-0" placeholder="+234 7036836753"
-                                    minlength="11" pattern="[+]{0,1}[0-9\s]+" maxlength="16" required>
-                            </div>
-                            <input value="Pay with Paystack" type="submit" name="phone"
-                                class="btn btn-custom px-5 mt-4"></input>
-                        </form>
-                        <hr>
-                        <button id="buttonCheckout" class="btn btn-custom px-5 mt-4">Pay with Stripe</button>
-                    </div>
-
                 </div>
             </div>
-        </div>
 
-
-        <div id="contact" class="container py-0">
-
-            <div class="position-absolute vector-bg-1 d-none d-md-block"></div>
+            
 
             <div class="contact-body">
                 <div class="row py-3 py-md-5">
@@ -287,4 +228,3 @@
         </div>
 
         {{> footer}}
-</body>
