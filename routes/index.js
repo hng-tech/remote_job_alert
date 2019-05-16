@@ -190,6 +190,10 @@ router.get("/jobs/:slug", Jobs.fetchSingle);
 router.post("/jobs/:job_id", Jobs.update_job);
 router.get("/jobs/:job_id/delete", Jobs.cancel_job);
 
+router.get("/jobs/full-time/:tech", Jobs.fetchAllFullTimeSearchJobs);
+router.get("/jobs/part-time/:tech", Jobs.fetchAllPartTimeSearchJobs);
+router.get("/jobs/contract/:tech", Jobs.fetchAllContractSearchJobs);
+
 // for registered users
 router.post("/register_user", Jobs.create_registered_user);
 router.post("/update_user/:_id", Jobs.update_registered_user);

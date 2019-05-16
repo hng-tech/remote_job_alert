@@ -3,6 +3,8 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta property="og:type" content="website" />
+            <meta property="og:image" content="https://res.cloudinary.com/ivory/image/upload/v1558011480/Alternate_Logo_1.png"/>
   <title>Job Preference Page</title>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -40,46 +42,10 @@
       margin-bottom: 26px;
     }
 
-    .label {
-      width: 20%;
-      margin-top: 15px;
-    }
 
-    .field {
-      display: flex;
-      flex-direction: row-reverse;
-      width: 80%;
-      background: #ffffff;
-      border: 1px solid #cccccc;
-      box-sizing: border-box;
-      border-radius: 5px;
-    }
-
-    button {
-      background: #eeeeee;
-      border-radius: 5px;
-      border: 2px solid #cccccc;
-    }
-
-    button i {
-      padding-left: 15px;
-      font-size: 14px;
-      letter-spacing: 0.05em;
-
-      color: #11144c;
-    }
-
-    .buttonText {
-      font-family: Work Sans;
-      font-size: 14px;
-      /* or 125% */
-      letter-spacing: 0.05em;
-
-      color: #11144c;
-    }
 
     .inputButtons {
-      width: 85%;
+      width: 100%;
       flex-wrap: wrap;
     }
 
@@ -93,326 +59,22 @@
       order: -1;
     }
 
-    .inputControls button {
-      background: #11144c;
-      border-radius: 5px;
-      border-color: #11144c;
-    }
-
-    /* Drop down */
-
-    /* Style The Dropdown Button */
-    .dropbtn {
-      background-color: white;
-      padding: 4px;
-      border: none;
-      cursor: pointer;
-    }
-
-    /* The container <div> - needed to position the dropdown content */
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    /* Dropdown Content (Hidden by Default) */
-    .dropdown-content {
-      border: .2px solid black;
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      right: 0;
-      max-height: 400px;
-      overflow-y: auto;
-    }
-
-    /* Links inside the dropdown */
-    .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
-
-    /* Change color of dropdown links on hover */
-    .dropdown-content a:hover {
-      background-color: #f1f1f1
-    }
-
-    /* Show the dropdown menu on hover */
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    /* Change the background color of the dropdown button when the dropdown content is shown */
-    .dropdown:hover .dropbtn {
-      background-color: white;
-    }
-
-    /* Input controls contd */
-    .inputControls i {
-      font-size: 20px;
-      color: #11144c;
-      padding-left: 10px;
-    }
-
-    .buttonNo {
-      font-size: 24px;
-      line-height: 28px;
-      letter-spacing: 0.05em;
-
-      color: #ffffff;
-    }
-
-    /* Job Stack Section */
-    .stack {
-      display: flex;
-      flex-direction: column;
-      width: 80%;
-      background: #ffffff;
-      border: 1px solid #cccccc;
-      box-sizing: border-box;
-      border-radius: 5px;
-    }
-
-    .stack-field,
-    .stack-search,
-    .stack-check {
-      display: flex;
-      width: 100%;
-    }
-
-    .stack-field,
-    .stack-search {
-      flex-direction: row-reverse;
-    }
-
-    .stack-search {
-      display: flex;
-      flex-direction: row-reverse;
-      border: 1px solid #cccccc;
-      border-right-color: #ffffff;
-      border-left-color: #ffffff;
-    }
-
-    .text {
-      width: 90%;
-      margin: 19px;
-    }
-
-    .text input {
-      background: white;
-      border: 0px;
-    }
-
-    .search-button {
-      order: -1;
-    }
-
-    .search-button i {
-      font-size: 24px;
-      color: #11144c;
-      padding-left: 10px;
-      margin: 15px;
-      color: #bebcbc;
-    }
-
-    .stack-check {
-      padding: 10px;
-      /* flex-direction: column; */
-    }
-
-    /* .check-row {
-  display: flex;
-} */
-    .checkbox {
-      width: 22%;
-    }
-
-    /* .checkboxes  */
-    .checkbox input[type="checkbox"] {
-      opacity: 0;
-    }
-
-    .checkbox label {
-      position: relative;
-      display: inline-block;
-
-      /*16px width of fake checkbox + 6px distance between fake checkbox and text*/
-      padding-left: 22px;
-    }
-
-    .checkbox label::before,
-    .checkbox label::after {
-      position: absolute;
-      content: "";
-
-      /*Needed for the line-height to take effect*/
-      display: inline-block;
-    }
-
-    /*Outer box of the fake checkbox*/
-    .checkbox label::before {
-      height: 16px;
-      width: 16px;
-      border-radius: 5px;
-      border: 1px solid;
-      left: 0px;
-
-      /*(24px line-height - 16px height of fake checkbox) / 2 - 1px for the border
-     *to vertically center it.
-     */
-      top: 3px;
-    }
-
-    /*Checkmark of the fake checkbox*/
-    .checkbox label::after {
-      height: 5px;
-      width: 9px;
-      border-left: 2px solid;
-      border-bottom: 2px solid;
-
-      transform: rotate(-45deg);
-
-      left: 4px;
-      top: 7px;
-    }
-
-    /*Hide the checkmark by default*/
-    .checkbox input[type="checkbox"]+label::after {
-      content: none;
-    }
-
-    /*Unhide on the checked state*/
-    .checkbox input[type="checkbox"]:checked+label::after {
-      content: "";
-    }
 
 
-    /* Pay Range */
-    .pay-text,
-    .update-text {
-      width: 93%;
-      font-size: 16px;
-      line-height: 20px;
-      /* or 125% */
-      letter-spacing: 0.05em;
-      padding: 23px;
-      color: #11144c;
-    }
 
-    .inputControls-2 {
-      order: -1;
-      width: 7%;
-      margin: 20px;
-    }
-
-    .inputControls-2 i {
-      font-size: 20px;
-      color: #11144c;
-      padding-left: 10px;
-    }
-
-    .submit {
-      background: #11144c;
-      border-radius: 5px;
-      width: 348px;
-      height: 77px;
-      margin-top: 90px;
-      margin-bottom: 200px;
-      border: 0px;
-    }
-
-    #submit-text {
-      font-family: Work Sans;
-      font-weight: 600;
-      font-size: 20px;
-      line-height: 20px;
-      /* or 100% */
-      letter-spacing: 0.05em;
-
-      color: #ffffff;
-    }
 
     /* Large devices (desktops, 992px and up) */
-    @media (max-width: 992px) {
-
-      .inputControls,
-      .inputControls-2 {
-        width: 30px;
-      }
-
-      .inputControls button,
-      .inputControls-2 button {
-        margin-bottom: 5px;
-      }
-
-      .inputButtons {
-        width: 90%;
-      }
-    }
+    @media (max-width: 992px) {}
 
     /* Medium devices (tablets, 768px and up) */
-    @media (max-width: 768px) {
-
-      .inputControls,
-      .inputControls-2 {
-        width: 7%;
-      }
-
-      .inputControls button,
-      .inputControls-2 button {
-        margin-bottom: 5px;
-      }
-
-      .inputButtons {
-        width: 93%;
-      }
-    }
+    @media (max-width: 768px) {}
 
     /* Small devices (landscape phones, 576px and up) */
-    @media (max-width: 576px) {
-      section {
+    @media (max-width: 476px) {
+
+      form,
+      .jobType {
         flex-direction: column;
-        margin-bottom: 20px;
-      }
-
-      .label,
-      .field,
-      .stack {
-        width: 100%;
-      }
-
-      .label {
-        text-align: center;
-        margin-bottom: 15px;
-      }
-
-      .inputControls,
-      .inputControls-2 {
-        width: 10%;
-      }
-
-      .inputControls button,
-      .inputControls-2 button {
-        margin-bottom: 5px;
-      }
-
-      .inputButtons {
-        width: 90%;
-      }
-
-      .submit {
-        width: 200px;
-        height: 50px;
-        margin-top: 45px;
-        margin-bottom: 100px;
-      }
-
-      #submit-text {
-        font-size: 15px;
       }
     }
 
@@ -427,6 +89,7 @@
 
     ul.ks-cboxtags li {
       display: inline;
+      margin-left: 5px;
     }
 
     ul.ks-cboxtags li label {
@@ -472,8 +135,8 @@
     }
 
     ul.ks-cboxtags li input[type="checkbox"]:checked+label {
-      border: 2px solid #5ca0e0;
-      background-color: #5ca0e0;
+      border: 2px solid #11144c;
+      background-color: #11144c;
       color: #fff;
       transition: all .2s;
     }
@@ -502,15 +165,17 @@
 
     .radiobtn {
       position: relative;
-      display: block;
+      display: inline-block;
+      width: 100%;
+      margin-left: 5px;
     }
 
     .radiobtn label {
       display: block;
-      color: #444;
+      color: #11144c;
       border-radius: 5px;
       padding: 10px 20px;
-      border: 2px solid #72ace0;
+      border: 2px solid #11144c98;
       margin-bottom: 5px;
       cursor: pointer;
     }
@@ -524,7 +189,7 @@
       width: 20px;
       height: 20px;
       border-radius: 3px;
-      background: #72ace0;
+      background: #11144c5d;
     }
 
     .radiobtn label:before {
@@ -550,16 +215,16 @@
     }
 
     .radiobtn input[type="radio"]:checked+label {
-      background: #5ca0e0;
+      background: #11144c98;
       -webkit-animation-name: blink;
       animation-name: blink;
       -webkit-animation-duration: 1s;
       animation-duration: 1s;
-      border-color: #5ca0e0;
+      border-color: #11144c98;
     }
 
     .radiobtn input[type="radio"]:checked+label:after {
-      background: #6bb8ff;
+      background: #11144c98;
     }
 
     .radiobtn input[type="radio"]:checked+label:before {
@@ -662,10 +327,12 @@
 
 <!-- body -->
 <div class="container mb-4">
-  <div class="mb-5 mt-5">
-    <h1 style="color: #333">Set your preferences</h1>
-    <p>You can always come back to update your settings</p>
+  <div class="mb-5 mt-5" style="text-align:center;color: #11144c">
+    <h4>Hello Developer </h4>
+    <h1><b>Time to set your Job Preferences</b></h1>
+    <p style="color: rgba(51, 51, 51, 0.664)">You can always come back to set your preferences</p>
   </div>
+
 
   <main id="preferences">
 
@@ -673,7 +340,7 @@
     <section>
       <!-- For Input Buttons and Controls -->
       <div class="inputButtons" id="techStack">
-        <h4 style="color: #888888; tex-align: center;">Now choose your stacks</h4>
+        <h4 style="color: #11144c; text-align: center;">Now choose your stacks</h4>
         <ul class="ks-cboxtags">
           <li><input type="checkbox" id="stackboxOne" value="Rainbow Dash"><label for="stackboxOne">Rainbow
               Dash</label>
@@ -707,8 +374,8 @@
     <!-- Job Type -->
     <section>
       <div class="inputButtons" id="jobType">
-        <h4 style="color: #888888; tex-align: center;">What type of jobs do you like?</h4>
-        <ul class="ks-cboxtags">
+        <h4 style="color: #11144c; text-align: center;">What type of jobs do you like?</h4>
+        <ul class="ks-cboxtags jobType" style="display:flex;justify-content:center">
           <li><input type="checkbox" id="typeboxTwo" value="full-time"><label for="typeboxTwo">Full Time</label></li>
           <li><input type="checkbox" id="typeboxOne" value="part-time" checked><label for="typeboxOne">Part Time</label>
           </li>
@@ -721,8 +388,8 @@
     <!-- Update Type -->
     <section class="container">
       <div class="inputButtons">
-        <h4 style="color: #888888; tex-align: center;">How often should we send you offers?</h4>
-        <form>
+        <h4 style="margin-bottom:26px;color: #11144c; text-align: center;">How often should we send you offers?</h4>
+        <form style="display: flex">
           <div class="radiobtn">
             <input type="radio" id="daily" name="drone" value="daily" />
             <label for="daily">Daily</label>
@@ -739,8 +406,8 @@
       </div>
     </section>
 
-    <section>
-      <button style="background: #72ace0; color: #333" id="submit" type="button"
+    <section style="justify-content:center;">
+      <button style="background: #11144c; color: white" id="submit" type="button"
         class="btn btn-xs ml-md-4 ml-sm-auto mr-sm-auto">Save preferences
       </button>
     </section>

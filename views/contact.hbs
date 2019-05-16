@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <meta name="viewport" content="width=device-width, initial scale= 1.0">
-	<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
-    <script>
+<script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'UA-139612600-1');
-    </script>
-
+</script>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<meta property="og:type" content="website" />
+            <meta property="og:image" content="https://res.cloudinary.com/ivory/image/upload/v1558011480/Alternate_Logo_1.png"/>
+<meta name="keywords"
+    content="Remote-jobs, Remote, DevAlert, developer-jobs, developer, programmer, software-engineer, engineer, tech" />
+<meta name="description"
+    content="Devalert is a remote job platform that connects developers to remote jobs.Contact us today..." />
 <head>
     <title>DevAlert | Contact Us</title>
     <link rel="stylesheet" href="/stylesheets/contact.css">
@@ -139,7 +145,7 @@
                             <li class="nav-item">
                                 <a class="nav-link b-6 hover_lin" href="/jobs">Jobs</a>
                             </li>
-                             <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link b-6 hover_lin" href="/login">Log in</a>
                             </li>
                             <li class="nav-item">
@@ -188,6 +194,19 @@
 
 
         <div id="contact" class="container py-0">
+             {{!-- Bread crumb --}}
+        <div class="row">
+            <div class="col-12">
+                <div class=" my-4 shadow-sm">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-transparent br-0">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item" aria-current="page">Contact us</a></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
 
             <div class="position-absolute vector-bg-1 d-none d-md-block"></div>
 
@@ -218,7 +237,8 @@
                                 <div class="contact-message">
                                     <textarea name="message" id="" cols="25" rows="7" class="form-control"
                                         placeholder="Enter Message..."></textarea>
-                                    <button type="submit" class="form-control btn btn-primary btn active">SEND MESSAGE →</button>
+                                    <button type="submit" class="form-control btn btn-primary btn active">SEND MESSAGE
+                                        →</button>
                                 </div>
 
                             </form>
