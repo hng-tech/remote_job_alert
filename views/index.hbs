@@ -22,19 +22,11 @@
 
 	<title>DevAlert | Home</title>
 	<style>
+		/*Styling for featured jobs section*/
+
 		.view-more {
 			cursor: pointer !important;
 		}
-
-		@media(max-width:767px) {
-			.col-sm-12 {
-				flex: 0 0 100%;
-				max-width: 100% !important;
-				padding-left: 30px !important;
-			}
-		}
-
-		/*Styling for featured jobs section*/
 
 		#homepage #Featured-jobs .featured-jobs-header h1 {
 			color: #11144c;
@@ -95,81 +87,57 @@
 			padding-top: 10px;
 		}
 
+		.card {
+
+			height: 400px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+			transition: 0.3s;
+		}
+
+		.card:hover {
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+		}
+
 		.row .card {
 			margin: 8px;
 		}
 
 		/*Responsive styling when screen is less than 700px */
 
+		/* Do Not Edit */
 		@media screen and (max-width: 700px) {
-			.row {}
-
-			.card {}
-		}
-
-		@media only screen and (min-device-width : 0px) and (max-device-width : 15000px) {
-			.marow {
-				padding-left: 50px;
+			.card {
+				width: 359px;
 			}
 		}
 
-		@media only screen and (min-device-width : 769px) and (max-device-width : 15000px) {
+		@media only screen and (min-width : 769px) and (max-width: 1500px) {
 
-			.marow {
-				padding-left: 60px;
+			#jobs {
+				margin-left: 27%;
+
 			}
 		}
 
-		@media(min-width:768px) {
-			.yoko {
-				flex: 0 0 100%;
-				max-width: 100%;
-				padding-left: 70px !important;
+		@media only screen and (min-device-width : 769px) and (max-device-width: 1500px) {
+
+			#jobs {
+				margin-left: 27%;
+
 			}
 		}
 
+
+		/*end of responsive styling */
 		.truncate {
-			width: auto;
+
 			height: 40px;
 			white-space: wrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
 		}
 
-		/*End of Styling for featured jobs section*/
-
-		#Featured-jobs p {
-			padding-top: 10px;
-		}
-
-		/*Responsive styling when screen is less than 700px */
-
-		@media screen and (min-width: 768px) {
-			.row {}
-
-			.card {}
-
-			#jobs {
-				margin-left: 21.5%;
-			}
-		}
-
-		@media only screen and (min-device-width : 0px) and (max-device-width : 15000px) {
-			.marow {
-				padding-left: 50px;
-			}
-		}
-
-		@media only screen and (min-device-width : 769px) and (max-device-width : 15000px) {
-
-			.marow {
-				padding-left: 60px;
-			}
-
-
-		}
-
-		/*End of Styling for featured jobs section*/
+		
 	</style>
 </head>
 
@@ -256,15 +224,15 @@
 			</div>
 
 
-			<div class="row col-sm-12 yoko" style="justify-content: center;">
-				<div id="jobs">
-
+			<div class="container">
+				<div id="jobs" class="row" style="justify-content: center;">
 
 				</div>
 			</div>
+			<p class="more-jobs"><a href="/jobs">View all remote jobs <ion-icon name="arrow-forward"></ion-icon></a></p>
+			<!--End of Featured job Section--->
 
 
-			<p class="more-jobs"><a href="/jobs">View more jobs <ion-icon name="arrow-forward"></ion-icon></a></p>
 		</section>
 		<section id="pay-agent">
 			<div class="container">
@@ -281,11 +249,13 @@
 		</section>
 
 
-		<!--End of Featured job Section--->
+
 
 		{{> footer}}
 
 		<script src="https://js.stripe.com/v3/"></script>
+
+		<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
 
 		<script>
 
@@ -305,43 +275,75 @@
 						$('select[name="currency"]').change(function () {
 
 							if ($(this).val() === "USD") {
-								min_pay_convert = min_pay * 1;
-								max_pay_convert = max_pay * 1;
 								currency_code = '$';
-								$(".pay1").html(currency_code + min_pay_convert);
-								$(".pay2").html(currency_code + max_pay_convert);
+								for (let j = 0; j < 8; j++) {
+									let formatter = new Intl.NumberFormat('en-US', {
+										style: 'currency',
+										currency: 'USD',
+									});
+
+									min_pay_convert = jobData[j].job_pay_min;
+									max_pay_convert = jobData[j].job_pay_max;
+									$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
+									$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
+								}
+
 
 							} else if ($(this).val() === "NGN") {
-								min_pay_convert = min_pay * 360;
-								max_pay_convert = max_pay * 360;
 								currency_code = '₦';
 
-								$("#min_pay").html(currency_code + min_pay_convert);
-								$("#max_pay").html(currency_code + max_pay_convert);
+								for (let j = 0; j < 8; j++) {
+									formatter = new Intl.NumberFormat('en-UK', {
+										style: 'currency',
+										currency: 'NGN',
+									});
+									min_pay_convert = jobData[j].job_pay_min * 360;
+									max_pay_convert = jobData[j].job_pay_max * 360;
+									$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
+									$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
+								}
 
 							} else if ($(this).val() === "GBP") {
-								min_pay_convert = min_pay * 468;
-								max_pay_convert = max_pay * 468;
 								currency_code = '£';
 
-								$("#min_pay").html(currency_code + min_pay_convert);
-								$("#max_pay").html(currency_code + max_pay_convert);
+								for (let j = 0; j < 8; j++) {
+									formatter = new Intl.NumberFormat('en-UK', {
+										style: 'currency',
+										currency: 'GBP',
+									});
+									min_pay_convert = jobData[j].job_pay_min * 0.77;
+									max_pay_convert = jobData[j].job_pay_max * 0.77;
+									$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
+									$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
+								}
 
 							} else if ($(this).val() === "EUR") {
-								min_pay_convert = min_pay * 404;
-								max_pay_convert = max_pay * 404;
 								currency_code = '€';
 
-								$("#min_pay").html(currency_code + min_pay_convert);
-								$("#max_pay").html(currency_code + max_pay_convert);
+								for (let j = 0; j < 8; j++) {
+									formatter = new Intl.NumberFormat('en-UK', {
+										style: 'currency',
+										currency: 'EUR',
+									});
+									min_pay_convert = jobData[j].job_pay_min * 0.89;
+									max_pay_convert = jobData[j].job_pay_max * 0.89;
+									$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
+									$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
+								}
 
 							} else if ($(this).val() === "YEN") {
-								min_pay_convert = min_pay * 3;
-								max_pay_convert = max_pay * 3;
 								currency_code = '¥';
 
-								$("#min_pay").html(currency_code + min_pay_convert);
-								$("#max_pay").html(currency_code + max_pay_convert);
+								for (let j = 0; j < 8; j++) {
+									formatter = new Intl.NumberFormat('en-UK', {
+										style: 'currency',
+										currency: 'YEN',
+									});
+									min_pay_convert = jobData[j].job_pay_min * 109.78;
+									max_pay_convert = jobData[j].job_pay_max * 109.78;
+									$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
+									$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
+								}
 
 							} else {
 								min_pay_convert = min_pay;
@@ -351,31 +353,45 @@
 							}
 
 						})
+						formatter = new Intl.NumberFormat('en-US', {
+							style: 'currency',
+							currency: 'USD',
+						});
 
 
-
-						let job_cards = "<div class='card featureCad col-md-4 offset-md-4 left' style='padding-bottom: 20px' id='job_card'><div class='container'><a href='/jobs/featured/" + jobData[i].slug + "'><img src='" + jobData[i].image_link + "' alt='google-image'><h4 class='card-head' id='job_title'><b>" + jobData[i].job_title + "</b></h4> <p class='job-brief truncate' id='job_desc'>" + jobData[i].job_description + "<br><b>Stack:</b> JavaScript || React || HTML.</p> <p><ion-icon name='briefcase' id='company_name'></ion-icon>" + jobData[i].company_name + "<ion-icon name='time'></ion-icon><span id='job_type'>" + jobData[i].job_type + "</span></p><span class='pay1' id='min_pay'>" + currency_code + min_pay_convert + "</span> -- <span class='pay2' id='max_pay'>" + currency_code + max_pay_convert + "</span><p class='hide'></p></a></div></div>";
+						let job_cards = "<div class='card featureCad col-md-3' style='padding-bottom: 20px' id='#job_card" + jobData[i]._id + "'><div class='container'><a href='/jobs/featured/" + jobData[i].slug + "'><img src='" + jobData[i].image_link + "' alt='google-image'><h4 class='card-head' id='job_title'><b>" + jobData[i].job_title + "</b></h4> <p class='job-brief truncate' id='job_desc'>" + jobData[i].job_description + "</p><p><t><b>Required Stack:</b>&nbsp;" + jobData[i].job_stack + "</t></p> <p><ion-icon name='briefcase' id='company_name' class='company_name'></ion-icon>" + jobData[i].company_name + "<ion-icon name='time'></ion-icon><span id='job_type'>" + jobData[i].job_type + "</span></p><span class='pay1' id='a" + jobData[i]._id + "'>" + formatter.format(min_pay_convert) + "</span> -- <span class='pay2' id='b" + jobData[i]._id + "'>" + formatter.format(max_pay_convert) + "</span><p class='hide'></p></a></div></div>";
 
 
 						$("#jobs").append(job_cards);
 
+
+						//Search Filter
+
+						$('#search').keyup(function () {
+
+							var filter = this.value.toLowerCase();  // no need to call jQuery here
+
+							$('.card').each(function () {
+								/* cache a reference to the current .media (you're using it twice) */
+								let _this = $(this);
+								let jtitle = _this.find('t').text().toLowerCase();
+
+								/* 
+										title and filter are normalized in lowerCase letters
+										for a case insensitive search
+								 */
+								if (jtitle.indexOf(filter) < 0) {
+									_this.hide();
+								}
+								else {
+									_this.show();
+								}
+							});
+						});
+
+
 					}
 				})
-
-			//Change currency
-
-
-			//Search Filter
-
-			$(document).ready(function () {
-				$("#search").on("keyup", function () {
-					let value = $(this).val().toLowerCase();
-					$("#job_card").filter(function () {
-						$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-					});
-				});
-			});
-
 
 			$(function () {
 				var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
@@ -387,6 +403,7 @@
 						// error, display the localized error message to your customer
 						// using `result.error.message`.
 					});
+
 				});
 			});
 

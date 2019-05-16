@@ -175,7 +175,7 @@
       color: #11144c;
       border-radius: 5px;
       padding: 10px 20px;
-      border: 2px solid #11144c98;
+      border: 2px solid #11144c;
       margin-bottom: 5px;
       cursor: pointer;
     }
@@ -189,12 +189,12 @@
       width: 20px;
       height: 20px;
       border-radius: 3px;
-      background: #11144c5d;
+      background: #11144c;
     }
 
     .radiobtn label:before {
       background: transparent;
-      transition: 0.1s width cubic-bezier(0.075, 0.82, 0.165, 1) 0s, 0.3s height cubic-bezier(0.075, 0.82, 0.165, 2) 0.1s;
+      {{!-- transition: 0.1s width cubic-bezier(0.075, 0.82, 0.165, 1) 0s, 0.3s height cubic-bezier(0.075, 0.82, 0.165, 2) 0.1s; --}}
       z-index: 2;
       overflow: hidden;
       background-repeat: no-repeat;
@@ -215,21 +215,22 @@
     }
 
     .radiobtn input[type="radio"]:checked+label {
-      background: #11144c98;
-      -webkit-animation-name: blink;
-      animation-name: blink;
-      -webkit-animation-duration: 1s;
+      background: #11144c;
+      color: white;
+      
       animation-duration: 1s;
-      border-color: #11144c98;
+      border-color: #11144c;
     }
 
     .radiobtn input[type="radio"]:checked+label:after {
-      background: #11144c98;
+      {{!-- background: #fff; --}}
+      
     }
 
     .radiobtn input[type="radio"]:checked+label:before {
       width: 20px;
       height: 20px;
+       
     }
 
     @-webkit-keyframes blink {
@@ -327,14 +328,27 @@
 
 <!-- body -->
 <div class="container mb-4">
+  {{!-- Bread crumb --}}
+  <div class="row">
+    <div class="col-12">
+      <div class=" my-4 shadow-sm">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-whyt br-0">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Preferences</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
   <div class="mb-5 mt-5" style="text-align:center;color: #11144c">
-    <h4>Hello Developer </h4>
-    <h1><b>Time to set your Job Preferences</b></h1>
-    <p style="color: rgba(51, 51, 51, 0.664)">You can always come back to set your preferences</p>
+    <h4>Hello {{user.name}} </h4>
+    <h1><b>Set up your Job Preferences</b></h1>
+    <p style="color: rgba(51, 51, 51, 0.664)">You can always come back later to update your preferences</p>
   </div>
 
 
-  <main id="preferences">
+  <main id="preferences" class="mb-4">
 
     <!-- Tech Stack -->
     <section>
@@ -342,31 +356,7 @@
       <div class="inputButtons" id="techStack">
         <h4 style="color: #11144c; text-align: center;">Now choose your stacks</h4>
         <ul class="ks-cboxtags">
-          <li><input type="checkbox" id="stackboxOne" value="Rainbow Dash"><label for="stackboxOne">Rainbow
-              Dash</label>
-          </li>
-          <li><input type="checkbox" id="stackboxTwo" value="C" checked><label for="stackboxTwo">C</label></li>
-          <li><input type="checkbox" id="stackboxThree" value="android" checked><label
-              for="stackboxThree">Android</label>
-          </li>
-          <li><input type="checkbox" id="stackboxFour" value="asp"><label for="stackboxFour">ASP</label>
-          </li>
-          <li><input type="checkbox" id="stackboxFive" value="cplusplus"><label for="stackboxFive">C++</label>
-          </li>
-          <li><input type="checkbox" id="stackboxSix" value="java" checked><label for="stackboxSix">Java</label></li>
-          <li><input type="checkbox" id="stackboxSeven" value="javascript"><label for="stackboxSeven">Javascript</label>
-          </li>
-          <li><input type="checkbox" id="stackboxEight" value="linux"><label for="stackboxEight">Linux</label>
-          </li>
-          <li><input type="checkbox" id="stackboxNine" value="node"><label for="stackboxNine">Node</label></li>
-          <li><input type="checkbox" id="stackboxTen" value="php"><label for="stackboxTen">PHP</label></li>
-          <li class="ks-selected"><input type="checkbox" id="stackboxEleven" value="python"><label
-              for="stackboxEleven">Python</label></li>
-          <li><input type="checkbox" id="stackboxTwelve" value="react"><label for="stackboxTwelve">React</label>
-          </li>
-          <li><input type="checkbox" id="stackboxThirteen" value="ruby"><label for="stackboxThirteen">Ruby</label></li>
-          <li><input type="checkbox" id="stackboxFourteen" value="sql"><label for="stackboxFourteen">SQL</label>
-          </li>
+          {{{helpers.populate_stacks}}}
         </ul>
       </div>
     </section>
@@ -376,11 +366,7 @@
       <div class="inputButtons" id="jobType">
         <h4 style="color: #11144c; text-align: center;">What type of jobs do you like?</h4>
         <ul class="ks-cboxtags jobType" style="display:flex;justify-content:center">
-          <li><input type="checkbox" id="typeboxTwo" value="full-time"><label for="typeboxTwo">Full Time</label></li>
-          <li><input type="checkbox" id="typeboxOne" value="part-time" checked><label for="typeboxOne">Part Time</label>
-          </li>
-          <li><input type="checkbox" id="typeboxThree" value="contract"><label for="typeboxThree">Contract</label>
-          </li>
+          {{{helpers.populate_types}}}
         </ul>
       </div>
     </section>
@@ -390,18 +376,7 @@
       <div class="inputButtons">
         <h4 style="margin-bottom:26px;color: #11144c; text-align: center;">How often should we send you offers?</h4>
         <form style="display: flex">
-          <div class="radiobtn">
-            <input type="radio" id="daily" name="drone" value="daily" />
-            <label for="daily">Daily</label>
-          </div>
-          <div class="radiobtn">
-            <input type="radio" id="weekly" name="drone" value="weekly" checked />
-            <label for="weekly">Weekly</label>
-          </div>
-          <div class="radiobtn">
-            <input type="radio" id="monthly" name="drone" value="monthly" />
-            <label for="monthly">Monthly</label>
-          </div>
+          {{{helpers.show_frequencies}}}
         </form>
       </div>
     </section>
@@ -453,12 +428,26 @@
         }
       }
 
-      // Use this to redirect the user to the jobs page appropriately, Don't forget to save the user's preferencies in the db after parsing.
-      let redirect_url = `/jobs/preferences?categories=${(selected_categories.join('+'))}&stacks=${(selected_stacks.join('+'))}&update=${update_frequency}`
-
-      debugger;
-      location.href = redirect_url;
-
+      $.ajax({
+        type: "POST",
+        url: "/job-preference/update",
+        data: JSON.stringify({
+          "categories": selected_categories,
+          "stacks": selected_stacks,
+          "frequency": update_frequency
+        }),
+        contentType: "application/json; charset=utf-8",
+        success: function (response) {
+          Swal.fire(
+            'Preferences set!',
+            'Redirecting you to our curated listings in a moment...',
+            'success'
+          )
+          setTimeout(function(){
+            location.href = "/jobs";
+          }, 3000);
+        },
+      });
     });
 
 

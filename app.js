@@ -1,17 +1,18 @@
-var mongoose = require("mongoose");
-var createError = require("http-errors");
-var express = require("express");
-var exphbs = require("express-handlebars");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-var session = require("express-session");
-var flash = require("connect-flash");
-var MongoStore = require("connect-mongo")(session);
-require("dotenv").config();
-require("./schedule");
-const passport = require("passport");
-const fx = require("money");
+var mongoose = require('mongoose');
+var createError = require('http-errors');
+var express = require('express');
+var exphbs = require('express-handlebars');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+var session = require('express-session');
+var flash = require('connect-flash');
+var MongoStore = require('connect-mongo')(session);
+require('dotenv').config();
+require('./schedule');
+const passport = require('passport');
+const fx = require('money');
+var bodyParser = require('body-parser')
 
 // The database setup
 // we should probable store the url in .env for security reasons.
@@ -31,7 +32,9 @@ db.once("open", () => console.log("Connected to database"));
 // checks if connection to db is a success
 db.on("error", console.error.bind(console, "Database connection error:"));
 
-var indexRouter = require("./routes/index");
+var indexRouter = require('./routes/index');
+var authRouter = require('./routes/auth');
+
 // var usersRouter = require('./routes/users');
 
 var app = express();
