@@ -11,7 +11,6 @@ var JobModel = require("../models/jobs");
 const Applicant = require("../controllers/applicant");
 const Subscription = require("../controllers/admin");
 const session = require("../controllers/stripe");
-var passport = require("passport");
 
 /* GET home page. */
 //router.get("/", Home.index);
@@ -23,6 +22,7 @@ router.get("/", async function(req, res, next) {
       title: "DevAlert | Home",
       contents: jobs,
       sessionId: stripeSession.id,
+      user: (typeof req.session.user == 'undefined') ? null : req.session.user,
       helpers: {
         inc: function(index) {
           index++;
@@ -101,11 +101,11 @@ router.get("/logout", function(req, res) {
 
 //successful payment
 router.get("/successful-payment", function(req, res) {
-  res.render("payment_success");
+  res.render("payment_success", { user: (typeof req.session.user == 'undefined') ? null : req.session.user });
 });
 
 router.get("/payment-failed", function(req, res) {
-  res.render("payment_failed");
+  res.render("payment_failed", { user: (typeof req.session.user == 'undefined') ? null : req.session.user });
 });
 
 // Manage jobs page
@@ -335,46 +335,28 @@ router.get("/login", function(req, res) {
 // router.get("/auth", function (req, res, next){
 //   res.status(200).render('auth')
 // });
-router.get("/job-preference", isLoggedIn, function(req, res) {
-  res.render("jobPreference.hbs", {
-    user: req.user // get the user out of session and pass to template
-  });
-});
+router.get("/job-preference", isLoggedIn, Jobs.setPreferences)
+
+router.post("/job-preference/update", isLoggedIn, Jobs.updatePreferences)
+  
+
 // Choose Agent Page
 router.get("/choose_agent", isLoggedIn, function(req, res) {
   res.render("choose_agent.hbs", {
-    user: req.user
+    user: (typeof req.session.user == 'undefined') ? null : req.session.user
   });
 });
 
-// route for facebook authentication and login
-router.get(
-  "/auth/facebook",
-  passport.authenticate("facebook", {
-    scope: ["public_profile", "email"]
-  })
-);
-
-router.get(
-  "/auth/facebook/callback",
-  passport.authenticate("facebook", {
-    failureRedirect: "/login"
-  }),
-  (req, res) => {
-    console.log("facebook login successful, redirecting to job Preference");
-    res.redirect("/job-preference");
-  }
-);
-
 // route middleware to make sure a user is logged in.... Please don't touch
 function isLoggedIn(req, res, next) {
-  console.log("req is ", Object.keys(req));
-  console.log("sessionID is ", req.sessionID);
-  console.log("session is", req.session);
-  console.log("session store is", req.sessionStore);
+  // console.log("req is ", Object.keys(req));
+  // console.log("sessionID is ", req.sessionID);
+  // console.log("session is", req.session);
+  // console.log("session store is", req.sessionStore);
   //console.log('check login status');
   //if user is authenticated in the session, carry on
-  if (req.isAuthenticated()) return next();
+  // if (req.isAuthenticated() || req.session.user !== undefined) return next();
+  if (req.session.user !== undefined) return next();
   // if they aren't redirect them to the auth page
   res.redirect("/login");
 }
@@ -382,19 +364,6 @@ function isLoggedIn(req, res, next) {
 // send to google to do the authentication
 // profile gets us their basic information including their name
 // email gets their emails
-router.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
-
-//the callback after google has authenticated the user
-router.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "/job-preference",
-    failureRedirect: "/login"
-  })
-);
 
 router.get("/view_all_email_subscribers", Subscription.viewAllEmailSubscribers);
 router.get(
