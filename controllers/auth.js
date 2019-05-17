@@ -29,8 +29,8 @@ exports.callback = function (req, res) {
     var values = qs.parse(uri.query);
     // Check against CSRF attacks
     if (!state || state[1] != values.state) {
-        res.writeHead(403, { 'Content-Type': 'text/plain' });
-        res.end('');
+        
+        res.redirect('/login');
     } else {
         github.auth.login(values.code, function (err, token, headers) {
 
