@@ -61,6 +61,31 @@ function search_common(needle, haystack) {
   }
   return key_languages;
 }
+//Algo for deriving a stack job by checking if the desc includes the tech passed to the param.
+//This has a lesser running time than the previous one
+function searchTech(stack, searchArray) {
+  let pushArray = [];
+  for (j = 0; j<searchArray.length; j++) {
+    let arrayDesc = searchArray[j].description.toLowerCase();
+    if (arrayDesc.includes(stack)) {
+      let lastIndex = arrayDesc.indexOf(stack) + (stack.length);
+      let lastString = arrayDesc[lastIndex];
+      let firstIndex = arrayDesc.indexOf(stack) - 1;
+      let firstString = arrayDesc[firstIndex];
+      let regex = "./j [](),{}:;'-|!";
+      //Check if the string being searched is standalone or ends/starts with any of the regex components
+      //See me thinking the thing was not working before
+      if(regex.includes(firstString) && regex.includes(lastString)) {
+          pushArray.push(searchArray[j]);
+          continue;
+      }
+      else {
+        continue;
+      }
+    }
+  }
+  return pushArray;
+}
 
 const Jobs = {
   async fetchData(req, res) {
@@ -199,23 +224,17 @@ const Jobs = {
     let main = JSON.parse(JSON.stringify(remote_jobs));
 
     //Array containing potential slugs
-    let techs = ['python','php','javascript','java','c','c++','node','asp','react','android','linux'];
+    let techs = ['python','php','javascript','java','ios','devops','c++','node','asp','react','android','linux'];
     let categories = ['full-time','part-time','contract'];
 
     //Check for the type of the param being passed, a tech, a category or a custom URL
       if(techs.includes(slug)) {
         try {
           let tech = slug;
-          let allStackJobs = [];
+          // let allStackJobs = [];
           let formalTech = tech.charAt(0).toUpperCase() + tech.slice(1);
-          
-          //Algo for deriving a stack job by checking if the desc includes the tech passed to the param
-          for (let i = 0; i < main.length; i++){
-            if (main[i].description.toLowerCase().includes(tech)) {
-              allStackJobs.push(main[i]);
-              continue;
-            }
-          };
+          let allStackJobs = searchTech(tech, main);
+
           //For jobs without an image
           allStackJobs.slice().map(function (job) {
             job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
@@ -525,11 +544,19 @@ const Jobs = {
 
       let foundJob = await db.findOne(queryText);
 
+      let summary = foundJob.job_description.slice(0, foundJob.job_description.indexOf("</p>", 100));
+    
+      foundJob.job_description = foundJob.job_description.slice(summary.length);
+    
       const stripeSession = await session;
+    
+      // some jobs have no image
+      foundJob.image_link = (!foundJob.image_link) ? "/images/no_job_image.jpg" : foundJob.image_link;
 
       return res.status(200).render("singleFeaturedJob", {
         content: foundJob,
-        sessionId: stripeSession.id
+        sessionId: stripeSession.id,
+        summary: summary
       });
     } catch (error) {
       return res.status(400).send(error);
