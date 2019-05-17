@@ -273,7 +273,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-whyt br-0">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">All Jobs</li>
+                            <li class="breadcrumb-item active" aria-current="page">All listings</li>
                         </ol>
                     </nav>
                 </div>
@@ -367,7 +367,7 @@
                         <strong>Sorry!!!,</strong> no job found
                     </div>
 
-                    <div class="job__paginate my-4">
+                    <div class="job__paginate">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
                                 {{#if buttons.previous}}
@@ -400,7 +400,7 @@
     $(function () {
 
         $("#checkall").change(function () {
-            debugger;
+            
             $('input[type="checkbox"]').prop('checked', $(this).prop("checked"));
         })
 
@@ -424,7 +424,7 @@
                 }
             }
             
-            debugger;
+            
             if (selected_stacks[0] == "all")
                 selected_stacks.shift()
 

@@ -17,119 +17,119 @@
 
 	<title>DevAlert | Home</title>
 	<style>
-		
-	/*Styling for featured jobs section*/	
+
+		/*Styling for featured jobs section*/
 		.view-more {
 			cursor: pointer !important;
 		}
-		
-
-#homepage #Featured-jobs .featured-jobs-header h1 {
-    color: #11144c;
-    font-weight: 600;
-    font-size: 36px;
-    line-height: 42px;
-    margin-bottom: 10px;
-}
-.filter-1 {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: center;
-	padding-bottom: 15px;  
-}
-
-.featured-form {
-padding-right: 5px;
-padding-bottom: 8px;
-}
-
-select {
-  height: 50px;
-  line-height: 50px;
-  font-size: 12pt;
-       }
-
-input[type=text] {
-  width: 100%;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  background-color: white;
-  background-position: 10px 10px; 
-  background-repeat: no-repeat;
-  padding: 12px 20px 12px 40px;
-
-}
-
-input[type=text]:focus {
-  width: 100%;
-}
 
 
-.more-jobs {
-    text-align: center;
-    color: #11144c;
-    font-weight: bold;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
+		#homepage #Featured-jobs .featured-jobs-header h1 {
+			color: #11144c;
+			font-weight: 600;
+			font-size: 36px;
+			line-height: 42px;
+			margin-bottom: 10px;
+		}
+		.filter-1 {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+			padding-bottom: 15px;
+		}
+
+		.featured-form {
+			padding-right: 5px;
+			padding-bottom: 8px;
+		}
+
+		select {
+			height: 50px;
+			line-height: 50px;
+			font-size: 12pt;
+		}
+
+		input[type=text] {
+			width: 100%;
+			box-sizing: border-box;
+			border: 2px solid #ccc;
+			border-radius: 4px;
+			font-size: 16px;
+			background-color: white;
+			background-position: 10px 10px;
+			background-repeat: no-repeat;
+			padding: 12px 20px 12px 40px;
+
+		}
+
+		input[type=text]:focus {
+			width: 100%;
+		}
 
 
-#Featured-jobs p {
- padding-top: 10px;
-}
-
-.card {
-
- height: 400px;
- box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
- transition: 0.3s;
-}
-
-.card:hover {
- box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-.row .card {
-	margin: 8px;
-}
-
-/*Responsive styling when screen is less than 700px */
-/* Do Not Edit */
-@media screen and (max-width: 700px) {
-  .card{
-  	width:359px;
-  }
-}
-
-@media only screen and (min-width : 769px) and (max-width: 1500px) {
-   
-#jobs {
-	margin-left: 27%;
- 	
- }
-}
-
-@media only screen and (min-device-width : 769px) and (max-device-width: 1500px) {
-   
-#jobs {
-	margin-left: 27%;
- 	
- }
-}
+		.more-jobs {
+			text-align: center;
+			color: #11144c;
+			font-weight: bold;
+			margin-top: 50px;
+			margin-bottom: 50px;
+		}
 
 
-/*end of responsive styling */
-.truncate {
-  height: 40px;
-  white-space: wrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+		#Featured-jobs p {
+			padding-top: 10px;
+		}
 
-/*End of Styling for featured jobs section*/
+		.card {
+
+			height: 400px;
+			box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+			transition: 0.3s;
+		}
+
+		.card:hover {
+			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+		}
+
+		.row .card {
+			margin: 8px;
+		}
+
+		/*Responsive styling when screen is less than 700px */
+		/* Do Not Edit */
+		@media screen and (max-width: 700px) {
+			.card{
+				width:359px;
+			}
+		}
+
+		@media only screen and (min-width : 769px) and (max-width: 1500px) {
+
+			#jobs {
+				margin-left: 27%;
+
+			}
+		}
+
+		@media only screen and (min-device-width : 769px) and (max-device-width: 1500px) {
+
+			#jobs {
+				margin-left: 27%;
+
+			}
+		}
+
+
+		/*end of responsive styling */
+		.truncate {
+			height: 40px;
+			white-space: wrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		/*End of Styling for featured jobs section*/
 	</style>
 </head>
 
@@ -194,38 +194,38 @@ input[type=text]:focus {
 				</div>
 			</section>
 		</main>
-	<hr style="border:1px  solid #c4c4c4;">
+		<hr style="border:1px  solid #c4c4c4;">
 
-<!---Featured job section-->
+		<!---Featured job section-->
 		<section id="Featured-jobs">
-        <div class="featured-jobs-header">
-			<h1>Featured Jobs</h1>
-		</div>
-        <div class="filter-1">
-            <form class="featured-form">
-              <input type="text" name="search" id="search" placeholder="Enter language to filter jobs...">
-            </form>
-			<!--select currency-->
-            <select name="currency" id="converter">
-                <option value="NGN">🇳🇬&emsp;₦&emsp;NAI&emsp;💶</option>			
-                <option value="EUR">🇪🇺&emsp;€&emsp;EUR&emsp;💶</option>
-                <option value="GBP">🇬🇧&emsp;£&emsp;GBP&emsp;💷</option>
-                <option value="USD">🇺🇸&emsp;$&emsp;USD&emsp;💵</option>
-                 <option value="YEN">🇯🇵&emsp;¥&emsp;YEN&emsp;💴</option>
-             </select>
-         </div>
-				 
-    
-        <div class="row col-sm-12">	
-    	<div id="jobs" style="justify-content: center;">
+			<div class="featured-jobs-header">
+				<h1>Featured Jobs</h1>
+			</div>
+			<div class="filter-1">
+				<form class="featured-form">
+					<input type="text" name="search" id="search" placeholder="Enter language to filter jobs...">
+				</form>
+				<!--select currency-->
+				<select name="currency" id="converter">
+					<option value="NGN">🇳🇬&emsp;₦&emsp;NAI&emsp;💶</option>
+					<option value="EUR">🇪🇺&emsp;€&emsp;EUR&emsp;💶</option>
+					<option value="GBP">🇬🇧&emsp;£&emsp;GBP&emsp;💷</option>
+					<option value="USD">🇺🇸&emsp;$&emsp;USD&emsp;💵</option>
+					<option value="YEN">🇯🇵&emsp;¥&emsp;YEN&emsp;💴</option>
+				</select>
+			</div>
 
-    	</div>
-		</div>
-   <p class="more-jobs"><a href="/jobs">View all remote jobs <ion-icon name="arrow-forward"></ion-icon></a></p>    
-   <!--End of Featured job Section--->
 
-   </section> 
-	 	<section id="pay-agent">
+			<div class="container">
+				<div id="jobs" class="row" style="justify-content: center;">
+
+				</div>
+			</div>
+			<p class="more-jobs"><a href="/jobs">View all remote jobs <ion-icon name="arrow-forward"></ion-icon></a></p>
+			<!--End of Featured job Section--->
+
+		</section>
+		<section id="pay-agent">
 			<div class="container">
 				<div class="pay-header">
 					<h1>Pay an agent to apply</h1>
@@ -237,169 +237,169 @@ input[type=text]:focus {
 					</button>
 				</div>
 			</div>
-		</section>  
-        
+		</section>
 
-		
 
-	{{> footer}}
-	
-	<script src="https://js.stripe.com/v3/"></script>
-	
+
+
+		{{> footer}}
+
+		<script src="https://js.stripe.com/v3/"></script>
+
 		<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
 
 		<script>
 
-	let url = '/jobs_json';
-	
+			let url = '/jobs_json';
 
-	fetch(url)
-	.then((resp) => resp.json())
-	.then(function(jobData){
-		for(let i=0;i<8;i++){
-		let min_pay = jobData[i].job_pay_min;
-		let max_pay = jobData[i].job_pay_max;
-		let currency_code = "$";
-		let min_pay_convert = min_pay;
-		let max_pay_convert = max_pay;
 
-		$('select[name="currency"]').change(function(){
+			fetch(url)
+				.then((resp) => resp.json())
+				.then(function (jobData) {
+					for (let i = 0; i < 8; i++) {
+						let min_pay = jobData[i].job_pay_min;
+						let max_pay = jobData[i].job_pay_max;
+						let currency_code = "$";
+						let min_pay_convert = min_pay;
+						let max_pay_convert = max_pay;
 
-    	if ($(this).val() === "USD"){
-        currency_code = '$';
-        	for (let j=0;j<8; j++){
-        			let formatter = new Intl.NumberFormat('en-US', {
-  					style: 'currency',
-  					currency: 'USD',
+						$('select[name="currency"]').change(function(){
+
+							if ($(this).val() === "USD"){
+								currency_code = '$';
+								for (let j=0;j<8; j++){
+									let formatter = new Intl.NumberFormat('en-US', {
+										style: 'currency',
+										currency: 'USD',
+									});
+
+									min_pay_convert = jobData[j].job_pay_min;
+									max_pay_convert = jobData[j].job_pay_max;
+									$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
+									$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
+								}
+
+
+							} else if ($(this).val() === "NGN") {
+								currency_code = '₦';
+
+								for (let j=0;j<8; j++){
+									formatter = new Intl.NumberFormat('en-UK', {
+										style: 'currency',
+										currency: 'NGN',
+									});
+									min_pay_convert = jobData[j].job_pay_min * 360;
+									max_pay_convert = jobData[j].job_pay_max * 360;
+									$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
+									$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
+								}
+
+							} else if ($(this).val() === "GBP") {
+								currency_code = '£';
+
+								for (let j=0;j<8; j++){
+									formatter = new Intl.NumberFormat('en-UK', {
+										style: 'currency',
+										currency: 'GBP',
+									});
+									min_pay_convert = jobData[j].job_pay_min * 0.77;
+									max_pay_convert = jobData[j].job_pay_max * 0.77;
+									$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
+									$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
+								}
+
+							} else if ($(this).val() === "EUR"){
+								currency_code = '€';
+
+								for (let j=0;j<8; j++){
+									formatter = new Intl.NumberFormat('en-UK', {
+										style: 'currency',
+										currency: 'EUR',
+									});
+									min_pay_convert = jobData[j].job_pay_min * 0.89;
+									max_pay_convert = jobData[j].job_pay_max * 0.89;
+									$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
+									$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
+								}
+
+							} else if ($(this).val() === "YEN"){
+								currency_code = '¥';
+
+								for (let j=0;j<8; j++){
+									formatter = new Intl.NumberFormat('en-UK', {
+										style: 'currency',
+										currency: 'YEN',
+									});
+									min_pay_convert = jobData[j].job_pay_min * 109.78;
+									max_pay_convert = jobData[j].job_pay_max * 109.78;
+									$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
+									$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
+								}
+
+							} else {
+								min_pay_convert = min_pay;
+								max_pay_convert = max_pay;
+								currency_code = '$';
+
+							}
+
+						})
+						formatter = new Intl.NumberFormat('en-US', {
+							style: 'currency',
+							currency: 'USD',
+						});
+
+
+						let job_cards ="<div class='card featureCad col-md-3' style='padding-bottom: 20px' id='#job_card" + jobData[i]._id + "'><div class='container'><a href='/jobs/featured/" + jobData[i].slug + "'><img src='" + jobData[i].image_link + "' alt='google-image'><h4 class='card-head' id='job_title'><b>" + jobData[i].job_title + "</b></h4> <p class='job-brief truncate' id='job_desc'>" + jobData[i].job_description + "</p><p><t><b>Required Stack:</b>&nbsp;" + jobData[i].job_stack + "</t></p> <p><ion-icon name='briefcase' id='company_name' class='company_name'></ion-icon>" + jobData[i].company_name + "<ion-icon name='time'></ion-icon><span id='job_type'>" + jobData[i].job_type + "</span></p><span class='pay1' id='a" + jobData[i]._id + "'>" + formatter.format(min_pay_convert) + "</span> -- <span class='pay2' id='b" + jobData[i]._id + "'>" + formatter.format(max_pay_convert) + "</span><p class='hide'></p></a></div></div>";
+
+
+						$("#jobs").append(job_cards);
+
+
+						//Search Filter
+
+						$('#search').keyup(function () {
+
+							var filter = this.value.toLowerCase();  // no need to call jQuery here
+
+							$('.card').each(function() {
+								/* cache a reference to the current .media (you're using it twice) */
+								let _this = $(this);
+								let jtitle = _this.find('t').text().toLowerCase();
+
+								/* 
+										title and filter are normalized in lowerCase letters
+										for a case insensitive search
+								 */
+								if (jtitle.indexOf(filter) < 0) {
+									_this.hide();
+								}
+								else {
+									_this.show();
+								}
+							});
+						});
+
+					}
+				})
+
+
+
+
+
+			$(function () {
+				var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
+				$("buttonCheckout").click(function () {
+					stripe.redirectToCheckout({
+						sessionId: '{{sessionId}}',
+					}).then(function (result) {
+						// If `redirectToCheckout` fails due to a browser or network
+						// error, display the localized error message to your customer
+						// using `result.error.message`.
 					});
-
-					min_pay_convert = jobData[j].job_pay_min;
-					max_pay_convert = jobData[j].job_pay_max;
-        		$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
-						$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
-        	}
-
-
-     	} else if ($(this).val() === "NGN") {
-     	currency_code = '₦';
-
-				for (let j=0;j<8; j++){
-					formatter = new Intl.NumberFormat('en-UK', {
-  		style: 'currency',
-  		currency: 'NGN',
-		});
-					min_pay_convert = jobData[j].job_pay_min * 360;
-					max_pay_convert = jobData[j].job_pay_max * 360;
-        		$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
-						$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
-        	}
-
-     	} else if ($(this).val() === "GBP"){
-     		currency_code = '£';
-
-     		for (let j=0;j<8; j++){
-     			formatter = new Intl.NumberFormat('en-UK', {
-  		style: 'currency',
-  		currency: 'GBP',
-		});
-					min_pay_convert = jobData[j].job_pay_min * 0.77;
-					max_pay_convert = jobData[j].job_pay_max * 0.77;
-        		$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
-						$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
-        	}
-
-     	} else if ($(this).val() === "EUR"){
-     		currency_code = '€';
-
-     		for (let j=0;j<8; j++){
-     				formatter = new Intl.NumberFormat('en-UK', {
-  		style: 'currency',
-  		currency: 'EUR',
-		});
-					min_pay_convert = jobData[j].job_pay_min * 0.89;
-					max_pay_convert = jobData[j].job_pay_max * 0.89;
-        		$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
-						$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
-        	}
-
-     	} else if ($(this).val() === "YEN"){
-     		currency_code = '¥';
-
-     		for (let j=0;j<8; j++){
-     			formatter = new Intl.NumberFormat('en-UK', {
-  		style: 'currency',
-  		currency: 'YEN',
-		});
-					min_pay_convert = jobData[j].job_pay_min * 109.78;
-					max_pay_convert = jobData[j].job_pay_max * 109.78;
-        		$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
-						$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
-        	}
-
-     	} else {
-     		min_pay_convert = min_pay;
-     		max_pay_convert = max_pay;
-     		currency_code = '$';
-
-     	}
-     	
-		})
-		formatter = new Intl.NumberFormat('en-US', {
-  		style: 'currency',
-  		currency: 'USD',
-		});
-
-
-		let job_cards =	"<div class='card featureCad col-md-4 offset-md-4 left' style='padding-bottom: 20px' id='#job_card"+jobData[i]._id+"'><div class='container'><a href='/jobs/featured/" +jobData[i].slug+ "'><img src='"+jobData[i].image_link+"' alt='google-image'><h4 class='card-head' id='job_title'><b>"+jobData[i].job_title+"</b></h4> <p class='job-brief truncate' id='job_desc'>"+jobData[i].job_description+"</p><p><t><b>Required Stack:</b>&nbsp;"+ jobData[i].job_stack +"</t></p> <p><ion-icon name='briefcase' id='company_name' class='company_name'></ion-icon>"+jobData[i].company_name+"<ion-icon name='time'></ion-icon><span id='job_type'>"+jobData[i].job_type+"</span></p><span class='pay1' id='a"+jobData[i]._id+"'>"+formatter.format(min_pay_convert)+"</span> -- <span class='pay2' id='b"+jobData[i]._id+"'>"+formatter.format(max_pay_convert)+"</span><p class='hide'></p></a></div></div>";
-
-
-			$("#jobs").append(job_cards);
-		
-
-		//Search Filter
-	
-	$('#search').keyup(function () {
-
-    var filter = this.value.toLowerCase();  // no need to call jQuery here
-
-    $('.card').each(function() {
-        /* cache a reference to the current .media (you're using it twice) */
-        let _this = $(this);
-        let jtitle = _this.find('t').text().toLowerCase();
-
-        /* 
-            title and filter are normalized in lowerCase letters
-            for a case insensitive search
-         */
-        if (jtitle.indexOf(filter) < 0) {
-            _this.hide();
-        }
-        else {
-        	_this.show();
-        }
-    });
-});
-
-	}
-})
-
-
-	
-
-	
-		$(function () {
-			var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
-			$("buttonCheckout").click(function () {
-				stripe.redirectToCheckout({
-					sessionId: '{{sessionId}}',
-				}).then(function (result) {
-					// If `redirectToCheckout` fails due to a browser or network
-					// error, display the localized error message to your customer
-					// using `result.error.message`.
 				});
 			});
-		});
 
 		</script>
-	
+
 </body>
