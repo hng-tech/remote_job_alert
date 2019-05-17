@@ -24,10 +24,10 @@ router.get(
 router.get("/facebook/callback", passport.authenticate("facebook", { failureRedirect: "/login" }), Jobs.setPreferences);
 
 
-router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+router.get("/google", auth_controllers.authenticateAccount);
 
 //the callback after google has authenticated the user
-router.get("/google/callback", passport.authenticate("google", {successRedirect: "/job-preference",failureRedirect: "/login"}));
+router.get("/google/callback", auth_controllers.getGoogleAccountFromCode);
 
 
 module.exports = router;

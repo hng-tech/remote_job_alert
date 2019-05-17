@@ -22,6 +22,7 @@
 		"express-validator": "~5.3.1",
 		"find-or-create": "^1.1.0",
 		"flash": "~1.1.0",
+		"googleapis": "^40.0.0",
 		"hbs": "~4.0.4",
 		"http-errors": "~1.6.2",
 		"lodash": "^4.17.11",
@@ -44,6 +45,7 @@
 		"passport-local": "^1.0.0",
 		"passport-strategy": "^1.0.0",
 		"paystack": "^2.0.1",
+		"query-string": "^6.5.0",
 		"stripe": "^6.31.1",
 		"validator": "^10.11.0"
 	}
