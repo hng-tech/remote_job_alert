@@ -23,6 +23,23 @@ function load_data(data) {
   remote_jobs = data;
 }
 
+//Create more beautiful slugs, we all need good things...
+function slugify(element) {
+  let title = element.title;
+  let company = element.company;
+  let urlOne = title + ' ' + company;
+  let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\:\'\|\@\%\&\*]/g;
+  let urlTwo = urlOne.trim();
+  let urlThree = urlTwo.split(' ');
+  urlThree.forEach(index => {
+    index.trim();
+  });
+  let url = urlThree.join('-')
+  let custom_url = url.toLowerCase().replace(regex, '');
+
+  return custom_url
+}
+
 // Get all the data
 const getData = async () => {
   try {
@@ -31,12 +48,7 @@ const getData = async () => {
     
     // Parse and produce unique slug -- custom-url
     json.forEach(element => {
-      let title = element.title;
-      let company = element.company;
-      let url = title + ' ' + company;
-      let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\:\'\|\@\%\&\*]/g;
-      let custom_url = url.toLowerCase().replace(regex, '-');
-      element.custom_url = custom_url;
+      element.custom_url = slugify(element);
     });
 
     // sneak and load up our global variable
@@ -86,6 +98,8 @@ function searchTech(stack, searchArray) {
   }
   return pushArray;
 }
+
+
 
 const Jobs = {
   async fetchData(req, res) {
