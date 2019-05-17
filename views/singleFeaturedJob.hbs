@@ -1,5 +1,5 @@
 <head>
-    <title>DevAlert - {{title}} </title>
+    <title>DevAlert - Jobs </title>
 
     <style type="text/css">
         /* line 1, ../New folder (2)/mystyle.scss */
@@ -314,7 +314,7 @@
                         <p>At {{content.company_name}}</p>
                         <p>Location: {{content.job_location}}</p>
                         <p style="font-size: 10px;">Since: <span>{{content.createdAt}}</span></p>
-                        <a class="btn mt-4" href="#hire-form">Apply Now</a>
+                        <a class="btn mt-4" href="{{content.job_link}}">Apply Now</a>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 job-summary">
@@ -335,22 +335,7 @@
                 <div class="col-md-12 col-lg-6 more-jobs-section">
                     <div class="more-jobs">
                         <h4>SIMILAR JOBS YOU MAY LIKE</h4>
-                        {{# each similar_jobs}}
-                        <div class="more-job">
-                            <div class="more-job-image">
-                                <img class="img-fluid" src="{{this.company_logo}}">
-                            </div>
-                            <div class="more-job-body">
-                                <h4>{{this.title}}</h4>
-                                <p>{{this.type}}</p>
-                                <p>Company: {{this.company}}</p>
-                            </div>
-                            <div class="more-job-link">
-                                <a href="/jobs/{{this.id}}" class="btn btn-sm">Read
-                                    More</a>
-                            </div>
-                        </div>
-                        {{/each}}
+                        
                     </div>
                 </div>
                 <div id="hire-form" class="col-md-12 col-lg-6 hire-agent">
@@ -384,7 +369,7 @@
                 </div>
             </div>
         </div>
-        <a class="btn btn-sm btn-primary p-1" href="/jobs">Go Back</a>
+        <a class="btn btn-sm btn-primary p-1" href="/">Go Back</a>
     </div>
 </div>
 
@@ -392,6 +377,26 @@
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
+
+    let url = "/jobs_json";
+
+    fetch(url)
+    .then(resp=>resp.json())
+    .then(function(jobData){
+        for(let i = 0; i<4; i++){
+           // $("#jobtitle").append(jobData[i].job_title);
+           // $("#jobtype").append(jobData[i].job_type);
+           // $("#companyname").append(jobData[i].company_name);
+           more_jobs_card = "<div class='more-job' id='a"+jobData[i]._id+"'></div>"
+           $(".more-jobs").append(more_jobs_card);
+
+           let more_jobs_html = "<div class='more-job-image'><img width='40px' height='30px' src='"+jobData[i].image_link+"'></div><div class='more-job-body'><h4 id='jobtite'>"+jobData[i].job_title+"</h4><p id='jobtype'>"+jobData[i].job_type+"</p><p id='companyname'>Company: "+jobData[i].company_name+"</p></div><div class='more-job-link' id='slug'><a href='/jobs/featured/"+jobData[i].slug+ "' class='btn btn-sm'>Read More</a></div>";
+
+           $(`#a${jobData[i]._id}`).html(more_jobs_html);
+
+        }
+    });
+
     $(function () {
         var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
         $("buttonCheckout").click(function () {
