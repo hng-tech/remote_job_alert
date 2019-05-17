@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const socialSchema = new Schema({
-    facebook: {
+    account: {
         
     _id: {
         type: String
@@ -16,6 +16,9 @@ const socialSchema = new Schema({
     email: {
         type: String
     },
+    type: {
+        type: String
+    }
 
 }
     

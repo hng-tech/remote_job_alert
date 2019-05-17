@@ -22,9 +22,11 @@
 
 	<title>DevAlert | Home</title>
 	<style>
+
 		.view-more {
 			cursor: pointer !important;
 		}
+
 
 		@media(max-width:767px) {
 			.col-sm-12 {
@@ -43,14 +45,12 @@
 			line-height: 42px;
 			margin-bottom: 10px;
 		}
-
 		.filter-1 {
 			display: flex;
 			flex-direction: row;
 			flex-wrap: wrap;
 			justify-content: center;
 			padding-bottom: 15px;
-
 		}
 
 		.featured-form {
@@ -301,7 +301,6 @@
 						let currency_code = "$";
 						let min_pay_convert = min_pay;
 						let max_pay_convert = max_pay;
-
 						$('select[name="currency"]').change(function () {
 
 							if ($(this).val() === "USD") {
@@ -353,7 +352,6 @@
 						})
 
 
-
 						let job_cards = "<div class='card featureCad col-md-4 offset-md-4 left' style='padding-bottom: 20px' id='job_card'><div class='container'><a href='/jobs/featured/" + jobData[i].slug + "'><img src='" + jobData[i].image_link + "' alt='google-image'><h4 class='card-head' id='job_title'><b>" + jobData[i].job_title + "</b></h4> <p class='job-brief truncate' id='job_desc'>" + jobData[i].job_description + "<br><b>Stack:</b> JavaScript || React || HTML.</p> <p><ion-icon name='briefcase' id='company_name'></ion-icon>" + jobData[i].company_name + "<ion-icon name='time'></ion-icon><span id='job_type'>" + jobData[i].job_type + "</span></p><span class='pay1' id='min_pay'>" + currency_code + min_pay_convert + "</span> -- <span class='pay2' id='max_pay'>" + currency_code + max_pay_convert + "</span><p class='hide'></p></a></div></div>";
 
 
@@ -391,5 +389,6 @@
 			});
 
 		</script>
+
 		<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
 </body>

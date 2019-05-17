@@ -1,10 +1,15 @@
 var fbSession = require('passport-facebook');
 var googleSess = require('passport-google-oauth');
-var jwt = require('passport-jwt')
-var authRouter = express.Router()
+var express = require("express");
+var router = express.Router()
+
+var auth_controllers = require('../controllers/auth')
+
+// endpoints for auth with github.
+router.get('/github', auth_controllers.authenticate);
+
+// endpoints for callback.
+router.get('/github/callback', auth_controllers.callback);
 
 
-//Put all your code here
-
-
-module.exports = authRouter;
+module.exports = router;
