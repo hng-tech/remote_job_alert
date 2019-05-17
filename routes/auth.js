@@ -14,12 +14,7 @@ router.get('/github', auth_controllers.authenticate);
 router.get('/github/callback', auth_controllers.callback);
 
 // route for facebook authentication and login
-router.get(
-    "/facebook",
-    passport.authenticate("facebook", {
-        scope: ["public_profile", "email"]
-    })
-);
+router.get("/facebook", passport.authenticate("facebook", {scope: ["public_profile", "email"]}));
 
 router.get("/facebook/callback", passport.authenticate("facebook", { failureRedirect: "/login" }), Jobs.setPreferences);
 
