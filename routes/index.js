@@ -11,7 +11,6 @@ var JobModel = require("../models/jobs");
 const Applicant = require("../controllers/applicant");
 const Subscription = require("../controllers/admin");
 const session = require("../controllers/stripe");
-var passport = require("passport");
 
 /* GET home page. */
 //router.get("/", Home.index);
@@ -348,17 +347,6 @@ router.get("/choose_agent", isLoggedIn, function(req, res) {
   });
 });
 
-// route for facebook authentication and login
-router.get(
-  "/auth/facebook",
-  passport.authenticate("facebook", {
-    scope: ["public_profile", "email"]
-  })
-);
-
-router.get(
-  "/auth/facebook/callback", passport.authenticate("facebook", {failureRedirect: "/login"}), Jobs.setPreferences);
-
 // route middleware to make sure a user is logged in.... Please don't touch
 function isLoggedIn(req, res, next) {
   // console.log("req is ", Object.keys(req));
@@ -376,19 +364,6 @@ function isLoggedIn(req, res, next) {
 // send to google to do the authentication
 // profile gets us their basic information including their name
 // email gets their emails
-router.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
-
-//the callback after google has authenticated the user
-router.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "/job-preference",
-    failureRedirect: "/login"
-  })
-);
 
 router.get("/view_all_email_subscribers", Subscription.viewAllEmailSubscribers);
 router.get(
