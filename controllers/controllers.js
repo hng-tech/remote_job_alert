@@ -76,8 +76,8 @@ function search_common(needle, haystack) {
 }
 //Algo for deriving a stack job by checking if the desc includes the tech passed to the param.
 //This has a lesser running time than the previous one
-function searchTech(stack, searchArray) {
-  let pushArray = [];
+function searchTech(stack, searchArray, pushArray) {
+
   for (j = 0; j<searchArray.length; j++) {
     let arrayDesc = searchArray[j].description.toLowerCase();
     if (arrayDesc.includes(stack)) {
@@ -86,9 +86,9 @@ function searchTech(stack, searchArray) {
       let firstIndex = arrayDesc.indexOf(stack) - 1;
       let firstString = arrayDesc[firstIndex];
       let regex = "./j [](),{}:;'-|!";
-      //Check if the string being searched is standalone or ends/starts with any of the regex components
+      //Check if the string being searched is standalone or ends/starts with any of the regex components, and yes, I know that's not actual regex
       //See me thinking the thing was not working before
-      if(regex.includes(firstString) && regex.includes(lastString)) {
+      if(regex.includes(firstString) && regex.includes(lastString) && !(pushArray.includes(searchArray[j]))) {
           pushArray.push(searchArray[j]);
           continue;
       }
@@ -352,7 +352,8 @@ const Jobs = {
           let tech = slug;
           // let allStackJobs = [];
           let formalTech = tech.charAt(0).toUpperCase() + tech.slice(1);
-          let allStackJobs = searchTech(tech, main);
+          let allStackJobsNull = [];
+          let allStackJobs = searchTech(tech, main, allStackJobsNull);
 
           //For jobs without an image
           allStackJobs.slice().map(function (job) {
@@ -391,7 +392,7 @@ const Jobs = {
       
             //Same algo as above...
             for (let i = 0; i < main.length; i++){
-              if (main[i].type == formalSlug || main[i].description.toLowerCase().includes(slug) ) {
+              if (main[i].type == formalSlug) {
                 allCategoryJobs.push(main[i]);
                 continue;
               }
@@ -411,45 +412,27 @@ const Jobs = {
             });
           }
           else {
-            //If it does not have values, grab the values
+            //If it has values, grab the values
             let query = req.query.tech;
             let selectedTech = query.split('|');
-
+            if (selectedTech.includes('cplusplus')) {
+              let index = selectedTech.indexOf('cplusplus');
+              selectedTech.splice(index,0,'c++');
+            }
+            let categoryArray = [];
             let selectedJobs = [];
-            for (let j = 0; j < selectedTech.length; j++) {
-              //Perform search with reference to relative parameters and add additional params where necessary
-              switch (selectedTech[j]) {
-                case 'react':
-                  selectedTech.push('reactjs','react.js');
-                  break;
-                case 'node':
-                  selectedTech.push('nodejs','node.js');
-                  break;
-                case 'java':
-                  selectedTech[j] = ' java ';
-                  break;
-                case 'ios':
-                  selectedTech[j] = ' ios ';
-                  break;
-                case 'cplusplus':
-                  selectedTech[j] = 'c++';
-                  break;
-                case 'asp':
-                  selectedTech[j] = ' asp ';
-                  selectedTech.push('asp.net')
-                  break;
-                default:
-                  break;
+
+            main.forEach(job => {
+              if (job.type == formalSlug) {
+                categoryArray.push(job);
               }
-            //Search for jobs and add them to the selected jobs array
-              for (let i = 0; i < main.length; i++){
-                if (main[i].type == formalSlug && main[i].description.toLowerCase().includes(selectedTech[j]) && selectedJobs.includes(main[i]) == false ) {
-                  selectedJobs.push(main[i]);
-                  continue;
-                }
-              };
-            };
-            //Jobs with no images
+            });
+
+            selectedTech.forEach(tech => {
+              //Such a blessed function, makes life easier
+              searchTech(tech,categoryArray,selectedJobs);
+            })
+
             selectedJobs.slice().map(function (job) {
               job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
               return job;
@@ -501,9 +484,7 @@ const Jobs = {
           let sub_data = main.filter(function (job) {
             if (job.id !== single_job.id) {
               job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
-              let url = job.title + ' ' + job.company;
-              let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\'\|\@\%\&\*]/g;
-              let custom_url = url.toLowerCase().replace(regex, '-');
+              let custom_url = slugify(job);
               job.custom_url = custom_url;
               return job;
             }
