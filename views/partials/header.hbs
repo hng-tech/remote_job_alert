@@ -48,6 +48,11 @@
 					<li class="nav-item">
 						<a class="nav-link b-2 hover_link" href="/contact">Contact</a>
 					</li>
+					{{#if user}}
+					<li class="nav-item">
+						<a class="nav-link b-2 hover_link" href="/job-preference">Preferences</a>
+					</li>
+					{{/if}}
 					<li class="nav-item">
 						{{#if user}}
 						<a class="nav-link b-2 hover_link" href="/logout">Logout</a>

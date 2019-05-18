@@ -92,6 +92,22 @@
             margin-bottom: 3em;
         }
 
+        .githubbtn {
+            font-size: 1.2em;
+            background: #24292e;
+            color: white;
+            border: .5px solid #000
+        }
+
+        .githubbtn:hover {
+            background: #eee;
+            color: #000 !important;
+        }
+
+        .githubbtn:hover i {
+            color: #000;
+        }
+
         .googlebtn:hover{
             color: #DB4437!important;
             border-color: #DB4437;
@@ -147,14 +163,15 @@
 <body>
     <div class="main">
         <div class="main-inner">
-            <a href= "/"><img src="/images/logo.jpg" alt="DevAlert logo"></a>
-            <h3> Sign In </h3>
-            <p>with</p>
+            <a href= "/"><img src="/images/logo.jpg" style="width:100px;" alt="DevAlert logo"></a>
+            <h3> Login </h3>
+            
             <hr>
             <div class="btns">  
-                <a href="/auth/facebook" class="btn mb-2 facebookbtn"><i class="fab fa-facebook mr-2"></i> Facebook</a>
-                <p class="mb-0">or</p>
-                <a href="/auth/google" class="btn googlebtn mt-2 "><i class="fab fa-google mr-2"></i> Google </a>
+                
+                <a href="/auth/google" class="btn googlebtn p-3 mt-4 mb-2"><i style="font-size: 1.2em;" class="fab fa-google mr-3"></i> Sign in with Google </a>
+                
+                <a href="/auth/github" class="btn githubbtn p-3 mb-4"><i style="font-size: 1.2em;" class="fab fa-github mr-3"></i> Sign in with Github </a>
             </div>
             <h6>You can control the frequency of your mail. Choose the kind of mail you want to receive and also choose agents </h6>
         </div>

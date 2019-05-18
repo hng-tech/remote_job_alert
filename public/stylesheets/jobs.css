@@ -27,7 +27,7 @@
 }
 
 .job__paginate{
-    padding-left: 20vw;
+    
 }
 
 .bg-deep{
@@ -44,7 +44,7 @@
 
  @media (max-width: 767px){
                 .job__paginate{
-                    padding-left: 10vw;
+                    
                 }
                  
             }

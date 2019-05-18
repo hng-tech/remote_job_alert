@@ -7,6 +7,7 @@ const {
   sendMailForRemoteJob
 } = require("./user");
 const userModel = require("../models/user");
+const preferenceModel = require("../models/preferences")
 const validateRegisteredUser = require("../validation/registeredUser");
 const registeredUsers = require("../models/registeredUsers");
 const agentModel = require("../models/newAgent");
@@ -218,6 +219,7 @@ const Jobs = {
         TypeData,
         Locations: Locations.countries,
         Stacks: Stacks.languages,
+        user: (typeof req.session.user == 'undefined') ? null : req.session.user
       });
     }
       return res.status(400).json({
@@ -227,6 +229,109 @@ const Jobs = {
     }
     catch (error) {
       console.log(error)
+      return res.status(400).send(error);
+    }
+  },
+
+  async setPreferences(req, res) {
+
+    const queryText = {
+      _id: req.session.user._id
+    };
+
+    let existing_preferences = [];
+
+    let stacks = ["c", "android", "asp", "cplusplus", "java", "javascript", "linux", "node", "php", "python", "react", "ruby", "sql"];
+
+    let types = ["full-time", "part-time", "contract"];
+
+    let frequencies = ["daily", "weekly", "monthly"];
+
+    try {
+      existing_preferences = await preferenceModel.findOne(queryText);
+      if (!existing_preferences) {
+        // create new prefs for user
+        const createText = {
+          _id: req.session.user._id,
+          stacks: [], 
+          job_types: [], 
+          mail_frequency: "daily" // by default
+        };
+
+        let createdPreferences = await preferenceModel.create(createText);
+        if (!createdPreferences)
+          res.status(400).redirect("/");
+        existing_preferences = createdPreferences;
+      }
+    } catch (err) {
+      throw (err)
+    }
+
+    res.render("jobPreference.hbs", {
+      user: (typeof req.session.user == 'undefined') ? null : req.session.user,
+      job_types: existing_preferences.job_types,
+      stacks: existing_preferences.stacks,
+      frequency: existing_preferences.mail_frequency,
+      helpers:
+      {
+        // this helps with displaying the page links, I guess
+        populate_stacks: function () {
+          parsedhtml = "";
+          for (let i = 0; i < stacks.length; i++) {
+            parsedhtml += `
+            <li>
+              <input type="checkbox" id="stackbox${i}" value="${stacks[i]}" ${(existing_preferences.stacks.includes(stacks[i])) ? "checked" : ""}>
+              <label for="stackbox${i}">
+                ${stacks[i]}
+              </label>
+            </li>`;
+          }
+          return parsedhtml;
+        },
+        populate_types: function () {
+          parsedhtml = "";
+          for (let i = 0; i < types.length; i++) {
+            parsedhtml += `
+            <li>
+              <input type="checkbox" id="typebox${i}" value="${types[i]}" ${(existing_preferences.job_types.includes(types[i])) ? "checked" : ""}>
+              <label for="typebox${i}">
+                ${types[i]}
+              </label>
+            </li>`;
+          }
+          return parsedhtml;
+        },
+        show_frequencies: function () {
+          parsedhtml = "";
+          for (let i = 0; i < frequencies.length; i++) {
+            parsedhtml += `
+            <div class="radiobtn">
+              <input type="radio" id="${frequencies[i]}" ${(existing_preferences.mail_frequency == frequencies[i]) ? "checked" : ""} name="drone" value="${frequencies[i]}" />
+              <label for="${frequencies[i]}">${frequencies[i]}</label>
+            </div>`;
+          }
+          return parsedhtml;
+        },
+
+      }
+    });
+  },
+
+  async updatePreferences(req, res) {
+    let data = req.body;
+    const queryText = {
+      _id: req.session.user._id
+    };
+    const updateText = {
+      id: req.session.user._id,
+      stacks: data.stacks,
+      job_types: data.categories,
+      mail_frequency: data.frequency
+    };
+    try {
+      let updatedPreferences = await preferenceModel.findOneAndUpdate(queryText, updateText);
+      return res.status(200).send();
+    } catch (error) {
       return res.status(400).send(error);
     }
   },
@@ -258,14 +363,15 @@ const Jobs = {
             name: formalTech,
             status: 'success',
             TotalJobs: Object.keys(allStackJobs).length,
-            data: allStackJobs
+            data: allStackJobs,
+            user: (typeof req.session.user == 'undefined') ? null : req.session.user
           });
     
         } catch (error) {
           return res.status(400).send(error);
         } 
       }
-      else if(categories.includes(slug)) {
+      else if (categories.includes(slug)) {
         try {
           //Refine the slugs for effective searching, remove the hyphens and capitalize each word
           if (slug.includes('-')) {
@@ -300,7 +406,8 @@ const Jobs = {
               name: formalSlug,
               status: 'success',
               TotalJobs: Object.keys(allCategoryJobs).length,
-              data: allCategoryJobs
+              data: allCategoryJobs,
+              user: (typeof req.session.user == 'undefined') ? null : req.session.user
             });
           }
           else {
@@ -309,7 +416,7 @@ const Jobs = {
             let selectedTech = query.split('|');
 
             let selectedJobs = [];
-            for (let j = 0; j<selectedTech.length; j++) {
+            for (let j = 0; j < selectedTech.length; j++) {
               //Perform search with reference to relative parameters and add additional params where necessary
               switch (selectedTech[j]) {
                 case 'react':
@@ -353,7 +460,8 @@ const Jobs = {
               tech: selectedTech,
               status: 'success',
               TotalJobs: Object.keys(selectedJobs).length,
-              data: selectedJobs
+              data: selectedJobs,
+              user: (typeof req.session.user == 'undefined') ? null : req.session.user
             });
 
           }
@@ -416,7 +524,8 @@ const Jobs = {
             keytech: key_tech + "...",
             title: single_job.title,
             similar_jobs: sub_data,
-            sessionId: stripeSession.id
+            sessionId: stripeSession.id,
+            user: (typeof req.session.user == 'undefined') ? null : req.session.user
           })
         } 
         catch (error) 
@@ -456,6 +565,7 @@ const Jobs = {
       // main shii we're delivering, after slicing of course
       content: main.slice(start_offset, end_offset),
 
+      user: (typeof req.session.user == 'undefined') ? null : req.session.user,
       // Next and previous buttons should not always show
       buttons: {
         previous: (page === 1) ? false : page - 1,
@@ -525,6 +635,7 @@ const Jobs = {
         usersCount,
         agentsCount,
         paymentsCount,
+        user: (typeof req.session.user == 'undefined') ? null : req.session.user,
         helpers: {
           inc: function (index) {
             index++;
@@ -570,7 +681,8 @@ const Jobs = {
       return res.status(200).render("singleFeaturedJob", {
         content: foundJob,
         sessionId: stripeSession.id,
-        summary: summary
+        summary: summary,
+        user: (typeof req.session.user == 'undefined') ? null : req.session.user
       });
     } catch (error) {
       return res.status(400).send(error);
@@ -584,6 +696,7 @@ const Jobs = {
       let foundFeaturedJobs = await db.find(queryText);
       return res.status(200).render("manage_featured_jobs",{
         content: foundFeaturedJobs,
+        user: (typeof req.session.user == 'undefined') ? null : req.session.user,
         helpers: {
           inc: function (index) {
             index++;
@@ -703,7 +816,7 @@ const Jobs = {
       let main = JSON.parse(JSON.stringify(remote_jobs));
       let allFullTimeJobs = [];
 
-      for (let i = 0; i < main.length; i++){
+      for (let i = 0; i < main.length; i++) {
         if (main[i].type == "Full Time" || main[i].description.toLowerCase().includes("full time") ) {
           allFullTimeJobs.push(main[i]);
           continue;
@@ -719,7 +832,8 @@ const Jobs = {
         name: "Full Time",
         status: 'success',
         TotalJobs: Object.keys(allFullTimeJobs).length,
-        data: allFullTimeJobs
+        data: allFullTimeJobs,
+        user: (typeof req.session.user == 'undefined') ? null : req.session.user
       });
 
     } catch (error) {
@@ -733,7 +847,7 @@ const Jobs = {
       let main = JSON.parse(JSON.stringify(remote_jobs));
       let allPartTimeJobs = [];
 
-      for (let i = 0; i < main.length; i++){
+      for (let i = 0; i < main.length; i++) {
         if (main[i].description.toLowerCase().includes("part time") ) {
           allPartTimeJobs.push(main[i]);
           continue;
@@ -749,7 +863,8 @@ const Jobs = {
         status: 'success',
         message: "Sorry, there are no jobs available for this selected category",
         TotalJobs: Object.keys(allPartTimeJobs).length,
-          data: allPartTimeJobs
+          data: allPartTimeJobs,
+          user: (typeof req.session.user == 'undefined') ? null : req.session.user
         });
 
     } catch (error) {
@@ -778,7 +893,8 @@ const Jobs = {
         name: "Contract",
         status: 'success',
         TotalJobs: Object.keys(allContractJobs).length,
-        data: allContractJobs
+        data: allContractJobs,
+        user: (typeof req.session.user == 'undefined') ? null : req.session.user
       });
 
     } catch (error) {

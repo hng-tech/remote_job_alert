@@ -271,7 +271,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-whyt br-0">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item"><a href="/jobs">Jobs</a></li>
+                            <li class="breadcrumb-item"><a href="/jobs">All listings</a></li>
                             <li class="breadcrumb-item active" aria-current="page">{{name}}</li>
                         </ol>
                     </nav>
@@ -309,14 +309,16 @@
                             Stacks
                         </div>
                         <ul class="checkboxes">
-                            <li><input id="checkall" type="checkbox" data-id="all" class="checkbox checkbox--blue-grey" />All stacks
+                            <li><input id="checkall" type="checkbox" data-id="all"
+                                    class="checkbox checkbox--blue-grey" />All stacks
                             </li>
                             <li><input type="checkbox" data-id="android" class="checkbox checkbox--blue-grey" />Android
                             </li>
                             <li><input type="checkbox" data-id="asp" class="checkbox checkbox--blue-grey" />ASP</li>
                             <li><input type="checkbox" data-id="cplusplus" class="checkbox checkbox--blue-grey" />C++
                             </li>
-                            <li><input type="checkbox" data-id="devops" class="checkbox checkbox--blue-grey" />DevOps</li>
+                            <li><input type="checkbox" data-id="devops" class="checkbox checkbox--blue-grey" />DevOps
+                            </li>
                             <li><input type="checkbox" data-id="ios" class="checkbox checkbox--blue-grey" />IOS</li>
                             <li><input type="checkbox" data-id="java" class="checkbox checkbox--blue-grey" />Java</li>
                             <li><input type="checkbox" data-id="javascript"
@@ -326,7 +328,8 @@
                             <li><input type="checkbox" data-id="php" class="checkbox checkbox--blue-grey" />PHP</li>
                             <li><input type="checkbox" data-id="python" class="checkbox checkbox--blue-grey" />Python
                             </li>
-                            <li><input type="checkbox" data-id="react" class="checkbox checkbox--blue-grey" />ReactJS</li>
+                            <li><input type="checkbox" data-id="react" class="checkbox checkbox--blue-grey" />ReactJS
+                            </li>
                             <li><input type="checkbox" data-id="ruby" class="checkbox checkbox--blue-grey" />Ruby</li>
                             <li><input type="checkbox" data-id="sql" class="checkbox checkbox--blue-grey" />SQL</li>
 
@@ -336,148 +339,149 @@
                     <button id="refine" class="btn btn-primary btn-md btn-rounded"
                         style="background: #5ca0e0; color: #000">Refine
                         results</button>
-                    <div class="col-lg-9 mt-lg-0 mt-3">
-                        {{# each data}}
-                        <div class="job_list_wrapper mb-4 contentCard">
-                            <div class="row ">
-                                <div class="col-md-3">
-                                    <img class="img-fluid" src="{{this.company_logo}}" alt="{{this.company}} logo">
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="{{this.custom_url}}">
-                                        <h4 class="b-6 mt-3 mt-lg-0">{{this.title}}</h4>
-                                    </a>
-                                    <p class="text-muted pb-0 mb-1"><i class="fa fa-briefcase mr-1"></i>{{this.type}}
-                                    </p>
-                                    <p class="text-muted"><i class="fa fa-building mr-1"></i>{{this.company}}</p>
-                                </div>
-                                <div class="col-md-3">
-                                    {{!-- <h6 class="b-7">Pay Range</h6>
+                </div>
+                <div class="col-lg-9 mt-lg-0 mt-3">
+                    {{# each data}}
+                    <div class="job_list_wrapper mb-4 contentCard">
+                        <div class="row ">
+                            <div class="col-md-3">
+                                <img class="img-fluid" src="{{this.company_logo}}" alt="{{this.company}} logo">
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{{this.custom_url}}">
+                                    <h4 class="b-6 mt-3 mt-lg-0">{{this.title}}</h4>
+                                </a>
+                                <p class="text-muted pb-0 mb-1"><i class="fa fa-briefcase mr-1"></i>{{this.type}}
+                                </p>
+                                <p class="text-muted"><i class="fa fa-building mr-1"></i>{{this.company}}</p>
+                            </div>
+                            <div class="col-md-3">
+                                {{!-- <h6 class="b-7">Pay Range</h6>
                                     <p class="text-muted">$1200</p> --}}
-                                    <a href="{{this.custom_url}}" class="btn br-0 unsub_cancel btn-sm">View details</a>
-                                </div>
+                                <a href="{{this.custom_url}}" class="btn br-0 unsub_cancel btn-sm">View details</a>
                             </div>
                         </div>
-                        {{/each}}
-                        <div class="alert alert-info hide" id="infoAlert">
-                            <strong>Sorry!!!,</strong> no job found
-                        </div>
+                    </div>
+                    {{/each}}
+                    <div class="alert alert-info hide" id="infoAlert">
+                        <strong>Sorry!!!,</strong> no job found
+                    </div>
 
 
-                        <div class="job__paginate my-4">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
+                    <div class="job__paginate my-4">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
-
             </div>
+            
         </div>
     </div>
+</div>
 
-    {{> footer}}
+{{> footer}}
 
-    {{!-- <script src="js/bootstrap.bundle.min"></script>
+{{!-- <script src="js/bootstrap.bundle.min"></script>
   <script src="js/bootstrap.min.js"></script> --}}
-    <script>
-        $(document).ready(() => {
+<script>
+    $(document).ready(() => {
 
-            $("#checkall").change(function () {
-                debugger;
-                $('input[type="checkbox"]').prop('checked', $(this).prop("checked"));
-            })
-
-            $('#refine').click(function () {
-                var selected_category;
-                var selected_stacks = [];
-
-                let categories = $('input[type="radio"]')
-
-                for (let i = 0; i < categories.length; i++) {
-                    if (categories[i].checked) {
-                        selected_category = categories[i].value;
-                    }
-                }
-
-                let stacks = $('input[type="checkbox"]')
-
-                for (let i = 0; i < stacks.length; i++) {
-                    if (stacks[i].checked) {
-                        selected_stacks.push(stacks[i].dataset.id)
-                    }
-                }
-
-                if (selected_stacks[0] == "all")
-                    selected_stacks.shift()
-
-                let redirect_url = `/jobs/${selected_category}?${(selected_stacks.join('|'))}`
-
-                location.href = redirect_url;
-
-            });
-
-            $('#clear-filter').click(() => location.href = "/jobs");
-
-            $('#infoAlert').hide();
-            $('#searchInput').keyup(function () {
-                $('.contentCard').hide();
-                $('#infoAlert').css("display", "none");
-                var txt = $('#searchInput').val();
-                var resultCount = 0;
-                $('.contentCard').each(function () {
-                    if ($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1) {
-                        $(this).show();
-                        resultCount++;
-                    }
-                });
-
-                if (resultCount == 0) {
-                    $('#infoAlert').css("display", "block");
-                }
-
-            });
-
-             function getCurrentUri() {
-                let url = window.location.pathname;
-                return url.substr(url.lastIndexOf('/') + 1)
-            }
-
-
-            let currentUri = getCurrentUri();
-            debugger;
-            $('input[type="radio"]:checked').prop('checked', false);
-            let radio_buttons = $('input[type="radio"]');
-
-            for (let i = 0; i < radio_buttons.length; i++) {
-                if (radio_buttons[i].value == currentUri) {
-                    radio_buttons[i].checked = true;
-                    break;
-                }
-            }
-
-            let params = window.location.search.substr(1).split('|');
-            for (let n = 0; n < params.length; n++) {
-                $('input[data-id="' + params[n] + '"]').prop('checked', true);
-            }
+        $("#checkall").change(function () {
+            
+            $('input[type="checkbox"]').prop('checked', $(this).prop("checked"));
         })
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    </body>
+
+        $('#refine').click(function () {
+            var selected_category;
+            var selected_stacks = [];
+
+            let categories = $('input[type="radio"]')
+
+            for (let i = 0; i < categories.length; i++) {
+                if (categories[i].checked) {
+                    selected_category = categories[i].value;
+                }
+            }
+
+            let stacks = $('input[type="checkbox"]')
+
+            for (let i = 0; i < stacks.length; i++) {
+                if (stacks[i].checked) {
+                    selected_stacks.push(stacks[i].dataset.id)
+                }
+            }
+
+            if (selected_stacks[0] == "all")
+                selected_stacks.shift()
+
+            let redirect_url = `/jobs/${selected_category}?${(selected_stacks.join('|'))}`
+
+            location.href = redirect_url;
+
+        });
+
+        $('#clear-filter').click(() => location.href = "/jobs");
+
+        $('#infoAlert').hide();
+        $('#searchInput').keyup(function () {
+            $('.contentCard').hide();
+            $('#infoAlert').css("display", "none");
+            var txt = $('#searchInput').val();
+            var resultCount = 0;
+            $('.contentCard').each(function () {
+                if ($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1) {
+                    $(this).show();
+                    resultCount++;
+                }
+            });
+
+            if (resultCount == 0) {
+                $('#infoAlert').css("display", "block");
+            }
+
+        });
+
+        function getCurrentUri() {
+            let url = window.location.pathname;
+            return url.substr(url.lastIndexOf('/') + 1)
+        }
+
+
+        let currentUri = getCurrentUri();
+        
+        $('input[type="radio"]:checked').prop('checked', false);
+        let radio_buttons = $('input[type="radio"]');
+
+        for (let i = 0; i < radio_buttons.length; i++) {
+            if (radio_buttons[i].value == currentUri) {
+                radio_buttons[i].checked = true;
+                break;
+            }
+        }
+
+        let params = window.location.search.substr(1).split('|');
+        for (let n = 0; n < params.length; n++) {
+            $('input[data-id="' + params[n] + '"]').prop('checked', true);
+        }
+    })
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</body>
 
 </html>
