@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>DevAlert | Remote {{name}} Job Postings</title>
+    <title>DevAlert | Remote {{name}} Jobs</title>
     <link rel='stylesheet' href='stylesheets/style.css' />
     <link rel="shortcut icon" href="/images/code2.png" type="image/x-icon">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -15,6 +15,11 @@
 
         gtag('config', 'UA-139612600-1');
     </script>
+    <meta property="og:type" content="website" />
+            <meta property="og:image" content="https://res.cloudinary.com/ivory/image/upload/v1558011480/Alternate_Logo_1.png"/>
+    <meta name="keywords"
+        content="remote {{name}} jobs, remote {{name}} jobs for developers, remote {{name}} developer jobs, {{name}} developer" />
+    <meta name="description" content="View and Apply for over {{TotalJobs}} remote {{name}} jobs with DevAlert!" />
     <style>
         form {
             position: relative;
@@ -281,7 +286,7 @@
 
         {{!-- Main Page --}}
         <div class="bg-whyt py-lg-4 py-3 px-lg-3 px-2 shadow-sm  mt-1 mb-5">
-            <h3 class="text-center b-7 mb-md-5 mb-3">Remote {{name}} Developer Jobs</h3>
+            <h3 class="text-center b-7 mb-md-5 mb-3">Remote {{name}} Jobs</h3>
             <div class="row">
                 <div class="col-lg-3">
                     <div class="card br-0">
@@ -340,7 +345,10 @@
                         style="background: #5ca0e0; color: #000">Refine
                         results</button>
                 </div>
+
                 <div class="col-lg-9 mt-lg-0 mt-3">
+                    <h5 style="text-align:center;">Found {{TotalJobs}} jobs for the selected category</h5>
+                    <hr>
                     {{# each data}}
                     <div class="job_list_wrapper mb-4 contentCard">
                         <div class="row ">
@@ -429,7 +437,7 @@
             if (selected_stacks[0] == "all")
                 selected_stacks.shift()
 
-            let redirect_url = `/jobs/${selected_category}?${(selected_stacks.join('|'))}`
+            let redirect_url = `/jobs/${selected_category}?tech=${(selected_stacks.join('|'))}`
 
             location.href = redirect_url;
 

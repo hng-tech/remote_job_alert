@@ -24,20 +24,32 @@ function load_data(data) {
   remote_jobs = data;
 }
 
+//Create more beautiful slugs, we all need good things...
+function slugify(element) {
+  let title = element.title;
+  let company = element.company;
+  let urlOne = title + ' ' + company;
+  let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\:\'\|\@\%\&\*]/g;
+  let urlTwo = urlOne.trim();
+  let urlThree = urlTwo.split(' ');
+  urlThree.forEach(index => {
+    index.trim();
+  });
+  let url = urlThree.join('-')
+  let custom_url = url.toLowerCase().replace(regex, '');
+
+  return custom_url
+}
+
 // Get all the data
 const getData = async () => {
   try {
     const response = await fetch("https://jobs.github.com/positions.json?location=remote");
     const json = await response.json();
-
+    
     // Parse and produce unique slug -- custom-url
     json.forEach(element => {
-      let title = element.title;
-      let company = element.company;
-      let url = title + ' ' + company;
-      let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\:\'\|\@\%\&\*]/g;
-      let custom_url = url.toLowerCase().replace(regex, '-');
-      element.custom_url = custom_url;
+      element.custom_url = slugify(element);
     });
 
     // sneak and load up our global variable
@@ -62,10 +74,37 @@ function search_common(needle, haystack) {
   }
   return key_languages;
 }
+//Algo for deriving a stack job by checking if the desc includes the tech passed to the param.
+//This has a lesser running time than the previous one
+function searchTech(stack, searchArray, pushArray) {
+
+  for (j = 0; j<searchArray.length; j++) {
+    let arrayDesc = searchArray[j].description.toLowerCase();
+    if (arrayDesc.includes(stack)) {
+      let lastIndex = arrayDesc.indexOf(stack) + (stack.length);
+      let lastString = arrayDesc[lastIndex];
+      let firstIndex = arrayDesc.indexOf(stack) - 1;
+      let firstString = arrayDesc[firstIndex];
+      let regex = "./j [](),{}:;'-|!";
+      //Check if the string being searched is standalone or ends/starts with any of the regex components, and yes, I know that's not actual regex
+      //See me thinking the thing was not working before
+      if(regex.includes(firstString) && regex.includes(lastString) && !(pushArray.includes(searchArray[j]))) {
+          pushArray.push(searchArray[j]);
+          continue;
+      }
+      else {
+        continue;
+      }
+    }
+  }
+  return pushArray;
+}
+
+
 
 const Jobs = {
   async fetchData(req, res) {
-
+    
     let main = JSON.parse(JSON.stringify(remote_jobs));
 
     if (req.query.country) {
@@ -80,37 +119,37 @@ const Jobs = {
   },
 
   async create_registered_user(req, res) {
-    const { errors, isValid } = validateRegisteredUser(req.body);
+		const { errors, isValid } = validateRegisteredUser(req.body);
 
-    // Check Validation
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
+		// Check Validation
+		if (!isValid) {
+			return res.status(400).json(errors);
+		}
 
-    const queryText = {
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      email: req.body.email,
-      phone_number: req.body.phone_number,
-      prefered_job_role: req.body.prefered_job_role,
-      prefered_job_level: req.body.prefered_job_level,
-      prefered_job_type: req.body.prefered_job_type,
-      prefered_job_location: req.body.prefered_job_location,
-      prefered_job_stack: req.body.prefered_job_stack,
-      prefered_update_type: req.body.prefered_update_type,
-      prefered_update: req.body.prefered_update,
-      created_At: Date.now()
-    };
-    try {
-      let user = await registeredUsers.create(queryText);
-      return res.status(200).json({
-        status: 'success',
-        message: user,
-      });
-    } catch (error) {
-      return res.status(500).send(error);
-    }
-  },
+		const queryText = {
+			first_name: req.body.first_name,
+			last_name: req.body.last_name,
+			email: req.body.email,
+			phone_number: req.body.phone_number,
+			prefered_job_role: req.body.prefered_job_role,
+			prefered_job_level: req.body.prefered_job_level,
+			prefered_job_type: req.body.prefered_job_type,
+			prefered_job_location: req.body.prefered_job_location,
+			prefered_job_stack: req.body.prefered_job_stack,
+			prefered_update_type: req.body.prefered_update_type,
+			prefered_update: req.body.prefered_update,
+			created_At: Date.now()
+		};
+		try {
+			let user = await registeredUsers.create(queryText);
+			return res.status(200).json({
+				status: 'success',
+				message: user,
+			});
+		} catch (error) {
+			return res.status(500).send(error);
+		}
+	},
 
   async view_all_registered_users(req, res) {
     try {
@@ -123,66 +162,66 @@ const Jobs = {
 
   async update_registered_user(req, res) {
     const { _id } = req.params;
-    const { errors, isValid } = validateRegisteredUser(req.body);
+		const { errors, isValid } = validateRegisteredUser(req.body);
 
-    // Check Validation
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
+		// Check Validation
+		if (!isValid) {
+			return res.status(400).json(errors);
+		}
 
-    const queryText = {
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      email: req.body.email,
-      phone_number: req.body.phone_number,
-      prefered_job_role: req.body.prefered_job_role,
-      prefered_job_level: req.body.prefered_job_level,
-      prefered_job_type: req.body.prefered_job_type,
-      prefered_job_location: req.body.prefered_job_location,
-      prefered_job_stack: req.body.prefered_job_stack,
-      prefered_update_type: req.body.prefered_update_type,
-      prefered_update: req.body.prefered_update,
-      created_At: Date.now()
-    };
-    try {
+		const queryText = {
+			first_name: req.body.first_name,
+			last_name: req.body.last_name,
+			email: req.body.email,
+			phone_number: req.body.phone_number,
+			prefered_job_role: req.body.prefered_job_role,
+			prefered_job_level: req.body.prefered_job_level,
+			prefered_job_type: req.body.prefered_job_type,
+			prefered_job_location: req.body.prefered_job_location,
+			prefered_job_stack: req.body.prefered_job_stack,
+			prefered_update_type: req.body.prefered_update_type,
+			prefered_update: req.body.prefered_update,
+			created_At: Date.now()
+		};
+		try {
 
-      let user = await registeredUsers.findOneAndUpdate(_id, queryText)
-      return res.status(200).json({
-        status: 'success',
-        message: user,
-      });
-    } catch (error) {
-      return res.status(500).send(error);
-    }
-  },
+			let user = await registeredUsers.findOneAndUpdate(_id, queryText)
+			return res.status(200).json({
+				status: 'success',
+				message: user,
+			});
+		} catch (error) {
+			return res.status(500).send(error);
+		}
+	},
 
   async fetchPreferredJobs(req, res) {
     try {
-      let id = req.params._id;
-      if (typeof id == "undefined")
+    let id = req.params._id; 
+    if (typeof id == "undefined")
         id = "5ccef761e415f84678d393f1";
-      let registeredUser = await registeredUsers.findById(id);
-      if (registeredUser != null) {
-        let RoleData = ["App Developer", "Database Administrator", "Programmer", "Software Developer", "Web Developer"];
-        let LevelData = ["Junior", "Intermediate", "Semior","Intern"]
-        let TypeData = ["Part time", "Full time", "Remote", "Part time remote"];
-        let LocationData = await fetch(`https://gist.githubusercontent.com/Shock451/53fe61b951f809f8fa91bab6c490aae4/raw/ce8f86dd5606dc59fd966e82ac804580f75082ac/countries.json`);
-        let StackData = await fetch(`https://gist.githubusercontent.com/Shock451/4a14fc459f411b0fbbeeb62f6a7ad297/raw/284e5bedbb84ef15f79add3384a2375163d89535/languages.json`);
-        let Locations = await LocationData.json();
-        let Stacks = await StackData.json();
-        //let TotalJobs = RoleJobs.concat(LevelJobs, TypeJobs, LocationJobs, StackJobs);
-        // sendPreferedMailForRemoteJob(RoleJobs, registeredUser);
+    let registeredUser = await registeredUsers.findById(id);
+    if (registeredUser != null) {
+      let RoleData = ["App Developer", "Database Administrator", "Programmer", "Software Developer", "Web Developer"];
+      let LevelData = ["Junior", "Intermediate", "Semior","Intern"]
+      let TypeData = ["Part time", "Full time", "Remote", "Part time remote"];
+      let LocationData = await fetch(`https://gist.githubusercontent.com/Shock451/53fe61b951f809f8fa91bab6c490aae4/raw/ce8f86dd5606dc59fd966e82ac804580f75082ac/countries.json`);
+      let StackData = await fetch(`https://gist.githubusercontent.com/Shock451/4a14fc459f411b0fbbeeb62f6a7ad297/raw/284e5bedbb84ef15f79add3384a2375163d89535/languages.json`);
+      let Locations = await LocationData.json();
+      let Stacks = await StackData.json();
+      //let TotalJobs = RoleJobs.concat(LevelJobs, TypeJobs, LocationJobs, StackJobs);
+    // sendPreferedMailForRemoteJob(RoleJobs, registeredUser);
 
-
-        return res.status(200).render("jobPreference", {
-          RoleData,
-          LevelData,
-          TypeData,
-          Locations: Locations.countries,
-          Stacks: Stacks.languages,
-          user: (typeof req.session.user == 'undefined') ? null : req.session.user
-        });
-      }
+    
+      return res.status(200).render("jobPreference", {
+        RoleData,
+        LevelData,
+        TypeData,
+        Locations: Locations.countries,
+        Stacks: Stacks.languages,
+        user: (typeof req.session.user == 'undefined') ? null : req.session.user
+      });
+    }
       return res.status(400).json({
         status: "invalid input",
         message: "no such user",
@@ -304,204 +343,179 @@ const Jobs = {
     let main = JSON.parse(JSON.stringify(remote_jobs));
 
     //Array containing potential slugs
-    let techs = ['python','php','javascript','java','c','c++','node','asp','react','android','linux'];
+    let techs = ['python','php','javascript','java','ios','devops','c++','node','asp','react','android','linux'];
     let categories = ['full-time','part-time','contract'];
 
     //Check for the type of the param being passed, a tech, a category or a custom URL
-    if (techs.includes(slug)) {
-      try {
-        let tech = slug;
-        let allStackJobs = [];
-        let formalTech = tech.charAt(0).toUpperCase() + tech.slice(1);
+      if(techs.includes(slug)) {
+        try {
+          let tech = slug;
+          // let allStackJobs = [];
+          let formalTech = tech.charAt(0).toUpperCase() + tech.slice(1);
+          let allStackJobsNull = [];
+          let allStackJobs = searchTech(tech, main, allStackJobsNull);
 
-        //Algo for deriving a stack job by checking if the desc includes the tech passed to the param
-        for (let i = 0; i < main.length; i++){
-          if (main[i].description.toLowerCase().includes(tech)) {
-            allStackJobs.push(main[i]);
-            continue;
-          }
-        };
-        //For jobs without an image
-        allStackJobs.slice().map(function (job) {
-          job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
-          return job;
-        });
-        return res.status(200).render('jobStack', {
-          name: formalTech,
-          status: 'success',
-          TotalJobs: Object.keys(allStackJobs).length,
-          data: allStackJobs,
-          user: (typeof req.session.user == 'undefined') ? null : req.session.user
-        });
-
-      } catch (error) {
-        return res.status(400).send(error);
-      }
-    }
-    else if (categories.includes(slug)) {
-      try {
-        //Refine the slugs for effective searching, remove the hyphens and capitalize each word
-        if (slug.includes('-')) {
-          let newSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
-          let oldSlug = newSlug.split('-');
-          oldSlug[1] = oldSlug[1].charAt(0).toUpperCase() + oldSlug[1].slice(1);
-          var formalSlug = oldSlug.join(' ');
-        }
-        else {
-          var formalSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
-        }
-
-        //Now Check if the query string has values
-        if (typeof req.query.tech == "undefined") {
-          let allCategoryJobs = [];
-
-
-          //Same algo as above...
-          for (let i = 0; i < main.length; i++){
-            if (main[i].type == formalSlug || main[i].description.toLowerCase().includes(slug) ) {
-              allCategoryJobs.push(main[i]);
-              continue;
-            }
-          };
-
-          //Jobs with no images
-          allCategoryJobs.slice().map(function (job) {
+          //For jobs without an image
+          allStackJobs.slice().map(function (job) {
             job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
             return job;
           });
-          return res.status(200).render('jobCategory', {
-            name: formalSlug,
+          return res.status(200).render('jobStack', {
+            name: formalTech,
             status: 'success',
-            TotalJobs: Object.keys(allCategoryJobs).length,
-            data: allCategoryJobs,
+            TotalJobs: Object.keys(allStackJobs).length,
+            data: allStackJobs,
             user: (typeof req.session.user == 'undefined') ? null : req.session.user
           });
-        }
-        else {
-          //If it does not have values, grab the values
-          let query = req.query.tech;
-          let selectedTech = query.split('|');
+    
+        } catch (error) {
+          return res.status(400).send(error);
+        } 
+      }
+      else if (categories.includes(slug)) {
+        try {
+          //Refine the slugs for effective searching, remove the hyphens and capitalize each word
+          if (slug.includes('-')) {
+            let newSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
+            let oldSlug = newSlug.split('-');
+            oldSlug[1] = oldSlug[1].charAt(0).toUpperCase() + oldSlug[1].slice(1);
+            var formalSlug = oldSlug.join(' ');
+          }
+          else {
+            var formalSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
+          }
 
-          let selectedJobs = [];
-          for (let j = 0; j < selectedTech.length; j++) {
-            //Perform search with reference to relative parameters and add additional params where necessary
-            switch (selectedTech[j]) {
-              case 'react':
-                selectedTech.push('reactjs','react.js');
-                break;
-              case 'node':
-                selectedTech.push('nodejs','node.js');
-                break;
-              case 'java':
-                selectedTech[j] = ' java ';
-                break;
-              case 'ios':
-                selectedTech[j] = ' ios ';
-                break;
-              case 'cplusplus':
-                selectedTech[j] = 'c++';
-                break;
-              case 'asp':
-                selectedTech[j] = ' asp ';
-                selectedTech.push('asp.net')
-                break;
-              default:
-                break;
-            }
-            //Search for jobs and add them to the selected jobs array
+          //Now Check if the query string has values
+          if (typeof req.query.tech == "undefined") {
+            let allCategoryJobs = [];
+            
+      
+            //Same algo as above...
             for (let i = 0; i < main.length; i++){
-              if (main[i].type == formalSlug && main[i].description.toLowerCase().includes(selectedTech[j]) && selectedJobs.includes(main[i]) == false ) {
-                selectedJobs.push(main[i]);
+              if (main[i].type == formalSlug) {
+                allCategoryJobs.push(main[i]);
                 continue;
               }
             };
-          };
-          //Jobs with no images
-          selectedJobs.slice().map(function (job) {
-            job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
-            return job;
-          });
-
-          return res.status(200).render('jobCategory', {
-            name: formalSlug,
-            tech: selectedTech,
-            status: 'success',
-            TotalJobs: Object.keys(selectedJobs).length,
-            data: selectedJobs,
-            user: (typeof req.session.user == 'undefined') ? null : req.session.user
-          });
-
-        }
-
-      } catch (error) {
-        return res.status(400).send(error);
-      }
-    }
-    else {
-      //@Ayo, now your watch begins...
-      try {
-
-        for (let i = 0; i < main.length; i++){
-          if (slug == main[i].custom_url) {
-            single_job = main[i];
-            break;
+            
+            //Jobs with no images
+            allCategoryJobs.slice().map(function (job) {
+              job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+              return job;
+            });
+            return res.status(200).render('jobCategory', {
+              name: formalSlug,
+              status: 'success',
+              TotalJobs: Object.keys(allCategoryJobs).length,
+              data: allCategoryJobs,
+              user: (typeof req.session.user == 'undefined') ? null : req.session.user
+            });
           }
-        };
-
-        let common_tech = ["python", "es6", "ruby", "c#", "java ", " C ", "c++", "php", "javascript", "css", "html", "swift", "git", "azure", "docker", "sql", "asp.net", ".net", "asp", "rest", "react", "ios", "android", "vagrant", "trello", " R ", "Linux", "Angular", "Node"];
-
-        let key_tech = search_common(single_job.description.toLowerCase(), common_tech);
-
-        let sortquery = key_tech.trim().split(", ");
-
-        for (let i = 0; i < sortquery.length; i++){
-          main.sort(function (a, b) {
-            var A = a.description, B = b.description;
-            if (A.includes(sortquery[i])) {
-              return 1;
-            } else if (B.includes(sortquery[i])) {
-              return -1;
+          else {
+            //If it has values, grab the values
+            let query = req.query.tech;
+            let selectedTech = query.split('|');
+            if (selectedTech.includes('cplusplus')) {
+              let index = selectedTech.indexOf('cplusplus');
+              selectedTech.splice(index,0,'c++');
             }
-          });
-        }
+            let categoryArray = [];
+            let selectedJobs = [];
 
-        let sub_data = main.filter(function (job) {
-          if (job.id !== single_job.id) {
-            job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
-            let url = job.title + ' ' + job.company;
-            let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\'\|\@\%\&\*]/g;
-            let custom_url = url.toLowerCase().replace(regex, '-');
-            job.custom_url = custom_url;
-            return job;
+            main.forEach(job => {
+              if (job.type == formalSlug) {
+                categoryArray.push(job);
+              }
+            });
+
+            selectedTech.forEach(tech => {
+              //Such a blessed function, makes life easier
+              searchTech(tech,categoryArray,selectedJobs);
+            })
+
+            selectedJobs.slice().map(function (job) {
+              job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+              return job;
+            });
+
+            return res.status(200).render('jobCategory', {
+              name: formalSlug,
+              tech: selectedTech,
+              status: 'success',
+              TotalJobs: Object.keys(selectedJobs).length,
+              data: selectedJobs,
+              user: (typeof req.session.user == 'undefined') ? null : req.session.user
+            });
+
           }
-        }).slice(0, 3);
-
-        let summary = single_job.description.slice(0, single_job.description.indexOf("</p>", 100));
-
-        single_job.description = single_job.description.slice(summary.length);
-
-        const stripeSession = await session;
-
-        // some jobs have no image
-        single_job.company_logo = (!single_job.company_logo) ? "/images/no_job_image.jpg" : single_job.company_logo;
-
-        return res.status(200).render('singleJob', {
-          content: single_job,
-          summary: summary,
-          keytech: key_tech + "...",
-          title: single_job.title,
-          similar_jobs: sub_data,
-          sessionId: stripeSession.id,
-          user: (typeof req.session.user == 'undefined') ? null : req.session.user
-        })
+    
+        } catch (error) {
+          return res.status(400).send(error);
+        }
       }
-      catch (error)
-      {
-        return res.status(400).send(error);
+      else {
+        //@Ayo, now your watch begins...
+        try {
+          
+          for (let i = 0; i < main.length; i++){
+            if (slug == main[i].custom_url) {
+              single_job = main[i];
+              break;
+            }
+          };
+    
+          let common_tech = ["python", "es6", "ruby", "c#", "java ", " C ", "c++", "php", "javascript", "css", "html", "swift", "git", "azure", "docker", "sql", "asp.net", ".net", "asp", "rest", "react", "ios", "android", "vagrant", "trello", " R ", "Linux", "Angular", "Node"];
+    
+          let key_tech = search_common(single_job.description.toLowerCase(), common_tech);
+    
+          let sortquery = key_tech.trim().split(", ");
+    
+          for (let i = 0; i < sortquery.length; i++){
+            main.sort(function (a, b) {
+              var A = a.description, B = b.description;
+              if (A.includes(sortquery[i])) {
+                return 1;
+              } else if (B.includes(sortquery[i])) {
+                return -1;
+              }
+            });
+          }
+    
+          let sub_data = main.filter(function (job) {
+            if (job.id !== single_job.id) {
+              job.company_logo = (!job.company_logo) ? "/images/no_job_image.jpg" : job.company_logo;
+              let custom_url = slugify(job);
+              job.custom_url = custom_url;
+              return job;
+            }
+          }).slice(0, 3);
+    
+          let summary = single_job.description.slice(0, single_job.description.indexOf("</p>", 100));
+    
+          single_job.description = single_job.description.slice(summary.length);
+    
+          const stripeSession = await session;
+    
+          // some jobs have no image
+          single_job.company_logo = (!single_job.company_logo) ? "/images/no_job_image.jpg" : single_job.company_logo;
+    
+          return res.status(200).render('singleJob', {
+            content: single_job,
+            summary: summary,
+            keytech: key_tech + "...",
+            title: single_job.title,
+            similar_jobs: sub_data,
+            sessionId: stripeSession.id,
+            user: (typeof req.session.user == 'undefined') ? null : req.session.user
+          })
+        } 
+        catch (error) 
+        {
+          return res.status(400).send(error);
+        }
       }
-    }
 
-
+      
   },
   async get_api_jobs(req, res) {
 
@@ -541,7 +555,7 @@ const Jobs = {
 
 
       // we all need helpers. Baba God hear me out
-      helpers:
+      helpers: 
       {
         // this helps with displaying the page links, I guess
         populate_links: function () {
@@ -581,7 +595,7 @@ const Jobs = {
     };
     try {
       let createdJob = await db.create(queryText);
-      // sendMailForRemoteJob(createdJob);
+     // sendMailForRemoteJob(createdJob);
       return res.status(201).redirect("/admin/managejobs");
     } catch (error) {
       return res.status(400).send(error);
@@ -636,11 +650,19 @@ const Jobs = {
 
       let foundJob = await db.findOne(queryText);
 
+      let summary = foundJob.job_description.slice(0, foundJob.job_description.indexOf("</p>", 100));
+    
+      foundJob.job_description = foundJob.job_description.slice(summary.length);
+    
       const stripeSession = await session;
+    
+      // some jobs have no image
+      foundJob.image_link = (!foundJob.image_link) ? "/images/no_job_image.jpg" : foundJob.image_link;
 
       return res.status(200).render("singleFeaturedJob", {
         content: foundJob,
         sessionId: stripeSession.id,
+        summary: summary,
         user: (typeof req.session.user == 'undefined') ? null : req.session.user
       });
     } catch (error) {
@@ -667,7 +689,7 @@ const Jobs = {
           }
 
         }
-
+        
       });
     } catch (error) {
       return res.status(400).send(error);
@@ -822,14 +844,14 @@ const Jobs = {
         status: 'success',
         message: "Sorry, there are no jobs available for this selected category",
         TotalJobs: Object.keys(allPartTimeJobs).length,
-        data: allPartTimeJobs,
-        user: (typeof req.session.user == 'undefined') ? null : req.session.user
-      });
+          data: allPartTimeJobs,
+          user: (typeof req.session.user == 'undefined') ? null : req.session.user
+        });
 
     } catch (error) {
       return res.status(400).send(error);
     }
-  },
+  }, 
 
   //Unused for now, Please do not touch
   async fetchAllContractSearchJobs(req, res) {
@@ -863,7 +885,7 @@ const Jobs = {
 
   //Unused for now, Please do not touch
   async fetchAllCustomSearchJobs(req, res) {
-    const { search } = req.params;
+    const { search } = req.params; 
     try {
       let allCustom = await fetch(`https://jobs.github.com/positions.json?search=${search}&location=remote`)
       let allCustomJobs = await allCustom.json();
@@ -879,6 +901,6 @@ const Jobs = {
   },
 };
 
-
+  
 
 module.exports = Jobs;

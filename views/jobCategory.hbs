@@ -350,7 +350,10 @@
                         Clear filters
                     </button>
                 </div>
+                
                 <div class="col-lg-9 mt-lg-0 mt-3">
+                    <h5 style="text-align:center;">Found {{TotalJobs}} jobs for the selected category</h5>
+                    <hr>
                     {{# each data}}
                     <div class="job_list_wrapper mb-4 contentCard">
                         <div class="row ">
@@ -483,7 +486,7 @@
             }
         }
 
-        let params = window.location.search.substr(1).split('|');
+        let params = window.location.search.substr(6).split('|');
         for (let n = 0; n < params.length; n++) {
             $('input[data-id="' + params[n] + '"]').prop('checked', true);
         }
