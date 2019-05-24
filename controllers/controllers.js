@@ -28,15 +28,10 @@ function load_data(data) {
 function slugify(element) {
   let title = element.title;
   let company = element.company;
-  let urlOne = title + ' ' + company;
-  let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\:\'\|\@\%\&\*]/g;
-  let urlTwo = urlOne.trim();
-  let urlThree = urlTwo.split(' ');
-  urlThree.forEach(index => {
-    index.trim();
-  });
-  let url = urlThree.join('-')
-  let custom_url = url.toLowerCase().replace(regex, '');
+  let regex = /[\.\-\]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\:\'\|\@\%\&\*]/g;
+  let urlOne = title.toLowerCase().trim().replace(regex, '').split(' ');
+  let urlTwo = company.toLowerCase().trim().replace(regex, '').split(' ');
+  let custom_url = urlOne.join('-') + '-' + urlTwo.join('-')
 
   return custom_url
 }
