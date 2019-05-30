@@ -338,7 +338,7 @@ const Jobs = {
     let main = JSON.parse(JSON.stringify(remote_jobs));
 
     //Array containing potential slugs
-    let techs = ['python','php','javascript','java','ios','devops','c++','node','asp','react','android','linux'];
+    let techs = ['python','php','javascript','java','ios','devops','c++','node','asp','react','android','linux','sql'];
     let categories = ['full-time','part-time','contract'];
 
     //Check for the type of the param being passed, a tech, a category or a custom URL
