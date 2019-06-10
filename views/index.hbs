@@ -2,435 +2,391 @@
 <html lang="en">
 
 <head>
-	<meta name="google-site-verification" content="-CJUCQe06hKr7zz5IFIJHiDscVjUL9TRqbqnJK_jCM8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="-CJUCQe06hKr7zz5IFIJHiDscVjUL9TRqbqnJK_jCM8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-		gtag('config', 'UA-139612600-1');
-	</script>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        gtag('config', 'UA-139612600-1');
+    </script>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <meta property="og:type" content="website" />
-            <meta property="og:image" content="https://res.cloudinary.com/ivory/image/upload/v1558011480/Alternate_Logo_1.png"/>
+    <meta property="og:image"
+        content="https://res.cloudinary.com/ivory/image/upload/v1558011480/Alternate_Logo_1.png" />
     <meta name="keywords"
         content="Remote-jobs, Remote, DevAlert, devalert, developer-jobs, developer, programmer, software-engineer, engineer, tech" />
     <meta name="description"
         content="Devalert is a remote job platform that connects developers to remote jobs. It gives developers the access to remote jobs in the world, effective Telecommuting skills and building a better remote platform for all developers." />
 
-	<title>DevAlert | Home</title>
-	<style>
-	/*###########Styling for featured job section######*/	
-		.view-more {
-			cursor: pointer !important;
-		}		
-		@media only screen and (max-width:790px) {
-			.col-sm-12 {
-				flex: 0 0 100%;
-				max-width: 100% !important;
-				padding-left: 90px !important;
-			}
-			.card {
-				width: 520px;
-				
-			}
-		}
-		@media only screen and (max-width: 550px) {
-			.col-sm-12 {
-				padding-left: 10px;
-			}
-			.card {
-				width: 350px;
-				height: 340px;
-				
-			}
-			.featured-form{
-				padding-left: 15px;
-			}
-			} 
-
-#homepage #Featured-jobs .featured-jobs-header h1 {
-    color: #11144c;
-    font-weight: 600;
-    font-size: 36px;
-    line-height: 42px;
-    margin-bottom: 10px;
-}
-.filter-1 {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: center;
-	padding-bottom: 15px;  
-}
-
-.featured-form {
-padding-right: 5px;
-padding-bottom: 8px;
-}
-
-select {
-  height: 50px;
-  line-height: 50px;
-  font-size: 12pt;
-       }
-
-input[type=text] {
-  width: 100%;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  background-color: white;
-  background-position: 10px 10px; 
-  background-repeat: no-repeat;
-  padding: 12px 20px 12px 40px;
-
-}
-
-input[type=text]:focus {
-  width: 100%;
-}
-
-
-.more-jobs {
-    text-align: center;
-    color: #11144c;
-    font-weight: bold;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
-
-#Featured-jobs p {
- padding-top: 10px;
-}
-
-.card {
- 
- height: 500px;
- box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
- transition: 0.3s;
-}
-
-.card:hover {
- box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-.row .card {
-	margin: 8px;
-}
-
-/*Responsive styling when screen is less than 700px */
-
-@media screen and (max-width: 700px) {
-    .row {}
-    .card {}
-}
-
-
-@media(min-width:768px) {
-
-	        .row {}
-
-			.card {}
-			.cont-2 {
-				flex: 0 0 100%;
-				max-width: 100%;
-				padding-left: 70px !important;
-			}
-			#jobs {
-				margin-left: 21.5%;
-			}
-	
-		}
-/*end of responsive styling */
-.truncate {
-  width: auto;
-  height: 45px;
-  white-space: wrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-
-/*#######End of styling for featured job########*/	
-		
-		
-	</style>
+    <title>DevAlert | Home</title>
+    <style>
+        
+    </style>
 </head>
 
 
 <body>
-	{{> header }}
-	<div id="overlay">
-		<div class="loading-icon"></div>
-	</div>
-	<div id="homepage">
-		<main class="container">
-			<!-- BODY TOP -->
-			<section id="body_top" class="container ">
-				<div class="row ">
-					<section id="intro">
+    {{> header }}
+    <div id="overlay">
+        <div class="loading-icon"></div>
+    </div>
+    <div id="homepage">
+        <main class="container">
+            <!-- BODY TOP -->
+            <section id="body_top" class="container ">
+                <div class="row ">
+                    <section id="intro">
 
-						<div class="row">
-							<div class="col-sm-12 col-md-6 intro-text">
-								<h4>The remote life</h4>
-								<h1>Subscribe to receive remote developer jobs.</h1>
-								<p>Let us help you get that dream remote job you’re
-									perfect for
-								</p>
-								<form action="/email-subscription" method="POST">
-									<div class="input-group">
-										<input type="email" class="form-control" placeholder="Email" name="email">
-										<div class="input-group-append">
-											<button class="btn subscribe" type="submit">Subscribe</button>
-										</div>
-									</div>
-								</form>
-								<div class="input-group">
-									{{#each errors}}
-									<div class="alert alert-danger alert-dismissible fade show" role="alert">
-										<strong>{{msg}}</strong>
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									{{/each}} {{#if emailError}}
-									<div class="alert alert-warning alert-dismissible fade show">
-										<strong>{{emailError}}</strong>
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									{{/if}} {{#if success}}
-									<div class="alert alert-success alert-dismissible fade show">
-										<strong>{{success}}</strong>
-										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									{{/if}}
-								</div>
-							</div>
-							<div class="col-sm-12 col-md-6 intro-img d-flex justify-content-center align-items-center">
-								<img src="images/introimg.jpg" width="300" />
-							</div>
-						</div>
-					</section>
-				</div>
-			</section>
-		</main>
-	<hr style="border:1px  solid #c4c4c4;">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 intro-text">
+                                <h4>The remote life</h4>
+                                <h1>Subscribe to receive remote developer jobs.</h1>
+                                <p>Let us help you get that dream remote job you’re
+                                    perfect for
+                                </p>
+                                <form action="/email-subscription" method="POST">
+                                    <div class="input-group">
+                                        <input type="email" class="form-control" placeholder="Email" name="email">
+                                        <div class="input-group-append">
+                                            <button class="btn subscribe" type="submit">Subscribe</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="input-group">
+                                    {{#each errors}}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong>{{msg}}</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    {{/each}} {{#if emailError}}
+                                    <div class="alert alert-warning alert-dismissible fade show">
+                                        <strong>{{emailError}}</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    {{/if}} {{#if success}}
+                                    <div class="alert alert-success alert-dismissible fade show">
+                                        <strong>{{success}}</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 intro-img d-flex justify-content-center align-items-center">
+                                <img src="images/introimg.jpg" width="300" />
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </main>
+        <section id="what-we-are">
+            <div class="container">
+                <div class="mb-4">
+                    <h1 class="text-center">WHAT WE ARE</h1>
+                    <p class="text-center text-secondary">Secure the job faster and easier. Let an agent help you
+                        apply to
+                        get more probability of sucess</p>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 col-item">
+                        <img class="bag" src="/images/what-we-are/portfolio.png">
+                        <h5 class="text-center mt-3">SEARCH MILLIONS OF JOBS</h5>
+                        <p class="text-secondary p-3">
+                            We curate top developer jobs from all over the globe. Whatever job you are looking for,
+                            we
+                            have it here.
+                        </p>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-item">
+                        <img class="earth" src="/images/what-we-are/planet-earth.png">
+                        <h5 class="text-center mt-3">WORK FROM ANYWHERE</h5>
+                        <p class="text-secondary p-3">You can work from office, cafe, park or co-working space. You
+                            can
+                            choose remote part-time,
+                            full time or contract.</p>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-item">
+                        <img src="/images/what-we-are/value.png">
+                        <h5 class="text-center mt-3">TOP CAREERS</h5>
+                        <p class="text-secondary p-3">
+                            Talent is in top demand. Whether you are a junior, intermediate or senior, we have top
+                            career options for you.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!---Featured job section-->
-		<section id="Featured-jobs">
-        <div class="featured-jobs-header">
-			<h1>Featured Jobs</h1>
-		</div>
-        <div class="filter-1">
-            <form class="featured-form">
-              <input type="text" name="search" id="search" placeholder="Enter language to filter jobs...">
-            </form>
-			<!--select currency-->
-            <select name="currency" id="converter">
-                <option value="NGN">🇳🇬&emsp;₦&emsp;NAI&emsp;💶</option>			
-                <option value="EUR">🇪🇺&emsp;€&emsp;EUR&emsp;💶</option>
-                <option value="GBP">🇬🇧&emsp;£&emsp;GBP&emsp;💷</option>
-                <option value="USD">🇺🇸&emsp;$&emsp;USD&emsp;💵</option>
-                 <option value="YEN">🇯🇵&emsp;¥&emsp;YEN&emsp;💴</option>
-             </select>
-         </div>
-				 
-    
-       <div class="row col-sm-12  cont-2" style="justify-content: center;">	
-			<div id="jobs">
+        <section id="latest-jobs">
+            <div class="container">
+                <h1 class="text-center">BROWSE SOME LATEST JOBS</h1>
+                <p class="text-center text-secondary">Secure the job faster and easier. Let an agent help you apply to
+                    get more probability of sucess</p>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-item">
+                        <div class="bordered">
+                            <img src="/images/latest-jobs/microsoft.png" />
+                            <a href="#" class="title">Senior backend developer</a>
+                            <p class="stacks">Required Stack: <span>Php | JavaScript | React | NodeJs</span></p>
+                            <div class="d-flex flex-column flex-xl-row justify-content-between">
+                                <p class="ml-2">
+                                    <span class="time"></span>
+                                    Over 1 month ago
+                                </p>
+                                <p class="ml-2 ml-xl-0 mr-xl-2">
+                                    <span class="case"></span>
+                                    Part-time
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-item">
+                        <div class="bordered">
+                            <img src="/images/latest-jobs/microsoft.png" />
+                            <a href="#" class="title">Senior backend developer</a>
+                            <p class="stacks">Required Stack: <span>Php | JavaScript | React | NodeJs</span></p>
+                            <div class="d-flex flex-column flex-xl-row justify-content-between">
+                                <p class="ml-2">
+                                    <span class="time"></span>
+                                    Over 1 month ago
+                                </p>
+                                <p class="ml-2 ml-xl-0 mr-xl-2">
+                                    <span class="case"></span>
+                                    Part-time
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-item">
+                        <div class="bordered">
+                            <img src="/images/latest-jobs/microsoft.png" />
+                            <a href="#" class="title">Senior backend developer</a>
+                            <p class="stacks">Required Stack: <span>Php | JavaScript | React | NodeJs</span></p>
+                            <div class="d-flex flex-column flex-xl-row justify-content-between">
+                                <p class="ml-2">
+                                    <span class="time"></span>
+                                    Over 1 month ago
+                                </p>
+                                <p class="ml-2 ml-xl-0 mr-xl-2">
+                                    <span class="case"></span>
+                                    Part-time
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-item">
+                        <div class="bordered">
+                            <img src="/images/latest-jobs/microsoft.png" />
+                            <a href="#" class="title">Senior backend developer</a>
+                            <p class="stacks">Required Stack: <span>Php | JavaScript | React | NodeJs</span></p>
+                            <div class="d-flex flex-column flex-xl-row justify-content-between">
+                                <p class="ml-2">
+                                    <span class="time"></span>
+                                    Over 1 month ago
+                                </p>
+                                <p class="ml-2 ml-xl-0 mr-xl-2">
+                                    <span class="case"></span>
+                                    Part-time
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-item">
+                        <div class="bordered">
+                            <img src="/images/latest-jobs/microsoft.png" />
+                            <a href="#" class="title">Senior backend developer</a>
+                            <p class="stacks">Required Stack: <span>Php | JavaScript | React | NodeJs</span></p>
+                            <div class="d-flex flex-column flex-xl-row justify-content-between">
+                                <p class="ml-2">
+                                    <span class="time"></span>
+                                    Over 1 month ago
+                                </p>
+                                <p class="ml-2 ml-xl-0 mr-xl-2">
+                                    <span class="case"></span>
+                                    Part-time
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-item">
+                        <div class="bordered">
+                            <img src="/images/latest-jobs/microsoft.png" />
+                            <a href="#" class="title">Senior backend developer</a>
+                            <p class="stacks">Required Stack: <span>Php | JavaScript | React | NodeJs</span></p>
+                            <div class="d-flex flex-column flex-xl-row justify-content-between">
+                                <p class="ml-2">
+                                    <span class="time"></span>
+                                    Over 1 month ago
+                                </p>
+                                <p class="ml-2 ml-xl-0 mr-xl-2">
+                                    <span class="case"></span>
+                                    Part-time
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-item">
+                        <div class="bordered">
+                            <img src="/images/latest-jobs/microsoft.png" />
+                            <a href="#" class="title">Senior backend developer</a>
+                            <p class="stacks">Required Stack: <span>Php | JavaScript | React | NodeJs</span></p>
+                            <div class="d-flex flex-column flex-xl-row justify-content-between">
+                                <p class="ml-2">
+                                    <span class="time"></span>
+                                    Over 1 month ago
+                                </p>
+                                <p class="ml-2 ml-xl-0 mr-xl-2">
+                                    <span class="case"></span>
+                                    Part-time
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-item">
+                        <div class="bordered">
+                            <img src="/images/latest-jobs/microsoft.png" />
+                            <a href="#" class="title">Senior backend developer</a>
+                            <p class="stacks">Required Stack: <span>Php | JavaScript | React | NodeJs</span></p>
+                            <div class="d-flex flex-column flex-xl-row justify-content-between">
+                                <p class="ml-2">
+                                    <span class="time"></span>
+                                    Over 1 month ago
+                                </p>
+                                <p class="ml-2 ml-xl-0 mr-xl-2">
+                                    <span class="case"></span>
+                                    Part-time
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="m-4"><img class="d-block mr-auto ml-auto"
+                        src="/images/latest-jobs/view-all-remote-jobs.png" alt="View all remote jobs"></a>
+            </div>
+        </section>
 
-    	</div>
-		</div>
-   <p class="more-jobs"><a href="/jobs">View all remote jobs <ion-icon name="arrow-forward"></ion-icon></a></p>    
-   <!--End of Featured job Section--->
+        <section id="top-jobs">
+            <div class="container">
+                <h1 class="text-center">TOP JOBS PAGES</h1>
+                <p class="text-center text-secondary">Secure the job faster and easier. Let an agent help you apply to
+                    get more probability of sucess</p>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-item">
+                        <div class="bordered">
+                            <span class="qty">16</span>
+                            <img src="/images/top-jobs/python.png" />
+                            <a href="#" class="title">Senior backend developer</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-item">
+                        <div class="bordered">
+                            <span class="qty">45</span>
+                            <img src="/images/top-jobs/python.png" />
+                            <a href="#" class="title">Senior backend developer</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-item">
+                        <div class="bordered">
+                            <span class="qty">23</span>
+                            <img src="/images/top-jobs/python.png" />
+                            <a href="#" class="title">Senior backend developer</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-item">
+                        <div class="bordered">
+                            <span class="qty">45</span>
+                            <img src="/images/top-jobs/python.png" />
+                            <a href="#" class="title">Senior backend developer</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-item">
+                        <div class="bordered">
+                            <span class="qty">23</span>
+                            <img src="/images/top-jobs/python.png" />
+                            <a href="#" class="title">Senior backend developer</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-item">
+                        <div class="bordered">
+                            <span class="qty">16</span>
+                            <img src="/images/top-jobs/python.png" />
+                            <a href="#" class="title">Senior backend developer</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-item">
+                        <div class="bordered">
+                            <span class="qty">45</span>
+                            <img src="/images/top-jobs/python.png" />
+                            <a href="#" class="title">Senior backend developer</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 col-item">
+                        <div class="bordered">
+                            <span class="qty">23</span>
+                            <img src="/images/top-jobs/python.png" />
+                            <a href="#" class="title">Senior backend developer</a>
+                        </div>
+                    </div>
 
-   </section> 
-	 	<section id="pay-agent">
-			<div class="container">
-				<div class="pay-header">
-					<h1>Pay an agent to apply</h1>
-					<p>Secure the job faster and easier.
-						<br />Let an agent help you apply to get more probability of success
-					</p>
-					<button data-toggle="modal" class="btn btn-custom" data-target="#registerModal">
-						Contact Agent
-					</button>
-				</div>
-			</div>
-		</section>  
-        
-
-		
-
-	{{> footer}}
-	
-	<script src="https://js.stripe.com/v3/"></script>
-	
-		<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
-
-		<script>
-
-	let url = '/jobs_json';
-	
-
-	fetch(url)
-	.then((resp) => resp.json())
-	.then(function(jobData){
-		for(let i=0;i<8;i++){
-		let min_pay = jobData[i].job_pay_min;
-		let max_pay = jobData[i].job_pay_max;
-		let currency_code = "$";
-		let min_pay_convert = min_pay;
-		let max_pay_convert = max_pay;
-
-		$('select[name="currency"]').change(function(){
-
-    	if ($(this).val() === "USD"){
-        currency_code = '$';
-        	for (let j=0;j<8; j++){
-        			let formatter = new Intl.NumberFormat('en-US', {
-  					style: 'currency',
-  					currency: 'USD',
-					});
-
-					min_pay_convert = jobData[j].job_pay_min;
-					max_pay_convert = jobData[j].job_pay_max;
-        		$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
-						$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
-        	}
-
-
-     	} else if ($(this).val() === "NGN") {
-     	currency_code = '₦';
-
-				for (let j=0;j<8; j++){
-					formatter = new Intl.NumberFormat('en-UK', {
-  		style: 'currency',
-  		currency: 'NGN',
-		});
-					min_pay_convert = jobData[j].job_pay_min * 360;
-					max_pay_convert = jobData[j].job_pay_max * 360;
-        		$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
-						$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
-        	}
-
-     	} else if ($(this).val() === "GBP"){
-     		currency_code = '£';
-
-     		for (let j=0;j<8; j++){
-     			formatter = new Intl.NumberFormat('en-UK', {
-  		style: 'currency',
-  		currency: 'GBP',
-		});
-					min_pay_convert = jobData[j].job_pay_min * 0.77;
-					max_pay_convert = jobData[j].job_pay_max * 0.77;
-        		$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
-						$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
-        	}
-
-     	} else if ($(this).val() === "EUR"){
-     		currency_code = '€';
-
-     		for (let j=0;j<8; j++){
-     				formatter = new Intl.NumberFormat('en-UK', {
-  		style: 'currency',
-  		currency: 'EUR',
-		});
-					min_pay_convert = jobData[j].job_pay_min * 0.89;
-					max_pay_convert = jobData[j].job_pay_max * 0.89;
-        		$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
-						$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
-        	}
-
-     	} else if ($(this).val() === "YEN"){
-     		currency_code = '¥';
-
-     		for (let j=0;j<8; j++){
-     			formatter = new Intl.NumberFormat('en-UK', {
-  		style: 'currency',
-  		currency: 'YEN',
-		});
-					min_pay_convert = jobData[j].job_pay_min * 109.78;
-					max_pay_convert = jobData[j].job_pay_max * 109.78;
-        		$(`#a${jobData[j]._id}`).html(formatter.format(min_pay_convert));
-						$(`#b${jobData[j]._id}`).html(formatter.format(max_pay_convert));
-        	}
-
-     	} else {
-     		min_pay_convert = min_pay;
-     		max_pay_convert = max_pay;
-     		currency_code = '$';
-
-     	}
-     	
-		})
-		formatter = new Intl.NumberFormat('en-US', {
-  		style: 'currency',
-  		currency: 'USD',
-		});
+                </div>
+                <a href="#" class="m-4">
+                    <img class="d-block mr-auto ml-auto" src="/images/latest-jobs/view-all-remote-jobs.png"
+                        alt="View all remote jobs">
+                </a>
+            </div>
+        </section>
 
 
-		let job_cards =	"<div class='card featureCad col-md-4 offset-md-4 left' style='padding-bottom: 20px' id='#job_card"+jobData[i]._id+"'><div class='container'><a href='/jobs/featured/" +jobData[i].slug+ "'><img src='"+jobData[i].image_link+"' alt='google-image'><h4 class='card-head' id='job_title'><b>"+jobData[i].job_title+"</b></h4> <p class='job-brief truncate' id='job_desc'>"+jobData[i].job_description+"</p><p><t><b>Required Stack:</b>&nbsp;"+ jobData[i].job_stack +"</t></p> <p><ion-icon name='briefcase' id='company_name' class='company_name'></ion-icon>"+jobData[i].company_name+"<ion-icon name='time'></ion-icon><span id='job_type'>"+jobData[i].job_type+"</span></p><span class='pay1' id='a"+jobData[i]._id+"'>"+formatter.format(min_pay_convert)+"</span> -- <span class='pay2' id='b"+jobData[i]._id+"'>"+formatter.format(max_pay_convert)+"</span><p class='hide'></p></a></div></div>";
+
+        <section id="pay-agent">
+            <div class="container">
+                <div class="pay-header">
+                    <h1>Pay an agent to apply</h1>
+                    <p>Secure the job faster and easier.
+                        <br />Let an agent help you apply to get more probability of success
+                    </p>
+                    <button data-toggle="modal" class="btn btn-custom" data-target="#registerModal">
+                        Contact Agent
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
 
 
-			$("#jobs").append(job_cards);
-		
 
-		//Search Filter
-	
-	$('#search').keyup(function () {
+    {{> footer}}
 
-    var filter = this.value.toLowerCase();  // no need to call jQuery here
+    <script src="https://js.stripe.com/v3/"></script>
 
-    $('.card').each(function() {
-        /* cache a reference to the current .media (you're using it twice) */
-        let _this = $(this);
-        let jtitle = _this.find('t').text().toLowerCase();
+    <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
 
-        /* 
-            title and filter are normalized in lowerCase letters
-            for a case insensitive search
-         */
-        if (jtitle.indexOf(filter) < 0) {
-            _this.hide();
-        }
-        else {
-        	_this.show();
-        }
-    });
-});
+    <script>
 
-	}
-})
+        $(function () {
+            var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
+            $("buttonCheckout").click(function () {
+                stripe.redirectToCheckout({
+                    sessionId: '{{sessionId}}',
+                }).then(function (result) {
+                    // If `redirectToCheckout` fails due to a browser or network
+                    // error, display the localized error message to your customer
+                    // using `result.error.message`.
+                });
+            });
+        });
 
+    </script>
 
-	
-
-	
-		$(function () {
-			var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
-			$("buttonCheckout").click(function () {
-				stripe.redirectToCheckout({
-					sessionId: '{{sessionId}}',
-				}).then(function (result) {
-					// If `redirectToCheckout` fails due to a browser or network
-					// error, display the localized error message to your customer
-					// using `result.error.message`.
-				});
-			});
-		});
-
-		</script>
-	
 </body>
