@@ -11,6 +11,8 @@ package-lock.json
 # packages
 /node_modules
 
+.vscode
+
 # Runtime data
 pids
 *.pid
