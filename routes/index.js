@@ -15,33 +15,7 @@ var auth_controllers = require('../controllers/auth')
 
 /* GET home page. */
 //router.get("/", Home.index);
-router.get("/", async function(req, res, next) {
-  try {
-    const stripeSession = await session;
-    const jobs = await JobModel.find();
-    res.render("index", {
-      title: "DevAlert | Home",
-      contents: jobs,
-      sessionId: stripeSession.id,
-      user: (typeof req.session.user == 'undefined') ? null : req.session.user,
-      helpers: {
-        inc: function(index) {
-          index++;
-          return index;
-        },
-        limit: function(arr, limit) {
-          if (!Array.isArray(arr)) {
-            return [];
-          }
-          return arr.slice(0, limit);
-        }
-      }
-    });
-  } catch (err) {
-    console.log(err);
-    next(err);
-  }
-});
+router.get("/", Jobs.fetchHomeJobs);
 
 // GET About us page
 router.get("/about", Home.aboutUs);
