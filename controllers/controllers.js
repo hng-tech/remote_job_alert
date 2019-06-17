@@ -336,15 +336,28 @@ const Jobs = {
     //There should be a function for getting number of jobs per stack and an object oriented array that does the mapping
     //
     let main = JSON.parse(JSON.stringify(remote_jobs));
-    let allLatestJobs = [];
+
+    //Latest jobs, taken by removing the latest six from the json
+    let latestJobs = main.slice(0,7);
+    const stripeSession = await session;
+
+    //Array of the stacks to be used and the links to their images
     let techArray = [{"tech":"java","link":'https://img.icons8.com/java.png'},{"tech":"python","link":'https://img.icons8.com/python.png'},{"tech":'c++',"link":'https://img.icons8.com/c-plus-plus.png'},{"tech":'javascript',"link":'https://img.icons8.com/javascript.png'},{"tech":'ios',"link":'https://img.icons8.com/ios-logo.png'},{"tech":'react',"link":'https://img.icons8.com/react-native.png'}];
+    
     let allTechJobs = [[],[],[],[],[],[]];
-    let countJobs = [];
+    let stackJobs = [];
     techArray.forEach(element => {
-      countJobs[element.tech] = searchTech(element.tech,main,allTechJobs[techArray.indexOf(element)]).length 
+      stackJobs[element.tech] = searchTech(element.tech,main,allTechJobs[techArray.indexOf(element)]).length 
     });
     //It goes something like this: allTechJobs[tech] = searchTech()
     //Then I can do something like for number of java jobs I have allTechJobs[java].length 
+
+    return res.status(200).render('index', {
+      stackJobs : stackJobs,
+      latestJobs: latestJobs,
+      sessionId: stripeSession.id,
+      user: (typeof req.session.user == 'undefined') ? null : req.session.user,
+    })
   },
 
   async fetchSingle(req, res) {
@@ -591,6 +604,7 @@ const Jobs = {
   },
 
   //Do not Touch - Used by Featured Jobs
+  //Update: I touched this and there's nothing you can do about it :)
   async create(req, res, next) {
     // // Check Validation
     // if (!isValid) {
