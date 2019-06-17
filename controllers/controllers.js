@@ -342,12 +342,18 @@ const Jobs = {
     const stripeSession = await session;
 
     //Array of the stacks to be used and the links to their images
-    let techArray = [{"tech":"java","link":'https://img.icons8.com/java.png'},{"tech":"python","link":'https://img.icons8.com/python.png'},{"tech":'c++',"link":'https://img.icons8.com/c-plus-plus.png'},{"tech":'javascript',"link":'https://img.icons8.com/javascript.png'},{"tech":'ios',"link":'https://img.icons8.com/ios-logo.png'},{"tech":'react',"link":'https://img.icons8.com/react-native.png'}];
-    
+    let stackJobs = [{"tech":"java","logo":'https://img.icons8.com/color/java.svg'},{"tech":"python","logo":'https://img.icons8.com/color/python.svg'},{"tech":'c++',"logo":'https://img.icons8.com/color/48/000000/c-plus-plus-logo.png'},{"tech":'javascript',"logo":'https://img.icons8.com/color/javascript.svg'},{"tech":'ios',"logo":'https://img.icons8.com/color/ios-logo.svg'},{"tech":'react',"logo":'https://img.icons8.com/ios/50/000000/react-native-filled.png'}];
+
     let allTechJobs = [[],[],[],[],[],[]];
-    let stackJobs = [];
-    techArray.forEach(element => {
-      stackJobs[element.tech] = searchTech(element.tech,main,allTechJobs[techArray.indexOf(element)]).length 
+  
+    stackJobs.forEach(element => {
+      stackJobs[stackJobs.indexOf(element)].count = searchTech(element.tech,main,allTechJobs[stackJobs.indexOf(element)]).length;
+      if (element.tech.length == 3) {
+        stackJobs[stackJobs.indexOf(element)].formalName = element.tech.toUpperCase();
+      }
+      else {
+        stackJobs[stackJobs.indexOf(element)].formalName = element.tech.charAt(0).toUpperCase() + element.tech.slice(1);
+      } 
     });
     //It goes something like this: allTechJobs[tech] = searchTech()
     //Then I can do something like for number of java jobs I have allTechJobs[java].length 
