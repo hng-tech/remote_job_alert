@@ -342,7 +342,7 @@ const Jobs = {
     const stripeSession = await session;
 
     //Array of the stacks to be used and the links to their images
-    let stackJobs = [{"tech":"python","logo":'https://img.icons8.com/color/python.svg'},{"tech":'javascript',"logo":'https://img.icons8.com/color/javascript.svg'},{"tech":"php","logo":'https://img.icons8.com/dusk/64/000000/php-logo.png'},{"tech":'ios',"logo":'https://img.icons8.com/color/ios-logo.svg'},{"tech":"php","logo":'https://img.icons8.com/dusk/64/000000/php-logo.png'},{"tech":'c++',"logo":'https://img.icons8.com/color/48/000000/c-plus-plus-logo.png'},{"tech":'react',"logo":'https://img.icons8.com/ios/50/000000/react-native-filled.png'}];
+    let stackJobs = [{"tech":"python","logo":'https://img.icons8.com/color/50/python.svg'},{"tech":'javascript',"logo":'https://img.icons8.com/color/50/javascript.svg'},{"tech":"php","logo":'https://img.icons8.com/dusk/50/000000/php-logo.png'},{"tech":'ios',"logo":'https://img.icons8.com/color/50/ios-logo.svg'},{"tech":'c++',"logo":'https://img.icons8.com/color/50/000000/c-plus-plus-logo.png'},{"tech":'react',"logo":'https://img.icons8.com/ios/50/000000/react-native-filled.png'}];
 
     let allTechJobs = [[],[],[],[],[],[]];
   
