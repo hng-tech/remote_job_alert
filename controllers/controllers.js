@@ -331,6 +331,22 @@ const Jobs = {
     }
   },
 
+  async fetchHomeJobs(req, res) {
+    //There should be a function for getting latest jobs
+    //There should be a function for getting number of jobs per stack and an object oriented array that does the mapping
+    //
+    let main = JSON.parse(JSON.stringify(remote_jobs));
+    let allLatestJobs = [];
+    let techArray = [{"tech":"java","link":'https://img.icons8.com/java.png'},{"tech":"python","link":'https://img.icons8.com/python.png'},{"tech":'c++',"link":'https://img.icons8.com/c-plus-plus.png'},{"tech":'javascript',"link":'https://img.icons8.com/javascript.png'},{"tech":'ios',"link":'https://img.icons8.com/ios-logo.png'},{"tech":'react',"link":'https://img.icons8.com/react-native.png'}];
+    let allTechJobs = [[],[],[],[],[],[]];
+    let countJobs = [];
+    techArray.forEach(element => {
+      countJobs[element.tech] = searchTech(element.tech,main,allTechJobs[techArray.indexOf(element)]).length 
+    });
+    //It goes something like this: allTechJobs[tech] = searchTech()
+    //Then I can do something like for number of java jobs I have allTechJobs[java].length 
+  },
+
   async fetchSingle(req, res) {
 
     let slug = req.params.slug
@@ -345,8 +361,15 @@ const Jobs = {
       if(techs.includes(slug)) {
         try {
           let tech = slug;
-          // let allStackJobs = [];
-          let formalTech = tech.charAt(0).toUpperCase() + tech.slice(1);
+          let formalTech = "";
+      
+          //For proper rendering of PHP, IOS and SQL jobs. Basically all jobs with three letters
+          if (tech.length == 3) {
+            formalTech = tech.toUpperCase();
+          }
+          else {
+            formalTech = tech.charAt(0).toUpperCase() + tech.slice(1);
+          } 
           let allStackJobsNull = [];
           let allStackJobs = searchTech(tech, main, allStackJobsNull);
 
