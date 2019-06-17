@@ -337,8 +337,18 @@ const Jobs = {
     //
     let main = JSON.parse(JSON.stringify(remote_jobs));
 
+    //Ensure only jobs with images are displayed on the homepage
+    let newMain = [];
+
+    main.forEach(job => {
+      if (job.company_logo !== null && job.company_logo !== "") {
+        newMain.push(job);
+      }
+      
+    });
+
     //Latest jobs, taken by removing the latest six from the json
-    let latestJobs = main.slice(0,7);
+    let latestJobs = newMain.slice(0,6);
     const stripeSession = await session;
 
     //Array of the stacks to be used and the links to their images
@@ -355,6 +365,8 @@ const Jobs = {
         stackJobs[stackJobs.indexOf(element)].formalName = element.tech.charAt(0).toUpperCase() + element.tech.slice(1);
       } 
     });
+
+    
     //It goes something like this: allTechJobs[tech] = searchTech()
     //Then I can do something like for number of java jobs I have allTechJobs[java].length 
 
