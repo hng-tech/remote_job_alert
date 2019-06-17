@@ -28,15 +28,10 @@ function load_data(data) {
 function slugify(element) {
   let title = element.title;
   let company = element.company;
-  let urlOne = title + ' ' + company;
-  let regex = /[\.\ \]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\:\'\|\@\%\&\*]/g;
-  let urlTwo = urlOne.trim();
-  let urlThree = urlTwo.split(' ');
-  urlThree.forEach(index => {
-    index.trim();
-  });
-  let url = urlThree.join('-')
-  let custom_url = url.toLowerCase().replace(regex, '');
+  let regex = /[\.\-\]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\:\'\|\@\%\&\*]/g;
+  let urlOne = title.toLowerCase().trim().replace(regex, '').split(' ');
+  let urlTwo = company.toLowerCase().trim().replace(regex, '').split(' ');
+  let custom_url = urlOne.join('-') + '-' + urlTwo.join('-')
 
   return custom_url
 }
@@ -336,6 +331,41 @@ const Jobs = {
     }
   },
 
+  async fetchHomeJobs(req, res) {
+    //There should be a function for getting latest jobs
+    //There should be a function for getting number of jobs per stack and an object oriented array that does the mapping
+    //
+    let main = JSON.parse(JSON.stringify(remote_jobs));
+
+    //Latest jobs, taken by removing the latest six from the json
+    let latestJobs = main.slice(0,7);
+    const stripeSession = await session;
+
+    //Array of the stacks to be used and the links to their images
+    let stackJobs = [{"tech":"python","logo":'https://img.icons8.com/color/50/python.svg'},{"tech":'javascript',"logo":'https://img.icons8.com/color/50/javascript.svg'},{"tech":"php","logo":'https://img.icons8.com/dusk/50/000000/php-logo.png'},{"tech":'ios',"logo":'https://img.icons8.com/color/50/ios-logo.svg'},{"tech":'c++',"logo":'https://img.icons8.com/color/50/000000/c-plus-plus-logo.png'},{"tech":'react',"logo":'https://img.icons8.com/ios/50/000000/react-native-filled.png'}];
+
+    let allTechJobs = [[],[],[],[],[],[]];
+  
+    stackJobs.forEach(element => {
+      stackJobs[stackJobs.indexOf(element)].count = searchTech(element.tech,main,allTechJobs[stackJobs.indexOf(element)]).length;
+      if (element.tech.length == 3) {
+        stackJobs[stackJobs.indexOf(element)].formalName = element.tech.toUpperCase();
+      }
+      else {
+        stackJobs[stackJobs.indexOf(element)].formalName = element.tech.charAt(0).toUpperCase() + element.tech.slice(1);
+      } 
+    });
+    //It goes something like this: allTechJobs[tech] = searchTech()
+    //Then I can do something like for number of java jobs I have allTechJobs[java].length 
+
+    return res.status(200).render('index', {
+      stackJobs : stackJobs,
+      latestJobs: latestJobs,
+      sessionId: stripeSession.id,
+      user: (typeof req.session.user == 'undefined') ? null : req.session.user,
+    })
+  },
+
   async fetchSingle(req, res) {
 
     let slug = req.params.slug
@@ -343,15 +373,22 @@ const Jobs = {
     let main = JSON.parse(JSON.stringify(remote_jobs));
 
     //Array containing potential slugs
-    let techs = ['python','php','javascript','java','ios','devops','c++','node','asp','react','android','linux'];
+    let techs = ['python','php','javascript','java','ios','devops','c++','node','asp','react','android','linux','sql','ruby'];
     let categories = ['full-time','part-time','contract'];
 
     //Check for the type of the param being passed, a tech, a category or a custom URL
       if(techs.includes(slug)) {
         try {
           let tech = slug;
-          // let allStackJobs = [];
-          let formalTech = tech.charAt(0).toUpperCase() + tech.slice(1);
+          let formalTech = "";
+      
+          //For proper rendering of PHP, IOS and SQL jobs. Basically all jobs with three letters
+          if (tech.length == 3) {
+            formalTech = tech.toUpperCase();
+          }
+          else {
+            formalTech = tech.charAt(0).toUpperCase() + tech.slice(1);
+          } 
           let allStackJobsNull = [];
           let allStackJobs = searchTech(tech, main, allStackJobsNull);
 
@@ -573,6 +610,7 @@ const Jobs = {
   },
 
   //Do not Touch - Used by Featured Jobs
+  //Update: I touched this and there's nothing you can do about it :)
   async create(req, res, next) {
     // // Check Validation
     // if (!isValid) {
