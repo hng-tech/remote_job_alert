@@ -342,7 +342,7 @@ const Jobs = {
     const stripeSession = await session;
 
     //Array of the stacks to be used and the links to their images
-    let stackJobs = [{"tech":"java","logo":'https://img.icons8.com/color/java.svg'},{"tech":"python","logo":'https://img.icons8.com/color/python.svg'},{"tech":'c++',"logo":'https://img.icons8.com/color/48/000000/c-plus-plus-logo.png'},{"tech":'javascript',"logo":'https://img.icons8.com/color/javascript.svg'},{"tech":'ios',"logo":'https://img.icons8.com/color/ios-logo.svg'},{"tech":'react',"logo":'https://img.icons8.com/ios/50/000000/react-native-filled.png'}];
+    let stackJobs = [{"tech":"python","logo":'https://img.icons8.com/color/python.svg'},{"tech":'javascript',"logo":'https://img.icons8.com/color/javascript.svg'},{"tech":"php","logo":'https://img.icons8.com/dusk/64/000000/php-logo.png'},{"tech":'ios',"logo":'https://img.icons8.com/color/ios-logo.svg'},{"tech":"php","logo":'https://img.icons8.com/dusk/64/000000/php-logo.png'},{"tech":'c++',"logo":'https://img.icons8.com/color/48/000000/c-plus-plus-logo.png'},{"tech":'react',"logo":'https://img.icons8.com/ios/50/000000/react-native-filled.png'}];
 
     let allTechJobs = [[],[],[],[],[],[]];
   
@@ -373,7 +373,7 @@ const Jobs = {
     let main = JSON.parse(JSON.stringify(remote_jobs));
 
     //Array containing potential slugs
-    let techs = ['python','php','javascript','java','ios','devops','c++','node','asp','react','android','linux','sql'];
+    let techs = ['python','php','javascript','java','ios','devops','c++','node','asp','react','android','linux','sql','ruby'];
     let categories = ['full-time','part-time','contract'];
 
     //Check for the type of the param being passed, a tech, a category or a custom URL
