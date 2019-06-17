@@ -137,8 +137,8 @@
                     {{# each latestJobs }}
                     <div class="col-xs-12 col-md-6 col-lg-4 col-item">
                         <div class="bordered">
-                            <img src="{{this.company_logo}}" />
-                            <a href="#" class="title">{{this.title}}</a>
+                            <img class="img-fluid" src="{{this.company_logo}}" />
+                            <a href="/jobs/{{this.custom_url}}" class="title">{{this.title}}</a>
                             <p class="stacks">Required Stack: <span>Php | JavaScript | React | NodeJs</span></p>
                             <div class="d-flex flex-column flex-xl-row justify-content-between">
                                 <p class="ml-2">
@@ -154,7 +154,7 @@
                     </div>
                     {{/each}}
                     
-                <a href="#" class="m-4"><img class="d-block mr-auto ml-auto"
+                <a href="/jobs" class="m-4"><img class="d-block mr-auto ml-auto"
                         src="/images/latest-jobs/view-all-remote-jobs.png" alt="View all remote jobs"></a>
             </div>
         </section>
