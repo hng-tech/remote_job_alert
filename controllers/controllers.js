@@ -15,6 +15,7 @@ const paymentModel = require("../models/payment");
 const Paystack = require('./paystack');
 const session = require('./stripe');
 const Applicant = require('./applicant');
+const DOMParser = require("xmldom");
 
 // Null placeholder till promise returns a value
 var remote_jobs = null;
@@ -36,6 +37,16 @@ function slugify(element) {
   return custom_url
 }
 
+function createLink(element) {
+  //Creates a single, clickable link for the job
+  // let applyText = element.how_to_apply;
+  let parser = DOMParser.DOMParser;
+  let applyText = new parser().parseFromString(element.how_to_apply,"text/xml");
+  let link = String(applyText.firstChild.getElementsByTagName('a'));
+
+  return link;
+}
+
 // Get all the data
 const getData = async () => {
   try {
@@ -45,6 +56,7 @@ const getData = async () => {
     // Parse and produce unique slug -- custom-url
     json.forEach(element => {
       element.custom_url = slugify(element);
+      // element.apply_link = createLink(element);
     });
 
     // sneak and load up our global variable
