@@ -15,6 +15,7 @@
 		"connect-mongo": "~2.0.3",
 		"cookie-parser": "~1.4.3",
 		"debug": "~2.6.9",
+		"dom-parser": "^0.1.6",
 		"dotenv": "~7.0.0",
 		"express": "~4.16.0",
 		"express-handlebars": "~3.0.2",
@@ -47,6 +48,7 @@
 		"paystack": "^2.0.1",
 		"query-string": "^6.5.0",
 		"stripe": "^6.31.1",
-		"validator": "^10.11.0"
+		"validator": "^10.11.0",
+		"xmldom": "^0.1.27"
 	}
 }
