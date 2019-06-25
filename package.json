@@ -47,6 +47,7 @@
 		"paystack": "^2.0.1",
 		"query-string": "^6.5.0",
 		"stripe": "^6.31.1",
-		"validator": "^10.11.0"
+		"validator": "^10.11.0",
+		"xmldom": "^0.1.27"
 	}
 }

@@ -902,14 +902,19 @@ a:link {
   display: block;
   margin-right: auto;
   padding: 10px 0;
+  height: 70px;
 }
 
 /* line 808, ../rma/public/stylesheets/scss/homepage.scss */
 #latest-jobs .col-item .title {
   font-weight: 600;
+  display: inline-block;
   color: #11144C;
   font-size: 1.4em;
+  height: 5em;
   padding: 1em 0;
+  text-decoration: none;
+  outline: none;
 }
 
 /* line 815, ../rma/public/stylesheets/scss/homepage.scss */

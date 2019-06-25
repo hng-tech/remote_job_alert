@@ -20,6 +20,13 @@ const DOMParser = require("xmldom");
 // Null placeholder till promise returns a value
 var remote_jobs = null;
 
+// extract url from html
+function urlify(text) {
+  var urlRegex = /(\"https?:\/\/[^\s]+)\"/;
+  result = text.match(urlRegex)[0];
+  return result.substring(1, result.length-1);
+}
+
 // trick function to store Promise value
 function load_data(data) {
   remote_jobs = data;
@@ -361,6 +368,16 @@ const Jobs = {
 
     //Latest jobs, taken by removing the latest six from the json
     let latestJobs = newMain.slice(0,6);
+
+    // calculate date difference
+    let eachday = 24 * 60 * 60 * 1000;
+    latestJobs = latestJobs.map(x=>{
+      created_at = new Date(x.created_at)
+      today = new Date()
+      var daysElapsed = Math.round(Math.abs((created_at.getTime() - today.getTime()) / (eachday)));
+      x.created_at = daysElapsed;
+      return x;
+    })
     const stripeSession = await session;
 
     //Array of the stacks to be used and the links to their images
@@ -560,8 +577,11 @@ const Jobs = {
           // some jobs have no image
           single_job.company_logo = (!single_job.company_logo) ? "/images/no_job_image.jpg" : single_job.company_logo;
     
+          applyLink = urlify(single_job.how_to_apply)
+
           return res.status(200).render('singleJob', {
             content: single_job,
+            applyLink,
             summary: summary,
             keytech: key_tech + "...",
             title: single_job.title,

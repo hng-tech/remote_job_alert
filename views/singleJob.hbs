@@ -534,7 +534,7 @@
                         <p>At {{content.company}}</p>
                         <p style="color: black;">Our experienced and connected agents will apply on your behalf to boost
                             your chances.</p>
-                        <a class="btn mt-4" href="#hire-form">Apply Now</a>
+                        <a class="btn mt-4" href={{applyLink}}>Apply Now</a>
                     </div>
                 </div>
                 <div class="d-md-none col-lg-1"></div>
@@ -565,7 +565,7 @@
         <br />
         <div class="single-job-bottom">
             <div class="row">
-                <div class="col-md-12 col-lg-6 more-jobs-section">
+                <div class="col-md-12 col-lg-12 more-jobs-section">
                     <div class="more-jobs">
                         <h4 class="text-center" >SIMILAR REMOTE JOBS YOU MAY LIKE</h4>
                         {{# each similar_jobs}}
@@ -585,7 +585,7 @@
                         {{/each}}
                     </div>
                 </div>
-                <div class="hidden-md col-lg-1"></div>
+                {{!-- <div class="hidden-md col-lg-1"></div>
                 <div id="hire-form" class="col-md-12 col-lg-5 hire-agent">
                     <div class="form-box">
                         <h4>HIRE AN AGENT TODAY</h4>
@@ -619,7 +619,7 @@
                             your application process.</p>
                     </div>
 
-                </div>
+                </div> --}}
             </div>
         </div>
         <br>
