@@ -532,16 +532,16 @@
                     <div class="job-quick-details mt-4">
                         <p>{{content.type}}&nbsp;-&nbsp;{{content.title}}</p>
                         <p>At {{content.company}}</p>
-                        <p style="color: black;">Our experienced and connected agents will apply on your behalf to boost
-                            your chances.</p>
+                        {{!-- <p style="color: black;">Our experienced and connected agents will apply on your behalf to boost
+                            your chances.</p> --}}
                         <a class="btn mt-4" href={{applyLink}}>Apply Now</a>
                     </div>
                 </div>
                 <div class="d-md-none col-lg-1"></div>
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 job-summary">
                     <p class="text-xs-center p-1" style="display: inline; background: #11144C; color: white;">Work from
-                        anywhere</p><br /><br />
-                    <i class="m-1">Apply through us and get your dream remote job today!</i>
+                        anywhere</p>
+                    {{!-- <i class="m-1">Apply through us and get your dream remote job today!</i> --}}
                     <br /><br />
                     <h3>REMOTE JOB SUMMARY</h3>
                     <p style="text-transform: capitalize;">Key Technologies: {{{keytech}}}</p>
@@ -585,6 +585,7 @@
                         {{/each}}
                     </div>
                 </div>
+                // Hire and Pay Agents Link
                 {{!-- <div class="hidden-md col-lg-1"></div>
                 <div id="hire-form" class="col-md-12 col-lg-5 hire-agent">
                     <div class="form-box">
