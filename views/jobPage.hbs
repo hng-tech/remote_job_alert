@@ -275,6 +275,14 @@
             background: #11144C;
             color: #ffffff;
         }
+        .each-job {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100px;
+        }
     </style>
 
 
@@ -365,8 +373,8 @@
                 </div>
                 <div class="col-lg-9 mt-lg-0 mt-3" id="jobTable">
                     {{# each content}}
-                    <div class="job_list_wrapper mb-4 border contentCard rounded-lg">
-                        <div class="row ">
+                    <div class="job_list_wrapper mb-4 border contentCard rounded">
+                        <div class="row each-job">
                             <div class="col-md-2">
                                 <img class="img-fluid" src="{{this.company_logo}}" alt="{{this.company}} logo">
                             </div>
