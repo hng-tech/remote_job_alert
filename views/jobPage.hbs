@@ -36,11 +36,11 @@
 
         .radiobtn label {
             display: block;
-            background: #c6daec;
+            {{!-- background: #c6daec; --}}
             color: #444;
             border-radius: 5px;
             padding: 10px 20px;
-            border: 2px solid #72ace0;
+            {{!-- border: 2px solid #72ace0; --}}
             margin-bottom: 5px;
             cursor: pointer;
         }
@@ -54,7 +54,7 @@
             width: 20px;
             height: 20px;
             border-radius: 3px;
-            background: #72ace0;
+            {{!-- background: #72ace0; --}}
         }
 
         .radiobtn label:before {
@@ -80,7 +80,7 @@
         }
 
         .radiobtn input[type="radio"]:checked+label {
-            background: #5ca0e0;
+            {{!-- background: #5ca0e0; --}}
             -webkit-animation-name: blink;
             animation-name: blink;
             -webkit-animation-duration: 1s;
@@ -266,6 +266,23 @@
             text-align: center;
             border: none;
         }
+        .view-btn {
+            background: #fff;
+            color: #11144C;
+            border-color: #11144C;
+        }
+        .view-btn:hover {
+            background: #11144C;
+            color: #ffffff;
+        }
+        .each-job {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100px;
+        }
     </style>
 
 
@@ -277,7 +294,7 @@
 <div id="jobPage-wrapper" class=" pb-5">
     <div class="container">
         {{!-- Bread crumb --}}
-        <div class="row">
+        <div class="row rounded">
             <div class="col-12">
                 <div class=" my-4 shadow-sm">
                     <nav aria-label="breadcrumb">
@@ -291,11 +308,11 @@
         </div>
 
         {{!-- Main Page --}}
-        <div class="bg-whyt py-lg-4 py-3 px-lg-3 px-2 shadow-sm  mt-1 mb-5">
+        <div class="bg-whyt py-lg-4 py-3 px-lg-3 px-2 shadow-sm  mt-1 mb-5 rounded">
             <h3 class="text-center b-7 mb-md-5 mb-3 pt-3">Remote Developer Jobs</h3>
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="card br-0">
+                    <div class="card br-0 rounded">
                         <div class="card-header b-6 -center">
                             Filter by Category
                         </div>
@@ -315,7 +332,7 @@
                         </form>
                     </div>
                     <br>
-                    <div class="card br-0">
+                    <div class="card br-0 rounded">
                         <div class="card-header b-6 -center">
                             Technologies
                         </div>
@@ -356,8 +373,8 @@
                 </div>
                 <div class="col-lg-9 mt-lg-0 mt-3" id="jobTable">
                     {{# each content}}
-                    <div class="job_list_wrapper mb-4 border contentCard rounded-lg">
-                        <div class="row ">
+                    <div class="job_list_wrapper mb-4 border contentCard rounded">
+                        <div class="row each-job">
                             <div class="col-md-2">
                                 <img class="img-fluid" src="{{this.company_logo}}" alt="{{this.company}} logo">
                             </div>
@@ -371,7 +388,7 @@
                             <div class="col-md-3">
                                 {{!-- <h6 class="b-7">Pay Range</h6>
                                     <p class="text-muted"></p> --}}
-                                <a href="jobs/{{ this.custom_url }}" class="btn br-0 unsub_cancel btn-sm">View
+                                <a href="jobs/{{ this.custom_url }}" class="btn br-0 unsub_cancel btn-sm view-btn rounded">View
                                     details</a>
                             </div>
                         </div>
