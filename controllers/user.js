@@ -6,6 +6,17 @@ const hbs = require('handlebars');
 const fs = require('fs');
 const fetch = require('node-fetch');
 
+function slugify(element) {
+  let title = element.title;
+  let company = element.company;
+  let regex = /[\.\-\]\[\(\)\!\,\<\>\`\~\{\}\?\/\\\"\:\'\|\@\%\&\*]/g;
+  let urlOne = title.toLowerCase().trim().replace(regex, '').split(' ');
+  let urlTwo = company.toLowerCase().trim().replace(regex, '').split(' ');
+  let custom_url = urlOne.join('-') + '-' + urlTwo.join('-')
+
+  return custom_url
+}
+
 const transporter = nodemailer.createTransport({
   host: 'smtp.zoho.com',
   port: 465,
@@ -80,6 +91,10 @@ async function sendMailForRemoteJob(){
       created_at: new Date(job.created_at).toDateString(),
       description:job.description.slice(0,200) + " ..."
     }));
+    jobs.forEach(element => {
+      element.custom_url = slugify(element);
+      // element.apply_link = createLink(element);
+    });
 
     // res.json({counts:jobs.length,jobs})
     if (jobs.length === 0) {
