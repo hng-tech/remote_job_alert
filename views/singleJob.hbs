@@ -191,7 +191,7 @@
         #single-job .single-job-bottom .more-jobs-section .more-jobs .more-job .more-job-image {
             max-width: 120px;
             padding: 10px;
-            box-shadow: .2px 1.5px 4px .2px #eeeeee;
+            {{!-- box-shadow: .2px 1.5px 4px .2px #eeeeee; --}}
             text-align: center;
             width: 100%;
         }
@@ -569,7 +569,7 @@
                     <div class="more-jobs">
                         <h4 class="text-center" >SIMILAR REMOTE JOBS YOU MAY LIKE</h4>
                         {{# each similar_jobs}}
-                        <div class="more-job">
+                        <div class="more-job rounded">
                             <div class="more-job-image">
                                 <img class="img-fluid" alt="{{this.title}}" src="{{this.company_logo}}">
                             </div>
