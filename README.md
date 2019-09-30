@@ -42,3 +42,5 @@ Visit `https://localhost:3020` to view the project.
 **NOTES:**
 
 &mdash; After making changes to the repo, push to your forked branch and create a pull request, make sure there are no merge conflicts.
+
+&mdash; Remove all unnecessary comments so as to keep the code clean and understandable. 
