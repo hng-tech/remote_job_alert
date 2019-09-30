@@ -37,7 +37,7 @@
         .radiobtn label {
             display: block;
             {{!-- background: #c6daec; --}}
-            color: #444;
+            color: #11144c;
             border-radius: 5px;
             padding: 10px 20px;
             {{!-- border: 2px solid #72ace0; --}}
@@ -85,11 +85,11 @@
             animation-name: blink;
             -webkit-animation-duration: 1s;
             animation-duration: 1s;
-            border-color: #5ca0e0;
+            border-color: #11144c;
         }
 
         .radiobtn input[type="radio"]:checked+label:after {
-            background: #6bb8ff;
+            background: #11144c;
         }
 
         .radiobtn input[type="radio"]:checked+label:before {
@@ -197,6 +197,23 @@
             width: 100%;
         }
 
+        @media (max-width: 575.98px) {
+            ul {
+            margin: 5px 5px;
+            padding: 5px;
+            }
+
+            ul li {
+                display: block;
+                margin: 2px 0px;
+                padding: 2px 2px;
+                width: 100%;
+            }
+            .img-fluid {
+                max-height: 100px;
+            }
+        }
+
         /**
  * Code for checkboxes
  */
@@ -246,7 +263,7 @@
             z-index: 1;
             width: 100%;
             height: 100%;
-            border: 2px solid #5ca0e0;
+            border: 2px solid #11144c;
             transition: all 0s ease-in-out;
         }
 
@@ -259,7 +276,7 @@
         }
 
         .checkbox--blue-grey:checked:before {
-            border-color: #5ca0e0;
+            border-color: #11144c;
         }
 
         .page-link {
@@ -365,8 +382,8 @@
                     </div>
                     <br>
                     <button id="refine" class="btn btn-primary btn-md btn-rounded mt-2"
-                        style="background: #5ca0e0; color: #fff">Refine results</button>
-                    <button style="background: #5ca0e0; color: #fff" id="clear-filter"
+                        style="background: #11144c; border: 0; color: #fff">Refine results</button>
+                    <button style="background: #11144c; border: 0; color: #fff" id="clear-filter"
                         class="btn btn-primary btn-md btn-rounded mt-2">
                         Clear filters
                     </button>
