@@ -23,7 +23,17 @@ var remote_jobs = null;
 // extract url from html
 function urlify(text) {
   var urlRegex = /(\"https?:\/\/[^\s]+)\"/;
-  result = text.match(urlRegex)[0];
+  var mailRegex = /(\"mailto:[^\s]+)\"/;
+
+  if (urlRegex.test(text)) {
+    result = text.match(urlRegex)[0];
+  }
+  else if (mailRegex.test(text)) {
+    result = text.match(mailRegex)[0];
+  }
+  else {
+    result = "https://devalert.me/jobs";
+  }
   return result.substring(1, result.length-1);
 }
 

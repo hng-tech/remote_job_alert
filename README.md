@@ -13,8 +13,7 @@ Remote job alert is a service used to serve curated job listings outside of Afri
 3. Run `npm install` (on your terminal) to install the dependencies.
 4. Run `npm start` (on your terminal) to run the project.
 5. Go to your browser `localhost:3020` to view the project.
-6. When you make your changes to the repo, push to master and create a pull request, make sure there are no merge conflicts.
-7. Do not merge, the mentor would.
+6. When you make your changes to the repo, push to your forked branch and create a pull request, make sure there are no merge conflicts.
    Getting Started
 
 Fork the repository first and clone it
@@ -26,7 +25,7 @@ git clone <CLONE_URL>
 Change into cloned repo and install dependencies
 
 ```
-`npm install`
+npm install
 ```
 
 Create a .env file in the root folder and copy the details in the .env.example file into the file. 
@@ -38,10 +37,10 @@ Start the project
 
 `npm start`
 
-Visit `https://localhost:3020` to view the project.
+Visit `http://localhost:3020` to view the project.
 
 **NOTES:**
 
-&mdash; After making changes to the repo, push to master and create pull request, make sure there are no merge conflicts.
+&mdash; After making changes to the repo, push to your forked branch and create a pull request, make sure there are no merge conflicts.
 
-&mdash; Do not merge pull request, a mentor will.
+&mdash; Remove all unnecessary comments so as to keep the code clean and understandable. 
