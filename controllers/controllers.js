@@ -21,21 +21,21 @@ const DOMParser = require("xmldom");
 var remote_jobs = null;
 
 // extract url from html
-function urlify(text) {
-  var urlRegex = /(\"https?:\/\/[^\s]+)\"/;
-  var mailRegex = /(\"mailto:[^\s]+)\"/;
+// function urlify(text) {
+//   var urlRegex = /(\"https?:\/\/[^\s]+)\"/;
+//   var mailRegex = /(\"mailto:[^\s]+)\"/;
 
-  if (urlRegex.test(text)) {
-    result = text.match(urlRegex)[0];
-  }
-  else if (mailRegex.test(text)) {
-    result = text.match(mailRegex)[0];
-  }
-  else {
-    result = "https://devalert.me/jobs";
-  }
-  return result.substring(1, result.length-1);
-}
+//   if (urlRegex.test(text)) {
+//     result = text.match(urlRegex)[0];
+//   }
+//   else if (mailRegex.test(text)) {
+//     result = text.match(mailRegex)[0];
+//   }
+//   else {
+//     result = "https://devalert.me/jobs";
+//   }
+//   return result.substring(1, result.length-1);
+// }
 
 // trick function to store Promise value
 function load_data(data) {
