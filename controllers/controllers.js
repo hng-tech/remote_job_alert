@@ -370,12 +370,12 @@ const Jobs = {
       let techs = key_tech.trim().split(',');
 
       if (techs.length > 3) {
-        techs = techs.slice(0,3) 
+        techs = techs.slice(0,3)
       }
 
-      techs = techs.join(' | ');
+      techs = techs.join(' | ').toUpperCase();
 
-      job.tags = techs.toUpperCase();
+      job.tags = techs;
   
 
 
