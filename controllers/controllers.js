@@ -44,6 +44,17 @@ function load_data(data) {
   remote_jobs = data;
 }
 
+// searches for common needles in a an array. Don't touch
+function search_common(needle, haystack) {
+  let key_languages = "";
+  for (let i = 0, n = haystack.length; i < n; i++) {
+    if (needle.includes(haystack[i])) {
+      key_languages += haystack[i] + ", ";
+    }
+  }
+  return key_languages;
+}
+
 //Create more beautiful slugs, we all need good things...
 function slugify(element) {
   let title = element.title;
@@ -56,6 +67,23 @@ function slugify(element) {
   return custom_url
 }
 
+//Add tags to each element
+function tagify(element) {
+  let common_tech = ["python", "es6", "ruby", "c#", "java ", " C ", "c++", "php", "javascript", "css", "html", "swift", "git", "azure", "docker", "sql", "asp.net", ".net", "asp", "rest", "react", "ios", "android", "vagrant", "trello", " R ", "Linux", "Angular", "Node"];
+    
+  let key_tech = search_common(element.description.toLowerCase(), common_tech);
+
+  let techs = key_tech.trim().split(',');
+
+  if (techs.length > 3) {
+    techs = techs.slice(0,3)
+  }
+
+  techs = techs.join(' | ').toUpperCase();
+
+  return techs;
+}
+
 // Get all the data
 const getData = async () => {
   try {
@@ -65,6 +93,7 @@ const getData = async () => {
     // Parse and produce unique slug -- custom-url
     json.forEach(element => {
       element.custom_url = slugify(element);
+      element.tags = tagify(element);
       // element.apply_link = createLink(element);
     });
 
@@ -80,16 +109,7 @@ const getData = async () => {
 // fire! Promise fire!
 getData();
 
-// searches for common needles in a an array. Don't touch
-function search_common(needle, haystack) {
-  let key_languages = "";
-  for (let i = 0, n = haystack.length; i < n; i++) {
-    if (needle.includes(haystack[i])) {
-      key_languages += haystack[i] + ", ";
-    }
-  }
-  return key_languages;
-}
+
 //Algo for deriving a stack job by checking if the desc includes the tech passed to the param.
 //This has a lesser running time than the previous one
 function searchTech(stack, searchArray, pushArray) {
@@ -362,21 +382,6 @@ const Jobs = {
     let newMain = [];
 
     main.forEach(job => {
-
-      let common_tech = ["python", "es6", "ruby", "c#", "java ", " C ", "c++", "php", "javascript", "css", "html", "swift", "git", "azure", "docker", "sql", "asp.net", ".net", "asp", "rest", "react", "ios", "android", "vagrant", "trello", " R ", "Linux", "Angular", "Node"];
-      
-      let key_tech = search_common(job.description.toLowerCase(), common_tech);
-
-      let techs = key_tech.trim().split(',');
-
-      if (techs.length > 3) {
-        techs = techs.slice(0,3)
-      }
-
-      techs = techs.join(' | ').toUpperCase();
-
-      job.tags = techs;
-  
 
 
       if (job.company_logo !== null && job.company_logo !== "") {
