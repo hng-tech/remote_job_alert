@@ -20,10 +20,12 @@ const DOMParser = require("xmldom");
 // Null placeholder till promise returns a value
 var remote_jobs = null;
 
-// extract url from html
+// extract url or mail from html text
 function urlify(text) {
   var urlRegex = /(\"https?:\/\/[^\s]+)\"/;
   var mailRegex = /(\"mailto:[^\s]+)\"/;
+
+  var result = null;
 
   if (urlRegex.test(text)) {
     result = text.match(urlRegex)[0];
@@ -52,16 +54,6 @@ function slugify(element) {
   let custom_url = urlOne.join('-') + '-' + urlTwo.join('-')
 
   return custom_url
-}
-
-function createLink(element) {
-  //Creates a single, clickable link for the job
-  // let applyText = element.how_to_apply;
-  let parser = DOMParser.DOMParser;
-  let applyText = new parser().parseFromString(element.how_to_apply,"text/xml");
-  let link = String(applyText.firstChild.getElementsByTagName('a'));
-
-  return link;
 }
 
 // Get all the data
@@ -102,7 +94,7 @@ function search_common(needle, haystack) {
 //This has a lesser running time than the previous one
 function searchTech(stack, searchArray, pushArray) {
 
-  for (j = 0; j<searchArray.length; j++) {
+  for (let j = 0; j<searchArray.length; j++) {
     let arrayDesc = searchArray[j].description.toLowerCase();
     if (arrayDesc.includes(stack)) {
       let lastIndex = arrayDesc.indexOf(stack) + (stack.length);
@@ -313,7 +305,7 @@ const Jobs = {
           return parsedhtml;
         },
         populate_types: function () {
-          parsedhtml = "";
+          let parsedhtml = "";
           for (let i = 0; i < types.length; i++) {
             parsedhtml += `
             <li>
@@ -326,7 +318,7 @@ const Jobs = {
           return parsedhtml;
         },
         show_frequencies: function () {
-          parsedhtml = "";
+          let parsedhtml = "";
           for (let i = 0; i < frequencies.length; i++) {
             parsedhtml += `
             <div class="radiobtn">
@@ -370,6 +362,23 @@ const Jobs = {
     let newMain = [];
 
     main.forEach(job => {
+
+      let common_tech = ["python", "es6", "ruby", "c#", "java ", " C ", "c++", "php", "javascript", "css", "html", "swift", "git", "azure", "docker", "sql", "asp.net", ".net", "asp", "rest", "react", "ios", "android", "vagrant", "trello", " R ", "Linux", "Angular", "Node"];
+      
+      let key_tech = search_common(job.description.toLowerCase(), common_tech);
+
+      let techs = key_tech.trim().split(',');
+
+      if (techs.length > 3) {
+        techs = techs.slice(0,3) 
+      }
+
+      techs = techs.join(' | ');
+
+      job.tags = techs.toUpperCase();
+  
+
+
       if (job.company_logo !== null && job.company_logo !== "") {
         newMain.push(job);
       }
@@ -382,8 +391,8 @@ const Jobs = {
     // calculate date difference
     let eachday = 24 * 60 * 60 * 1000;
     latestJobs = latestJobs.map(x=>{
-      created_at = new Date(x.created_at)
-      today = new Date()
+      let created_at = new Date(x.created_at)
+      let today = new Date()
       var daysElapsed = Math.round(Math.abs((created_at.getTime() - today.getTime()) / (eachday)));
       x.created_at = daysElapsed;
       return x;
@@ -463,14 +472,15 @@ const Jobs = {
       else if (categories.includes(slug)) {
         try {
           //Refine the slugs for effective searching, remove the hyphens and capitalize each word
+          let formalSlug = "";
           if (slug.includes('-')) {
             let newSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
             let oldSlug = newSlug.split('-');
             oldSlug[1] = oldSlug[1].charAt(0).toUpperCase() + oldSlug[1].slice(1);
-            var formalSlug = oldSlug.join(' ');
+            formalSlug = oldSlug.join(' ');
           }
           else {
-            var formalSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
+            formalSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
           }
 
           //Now Check if the query string has values
