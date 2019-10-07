@@ -400,6 +400,7 @@ const Jobs = {
       let today = new Date()
       var daysElapsed = Math.round(Math.abs((created_at.getTime() - today.getTime()) / (eachday)));
       x.created_at = daysElapsed;
+      x.newTag = tagify(x);
       return x;
     })
     const stripeSession = await session;
