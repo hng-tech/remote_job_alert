@@ -437,6 +437,21 @@ const Jobs = {
       } 
     });
 
+    //Sort stackjobs by which has the highest count
+    stackJobs.sort(function(a,b) {
+      let aCount = a.count, bCount = b.count;
+
+      if (aCount>bCount) {
+        return -1
+      }
+      else if (aCount<bCount) {
+        return 1
+      }
+      else {
+        return 0;
+      }
+    })
+
     
     //It goes something like this: allTechJobs[tech] = searchTech()
     //Then I can do something like for number of java jobs I have allTechJobs[java].length 
