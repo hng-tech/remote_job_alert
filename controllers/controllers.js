@@ -97,6 +97,23 @@ const getData = async () => {
       // element.apply_link = createLink(element);
     });
 
+    //Add Sorting by time
+    json.sort(function(a,b) {
+      let aTime = new Date(a.created_at).getTime(), bTime = new Date(b.created_at).getTime();
+
+      if (aTime > bTime) {
+        return -1;
+      }
+      else if (aTime < bTime) {
+        return 1;
+      }
+      else {
+        return 0;
+      }
+    })
+
+
+
     // sneak and load up our global variable
     load_data(json);
 
@@ -389,20 +406,6 @@ const Jobs = {
       }
       
     });
-
-    newMain.sort(function(a,b) {
-      let aTime = new Date(a.created_at).getTime(), bTime = new Date(b.created_at).getTime();
-
-      if (aTime > bTime) {
-        return -1;
-      }
-      else if (aTime < bTime) {
-        return 1;
-      }
-      else {
-        return 0;
-      }
-    })
 
     //Latest jobs, taken by removing the latest six from the json
     let latestJobs = newMain.slice(0,6);
