@@ -268,21 +268,16 @@
 {{> header }}
 
 <div id="jobPage-wrapper" class=" pb-5">
-    <div class="container">
-        {{!-- Bread crumb --}}
-        <div class="row">
-            <div class="col-12">
-                <div class=" my-4 shadow-sm">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb bg-whyt br-0">
-                            <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item"><a href="/jobs">All listings</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{name}}</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
+    {{!-- Bread crumb --}}
+    <div class="container-fluid" style="margin-bottom: 50px;">
+        <div class="row mb-4" aria-label="breadcrumb" style="background-color: #11144c; color:#fff;">
+            <span class="container pl-4" style="background-cspanor: none; padding: 10px 0;">
+                <a href="/">Home</a> / <a href="/jobs">All Listings</a>
+                <span>/ {{name}}</span>
+            </span>
         </div>
+    </div>
+    <div class="container">
 
         {{!-- Main Page --}}
         <div class="bg-whyt py-lg-4 py-3 px-lg-3 px-2 shadow-sm  mt-1 mb-5">
