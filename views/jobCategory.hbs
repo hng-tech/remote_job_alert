@@ -5,6 +5,7 @@
 
     <title>DevAlert | Remote {{name}} Job Postings</title>
     <link rel='stylesheet' href='stylesheets/style.css' />
+    <link rel="shortcut icon" href="/public/stylesheets/jobs.css" type="image/x-icon">
     <link rel="shortcut icon" href="/images/code2.png" type="image/x-icon">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139612600-1"></script>
@@ -20,247 +21,7 @@
     <meta name="keywords"
         content="Remote Python Jobs,Remote Node Jobs,Remote Java Jobs,Remote JavaScript Jobs,Remote React Jobs'Remote IOS Jobs,Remote Asp Jobs,Remote Linux jobs,Remote php jobs,Remote ruby jobs,Remote Sql jobs,Remote Android jobs,remote developer jobs" />
     <meta name="description" content="Remote jobs are categorized in this section..." />
-    <style>
-        form {
-            position: relative;
-            margin: 5px auto 0;
-            font-size: 15px;
-            width: 100%;
-        }
-
-        .radiobtn {
-            position: relative;
-            display: block;
-        }
-
-        .radiobtn label {
-            display: block;
-            background: #c6daec;
-            color: #444;
-            border-radius: 5px;
-            padding: 10px 20px;
-            border: 2px solid #72ace0;
-            margin-bottom: 5px;
-            cursor: pointer;
-        }
-
-        .radiobtn label:after,
-        .radiobtn label:before {
-            content: "";
-            position: absolute;
-            right: 11px;
-            top: 11px;
-            width: 20px;
-            height: 20px;
-            border-radius: 3px;
-            background: #72ace0;
-        }
-
-        .radiobtn label:before {
-            background: transparent;
-            transition: 0.1s width cubic-bezier(0.075, 0.82, 0.165, 1) 0s, 0.3s height cubic-bezier(0.075, 0.82, 0.165, 2) 0.1s;
-            z-index: 2;
-            overflow: hidden;
-            background-repeat: no-repeat;
-            background-size: 13px;
-            background-position: center;
-            width: 0;
-            height: 0;
-            background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNS4zIDEzLjIiPiAgPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTE0LjcuOGwtLjQtLjRhMS43IDEuNyAwIDAgMC0yLjMuMUw1LjIgOC4yIDMgNi40YTEuNyAxLjcgMCAwIDAtMi4zLjFMLjQgN2ExLjcgMS43IDAgMCAwIC4xIDIuM2wzLjggMy41YTEuNyAxLjcgMCAwIDAgMi40LS4xTDE1IDMuMWExLjcgMS43IDAgMCAwLS4yLTIuM3oiIGRhdGEtbmFtZT0iUGZhZCA0Ii8+PC9zdmc+);
-        }
-
-        .radiobtn input[type="radio"] {
-            display: none;
-            position: absolute;
-            width: 100%;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-        }
-
-        .radiobtn input[type="radio"]:checked+label {
-            background: #5ca0e0;
-            -webkit-animation-name: blink;
-            animation-name: blink;
-            -webkit-animation-duration: 1s;
-            animation-duration: 1s;
-            border-color: #5ca0e0;
-        }
-
-        .radiobtn input[type="radio"]:checked+label:after {
-            background: #6bb8ff;
-        }
-
-        .radiobtn input[type="radio"]:checked+label:before {
-            width: 20px;
-            height: 20px;
-        }
-
-        @-webkit-keyframes blink {
-            0% {
-                background-color: #5ca0e0;
-            }
-
-            10% {
-                background-color: #5ca0e0;
-            }
-
-            11% {
-                background-color: #6fa5d8;
-            }
-
-            29% {
-                background-color: #6fa5d8;
-            }
-
-            30% {
-                background-color: #78a4ce;
-            }
-
-            50% {
-                background-color: #83a9cc;
-            }
-
-            45% {
-                background-color: #8ba9c5;
-            }
-
-            50% {
-                background-color: #92abc2;
-            }
-
-            100% {
-                background-color: #93a7b9;
-            }
-        }
-
-        @keyframes blink {
-            0% {
-                background-color: #93a7b9;
-            }
-
-            10% {
-                background-color: #92abc2;
-            }
-
-            11% {
-                background-color: #8ba9c5;
-            }
-
-            29% {
-                background-color: #83a9cc;
-            }
-
-            30% {
-                background-color: #78a4ce;
-            }
-
-            50% {
-                background-color: #6fa5d8;
-            }
-
-            45% {
-                background-color: #6fa5d8;
-            }
-
-            50% {
-                background-color: #5ca0e0;
-            }
-
-            100% {
-                background-color: #5ca0e0;
-            }
-        }
-
-        input:focus {
-            box-shadow: none;
-            outline: 0;
-        }
-
-        input[type="text"] {
-            width: 400px;
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 3px;
-        }
-
-        ul {
-            margin: 5px 10px;
-            padding: 10px;
-        }
-
-        ul li {
-            display: block;
-            margin: 2px 5px;
-            padding: 2px 10px;
-            width: 100%;
-        }
-
-        /**
- * Code for checkboxes
- */
-        .checkboxes {
-            max-height: 350px;
-            overflow: auto;
-        }
-
-        .checkboxes::-webkit-scrollbar-thumb,
-        .checkboxes::-moz-scrollbar-thumb {
-            background-color: #5ca0e0;
-            outline: 1px solid #5ca0e0;
-        }
-
-        .checkboxes::-webkit-scrollbar,
-        .checkboxes::-moz-scrollbar {
-            width: 1em;
-        }
-
-        .checkboxes::-webkit-scrollbar-track,
-        .checkboxes::-moz-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-        }
-
-        .checkbox {
-            position: relative;
-            width: 1rem;
-            height: 1rem;
-            margin-right: 0.75rem;
-            cursor: pointer;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            outline: 0;
-
-            /**
-   * Iterate over map and autogenerate helper classes.
-  * See "https://codepen.io/fxm90/pen/zGjjrJ" for an example
-  */
-        }
-
-        .checkbox:before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 4px;
-            z-index: 1;
-            width: 100%;
-            height: 100%;
-            border: 2px solid #5ca0e0;
-            transition: all 0s ease-in-out;
-        }
-
-        .checkbox:checked:before {
-            height: 50%;
-            -webkit-transform: rotate(-45deg);
-            transform: rotate(-45deg);
-            border-top-style: none;
-            border-right-style: none;
-        }
-
-        .checkbox--blue-grey:checked:before {
-            border-color: #5ca0e0;
-        }
-    </style>
+    
 
 
 </head>
@@ -350,14 +111,14 @@
                     <h5 style="text-align:center;">Found {{TotalJobs}} jobs for the selected category</h5>
                     <hr>
                     {{# each data}}
-                    <div class="job_list_wrapper mb-4 contentCard">
-                        <div class="row ">
-                            <div class="col-md-3">
+                    <div class="job_list_wrapper mb-4 contentCard rounded border">
+                        <div class="row each-job">
+                            <div class="col-md-2">
                                 <img class="img-fluid" src="{{this.company_logo}}" alt="{{this.company}} logo">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <a href="{{this.custom_url}}">
-                                    <h4 class="b-6 mt-3 mt-lg-0">{{this.title}}</h4>
+                                    <h4 class="b-6 mt-3 mt-lg-0 ci-title">{{this.title}}</h4>
                                 </a>
                                 <p class="text-muted pb-0 mb-1"><i class="fa fa-briefcase mr-1"></i>{{this.type}}</p>
                                 <p class="text-muted"><i class="fa fa-building mr-1"></i>{{this.company}}</p>
@@ -365,7 +126,8 @@
                             <div class="col-md-3">
                                 {{!-- <h6 class="b-7">Pay Range</h6>
                                     <p class="text-muted">$1200</p> --}}
-                                <a href="{{this.custom_url}}" class="btn br-0 unsub_cancel btn-sm">View details</a>
+                                <a href="jobs/{{ this.custom_url }}" class="btn br-0 unsub_cancel btn-sm view-btn rounded">View
+                                    details</a>
                             </div>
                         </div>
                     </div>
