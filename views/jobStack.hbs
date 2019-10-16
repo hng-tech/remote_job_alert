@@ -135,22 +135,23 @@
                     </div>
 
 
-                    <div class="job__paginate my-4">
+                    <div class="job__paginate">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
+                                {{#if buttons.previous}}
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
+                                    <a class="page-link" href="jobs?page={{buttons.previous}}" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
+                                {{/if}}
+                                {{{helpers.populate_links}}}
+                                {{#if buttons.next}}
+                                <a class="page-link" href="jobs?page={{buttons.next}}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
                                 </li>
+                                {{/if}}
                             </ul>
                         </nav>
                     </div>
