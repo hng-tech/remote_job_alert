@@ -598,7 +598,7 @@ const Jobs = {
               single_job = main[i];
               break;
             }
-          };
+          }
     
           let common_tech = ["python", "es6", "ruby", "c#", "java ", " C ", "c++", "php", "javascript", "css", "html", "swift", "git", "azure", "docker", "sql", "asp.net", ".net", "asp", "rest", "react", "ios", "android", "vagrant", "trello", " R ", "Linux", "Angular", "Node"];
     
@@ -629,6 +629,20 @@ const Jobs = {
           let summary = single_job.description.slice(0, single_job.description.indexOf("</p>", 100));
     
           single_job.description = single_job.description.slice(summary.length);
+
+          //Show error for late jobs
+          let dateDivider = 24 * 60 * 60;
+          let jobDate = new Date(single_job.created_at).getTime();
+          let currentDate = new Date().getTime();
+
+          let dayDiff = Math.round((currentDate - jobDate)/dateDivider)
+          let expiryMsg = "";
+
+          if (dayDiff > 21) {
+            expiryMsg = "Note: This position is likely to have been filled already"
+          }
+
+          single_job.expiryMsg = expiryMsg;
     
           const stripeSession = await session;
     
