@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Create Job</title>
+	<link href="https://daks2k3a4ib2z.cloudfront.net/56305ffe6dadbb201124ed56/css/milton-template.webflow.0a1c6ea8c.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic">
+	<link href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png" rel="apple-touch-icon">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/create_job_styles.css">
+</head>
+
+<body>
+    {{> header }}
+
+    <div id="sidebar">
+		<div class="sidebar-content">
+			<nav class="nav-box">
+				<a class="nav-link active" href="#home">Post New Job</a>
+				<a class="nav-link" href="#about">Manage Jobs</a>
+				<a class="nav-link" href="#contact">Subscribers</a>
+			</nav>
+		</div>
+	</div>
+	<div class="container-body">
+		<h2 class="form-title">Create Job Post</h2>
+		<form class="form-content">
+			<div class="form-group form-full">
+				<label for="exampleFormControlInput1">Advert Header</label>
+				<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Microsoft Technologies">
+			</div>
+			<div class="form-group form-half">
+				<label for="exampleFormControlInput1">Company Name</label>
+				<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter Company Name">
+			</div>
+			<div class="form-group form-half">
+				<label for="exampleFormControlInput1">Job Title</label>
+				<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Job title e.g “UI/UX Designer”">
+			</div>
+			<div class="form-group form-full">
+				<label for="exampleFormControlInput1">Job post link</label>
+				<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Job post url e.g “www.wearehiringremotedevs.com/leaddeveloper/post_200”">
+			</div>
+			<div class="form-group form-full">
+				<label for="exampleFormControlTextarea1">Description of job</label>
+				<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Role description and responsibilities"></textarea>
+			</div>
+			<div class="form-group form-full">
+				<label for="exampleFormControlInput1">Job category</label>
+				<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Category e.g “Designer”, “Developer”, “Product”">
+			</div>
+			<div class="form-group form-half">
+				<label for="exampleFormControlInput1">Job pay range (Max)</label>
+				<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="maximum">
+			</div>
+			<div class="form-group form-half">
+				<label for="exampleFormControlInput1">(Min)</label>
+				<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="minimum">
+			</div>
+			<div class="form-group form-full">
+				<label for="exampleFormControlInput1">Employer's e-mail</label>
+				<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email Address">
+			</div>
+			<div class="check-radio-div">
+				<div>
+				<label class="check-radio" for="exampleFormControlInput1">Career Level</label>
+				<div class="form-check">
+					<!-- <label for="exampleFormControlInput1">Employer's e-mail</label><br> -->
+					<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+					<label class="form-check-label" for="defaultCheck1">
+					Entry Level
+					</label>
+				</div>
+				<div class="form-check">
+				  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+				  <label class="form-check-label" for="defaultCheck2">
+				    Intermediate
+				  </label>
+				</div>
+				<div class="form-check">
+				  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+				  <label class="form-check-label" for="defaultCheck2">
+				    Experienced
+				  </label>
+				</div>
+			</div>
+			<div>
+				<label class="check-radio" for="exampleFormControlInput1">Location</label>
+				<div class="form-check">
+				  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+				  <label class="form-check-label" for="exampleRadios1">
+				    Nigeria only
+				  </label>
+				</div>
+				<div class="form-check">
+				  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+				  <label class="form-check-label" for="exampleRadios2">
+				    Anywhere
+				  </label>
+				</div>
+			</div>
+			</div>
+			<div class="form-full post-job">
+				<a class="post-job-link" href="#">Post Job</a>
+			</div>
+		</form>
+	</div>>
+
+    {{> footer}}
+</body>
