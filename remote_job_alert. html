@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DRAGON BEAST</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h1>ABOUT US</h1>
+  <p>Dev/Alert is an online remote job search platform which curates a collection of the most interesting remote job offers in a variety of technical fields, connecting African developers to the rest of the world.
+This platform focuses on connecting technical professionals in Africa, eager to work remotely, with innovative companies offering independent positions from all over the world. It connects African developers to the rest of the world, thereby allowing developers from anywhere in Africa to work at where is comfortable, happiest and most productive, regardless of their physical proximity to an office.</p>
+</div>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h2>WHO WE ARE</h2>
+
+
+      <p>Our mission at Dev/Alert is to help developers in Africa secure remote jobs; our team is passionately pursuing this purpose and improving the user experience journey through real stories and data. We foster a collaborative workplace that strives to create the best experience for job seekers.</p>
+      <h3>OUR TEAM</h3>
+      <p>Dev/Alert was created by a group of programmers to meet the needs of jobs availability in the continent and to connect to developers across the continent.</p>
+
+      <hr class="hidden-sm hidden-md hidden-lg">
+    </div>
+    <div class="col-sm-8">
+      <h2>OUR TECHNICAL TEAM</h2>
+
+      <p>Dev/Alert was created by a group of programmers to meet the needs of jobs availability in the continent and to connect to developers across the continent.
+Jesutomiwa Salam (Senior Back-End Developer)
+Abdullahi Oladosu (Senior Front-End Developer)
+Chiaju Chinedu (Front-End Developer)
+Damilola Shofoluwe (Senior UI/UX Designer)</p>
+
+      <br>
+      <h2>HOW IT WORKS</h2>
+
+      <p>Dev/Alert gives developers the opportunity to subscribe to our mailing list for latest remote job opportunities.
+We bridge the enormous gap between the increasing number of African developers and the few available tech jobs on the continent. It provides a subscription service to effectively connect developers to remote jobs available in Africa.</p>
+
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <p>COPYRIGHT 2019 </p>
+</div>
+
+</body>
+</html>
