@@ -159,6 +159,63 @@
             }
 }
     </style>
+    <script>
+
+  function statusChangeCallback(response) {
+      {{!-- console.log(response) --}}
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+      {{!-- console.log(response) --}}
+    } else {
+     console.log('Ole you are not logged in!')
+    }
+  }
+
+  {{!-- FB.logout(function(response) {
+   // Person is now logged out
+}); --}}
+
+  // check if the user is logged in
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '447030122721072',
+      cookie     : true,  // enable cookies to allow the server to access 
+                          // the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v3.3' // The Graph API version to use for the call
+    });
+
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  function testAPI() {
+    var url = '/me?fields=name,email';
+    FB.api(url, function(response) {
+      {{!-- console.log(response.email) --}}
+      console.log(response.name)
+      console.log(response)
+    }, {scope: 'email'});
+  }
+</script>
 </head>
 <body>
     <div class="main">
@@ -172,6 +229,11 @@
                 <a href="/auth/google" class="btn googlebtn p-3 mt-4 mb-2"><i style="font-size: 1.2em;" class="fab fa-google mr-3"></i> Sign in with Google </a>
                 
                 <a href="/auth/github" class="btn githubbtn p-3 mb-4"><i style="font-size: 1.2em;" class="fab fa-github mr-3"></i> Sign in with Github </a>
+            </div>
+             <div class="btns">  
+                <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">FB</fb:login-button>
+                <p class="mb-0">or</p>
+                <a href="/auth/google" class="btn googlebtn mt-2 "><i class="fab fa-google mr-2"></i> Google </a>
             </div>
             <h6>You can control the frequency of your mail. Choose the kind of mail you want to receive and also choose agents </h6>
         </div>
